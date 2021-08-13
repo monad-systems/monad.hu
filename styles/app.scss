@@ -1,0 +1,11 @@
+
+$dark: #222525;
+$primary: #30D5C8;
+
+$navbar-dark-color: #fff;
+$navbar-dark-hover-color: $primary;
+$navbar-dark-active-color: $primary;
+
+@import 'bootstrap/scss/bootstrap.scss';
+
+@import './layout';
