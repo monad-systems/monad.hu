@@ -54,8 +54,7 @@ export default function Home() {
 
         <Row as="article" className="align-items-center">
           <Col md="6" className="my-2">
-            <Image
-              height={304}
+            <img
               src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_product_iteration_kjok_kyukit.svg"
               alt="Iteratív fejlesztés"
               className="img-fluid"
@@ -96,8 +95,7 @@ export default function Home() {
           </div>
           </Col>
           <Col className="my-2">
-            <Image
-              height={452}
+            <img
               src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_react_y7wq_tpnarz.svg"
               alt=""
               className="img-fluid"
