@@ -54,11 +54,14 @@ export default function Home() {
 
         <Row as="article" className="align-items-center">
           <Col md="6" className="my-2">
-            <img
+            <div className="image-container">
+            <Image
+              layout="fill"
+              alt=""
+              className="responsive-image"
               src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_product_iteration_kjok_kyukit.svg"
-              alt="Iteratív fejlesztés"
-              className="img-fluid"
              />
+            </div>
           </Col>
           <Col className="my-2">
             <div className="h-100 p-5 text-white bg-dark rounded">
@@ -95,11 +98,14 @@ export default function Home() {
           </div>
           </Col>
           <Col className="my-2">
-            <img
+          <div className="image-container">
+            <Image
+              layout="fill"
               src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_react_y7wq_tpnarz.svg"
               alt=""
-              className="img-fluid"
+              className="responsive-image"
              />
+            </div>
           </Col>
         </Row>
         </section>
