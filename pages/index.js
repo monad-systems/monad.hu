@@ -40,7 +40,7 @@ export default function Home() {
 
       <main className="main-content mt-2">
         <Container>
-        <div className="p-5 my-4 bg-light rounded-bottom">
+        <div className="my-4 rounded-bottom">
           <div className="py-md-5">
             <h1 className="display-5 fw-bold"><span className="text-primary">Alkalmazkodj</span> agilis technológiákkal!</h1>
             <figure>
