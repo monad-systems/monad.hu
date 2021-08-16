@@ -17,7 +17,7 @@ export default function Home() {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home" className="py-0 d-flex align-items-center">
-            <Image src="https://res.cloudinary.com/monad-systems/image/upload/v1629058574/logo_kpn698.svg" className="d-inline-block align-top" alt="MONAD SYSTEMS logo" width={133} height={38} />
+            <Image src="/v1629058574/logo_kpn698.svg" className="d-inline-block align-top" alt="MONAD SYSTEMS logo" width={133} height={38} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           {/* <Navbar.Collapse id="responsive-navbar-nav">
@@ -59,7 +59,7 @@ export default function Home() {
               layout="fill"
               alt=""
               objectFit="contain"
-              src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_product_iteration_kjok_kyukit.svg"
+              src="/v1629058572/undraw_product_iteration_kjok_kyukit.svg"
              />
              </div>
           </Col>
@@ -101,7 +101,7 @@ export default function Home() {
           <div className="ratio ratio-16x9 bg-gray-100">
             <Image
               layout="fill"
-              src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_react_y7wq_tpnarz.svg"
+              src="/v1629058572/undraw_react_y7wq_tpnarz.svg"
               alt=""
               objectFit="contain"
              />
