@@ -54,14 +54,14 @@ export default function Home() {
 
         <Row as="article" className="align-items-center">
           <Col md="6" className="my-2">
-            <div className="image-container">
+          <div className="ratio ratio-16x9 bg-gray-100">
             <Image
               layout="fill"
               alt=""
-              className="responsive-image"
+              objectFit="contain"
               src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_product_iteration_kjok_kyukit.svg"
              />
-            </div>
+             </div>
           </Col>
           <Col className="my-2">
             <div className="h-100 p-5 text-white bg-dark rounded">
@@ -98,12 +98,12 @@ export default function Home() {
           </div>
           </Col>
           <Col className="my-2">
-          <div className="image-container">
+          <div className="ratio ratio-16x9 bg-gray-100">
             <Image
               layout="fill"
               src="https://res.cloudinary.com/monad-systems/image/upload/v1629058572/undraw_react_y7wq_tpnarz.svg"
               alt=""
-              className="responsive-image"
+              objectFit="contain"
              />
             </div>
           </Col>
