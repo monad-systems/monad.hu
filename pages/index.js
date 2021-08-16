@@ -47,7 +47,7 @@ export default function Home() {
               <blockquote className="blockquote">
                 <p>Az egyetlen állandó a változás maga.</p>
               </blockquote>
-              <figcaption className="blockquote-footer">
+              <figcaption className="blockquote-footer text-dark text-opacity-75">
               Hérakleitosz
               </figcaption>
             </figure>
@@ -67,7 +67,7 @@ export default function Home() {
               <blockquote className="blockquote">
                 <p>Alignment enables Autonomy</p>
               </blockquote>
-              <figcaption className="blockquote-footer">
+              <figcaption className="blockquote-footer text-light text-opacity-75">
               Henry Kniberg
               </figcaption>
             </figure>
@@ -95,7 +95,7 @@ export default function Home() {
               <blockquote className="blockquote">
                 <p>Favor object composition over class inheritance.</p>
               </blockquote>
-              <figcaption className="blockquote-footer">
+              <figcaption className="blockquote-footer text-dark text-opacity-75">
               Gang of Four <cite title="Design Patterns">Design Patterns</cite>
               </figcaption>
             </figure>
