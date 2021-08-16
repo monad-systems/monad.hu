@@ -52,7 +52,8 @@ export default function Home() {
               </figcaption>
             </figure>
             <p className="fs-4">Az <em>állandó változás</em>t technológiai szempontból sem egyszerű feladat lekövetni. 2008 óta foglalkozunk <strong>egyedi szoftverfejlesztéssel</strong>, <strong>fejlesztői képzésekkel</strong> és <strong> szaktanácsadással</strong>. A felhalmozott szakértelemmel segítünk, hogy olyan pillérekre alapozz, ami a <strong>rugalmasság</strong>ának köszönhetően kiállja az idők próbáját.</p>
-            <button className="btn btn-primary btn-lg" type="button">Beszéljünk!</button>
+            <a className="btn btn-primary btn-lg" rel="noopener noreferrer nofollow"
+              target="_blank" href="tel:+36306360775">Beszéljünk!</a>
           </div>
         </div>
         <section className="my-4">
