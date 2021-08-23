@@ -24,4 +24,5 @@ yarn-error.log*
 #PhpStorm
 /.idea
 
+#netxtJS
 /.next

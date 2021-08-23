@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import Html from 'next/head';
 import Head from 'next/head';
 import Image from 'next/image';
 import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
@@ -65,8 +65,7 @@ export default function Home() {
           <div className="my-4 rounded-bottom">
             <div className="py-md-5">
               <h1 className="display-5 fw-bold">
-                <span className="text-primary">Alkalmazkodj</span> agilis
-                technológiákkal!
+                Alkalmazkodj agilis technológiákkal!
               </h1>
               <figure>
                 <blockquote className="blockquote">
@@ -101,7 +100,7 @@ export default function Home() {
 
             <Row as="article" className="align-items-center">
               <Col md="6" className="my-2">
-                <div className="h-100 p-5 text-white bg-dark rounded">
+                <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
                   <h2>Agilis, iteratív fejlesztés</h2>
                   <figure>
                     <blockquote className="blockquote">
@@ -145,7 +144,7 @@ export default function Home() {
             </Row>
             <Row as="article" className="align-items-center">
               <Col className="my-2" md={{ order: 2, span: 6 }}>
-                <div className="h-100 p-5 bg-light rounded">
+                <div className="h-100 p-4 p-md-5 bg-light rounded">
                   <h2>Rugalmas technológiák</h2>
                   <figure>
                     <blockquote className="blockquote">
