@@ -215,9 +215,9 @@ export default function Home() {
                 className="btn btn-primary my-2"
                 rel="noopener noreferrer nofollow"
                 target="_blank"
-                href="mailto:hello@monad.systems"
+                href="mailto:hello@monad.hu"
               >
-                hello@monad.systems
+                hello@monad.hu
               </a>
             </Col>
           </Row>

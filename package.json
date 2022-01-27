@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "qr": "node qrgen.js"
   },
   "dependencies": {
     "bootstrap": "^5.0.0-beta3",
@@ -20,6 +21,7 @@
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.0",
     "eslint-config-prettier": "^8.3.0",
+    "qrcode": "^1.5.0",
     "sass": "^1.36.0"
   }
 }
