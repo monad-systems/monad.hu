@@ -40,10 +40,10 @@ export default function Home() {
           <Container>
             <Navbar.Brand href="/" className="py-0 d-flex align-items-center">
               <Image
-                src="/v1629058574/logo_kpn698.svg"
+                src="/logo.svg"
                 className="d-inline-block align-top"
                 alt="MONAD SYSTEMS logo"
-                width={133}
+                width={135}
                 height={38}
               />
             </Navbar.Brand>
@@ -132,12 +132,12 @@ export default function Home() {
                 </div>
               </Col>
               <Col className="my-2">
-                <div className="ratio ratio-16x9 bg-gray-100">
+                <div className="ratio ratio-16x9 bg-gray-100 px-4">
                   <Image
                     layout="fill"
                     alt="Iteratív fejelsztés"
                     objectFit="contain"
-                    src="/v1629058572/undraw_product_iteration_kjok_kyukit.svg"
+                    src="/undraw_season_change_f99v.svg"
                   />
                 </div>
               </Col>
@@ -158,7 +158,7 @@ export default function Home() {
                   <p>
                     Az adaptivitás elengedhetetlen azok számára, akik hosszútávú
                     célokat fogalmaznak meg és persze el is akarják azokat érni.
-                    Segítünk, hogy olyan technológiákra, olyan architektúrá
+                    Segítünk, hogy olyan technológiákra, olyan architektúrára
                     alapozz, ami alkalmazkodik a – természetesen – változó
                     igényekhez.
                   </p>
@@ -173,10 +173,10 @@ export default function Home() {
                 </div>
               </Col>
               <Col className="my-2" md={{ order: 1 }}>
-                <div className="ratio ratio-16x9 bg-gray-100">
+                <div className="ratio ratio-16x9 bg-gray-100 px-4">
                   <Image
                     layout="fill"
-                    src="/v1629058572/undraw_react_y7wq_tpnarz.svg"
+                    src="/undraw_building_blocks_re_5ahy.svg"
                     alt="Rugalmas technológiák"
                     objectFit="contain"
                   />
