@@ -76,8 +76,9 @@ export default function Home() {
                 </figcaption>
               </figure>
               <p className="fs-4">
-                2008 óta foglalkozunk{' '}
-                <strong>egyedi szoftverfejlesztéssel</strong>,{' '}
+                2008 óta foglalkozunk <strong>komplex</strong>,{' '}
+                <strong>nagy látogatottságú</strong> rendszerek{' '}
+                <strong>egyedi fejlesztésével</strong>,{' '}
                 <strong>fejlesztői képzésekkel</strong> és{' '}
                 <strong> szaktanácsadással</strong>. A felhalmozott
                 szakértelemmel segítünk, hogy olyan pillérekre alapozz, ami a{' '}
