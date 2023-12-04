@@ -76,8 +76,7 @@ export default function Home() {
                 </figcaption>
               </figure>
               <p className="fs-4">
-                Az <em>állandó változás</em>t technológiai szempontból sem
-                egyszerű feladat lekövetni. 2008 óta foglalkozunk{' '}
+                2008 óta foglalkozunk{' '}
                 <strong>egyedi szoftverfejlesztéssel</strong>,{' '}
                 <strong>fejlesztői képzésekkel</strong> és{' '}
                 <strong> szaktanácsadással</strong>. A felhalmozott
@@ -85,21 +84,103 @@ export default function Home() {
                 <strong>rugalmasság</strong>ának köszönhetően kiállja az idők
                 próbáját.
               </p>
-              <a
-                className="btn btn-primary btn-lg"
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-                href="tel:+36306360775"
-              >
-                Beszéljünk!
-              </a>
             </div>
           </div>
           <section className="my-4">
-            <h1 className="mb-4 visually-hidden">Technológiák, metodológiák</h1>
+            <h2 className="mb-4">Partnereink</h2>
+            <Row as="article" className="align-items-center">
+              <Col xl="3" md="6" className="my-2">
+                <div
+                  className="rounded border border-dark d-flex align-items-center mx-auto mb-3 justify-content-center"
+                  style={{
+                    width: '240px',
+                    height: '120px',
+                  }}
+                >
+                  <Image
+                    src="/fizz.svg"
+                    width="186"
+                    height="72"
+                    alt="Fizz"
+                    loading="lazy"
+                    style={{
+                      filter: 'brightness(0%) blur(0.5px)',
+                    }}
+                  />
+                </div>
+                <h2 className="h6 text-center">OTP Ecosystem Kft.</h2>
+              </Col>
+              <Col xl="3" md="6" className="my-2">
+                <div
+                  className="rounded border border-dark d-flex align-items-center mx-auto mb-3 justify-content-center"
+                  style={{
+                    width: '240px',
+                    height: '120px',
+                  }}
+                >
+                  <Image
+                    src="/netrisk.svg"
+                    width="157"
+                    height="22"
+                    alt="Netrisk"
+                    loading="lazy"
+                    style={{
+                      filter: 'brightness(0%) blur(0.5px)',
+                    }}
+                  />
+                </div>
+                <h2 className="h6 text-center">Netrisk Magyarország Kft.</h2>
+              </Col>
+              <Col xl="3" md="6" className="my-2">
+                <div
+                  className="rounded border border-dark d-flex align-items-center mx-auto mb-3 justify-content-center"
+                  style={{
+                    width: '240px',
+                    height: '120px',
+                  }}
+                >
+                  <Image
+                    src="/idbc.svg"
+                    width="178"
+                    height="75"
+                    alt="IDBC"
+                    loading="lazy"
+                    style={{
+                      filter: 'brightness(0%) blur(0.5px)',
+                    }}
+                  />
+                </div>
+                <h2 className="h6 text-center">IDBC Creative Solutions Kft.</h2>
+              </Col>
+              <Col xl="3" md="6" className="my-2">
+                <div
+                  className="rounded border border-dark d-flex align-items-center mx-auto mb-3 justify-content-center"
+                  style={{
+                    width: '240px',
+                    height: '120px',
+                  }}
+                >
+                  <Image
+                    src="/webshippy-light.svg"
+                    width="227"
+                    height="82"
+                    alt="Webshippy"
+                    loading="lazy"
+                    style={{
+                      filter: 'brightness(0%) blur(0.5px)',
+                    }}
+                  />
+                </div>
+                <h2 className="h6 text-center">WEBSHIPPY Magyarország Kft.</h2>
+              </Col>
+            </Row>
+          </section>
+
+          <section className="my-4">
+            <h2 className="mb-4 visually-hidden">Technológiák, metodológiák</h2>
 
             <Row as="article" className="align-items-center">
-              <Col md="6" className="my-2">
+              <Col md="6" className="my-4">
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
                   <h2>Agilis, iteratív fejlesztés</h2>
                   <figure>
@@ -121,14 +202,6 @@ export default function Home() {
                     terméket/szolgáltatást tudunk produkálni, ami nem okoz
                     csalódást.
                   </p>
-                  <a
-                    className="btn btn-outline-light"
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                    href="tel:+36306360775"
-                  >
-                    Beszéljünk!
-                  </a>
                 </div>
               </Col>
               <Col className="my-2">
@@ -162,14 +235,6 @@ export default function Home() {
                     alapozz, ami alkalmazkodik a – természetesen – változó
                     igényekhez.
                   </p>
-                  <a
-                    className="btn btn-outline-dark"
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                    href="tel:+36306360775"
-                  >
-                    Beszéljünk!
-                  </a>
                 </div>
               </Col>
               <Col className="my-2" md={{ order: 1 }}>

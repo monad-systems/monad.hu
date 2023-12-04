@@ -6,6 +6,8 @@ $navbar-dark-color: #fff;
 $navbar-dark-hover-color: $primary;
 $navbar-dark-active-color: $primary;
 
+$font-family-sans-serif: 'Open Sans', sans-serif;
+
 @import 'bootstrap/scss/bootstrap.scss';
 
 @import './layout';
