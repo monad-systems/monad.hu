@@ -262,9 +262,9 @@ export default function Home() {
                 <a
                   rel="noopener noreferrer nofollow"
                   target="_blank"
-                  href="https://goo.gl/maps/Cp9aHGsBUxckaxX18"
+                  href="https://maps.app.goo.gl/ctM3F974RHgVnerSA"
                 >
-                  2100 Gödöllő, Szilhát utca 32.
+                  2100 Gödöllő, Dózsa György út 13. I. em. 111.
                 </a>
               </div>
             </Col>
