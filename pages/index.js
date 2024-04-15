@@ -7,10 +7,13 @@ export default function Home() {
   return (
     <div className="app-container">
       <Head>
-        <title>MONAD SYSTEMS • Alkalmazkodj agilis technológiákkal</title>
+        <title>
+          MONAD SYSTEMS • Where innovation thrives and technology transforms
+          businesses
+        </title>
         <meta
           name="description"
-          content="Egyedi szoftverfejelsztés, fejlesztői képzés, szaktanácsadás agilis technológiákkal. Web, Mobile, IoT."
+          content="Agile software development, training and consulting services"
         />
         <link
           rel="apple-touch-icon"
@@ -47,6 +50,24 @@ export default function Home() {
                 height={38}
               />
             </Navbar.Brand>
+            <div className="ms-auto">
+              <a
+                className="btn btn-primary me-3 my-2"
+                rel="noopener noreferrer nofollow"
+                target="_blank"
+                href="tel:+36306360775"
+              >
+                +36 30 636 0775
+              </a>
+              <a
+                className="btn btn-primary my-2"
+                rel="noopener noreferrer nofollow"
+                target="_blank"
+                href="mailto:hello@monad.hu"
+              >
+                hello@monad.hu
+              </a>
+            </div>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             {/* <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
@@ -64,31 +85,32 @@ export default function Home() {
         <Container>
           <div className="my-4 rounded-bottom">
             <div className="py-md-5">
-              <h1 className="display-5 fw-bold">
-                Alkalmazkodj agilis technológiákkal!
-              </h1>
-              <figure>
-                <blockquote className="blockquote">
-                  <p>Az egyetlen állandó a változás maga.</p>
-                </blockquote>
-                <figcaption className="blockquote-footer text-dark text-opacity-75">
-                  Hérakleitosz
-                </figcaption>
-              </figure>
+              <h1 className="display-5 fw-bold">Empowering Innovation</h1>
+              <h2 className="display-6 fw-normal mb-4">
+                Your Partner in Agile Software Development and Technology
+                Consulting
+              </h2>
               <p className="fs-4">
-                2008 óta foglalkozunk <strong>komplex</strong>,{' '}
-                <strong>nagy látogatottságú</strong> rendszerek{' '}
-                <strong>egyedi fejlesztésével</strong>,{' '}
-                <strong>fejlesztői képzésekkel</strong> és{' '}
-                <strong> szaktanácsadással</strong>. A felhalmozott
-                szakértelemmel segítünk, hogy olyan pillérekre alapozz, ami a{' '}
-                <strong>rugalmasság</strong>ának köszönhetően kiállja az idők
-                próbáját.
+                As a leading agile software development company,{' '}
+                <strong>
+                  we specialize in building high-quality, flexible, and scalable
+                  applications
+                </strong>{' '}
+                that propel your organization forward. But that's just the
+                beginning – we also offer{' '}
+                <strong>expert technology consulting</strong> and{' '}
+                <strong>developer training</strong> ervices to help you stay
+                ahead in today's rapidly evolving digital landscape. <br />
+                At MʘNΛD we're passionate about crafting cutting-edge software
+                solutions that not only meet but exceed your expectations. With
+                a commitment to agile principles, we embrace change, value
+                collaboration, and deliver results that drive your business
+                forward.
               </p>
             </div>
           </div>
           <section className="my-4">
-            <h2 className="mb-4">Partnereink</h2>
+            <h2 className="mb-1">Partners</h2>
             <Row as="article" className="align-items-center">
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -109,7 +131,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">OTP Ecosystem Kft.</h2>
+                <h2 className="h6 text-center">OTP Ecosystem Ltd.</h2>
               </Col>
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -130,7 +152,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">Netrisk Magyarország Kft.</h2>
+                <h2 className="h6 text-center">Netrisk Hungary Ltd.</h2>
               </Col>
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -151,7 +173,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">IDBC Creative Solutions Kft.</h2>
+                <h2 className="h6 text-center">IDBC Creative Solutions Ltd.</h2>
               </Col>
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -172,36 +194,73 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">WEBSHIPPY Magyarország Kft.</h2>
+                <h2 className="h6 text-center">WEBSHIPPY Hungary Ltd.</h2>
               </Col>
             </Row>
           </section>
 
           <section className="my-4">
-            <h2 className="mb-4 visually-hidden">Technológiák, metodológiák</h2>
+            <h2 className="mb-1">Services</h2>
+            <Row>
+              <Col md="4" className="my-3">
+                <article className="h-100 p-4 p-md-5 bg-light rounded mb-2">
+                  <h2>Custom Software Development</h2>
+
+                  <p className="text-justify">
+                    From web and mobile applications to enterprise solutions, we
+                    have the expertise to bring your ideas to life. Our agile
+                    development process ensures{' '}
+                    <strong>
+                      rapid delivery without compromising on quality
+                    </strong>
+                    .
+                  </p>
+                </article>
+              </Col>
+              <Col md="4" className="my-3">
+                <article className="h-100 p-4 p-md-5 bg-light rounded mb-2">
+                  <h2>Technology Consulting</h2>
+
+                  <p className="text-justify">
+                    Leverage our years of experience and deep industry knowledge
+                    to make <strong>informed technology decisions</strong> that
+                    drive your business forward. Whether you need help with
+                    architecture design, system integration, or digital
+                    transformation, our consultants are here to guide you every
+                    step of the way.
+                  </p>
+                </article>
+              </Col>
+              <Col md="4" className="my-3">
+                <article className="h-100 p-4 p-md-5 bg-light rounded mb-2">
+                  <h2>Developer Trainings</h2>
+
+                  <p className="text-justify">
+                    Invest in your team's success with our{' '}
+                    <strong>comprehensive developer training programs</strong>.
+                    From agile methodologies to the latest tech stacks, we offer
+                    hands-on workshops and courses designed to sharpen your
+                    team's skills and keep them ahead of the curve.
+                  </p>
+                </article>
+              </Col>
+            </Row>
+          </section>
+
+          <section className="my-4">
+            <h2 className="mb-1">Values</h2>
 
             <Row as="article" className="align-items-center">
               <Col md="6" className="my-4">
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-                  <h2>Agilis, iteratív fejlesztés</h2>
-                  <figure>
-                    <blockquote className="blockquote">
-                      <p>Alignment enables Autonomy</p>
-                    </blockquote>
-                    <figcaption className="blockquote-footer text-light text-opacity-75">
-                      Henry Kniberg
-                    </figcaption>
-                  </figure>
+                  <h2>Agile Software Development</h2>
+
                   <p className="text-justify">
-                    Minden termék és szolgáltatás életének <strong></strong>
-                    természetes része a változás. Az <em>agilis módszertan</em>
-                    nak köszönhetően az implementálás 1-2 hetes etapokban
-                    zajlik. Ez nem jelenti azt, hogy hosszútávú stratégiai
-                    célokat nem határozunk meg. Viszont az azokhoz vezető utat
-                    nem kell induláskor bebetonoznunk, akár hetente
-                    változtathatunk a részleteken. Így egy minőségi
-                    terméket/szolgáltatást tudunk produkálni, ami nem okoz
-                    csalódást.
+                    We embrace agility as a core principle, allowing us to adapt
+                    quickly to changing requirements and deliver value
+                    iteratively. From concept to deployment, our agile approach
+                    ensures that your project stays on track and delivers
+                    results that exceed expectations.
                   </p>
                 </div>
               </Col>
@@ -209,7 +268,7 @@ export default function Home() {
                 <div className="ratio ratio-16x9 bg-gray-100 px-4">
                   <Image
                     layout="fill"
-                    alt="Iteratív fejelsztés"
+                    alt="Agile software development"
                     objectFit="contain"
                     src="/undraw_season_change_f99v.svg"
                   />
@@ -218,23 +277,14 @@ export default function Home() {
             </Row>
             <Row as="article" className="align-items-center">
               <Col className="my-2" md={{ order: 2, span: 6 }}>
-                <div className="h-100 p-4 p-md-5 bg-light rounded">
-                  <h2>Rugalmas technológiák</h2>
-                  <figure>
-                    <blockquote className="blockquote">
-                      <p>Favor object composition over class inheritance.</p>
-                    </blockquote>
-                    <figcaption className="blockquote-footer text-dark text-opacity-75">
-                      Gang of Four{' '}
-                      <cite title="Design Patterns">Design Patterns</cite>
-                    </figcaption>
-                  </figure>
+                <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
+                  <h2>Flexibility</h2>
+
                   <p>
-                    Az adaptivitás elengedhetetlen azok számára, akik hosszútávú
-                    célokat fogalmaznak meg és persze el is akarják azokat érni.
-                    Segítünk, hogy olyan technológiákra, olyan architektúrára
-                    alapozz, ami alkalmazkodik a – természetesen – változó
-                    igényekhez.
+                    Your needs are unique, and so are our solutions. We
+                    prioritize flexibility in our development approach, allowing
+                    us to tailor our services to your specific requirements and
+                    business goals.
                   </p>
                 </div>
               </Col>
@@ -243,7 +293,55 @@ export default function Home() {
                   <Image
                     layout="fill"
                     src="/undraw_building_blocks_re_5ahy.svg"
-                    alt="Rugalmas technológiák"
+                    alt="Flexible solutions"
+                    objectFit="contain"
+                  />
+                </div>
+              </Col>
+            </Row>
+            <Row as="article" className="align-items-center">
+              <Col md="6" className="my-4">
+                <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
+                  <h2>High-Quality Applications</h2>
+
+                  <p className="text-justify">
+                    Quality is non-negotiable. Our team of seasoned developers
+                    and QA engineers is dedicated to delivering software of the
+                    highest caliber, with rigorous testing and continuous
+                    improvement baked into every step of the development
+                    process.
+                  </p>
+                </div>
+              </Col>
+              <Col className="my-2">
+                <div className="ratio ratio-16x9 bg-gray-100 px-4">
+                  <Image
+                    layout="fill"
+                    alt="Quality assurance"
+                    objectFit="contain"
+                    src="/undraw_real_time_sync_re_nky7.svg"
+                  />
+                </div>
+              </Col>
+            </Row>
+            <Row as="article" className="align-items-center">
+              <Col className="my-2" md={{ order: 2, span: 6 }}>
+                <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
+                  <h2>Scalability</h2>
+                  <p>
+                    We design applications with scalability in mind, laying a
+                    solid foundation that can grow seamlessly as your business
+                    expands. Whether you're serving a handful of users or
+                    millions, our solutions can handle the load.
+                  </p>
+                </div>
+              </Col>
+              <Col className="my-2" md={{ order: 1 }}>
+                <div className="ratio ratio-16x9 bg-gray-100 px-4">
+                  <Image
+                    layout="fill"
+                    src="/undraw_startup_life_re_8ow9.svg"
+                    alt="Scalable solutions"
                     objectFit="contain"
                   />
                 </div>
