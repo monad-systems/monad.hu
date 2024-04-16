@@ -96,16 +96,16 @@ export default function Home() {
                   we specialize in building high-quality, flexible, and scalable
                   applications
                 </strong>{' '}
-                that propel your organization forward. But that's just the
+                that propel your organization forward. But that&apos;s just the
                 beginning – we also offer{' '}
                 <strong>expert technology consulting</strong> and{' '}
                 <strong>developer training</strong> ervices to help you stay
-                ahead in today's rapidly evolving digital landscape. <br />
-                At MʘNΛD we're passionate about crafting cutting-edge software
-                solutions that not only meet but exceed your expectations. With
-                a commitment to agile principles, we embrace change, value
-                collaboration, and deliver results that drive your business
-                forward.
+                ahead in today&apos;s rapidly evolving digital landscape. <br />
+                At MʘNΛD we&apos;re passionate about crafting cutting-edge
+                software solutions that not only meet but exceed your
+                expectations. With a commitment to agile principles, we embrace
+                change, value collaboration, and deliver results that drive your
+                business forward.
               </p>
             </div>
           </div>
@@ -236,11 +236,11 @@ export default function Home() {
                   <h2>Developer Trainings</h2>
 
                   <p className="text-justify">
-                    Invest in your team's success with our{' '}
+                    Invest in your team&apos;s success with our{' '}
                     <strong>comprehensive developer training programs</strong>.
                     From agile methodologies to the latest tech stacks, we offer
                     hands-on workshops and courses designed to sharpen your
-                    team's skills and keep them ahead of the curve.
+                    team&apos;s skills and keep them ahead of the curve.
                   </p>
                 </article>
               </Col>
@@ -331,7 +331,7 @@ export default function Home() {
                   <p>
                     We design applications with scalability in mind, laying a
                     solid foundation that can grow seamlessly as your business
-                    expands. Whether you're serving a handful of users or
+                    expands. Whether you&apos;re serving a handful of users or
                     millions, our solutions can handle the load.
                   </p>
                 </div>
