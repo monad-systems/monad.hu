@@ -1,9 +1,20 @@
-import Html from 'next/head';
 import Head from 'next/head';
 import Image from 'next/image';
 import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
 
-export default function Home() {
+import { getSortedPostsData } from '../lib/posts';
+import Link from 'next/link';
+
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
+
+export default function Home({ allPostsData }) {
   return (
     <div className="app-container">
       <Head>
@@ -81,9 +92,9 @@ export default function Home() {
         </Navbar>
       </header>
 
-      <main className="main-content mt-2">
+      <main className="main-content my-2">
         <Container>
-          <div className="my-4 rounded-bottom">
+          <div className="my-4">
             <div className="py-md-5">
               <h1 className="display-5 fw-bold">Empowering Innovation</h1>
               <h2 className="display-6 fw-normal mb-4">
@@ -131,7 +142,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">OTP Ecosystem Ltd.</h2>
+                <h3 className="h6 text-center">OTP Ecosystem Ltd.</h3>
               </Col>
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -152,7 +163,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">Netrisk Hungary Ltd.</h2>
+                <h3 className="h6 text-center">Netrisk Hungary Ltd.</h3>
               </Col>
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -173,7 +184,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">IDBC Creative Solutions Ltd.</h2>
+                <h3 className="h6 text-center">IDBC Creative Solutions Ltd.</h3>
               </Col>
               <Col xl="3" md="6" className="my-2">
                 <div
@@ -194,7 +205,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <h2 className="h6 text-center">WEBSHIPPY Hungary Ltd.</h2>
+                <h3 className="h6 text-center">WEBSHIPPY Hungary Ltd.</h3>
               </Col>
             </Row>
           </section>
@@ -204,7 +215,7 @@ export default function Home() {
             <Row>
               <Col md="4" className="my-3">
                 <article className="h-100 p-4 p-md-5 bg-light rounded mb-2">
-                  <h2>Custom Software Development</h2>
+                  <h3>Custom Software Development</h3>
 
                   <p className="text-justify">
                     From web and mobile applications to enterprise solutions, we
@@ -219,7 +230,7 @@ export default function Home() {
               </Col>
               <Col md="4" className="my-3">
                 <article className="h-100 p-4 p-md-5 bg-light rounded mb-2">
-                  <h2>Technology Consulting</h2>
+                  <h3>Technology Consulting</h3>
 
                   <p className="text-justify">
                     Leverage our years of experience and deep industry knowledge
@@ -233,7 +244,7 @@ export default function Home() {
               </Col>
               <Col md="4" className="my-3">
                 <article className="h-100 p-4 p-md-5 bg-light rounded mb-2">
-                  <h2>Developer Trainings</h2>
+                  <h3>Developer Trainings</h3>
 
                   <p className="text-justify">
                     Invest in your team&apos;s success with our{' '}
@@ -247,13 +258,34 @@ export default function Home() {
             </Row>
           </section>
 
+          {/* Add this <section> tag below the existing <section> tag */}
+          <section className="my-4">
+            <h2 className="mb-1">Blog</h2>
+            {allPostsData.map(({ id, date, title, lead }) => (
+              <article
+                className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3"
+                key={id}
+              >
+                <h3 className="p-name">
+                  <Link href={`/posts/${id}`}>{title}</Link>
+                </h3>
+                <p className="p-summary">{lead}</p>
+                <time className="dt-published" dateTime={date}>
+                  {new Intl.DateTimeFormat('en-GB', {
+                    dateStyle: 'full',
+                    timeZone: 'UTC',
+                  }).format(new Date(date))}
+                </time>
+              </article>
+            ))}
+          </section>
           <section className="my-4">
             <h2 className="mb-1">Values</h2>
 
             <Row as="article" className="align-items-center">
               <Col md="6" className="my-4">
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-                  <h2>Agile Software Development</h2>
+                  <h3>Agile Software Development</h3>
 
                   <p className="text-justify">
                     We embrace agility as a core principle, allowing us to adapt
@@ -278,7 +310,7 @@ export default function Home() {
             <Row as="article" className="align-items-center">
               <Col className="my-2" md={{ order: 2, span: 6 }}>
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-                  <h2>Flexibility</h2>
+                  <h3>Flexibility</h3>
 
                   <p>
                     Your needs are unique, and so are our solutions. We
@@ -302,7 +334,7 @@ export default function Home() {
             <Row as="article" className="align-items-center">
               <Col md="6" className="my-4">
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-                  <h2>High-Quality Applications</h2>
+                  <h3>High-Quality Applications</h3>
 
                   <p className="text-justify">
                     Quality is non-negotiable. Our team of seasoned developers
@@ -327,7 +359,7 @@ export default function Home() {
             <Row as="article" className="align-items-center">
               <Col className="my-2" md={{ order: 2, span: 6 }}>
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-                  <h2>Scalability</h2>
+                  <h3>Scalability</h3>
                   <p>
                     We design applications with scalability in mind, laying a
                     solid foundation that can grow seamlessly as your business
