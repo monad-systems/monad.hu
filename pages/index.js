@@ -2,19 +2,19 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
 
-import { getSortedPostsData } from '../lib/posts';
+// import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-}
+// export async function getStaticProps() {
+//   const allPostsData = getSortedPostsData();
+//   return {
+//     props: {
+//       allPostsData,
+//     },
+//   };
+// }
 
-export default function Home({ allPostsData }) {
+export default function Home(/*{ allPostsData }*/) {
   return (
     <div className="app-container">
       <Head>
@@ -61,7 +61,7 @@ export default function Home({ allPostsData }) {
                 height={38}
               />
             </Navbar.Brand>
-            <div className="ms-auto">
+            {/* <div className="ms-auto">
               <a
                 className="btn btn-primary me-3 my-2"
                 rel="noopener noreferrer nofollow"
@@ -78,7 +78,7 @@ export default function Home({ allPostsData }) {
               >
                 hello@monad.hu
               </a>
-            </div>
+            </div> */}
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             {/* <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
@@ -258,7 +258,7 @@ export default function Home({ allPostsData }) {
             </Row>
           </section>
 
-          {/* Add this <section> tag below the existing <section> tag */}
+          {/* 
           <section className="my-4">
             <h2 className="mb-1">Blog</h2>
             {allPostsData.map(({ id, date, title, lead }) => (
@@ -279,6 +279,8 @@ export default function Home({ allPostsData }) {
               </article>
             ))}
           </section>
+          */}
+
           <section className="my-4">
             <h2 className="mb-1">Values</h2>
 
