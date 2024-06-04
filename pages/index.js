@@ -19,12 +19,12 @@ export default function Home(/*{ allPostsData }*/) {
     <div className="app-container">
       <Head>
         <title>
-          MONAD SYSTEMS • Where innovation thrives and technology transforms
-          businesses
+          MONAD SYSTEMS Lean-Agile software development • Where innovation
+          thrives and technology transforms businesses
         </title>
         <meta
           name="description"
-          content="Agile software development, training and consulting services"
+          content="Lean-Agile software development, training and consulting services"
         />
         <link
           rel="apple-touch-icon"
@@ -98,11 +98,11 @@ export default function Home(/*{ allPostsData }*/) {
             <div className="py-md-5">
               <h1 className="display-5 fw-bold">Empowering Innovation</h1>
               <h2 className="display-6 fw-normal mb-4">
-                Your Partner in Agile Software Development and Technology
+                Your Partner in Lean-Agile Software Development and Technology
                 Consulting
               </h2>
               <p className="fs-4">
-                As a leading agile software development company,{' '}
+                As a leading Lean-Agile software development company,{' '}
                 <strong>
                   we specialize in building high-quality, flexible, and scalable
                   applications
@@ -219,8 +219,8 @@ export default function Home(/*{ allPostsData }*/) {
 
                   <p className="text-justify">
                     From web and mobile applications to enterprise solutions, we
-                    have the expertise to bring your ideas to life. Our agile
-                    development process ensures{' '}
+                    have the expertise to bring your ideas to life. Our
+                    Lean-Agile development process ensures{' '}
                     <strong>
                       rapid delivery without compromising on quality
                     </strong>
@@ -249,9 +249,9 @@ export default function Home(/*{ allPostsData }*/) {
                   <p className="text-justify">
                     Invest in your team&apos;s success with our{' '}
                     <strong>comprehensive developer training programs</strong>.
-                    From agile methodologies to the latest tech stacks, we offer
-                    hands-on workshops and courses designed to sharpen your
-                    team&apos;s skills and keep them ahead of the curve.
+                    From lean/agile methodologies to the latest tech stacks, we
+                    offer hands-on workshops and courses designed to sharpen
+                    your team&apos;s skills and keep them ahead of the curve.
                   </p>
                 </article>
               </Col>
@@ -287,7 +287,7 @@ export default function Home(/*{ allPostsData }*/) {
             <Row as="article" className="align-items-center">
               <Col md="6" className="my-4">
                 <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-                  <h3>Agile Software Development</h3>
+                  <h3>Lean-Agile Software Development</h3>
 
                   <p className="text-justify">
                     We embrace agility as a core principle, allowing us to adapt
@@ -302,7 +302,7 @@ export default function Home(/*{ allPostsData }*/) {
                 <div className="ratio ratio-16x9 bg-gray-100 px-4">
                   <Image
                     layout="fill"
-                    alt="Agile software development"
+                    alt="Lean-Agile software development"
                     objectFit="contain"
                     src="/undraw_season_change_f99v.svg"
                   />
