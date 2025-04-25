@@ -2,19 +2,19 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
 
-// import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 
-// export async function getStaticProps() {
-//   const allPostsData = getSortedPostsData();
-//   return {
-//     props: {
-//       allPostsData,
-//     },
-//   };
-// }
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
 
-export default function Home(/*{ allPostsData }*/) {
+export default function Home({ allPostsData }) {
   return (
     <div className="app-container">
       <Head>
@@ -61,24 +61,7 @@ export default function Home(/*{ allPostsData }*/) {
                 height={38}
               />
             </Navbar.Brand>
-            {/* <div className="ms-auto">
-              <a
-                className="btn btn-primary me-3 my-2"
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-                href="tel:+36306360775"
-              >
-                +36 30 636 0775
-              </a>
-              <a
-                className="btn btn-primary my-2"
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-                href="mailto:hello@monad.hu"
-              >
-                hello@monad.hu
-              </a>
-            </div> */}
+
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             {/* <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
@@ -102,7 +85,7 @@ export default function Home(/*{ allPostsData }*/) {
                 Consulting
               </h2>
               <p className="fs-4">
-                As a leading Lean-Agile software development company,{' '}
+                As a Lean-Agile software development company,{' '}
                 <strong>
                   we specialize in building high-quality, flexible, and scalable
                   applications
@@ -110,7 +93,7 @@ export default function Home(/*{ allPostsData }*/) {
                 that propel your organization forward. But that&apos;s just the
                 beginning – we also offer{' '}
                 <strong>expert technology consulting</strong> and{' '}
-                <strong>developer training</strong> ervices to help you stay
+                <strong>developer training</strong> services to help you stay
                 ahead in today&apos;s rapidly evolving digital landscape. <br />
                 At MʘNΛD we&apos;re passionate about crafting cutting-edge
                 software solutions that not only meet but exceed your
@@ -258,28 +241,28 @@ export default function Home(/*{ allPostsData }*/) {
             </Row>
           </section>
 
-          {/* 
-          <section className="my-4">
-            <h2 className="mb-1">Blog</h2>
-            {allPostsData.map(({ id, date, title, lead }) => (
-              <article
-                className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3"
-                key={id}
-              >
-                <h3 className="p-name">
-                  <Link href={`/posts/${id}`}>{title}</Link>
-                </h3>
-                <p className="p-summary">{lead}</p>
-                <time className="dt-published" dateTime={date}>
-                  {new Intl.DateTimeFormat('en-GB', {
-                    dateStyle: 'full',
-                    timeZone: 'UTC',
-                  }).format(new Date(date))}
-                </time>
-              </article>
-            ))}
-          </section>
-          */}
+          {
+            <section className="my-4">
+              <h2 className="mb-1">Blog</h2>
+              {allPostsData.map(({ id, date, title, lead }) => (
+                <article
+                  className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3"
+                  key={id}
+                >
+                  <h3 className="p-name">
+                    <Link href={`/posts/${id}`}>{title}</Link>
+                  </h3>
+                  <p className="p-summary">{lead}</p>
+                  <time className="dt-published" dateTime={date}>
+                    {new Intl.DateTimeFormat('en-GB', {
+                      dateStyle: 'full',
+                      timeZone: 'UTC',
+                    }).format(new Date(date))}
+                  </time>
+                </article>
+              ))}
+            </section>
+          }
 
           <section className="my-4">
             <h2 className="mb-1">Values</h2>

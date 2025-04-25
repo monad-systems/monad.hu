@@ -1,6 +1,6 @@
 ---
 title: 'Unlocking the Potential of GitOps: Revolutionizing DevOps Practices'
-date: '2024-04-17' 
+date: '2023-11-17' 
 lead: "In the fast-paced world of DevOps, where agility, automation, and reliability are paramount, GitOps has emerged as a transformative approach to managing infrastructure and applications. Rooted in the principles of version control, collaboration, and automation, GitOps leverages Git as the single source of truth for defining, managing, and deploying infrastructure and applications. In this blog post, we'll explore why GitOps is not just a good thing, but a game-changer for modern DevOps practices."
 ---
 
