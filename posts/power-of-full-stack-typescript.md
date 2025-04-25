@@ -1,5 +1,5 @@
 ---
-title: 'Embracing Full-Stack TypeScript: Unifying Development for Enhanced Productivity'
+title: 'Embracing Full-Stack TypeScript'
 date: '2024-04-05' 
 lead: "In the realm of modern web development, the adoption of TypeScript has rapidly gained momentum, revolutionizing the way developers write and maintain code. With its static typing, advanced tooling, and enhanced developer experience, TypeScript has become a go-to choice for frontend development. However, its benefits extend beyond the frontend, as TypeScript is increasingly being embraced for full-stack development. In this blog post, we'll explore why full-stack TypeScript is not just a good thing, but a game-changer for developers and businesses alike."
 ---
