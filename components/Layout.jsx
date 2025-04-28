@@ -15,24 +15,6 @@ export default function Layout({ children }) {
                 height={38}
               />
             </Navbar.Brand>
-            <div className="ms-auto">
-              <a
-                className="btn btn-primary me-3 my-2"
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-                href="tel:+36306360775"
-              >
-                +36 30 636 0775
-              </a>
-              <a
-                className="btn btn-primary my-2"
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-                href="mailto:hello@monad.hu"
-              >
-                hello@monad.hu
-              </a>
-            </div>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             {/* <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
