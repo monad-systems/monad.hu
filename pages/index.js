@@ -76,6 +76,11 @@ export default function Home({ allPostsData }) {
       </header>
 
       <main className="main-content my-2">
+        <div class="hero-animation">
+          <span class="item"></span>
+          <span class="item"></span>
+          <span class="item"></span>
+        </div>
         <Container>
           <div className="my-4">
             <div className="py-md-5">
@@ -244,23 +249,27 @@ export default function Home({ allPostsData }) {
           {
             <section className="my-4">
               <h2 className="mb-1">Blog</h2>
-              {allPostsData.map(({ id, date, title, lead }) => (
-                <article
-                  className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3"
-                  key={id}
-                >
-                  <h3 className="p-name">
-                    <Link href={`/posts/${id}`}>{title}</Link>
-                  </h3>
-                  <p className="p-summary">{lead}</p>
-                  <time className="dt-published" dateTime={date}>
-                    {new Intl.DateTimeFormat('en-GB', {
-                      dateStyle: 'full',
-                      timeZone: 'UTC',
-                    }).format(new Date(date))}
-                  </time>
-                </article>
-              ))}
+              <Row>
+                {allPostsData.map(({ id, date, title, lead }, idx) => (
+                  <Col md="4" className="my-3" key={id}>
+                    <article className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3 d-grid">
+                      <h3 className="p-name">
+                        <Link href={`/posts/${id}`}>{title}</Link>
+                      </h3>
+                      <p className="p-summary">{lead}</p>
+                      <time
+                        className="dt-published d-block text-end mt-auto"
+                        dateTime={date}
+                      >
+                        {new Intl.DateTimeFormat('en-GB', {
+                          dateStyle: 'short',
+                          timeZone: 'UTC',
+                        }).format(new Date(date))}
+                      </time>
+                    </article>
+                  </Col>
+                ))}
+              </Row>
             </section>
           }
 
