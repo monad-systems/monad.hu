@@ -76,11 +76,6 @@ export default function Home({ allPostsData }) {
       </header>
 
       <main className="main-content my-2">
-        <div class="hero-animation">
-          <span class="item"></span>
-          <span class="item"></span>
-          <span class="item"></span>
-        </div>
         <Container>
           <div className="my-4">
             <div className="py-md-5">
