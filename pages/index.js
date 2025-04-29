@@ -247,7 +247,7 @@ export default function Home({ allPostsData }) {
               <Row>
                 {allPostsData.map(({ id, date, title, lead }, idx) => (
                   <Col md="4" className="my-3" key={id}>
-                    <article className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3 d-grid">
+                    <article className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3 d-grid position-relative">
                       <h3 className="p-name">{title}</h3>
                       <p className="p-summary">{lead}</p>
                       <div className="mt-auto d-flex justify-content-between align-items-center">
