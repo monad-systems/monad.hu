@@ -261,7 +261,8 @@ export default function Home({ allPostsData }) {
                           className="btn btn-primary stretched-link"
                           href={`/posts/${id}`}
                         >
-                          Read more
+                          Read more{' '}
+                          <span className="visually-hidden">about {title}</span>
                         </Link>
                       </div>
                     </article>
