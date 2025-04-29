@@ -248,19 +248,22 @@ export default function Home({ allPostsData }) {
                 {allPostsData.map(({ id, date, title, lead }, idx) => (
                   <Col md="4" className="my-3" key={id}>
                     <article className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3 d-grid">
-                      <h3 className="p-name">
-                        <Link href={`/posts/${id}`}>{title}</Link>
-                      </h3>
+                      <h3 className="p-name">{title}</h3>
                       <p className="p-summary">{lead}</p>
-                      <time
-                        className="dt-published d-block text-end mt-auto"
-                        dateTime={date}
-                      >
-                        {new Intl.DateTimeFormat('en-GB', {
-                          dateStyle: 'short',
-                          timeZone: 'UTC',
-                        }).format(new Date(date))}
-                      </time>
+                      <div className="mt-auto d-flex justify-content-between align-items-center">
+                        <time className="dt-published" dateTime={date}>
+                          {new Intl.DateTimeFormat('en-GB', {
+                            dateStyle: 'short',
+                            timeZone: 'UTC',
+                          }).format(new Date(date))}
+                        </time>
+                        <Link
+                          className="btn btn-primary stretched-link"
+                          href={`/posts/${id}`}
+                        >
+                          Read more
+                        </Link>
+                      </div>
                     </article>
                   </Col>
                 ))}
