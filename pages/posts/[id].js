@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Container } from 'react-bootstrap';
 import Layout from '../../components/Layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
@@ -5,6 +6,12 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 export default function Post({ postData }) {
   return (
     <Layout>
+      <Head>
+        <title>
+          {postData.title} • MONAD SYSTEMS Lean-Agile software development &
+          consulting
+        </title>
+      </Head>
       <article className="main-content my-2">
         <Container>
           <div className="my-4">

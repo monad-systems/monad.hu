@@ -1,9 +1,41 @@
 import Image from "next/image";
+import Head from 'next/head';
 import { Col, Container, Navbar, Row } from "react-bootstrap";
 
 export default function Layout({ children }) {
   return <div className="app-container">
-    <header>
+   <Head>
+        <title>
+          MONAD SYSTEMS Lean-Agile software development & consulting
+        </title>
+        <meta
+          name="description"
+          content="Lean-Agile software development, training and consulting services"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+
+      <header>
         <Navbar bg="dark" variant="dark">
           <Container>
             <Navbar.Brand href="/" className="py-0 d-flex align-items-center">
@@ -15,6 +47,7 @@ export default function Layout({ children }) {
                 height={38}
               />
             </Navbar.Brand>
+
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             {/* <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
@@ -26,13 +59,14 @@ export default function Layout({ children }) {
           </Navbar.Collapse> */}
           </Container>
         </Navbar>
-    </header>
+      </header>
 
     <main className="main-content my-2">
       <Container>
         {children}
       </Container>
     </main>
+   
     <footer className="bg-dark text-light py-2">
         <Container className="">
           <Row className="align-items-center text-center">
