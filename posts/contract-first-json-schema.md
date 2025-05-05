@@ -27,7 +27,7 @@ Moreover, security becomes straightforward. By integrating authorization directl
 ## Frontend & backend collaboration
 Generated clients don't just streamline backend coding—they dramatically simplify frontend development, too. Because the frontend and backend use the same schemas, integration problems virtually disappear.
 
-Frontend developers benefit from JSON Schema-based form generation libraries like [react-jsonschema-form](https://github.com/rjsf-team/react-jsonschema-form). These tools auto-generate user interfaces and validation logic directly from API contracts, greatly reducing manual coding. This seamless alignment between frontend and backend drastically reduces debugging time, enhancing productivity.
+Frontend developers benefit from JSON Schema-based form generation libraries like [json-form](https://jsonforms.io/). These tools auto-generate user interfaces and validation logic directly from API contracts, greatly reducing manual coding. This seamless alignment between frontend and backend drastically reduces debugging time, enhancing productivity.
 
 ## More efficient teams with parallel development
 Perhaps the greatest advantage of contract-first development is enabling parallel workflows. Once API contracts are defined, frontend, backend, and QA teams can independently begin their tasks immediately.
