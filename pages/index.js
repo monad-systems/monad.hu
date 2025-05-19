@@ -22,7 +22,9 @@ export default function Home({ allPostsData }) {
         <Container>
           <div className="my-4">
             <div className="py-md-5">
-              <h1 className="display-5 fw-bold">Empowering Innovation</h1>
+              <h1 className="display-5 fw-bold">
+                Built for Scale. Trusted by Enterprise.
+              </h1>
               <h2 className="display-6 fw-normal mb-4">
                 Your Partner in Lean-Agile Software Development and Technology
                 Consulting
