@@ -12,23 +12,25 @@ export default function Post({ postData }) {
           consulting
         </title>
       </Head>
-      <article className="main-content my-2">
-        <Container>
-          <div className="my-4">
-            <div className="py-md-5">
-              <h1 className="display-5 fw-bold">{postData.title}</h1>
-              <p className="fs-4">{postData.lead}</p>
+      <article>
+        <div className="py-4 hero bg-dark text-white">
+          <Container className="py-md-5">
+            <h1 className="display-3 fw-bold text-center mb-4">
+              {postData.title}
+            </h1>
+            <h2 className="fw-normal mb-4 text-center">{postData.lead}</h2>
 
-              <time className="d-block text-end" dateTime={postData.date}>
-                {new Intl.DateTimeFormat('en-GB', {
-                  dateStyle: 'full',
-                  timeZone: 'UTC',
-                }).format(new Date(postData.date))}
-              </time>
-            </div>
-          </div>
+            <time className="d-block text-end" dateTime={postData.date}>
+              {new Intl.DateTimeFormat('en-GB', {
+                dateStyle: 'full',
+                timeZone: 'UTC',
+              }).format(new Date(postData.date))}
+            </time>
+          </Container>
+        </div>
+        <Container className="py-4">
           <div
-            className="p-4 p-md-5 bg-light rounded mb-2 blog-post__content"
+            className="my-4 blog-post__content"
             dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
           />
         </Container>

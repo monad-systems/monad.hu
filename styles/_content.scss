@@ -1,3 +1,6 @@
+.hero {
+    background-image: radial-gradient(circle, tint-color($dark, 8%), $dark);
+}
 .blog-post__content {
   h2 {
     margin-top: 2rem;

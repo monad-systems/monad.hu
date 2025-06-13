@@ -36,15 +36,15 @@ export default function Layout({ children }) {
       </Head>
 
       <header>
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="white" variant="dark">
           <Container>
             <Navbar.Brand href="/" className="py-0 d-flex align-items-center">
               <Image
-                src="/logo.svg"
+                src="/logo_systems_light.svg"
                 className="d-inline-block align-top"
                 alt="MONAD SYSTEMS logo"
-                width={135}
-                height={38}
+                width={150}
+                height={60}
               />
             </Navbar.Brand>
 
@@ -61,10 +61,8 @@ export default function Layout({ children }) {
         </Navbar>
       </header>
 
-    <main className="main-content my-2">
-      <Container>
-        {children}
-      </Container>
+    <main className="main-content mb-4">
+      {children}
     </main>
    
     <footer className="bg-dark text-light py-2">
@@ -78,7 +76,7 @@ export default function Layout({ children }) {
                   target="_blank"
                   href="https://maps.app.goo.gl/uFjyTQaFcXLALQpx7"
                 >
-                  2100 Gödöllő, Szilhát utca 32.
+                  2100 Gödöllő, Dózsa Györt út 28.
                 </a>
               </div>
             </Col>
