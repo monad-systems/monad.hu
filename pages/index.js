@@ -430,6 +430,9 @@ const IconArrowRight = ({ className }) => (
 export default function Home() {
   const [contactStatus, setContactStatus] = useState('');
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+  const isContactFormConfigured =
+    Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) &&
+    Boolean(process.env.NEXT_PUBLIC_APPS_SCRIPT_URL);
 
   const handleContactSubmit = async (event) => {
     event.preventDefault();
@@ -451,12 +454,11 @@ export default function Home() {
       const appsScriptUrl = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL;
       const action = 'contact_submit';
 
-      if (!siteKey) {
-        throw new Error('Missing NEXT_PUBLIC_RECAPTCHA_SITE_KEY');
-      }
-
-      if (!appsScriptUrl) {
-        throw new Error('Missing NEXT_PUBLIC_APPS_SCRIPT_URL');
+      if (!siteKey || !appsScriptUrl) {
+        setContactStatus(
+          'Contact form is temporarily unavailable. Please email hello@monad.hu.',
+        );
+        return;
       }
 
       const grecaptcha =
@@ -961,15 +963,22 @@ export default function Home() {
                 aria-live="polite"
                 className="mt-4 text-[hsl(var(--muted-foreground))]"
               >
-                {contactStatus}
+                {contactStatus ||
+                  (!isContactFormConfigured
+                    ? 'Contact form is currently unavailable. Please email hello@monad.hu.'
+                    : '')}
               </div>
 
               <button
                 type="submit"
                 className="btn btn-hero mt-6 w-full"
-                disabled={isSubmittingContact}
+                disabled={isSubmittingContact || !isContactFormConfigured}
               >
-                {isSubmittingContact ? 'Sending...' : 'Send Message'}
+                {isSubmittingContact
+                  ? 'Sending...'
+                  : isContactFormConfigured
+                    ? 'Send Message'
+                    : 'Contact Unavailable'}
               </button>
 
               <div className="recaptcha-row" aria-live="polite">

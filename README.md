@@ -21,3 +21,10 @@ Set these env vars in `.env.local` (see `.env.local.example`):
 - `NEXT_PUBLIC_APPS_SCRIPT_URL`
 
 Then run the app normally.
+
+For GitHub Pages deployment, also set the same values as repository secrets:
+
+- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+- `NEXT_PUBLIC_APPS_SCRIPT_URL`
+
+The workflow injects these during `npm run build`, so the static output contains the correct public values.

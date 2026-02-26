@@ -26,6 +26,9 @@ jobs:
       - name: Install packages
         run: npm ci
       - name: Build project
+        env:
+          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
+          NEXT_PUBLIC_APPS_SCRIPT_URL: ${{ secrets.NEXT_PUBLIC_APPS_SCRIPT_URL }}
         run: npm run build
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
