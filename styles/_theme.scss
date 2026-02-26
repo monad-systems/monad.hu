@@ -96,7 +96,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a:hover:not(.btn) {
   color: hsl(var(--primary));
 }
 
@@ -446,48 +446,32 @@ header > .site-container,
   overflow: hidden;
 }
 
-.hero-mosaic {
+.hero-network {
   position: absolute;
   inset: 0;
 }
 
-.hero-mosaic--right {
-  top: 96px;
-  right: 0;
-  left: auto;
-  width: 60%;
-  height: calc(100% - 96px);
-}
-
-.hero-mosaic--left {
-  left: 0;
-  bottom: 0;
-  top: auto;
-  right: auto;
-  width: 30%;
-  height: 40%;
-}
-
-.hero-shape {
+.hero-network-svg {
   position: absolute;
-  border-radius: 20px;
-  border: 1px solid hsl(var(--border) / 0.7);
-  box-shadow: 0 18px 48px hsl(var(--background) / 0.55);
-  background: hsl(var(--foreground) / 0.06);
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.hero-shape.round {
-  border-radius: 999px;
+.animate-network-node {
+  animation: network-node 4s ease-in-out infinite;
 }
 
-.hero-pattern {
-  background-color: hsl(var(--foreground) / 0.04);
-  background-image: repeating-linear-gradient(45deg, hsl(var(--decorative) / 0.3), hsl(var(--decorative) / 0.3) 2px, transparent 2px, transparent 8px);
+.animate-network-ring {
+  animation: network-ring 5s ease-in-out infinite;
 }
 
-.hero-pattern.alt {
-  background-color: hsl(var(--foreground) / 0.03);
-  background-image: repeating-linear-gradient(-45deg, hsl(var(--decorative) / 0.25), hsl(var(--decorative) / 0.25) 2px, transparent 2px, transparent 8px);
+.animate-network-dot {
+  animation: network-dot 3s ease-in-out infinite;
+}
+
+.animate-network-line {
+  animation: network-line 4s ease-in-out infinite;
 }
 
 .service-icon-svg {
@@ -832,6 +816,50 @@ header > .site-container,
   to { opacity: 1; }
 }
 
+@keyframes network-node {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes network-ring {
+  0%,
+  100% {
+    r: 1.4;
+    stroke-opacity: 0.35;
+  }
+  50% {
+    r: 1.8;
+    stroke-opacity: 0.15;
+  }
+}
+
+@keyframes network-dot {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes network-line {
+  0% {
+    stroke-opacity: 0.06;
+  }
+  50% {
+    stroke-opacity: 0.2;
+  }
+  100% {
+    stroke-opacity: 0.06;
+  }
+}
+
 @keyframes hero-bounce {
   0%,
   100% {
@@ -860,6 +888,10 @@ header > .site-container,
 @media (prefers-reduced-motion: reduce) {
   .animate-slide-up,
   .animate-fade-in,
+  .animate-network-node,
+  .animate-network-ring,
+  .animate-network-dot,
+  .animate-network-line,
   .hero-scroll span,
   .hero-scroll,
   .hero-scroll-icon .wheel {
