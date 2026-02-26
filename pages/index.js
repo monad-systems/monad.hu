@@ -482,7 +482,7 @@ export default function Home() {
                 Start Your Project
                 <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <Link className="btn btn-outline btn-lg" href="/works">
+              <Link className="btn btn-outline btn-lg" href="/#work">
                 View Our Work
               </Link>
             </div>

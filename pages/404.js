@@ -20,7 +20,7 @@ export default function Custom404() {
             <Link href="/" className="btn btn-hero">
               Go to homepage
             </Link>
-            <Link href="/works" className="btn btn-outline">
+            <Link href="/#work" className="btn btn-outline">
               View our work
             </Link>
           </div>
