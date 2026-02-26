@@ -62,8 +62,8 @@ export default function Layout({ children }) {
 
   const navLinks = [
     { label: 'Services', href: '#services' },
-    { label: 'Work', href: '/works' },
     { label: 'About', href: '#about' },
+    { label: 'Work', href: '#work' },
     { label: 'Partners', href: '#partners' },
     { label: 'Contact', href: '#contact' },
   ];
@@ -207,8 +207,8 @@ export default function Layout({ children }) {
 
             <div className="footer-links">
               <a href={resolveHref('#services')}>Services</a>
-              <Link href="/works">Work</Link>
               <a href={resolveHref('#about')}>About</a>
+              <a href={resolveHref('#work')}>Work</a>
               <a href={resolveHref('#contact')}>Contact</a>
             </div>
 
