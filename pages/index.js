@@ -153,6 +153,58 @@ const partners = [
   { name: 'Webshippy', logo: '/webshippy-dark.svg', tone: 'mono' },
 ];
 
+let recaptchaScriptPromise = null;
+
+const ensureRecaptchaLoaded = async (siteKey) => {
+  if (typeof window === 'undefined') {
+    throw new Error('reCAPTCHA can only load in the browser');
+  }
+
+  if (window.grecaptcha?.execute && window.grecaptcha?.ready) {
+    return window.grecaptcha;
+  }
+
+  if (!recaptchaScriptPromise) {
+    recaptchaScriptPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-recaptcha="true"]');
+
+      const handleLoad = () => {
+        if (window.grecaptcha?.ready) {
+          resolve(window.grecaptcha);
+          return;
+        }
+        reject(new Error('reCAPTCHA failed to initialize'));
+      };
+
+      const handleError = () => {
+        reject(new Error('Failed to load reCAPTCHA script'));
+      };
+
+      if (existing) {
+        existing.addEventListener('load', handleLoad, { once: true });
+        existing.addEventListener('error', handleError, { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+      script.async = true;
+      script.defer = true;
+      script.dataset.recaptcha = 'true';
+      script.addEventListener('load', handleLoad, { once: true });
+      script.addEventListener('error', handleError, { once: true });
+      document.head.appendChild(script);
+    }).catch((error) => {
+      recaptchaScriptPromise = null;
+      throw error;
+    });
+  }
+
+  const grecaptcha = await recaptchaScriptPromise;
+  await new Promise((resolve) => grecaptcha.ready(resolve));
+  return grecaptcha;
+};
+
 const CheckIcon = () => (
   <svg
     className="value-icon"
@@ -301,11 +353,7 @@ export default function Home() {
         return;
       }
 
-      const grecaptcha =
-        typeof window !== 'undefined' ? window.grecaptcha : null;
-      if (!grecaptcha?.execute || !grecaptcha?.ready) {
-        throw new Error('reCAPTCHA not loaded');
-      }
+      const grecaptcha = await ensureRecaptchaLoaded(siteKey);
 
       const resolvedForm =
         form ??
@@ -317,7 +365,6 @@ export default function Home() {
         throw new Error('Could not resolve contact form element');
       }
 
-      await new Promise((resolve) => grecaptcha.ready(resolve));
       const token = await grecaptcha.execute(siteKey, { action });
 
       const formData = new FormData(resolvedForm);
@@ -370,12 +417,10 @@ export default function Home() {
         }
 
         setContactStatus('Failed to send. Please try again later.');
-        // eslint-disable-next-line no-console
         console.warn('Contact form error:', data);
       } catch (err) {
         // If the browser blocks reading the response due to CORS, still attempt
         // to send the request.
-        // eslint-disable-next-line no-console
         console.warn('Contact form submit (CORS fallback):', err);
 
         await fetch(appsScriptUrl, {
@@ -392,7 +437,6 @@ export default function Home() {
         resolvedForm.reset();
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error(err);
       setContactStatus(
         err instanceof Error && err.message
@@ -406,7 +450,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <section className="hero-section relative min-h-screen flex items-center overflow-hidden bg-[image:var(--gradient-hero)]">
+      <section className="hero-section relative flex items-center overflow-hidden bg-[image:var(--gradient-hero)]">
         <div className="hero-bg">
           <HeroBackground />
           <div className="hero-fade" />
@@ -470,7 +514,7 @@ export default function Home() {
         </div>
 
         <a
-          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2"
           href="#services"
           aria-label="Scroll to content"
         >

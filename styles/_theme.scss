@@ -124,6 +124,11 @@ img {
   padding: 6.5rem 0;
 }
 
+.hero-section {
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
 .section-header {
   max-width: 640px;
   margin-bottom: 4rem;
@@ -789,6 +794,7 @@ header > .site-container,
 
 .animate-slide-up {
   animation: slide-up 0.8s ease forwards;
+  will-change: opacity;
 }
 
 .animate-fade-in {
@@ -803,11 +809,9 @@ header > .site-container,
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 

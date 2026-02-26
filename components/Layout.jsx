@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Head from 'next/head';
 import Link from 'next/link';
-import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -42,8 +41,6 @@ export default function Layout({ children }) {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   const isHome = router.pathname === '/';
   const resolveHref = (href) => {
@@ -100,13 +97,6 @@ export default function Layout({ children }) {
         <meta name="msapplication-TileColor" content="#0b0f14" />
         <meta name="theme-color" content="#0b0f14" />
       </Head>
-
-      {recaptchaSiteKey ? (
-        <Script
-          src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-          strategy="afterInteractive"
-        />
-      ) : null}
 
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${

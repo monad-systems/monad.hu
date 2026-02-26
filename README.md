@@ -1,11 +1,28 @@
 monad.systems website
 
+## Runtime & Tooling Baseline
+
+- Next.js 16 (Pages Router, static export)
+- React 19
+- ESLint 9 with flat config (`eslint.config.mjs`)
+- Node.js current LTS recommended (Node 20+)
+
 ## Development
 
 ```bash
 npm install
 npm run dev
 ```
+
+## Quality checks
+
+```bash
+npm run lint
+npm run build
+npm audit --omit=dev
+```
+
+`next.config.js` is set to `output: 'export'`, so `npm run build` also produces static output in `out/`.
 
 ## Contact form
 

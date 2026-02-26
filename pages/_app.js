@@ -1,18 +1,13 @@
 import '../styles/tailwind.css';
 import '../styles/app.scss';
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/600.css';
+import '@fontsource/open-sans/700.css';
 import Head from 'next/head';
-import { Open_Sans } from 'next/font/google';
-
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
-  display: 'optional',
-  variable: '--font-open-sans',
-});
 
 function App({ Component, pageProps }) {
   return (
-    <div className={openSans.variable}>
+    <div style={{ '--font-open-sans': '"Open Sans"' }}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
