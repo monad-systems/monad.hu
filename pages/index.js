@@ -598,7 +598,7 @@ export default function Home() {
                   >
                     <CheckIcon />
                     <div>
-                      <h4 className="value-title">{value.title}</h4>
+                      <h3 className="value-title">{value.title}</h3>
                       <p className="section-lead">{value.description}</p>
                     </div>
                   </div>
