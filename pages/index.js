@@ -1,324 +1,1002 @@
-import Head from 'next/head';
 import Image from 'next/image';
-import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
+import Link from 'next/link';
+import { useState } from 'react';
 
 import Layout from '../components/Layout';
-import { getSortedPostsData } from '../lib/posts';
-import Link from 'next/link';
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
+const services = [
+  {
+    title: 'Custom Software Development',
+    description:
+      'End-to-end development of scalable applications using modern technologies. From MVPs to enterprise-grade systems, we deliver quality code that lasts.',
+    features: ['Full-Stack Delivery', 'API Design', 'Cloud Architecture'],
+  },
+  {
+    title: 'Technology Consulting',
+    description:
+      'Strategic guidance to modernize your tech stack, optimize processes, and adopt best practices. We help you make informed decisions for long-term success.',
+    features: ['Tech Stack Audits', 'Architecture Reviews', 'DevOps Strategy'],
+  },
+  {
+    title: 'Developer Training',
+    description:
+      'Upskill your team with hands-on workshops and courses. From TypeScript to Lean-Agile practices, we empower developers to build better software.',
+    features: ['Workshop Programs', 'Team Coaching', 'Best Practices'],
+  },
+];
+
+const values = [
+  {
+    title: 'Lean-Agile Mindset',
+    description:
+      'We embrace iterative development, continuous improvement, and rapid feedback loops to deliver value faster.',
+  },
+  {
+    title: 'Quality First',
+    description:
+      'Clean code, comprehensive testing, and best practices are non-negotiable. We build software that lasts.',
+  },
+  {
+    title: 'Scalability by Design',
+    description:
+      'Every solution is architected for growth. From startup MVPs to enterprise systems, we plan for scale.',
+  },
+  {
+    title: 'Transparent Partnership',
+    description:
+      'Open communication, honest estimates, and collaborative problem-solving define our client relationships.',
+  },
+];
+
+const principles = [
+  'API-Design-First',
+  'Cloud-Native',
+  'Monolith to Microservices',
+  'Security-Focused',
+  'Full Observability',
+  'Platform Engineering',
+];
+
+const techStack = {
+  languages: [
+    'JavaScript',
+    'TypeScript',
+    'Node.js',
+    'Fastify',
+    'NoSQL',
+    'SQL',
+    'React.js',
+    'Vue.js',
+    'HTML',
+    'CSS',
+  ],
+  infrastructure: ['Kubernetes', 'Docker', 'Terraform', 'CI/CD', 'Keycloak'],
+  data: ['PostgreSQL', 'MongoDB', 'Redis', 'Kafka', 'RabbitMQ'],
+  observability: ['OpenTelemetry', 'Prometheus', 'Grafana Stack', 'ELK Stack'],
+};
+
+const expertise = [
+  {
+    code: 'MS',
+    title: 'Monolith to Microservices',
+    description:
+      'Modernizing legacy systems into scalable, distributed architectures',
+  },
+  {
+    code: 'EA',
+    title: 'Event-Driven Architecture',
+    description: 'Scalable, loosely coupled systems with async messaging',
+  },
+  {
+    code: 'DG',
+    title: 'Data Contracts',
+    description: 'Schema governance to keep services aligned and reliable',
+  },
+  {
+    code: 'CI',
+    title: 'Pipeline Engineering',
+    description: 'Automated builds, tests, and deployments for rapid delivery',
+  },
+];
+
+const partners = [
+  { name: 'OTP Ecosystem', logo: '/fizz.svg', tone: 'light' },
+  { name: 'IdomSoft', logo: '/idomsoft.svg', tone: 'mono' },
+  { name: 'Netrisk', logo: '/netrisk.svg', tone: 'light' },
+  { name: 'IDBC', logo: '/idbc.svg', tone: 'light' },
+  { name: 'Webshippy', logo: '/webshippy-dark.svg', tone: 'mono' },
+];
+
+const heroMosaicRightShapes = [
+  // Row 1
+  {
+    className: 'hero-shape hero-pattern',
+    style: {
+      top: '5%',
+      right: '25%',
+      width: 'clamp(96px, 8vw, 160px)',
+      height: 'clamp(96px, 8vw, 160px)',
     },
-  };
-}
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      top: '5%',
+      right: '5%',
+      width: 'clamp(80px, 7vw, 144px)',
+      height: 'clamp(80px, 7vw, 144px)',
+      background: 'hsl(var(--decorative) / 0.4)',
+      borderTopLeftRadius: '999px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '20px',
+      borderBottomLeftRadius: '20px',
+    },
+  },
+  {
+    className: 'hero-shape round',
+    style: {
+      top: '5%',
+      right: '45%',
+      width: 'clamp(64px, 5vw, 112px)',
+      height: 'clamp(64px, 5vw, 112px)',
+      background: 'hsl(var(--decorative) / 0.2)',
+    },
+  },
 
-export default function Home({ allPostsData }) {
-  return (
-    <Layout>
-      <div className="py-4 hero bg-dark text-white">
-        <Container className="py-md-5">
-          <h1 className="display-3 fw-bold text-center mb-4">
-            Built for Scale.{' '}
-            <span className="text-primary d-block text-center">
-              Trusted by Enterprise.
-            </span>
-          </h1>
-          <h2 className="fw-normal mb-4 text-center">
-            As a Lean-Agile software development company,{' '}
-            <strong>
-              we specialize in building high-quality, flexible, and scalable
-              applications
-            </strong>{' '}
-            that propel your organization forward.
-            <br />
-            But that&apos;s just the beginning – we also offer{' '}
-            <strong>expert technology consulting</strong> and{' '}
-            <strong>developer training</strong> services to help you stay ahead
-            in today&apos;s rapidly evolving digital landscape.{' '}
-          </h2>
-        </Container>
-      </div>
-      <Container className="my-4">
-        {/* <p className="fs-4">
-          Whether you&apos;re a startup looking to build your first product or
-          an enterprise seeking to modernize your technology stack, we&apos;re
-          here to help.
-        </p>
-        <p className="fs-4">
-          Our team of experienced developers, architects, and consultants is
-          dedicated to delivering solutions that not only meet your needs but
-          also exceed your expectations. With a commitment to agile principles,
-          we embrace change, value collaboration, and deliver results that drive
-          your business forward.
-        </p> */}
-      </Container>
-      <Container tag="section" className="my-4">
-        <h2 className="mb-1">Partners</h2>
-        <Row as="article" className="align-items-center">
-          <Col xl="3" md="6" className="my-2">
-            <div
-              className="rounded shadow bg-light d-flex align-items-center mx-auto mb-3 justify-content-center"
-              style={{
-                width: '240px',
-                height: '120px',
-              }}
-            >
-              <Image
-                src="/fizz.svg"
-                width="186"
-                height="72"
-                alt="Fizz"
-                loading="lazy"
-                style={{
-                  filter: 'brightness(0%) blur(0.5px)',
-                }}
-              />
-            </div>
-            <h3 className="h6 text-center">OTP Ecosystem Ltd.</h3>
-          </Col>
-          <Col xl="3" md="6" className="my-2">
-            <div
-              className="rounded shadow bg-light d-flex align-items-center mx-auto mb-3 justify-content-center"
-              style={{
-                width: '240px',
-                height: '120px',
-              }}
-            >
-              <Image
-                src="/netrisk.svg"
-                width="157"
-                height="22"
-                alt="Netrisk"
-                loading="lazy"
-                style={{
-                  filter: 'brightness(0%) blur(0.5px)',
-                }}
-              />
-            </div>
-            <h3 className="h6 text-center">Netrisk Hungary Ltd.</h3>
-          </Col>
-          <Col xl="3" md="6" className="my-2">
-            <div
-              className="rounded shadow bg-light d-flex align-items-center mx-auto mb-3 justify-content-center"
-              style={{
-                width: '240px',
-                height: '120px',
-              }}
-            >
-              <Image
-                src="/idbc.svg"
-                width="178"
-                height="75"
-                alt="IDBC"
-                loading="lazy"
-                style={{
-                  filter: 'brightness(0%) blur(0.5px)',
-                }}
-              />
-            </div>
-            <h3 className="h6 text-center">IDBC Creative Solutions Ltd.</h3>
-          </Col>
-          <Col xl="3" md="6" className="my-2">
-            <div
-              className="rounded shadow bg-light d-flex align-items-center mx-auto mb-3 justify-content-center"
-              style={{
-                width: '240px',
-                height: '120px',
-              }}
-            >
-              <Image
-                src="/webshippy-light.svg"
-                width="227"
-                height="82"
-                alt="Webshippy"
-                loading="lazy"
-                style={{
-                  filter: 'brightness(0%) blur(0.5px)',
-                }}
-              />
-            </div>
-            <h3 className="h6 text-center">WEBSHIPPY Hungary Ltd.</h3>
-          </Col>
-        </Row>
-      </Container>
+  // Row 2
+  {
+    className: 'hero-shape hero-pattern alt',
+    style: {
+      top: '22%',
+      right: '15%',
+      width: 'clamp(96px, 8vw, 176px)',
+      height: 'clamp(96px, 8vw, 176px)',
+    },
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      top: '20%',
+      right: '38%',
+      width: 'clamp(80px, 7vw, 144px)',
+      height: 'clamp(80px, 7vw, 144px)',
+      background: 'hsl(var(--decorative) / 0.3)',
+    },
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      top: '25%',
+      right: '0%',
+      width: 'clamp(64px, 6vw, 128px)',
+      height: 'clamp(64px, 6vw, 128px)',
+      background: 'hsl(var(--foreground) / 0.1)',
+      borderTopLeftRadius: '20px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '999px',
+      borderBottomLeftRadius: '20px',
+    },
+  },
 
-      <Container tag="section" className="my-4">
-        <h2 className="mb-1">Services</h2>
-        <Row>
-          <Col md="4" className="my-3">
-            <article className="h-100 p-4 p-md-5 bg-light rounded mb-2 shadow">
-              <h3>Custom Software Development</h3>
+  // Row 3
+  {
+    className: 'hero-shape round',
+    style: {
+      top: '42%',
+      right: '8%',
+      width: 'clamp(80px, 7vw, 160px)',
+      height: 'clamp(80px, 7vw, 160px)',
+      background: 'hsl(var(--decorative) / 0.35)',
+    },
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      top: '40%',
+      right: '30%',
+      width: 'clamp(96px, 8vw, 160px)',
+      height: 'clamp(96px, 8vw, 160px)',
+      background: 'hsl(var(--decorative) / 0.25)',
+      borderTopLeftRadius: '20px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '999px',
+      borderBottomLeftRadius: '20px',
+    },
+  },
+  {
+    className: 'hero-shape hero-pattern',
+    style: {
+      top: '45%',
+      right: '50%',
+      width: 'clamp(64px, 5vw, 96px)',
+      height: 'clamp(64px, 5vw, 96px)',
+      opacity: 0.9,
+    },
+  },
 
-              <p className="text-justify">
-                From web and mobile applications to enterprise solutions, we
-                have the expertise to bring your ideas to life. Our Lean-Agile
-                development process ensures{' '}
-                <strong>rapid delivery without compromising on quality</strong>.
-              </p>
-            </article>
-          </Col>
-          <Col md="4" className="my-3">
-            <article className="h-100 p-4 p-md-5 bg-light rounded mb-2 shadow">
-              <h3>Technology Consulting</h3>
+  // Row 4
+  {
+    className: 'hero-shape',
+    style: {
+      top: '60%',
+      right: '20%',
+      width: 'clamp(80px, 7vw, 144px)',
+      height: 'clamp(80px, 7vw, 144px)',
+      background: 'hsl(var(--foreground) / 0.08)',
+    },
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      top: '62%',
+      right: '40%',
+      width: 'clamp(64px, 6vw, 128px)',
+      height: 'clamp(64px, 6vw, 128px)',
+      background: 'hsl(var(--decorative) / 0.3)',
+      borderTopLeftRadius: '999px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '20px',
+      borderBottomLeftRadius: '20px',
+    },
+  },
+  {
+    className: 'hero-shape hero-pattern alt',
+    style: {
+      top: '65%',
+      right: '2%',
+      width: 'clamp(80px, 7vw, 144px)',
+      height: 'clamp(80px, 7vw, 144px)',
+    },
+  },
 
-              <p className="text-justify">
-                Leverage our years of experience and deep industry knowledge to
-                make <strong>informed technology decisions</strong> that drive
-                your business forward. Whether you need help with architecture
-                design, system integration, or digital transformation, our
-                consultants are here to guide you every step of the way.
-              </p>
-            </article>
-          </Col>
-          <Col md="4" className="my-3">
-            <article className="h-100 p-4 p-md-5 bg-light rounded mb-2 shadow">
-              <h3>Developer Trainings</h3>
+  // Row 5
+  {
+    className: 'hero-shape round',
+    style: {
+      top: '78%',
+      right: '12%',
+      width: 'clamp(64px, 5vw, 112px)',
+      height: 'clamp(64px, 5vw, 112px)',
+      background: 'hsl(var(--decorative) / 0.25)',
+    },
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      top: '80%',
+      right: '32%',
+      width: 'clamp(80px, 7vw, 128px)',
+      height: 'clamp(80px, 7vw, 128px)',
+      background: 'hsl(var(--foreground) / 0.1)',
+      borderTopLeftRadius: '20px',
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '20px',
+      borderBottomLeftRadius: '999px',
+    },
+  },
+];
 
-              <p className="text-justify">
-                Invest in your team&apos;s success with our{' '}
-                <strong>comprehensive developer training programs</strong>. From
-                lean/agile methodologies to the latest tech stacks, we offer
-                hands-on workshops and courses designed to sharpen your
-                team&apos;s skills and keep them ahead of the curve.
-              </p>
-            </article>
-          </Col>
-        </Row>
-      </Container>
+const heroMosaicLeftShapes = [
+  {
+    className: 'hero-shape hero-pattern',
+    style: {
+      bottom: '10%',
+      left: '5%',
+      width: 'clamp(70px, 5vw, 120px)',
+      height: 'clamp(70px, 5vw, 120px)',
+      opacity: 0.9,
+    },
+  },
+  {
+    className: 'hero-shape',
+    style: {
+      bottom: '25%',
+      left: '0%',
+      width: 'clamp(55px, 4vw, 90px)',
+      height: 'clamp(55px, 4vw, 90px)',
+      background: 'hsl(var(--decorative) / 0.2)',
+      borderTopLeftRadius: '20px',
+      borderTopRightRadius: '999px',
+      borderBottomRightRadius: '20px',
+      borderBottomLeftRadius: '20px',
+    },
+  },
+  {
+    className: 'hero-shape round',
+    style: {
+      bottom: '5%',
+      left: '20%',
+      width: 'clamp(45px, 3vw, 70px)',
+      height: 'clamp(45px, 3vw, 70px)',
+      background: 'hsl(var(--decorative) / 0.15)',
+    },
+  },
+];
 
-      {
-        <Container tag="section" className="my-4">
-          <h2 className="mb-1">Blog</h2>
-          <Row>
-            {allPostsData.map(({ id, date, title, lead }, idx) => (
-              <Col md="4" className="my-3" key={id}>
-                <article className="h-entry h-100 p-4 p-md-5 bg-light rounded my-3 d-grid position-relative shadow">
-                  <h3 className="p-name">{title}</h3>
-                  <p className="p-summary">{lead}</p>
-                  <div className="mt-auto d-flex justify-content-between align-items-center">
-                    <time className="dt-published" dateTime={date}>
-                      {new Intl.DateTimeFormat('en-GB', {
-                        dateStyle: 'short',
-                        timeZone: 'UTC',
-                      }).format(new Date(date))}
-                    </time>
-                    <Link
-                      className="btn btn-primary stretched-link"
-                      href={`/posts/${id}`}
-                    >
-                      Read more{' '}
-                      <span className="visually-hidden">about {title}</span>
-                    </Link>
-                  </div>
-                </article>
-              </Col>
-            ))}
-          </Row>
-        </Container>
+const CheckIcon = () => (
+  <svg
+    className="value-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M20 6L9 17l-5-5" />
+  </svg>
+);
+
+const IconCode = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M8 9l-3 3 3 3" />
+    <path d="M16 9l3 3-3 3" />
+    <path d="M14 7l-4 10" />
+  </svg>
+);
+
+const IconLayers = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 2l9 5-9 5-9-5 9-5z" />
+    <path d="M3 12l9 5 9-5" />
+    <path d="M3 17l9 5 9-5" />
+  </svg>
+);
+
+const IconBadgeCheck = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 2l2.4 1.4 2.8-.2 1.4 2.4 2.4 1.4-.2 2.8L22 12l1.4 2.4-1.4 2.4-2.8-.2-1.4 2.4-2.8-.2L12 22l-2.4-1.4-2.8.2-1.4-2.4-2.4-1.4.2-2.8L2 12 .6 9.6 2 7.2l2.8.2 1.4-2.4 2.8.2L12 2z" />
+    <path d="M16.5 9.5l-5 5-2-2" />
+  </svg>
+);
+
+const IconCompass = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M16 8l-2.5 7.5L6 18l2.5-7.5L16 8z" />
+  </svg>
+);
+
+const IconGraduationCap = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M22 10l-10-5L2 10l10 5 10-5z" />
+    <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
+    <path d="M2 10v6" />
+  </svg>
+);
+
+const IconArrowRight = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M5 12h14" />
+    <path d="M13 6l6 6-6 6" />
+  </svg>
+);
+
+export default function Home() {
+  const [contactStatus, setContactStatus] = useState('');
+  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+
+    const form =
+      event?.currentTarget instanceof HTMLFormElement
+        ? event.currentTarget
+        : event?.target instanceof HTMLElement
+          ? event.target.closest('form')
+          : null;
+
+    if (isSubmittingContact) return;
+
+    setIsSubmittingContact(true);
+    setContactStatus('Sending...');
+
+    try {
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      const appsScriptUrl = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL;
+      const action = 'contact_submit';
+
+      if (!siteKey) {
+        throw new Error('Missing NEXT_PUBLIC_RECAPTCHA_SITE_KEY');
       }
 
-      <Container tag="section" className="my-4">
-        <h2 className="mb-1">Values</h2>
+      if (!appsScriptUrl) {
+        throw new Error('Missing NEXT_PUBLIC_APPS_SCRIPT_URL');
+      }
 
-        <Row as="article" className="align-items-center">
-          <Col md="6" className="my-4">
-            <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-              <h3>Lean-Agile Software Development</h3>
+      const grecaptcha =
+        typeof window !== 'undefined' ? window.grecaptcha : null;
+      if (!grecaptcha?.execute || !grecaptcha?.ready) {
+        throw new Error('reCAPTCHA not loaded');
+      }
 
-              <p className="text-justify">
-                We embrace agility as a core principle, allowing us to adapt
-                quickly to changing requirements and deliver value iteratively.
-                From concept to deployment, our agile approach ensures that your
-                project stays on track and delivers results that exceed
-                expectations.
-              </p>
-            </div>
-          </Col>
-          <Col className="my-2">
-            <div className="ratio ratio-16x9 bg-gray-100 px-4">
-              <Image
-                layout="fill"
-                alt="Lean-Agile software development"
-                className="object-fit-contain"
-                src="/undraw_season_change_f99v.svg"
-              />
-            </div>
-          </Col>
-        </Row>
-        <Row as="article" className="align-items-center">
-          <Col className="my-2" md={{ order: 2, span: 6 }}>
-            <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-              <h3>Flexibility</h3>
+      const resolvedForm =
+        form ??
+        (typeof document !== 'undefined'
+          ? document.getElementById('contactForm')
+          : null);
 
-              <p>
-                Your needs are unique, and so are our solutions. We prioritize
-                flexibility in our development approach, allowing us to tailor
-                our services to your specific requirements and business goals.
-              </p>
-            </div>
-          </Col>
-          <Col className="my-2" md={{ order: 1 }}>
-            <div className="ratio ratio-16x9 bg-gray-100 px-4">
-              <Image
-                layout="fill"
-                src="/undraw_building_blocks_re_5ahy.svg"
-                alt="Flexible solutions"
-                className="object-fit-contain"
-              />
-            </div>
-          </Col>
-        </Row>
-        <Row as="article" className="align-items-center">
-          <Col md="6" className="my-4">
-            <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-              <h3>High-Quality Applications</h3>
+      if (!(resolvedForm instanceof HTMLFormElement)) {
+        throw new Error('Could not resolve contact form element');
+      }
 
-              <p className="text-justify">
-                Quality is non-negotiable. Our team of seasoned developers and
-                QA engineers is dedicated to delivering software of the highest
-                caliber, with rigorous testing and continuous improvement baked
-                into every step of the development process.
-              </p>
-            </div>
-          </Col>
-          <Col className="my-2">
-            <div className="ratio ratio-16x9 bg-gray-100 px-4">
-              <Image
-                layout="fill"
-                alt="Quality assurance"
-                className="object-fit-contain"
-                src="/undraw_real_time_sync_re_nky7.svg"
+      await new Promise((resolve) => grecaptcha.ready(resolve));
+      const token = await grecaptcha.execute(siteKey, { action });
+
+      const formData = new FormData(resolvedForm);
+
+      const name = String(formData.get('name') ?? '').trim();
+      const email = String(formData.get('email') ?? '').trim();
+      const company = String(formData.get('company') ?? '').trim();
+      const message = String(formData.get('message') ?? '').trim();
+      const recaptchaToken = String(token ?? '').trim();
+
+      if (name.length < 2 || name.length > 120) throw new Error('Invalid name');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)
+        throw new Error('Invalid email');
+      if (company && company.length > 160) throw new Error('Invalid company');
+      if (message.length < 10 || message.length > 5000)
+        throw new Error('Invalid message length');
+      if (!recaptchaToken) throw new Error('Missing recaptchaToken');
+
+      const payload = {
+        name,
+        email,
+        company,
+        message,
+        recaptchaToken,
+      };
+
+      const body = JSON.stringify(payload);
+
+      // This Apps Script endpoint expects a JSON body. Using `text/plain`
+      // avoids a CORS preflight while still sending JSON.
+      try {
+        const res = await fetch(appsScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+          body,
+          redirect: 'follow',
+        });
+
+        if (!res.ok) {
+          setContactStatus('Failed to send. Please try again later.');
+          return;
+        }
+
+        const data = await res.json().catch(() => null);
+
+        if (data?.ok) {
+          setContactStatus('Thanks! Your message has been sent.');
+          resolvedForm.reset();
+          return;
+        }
+
+        setContactStatus('Failed to send. Please try again later.');
+        // eslint-disable-next-line no-console
+        console.warn('Contact form error:', data);
+      } catch (err) {
+        // If the browser blocks reading the response due to CORS, still attempt
+        // to send the request.
+        // eslint-disable-next-line no-console
+        console.warn('Contact form submit (CORS fallback):', err);
+
+        await fetch(appsScriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+          body,
+          redirect: 'follow',
+        });
+
+        setContactStatus(
+          "Thanks! Your message has been sent. (We couldn't confirm delivery from your browser.)",
+        );
+        resolvedForm.reset();
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      setContactStatus(
+        err instanceof Error && err.message
+          ? err.message
+          : 'Failed to send. Please try again later.',
+      );
+    } finally {
+      setIsSubmittingContact(false);
+    }
+  };
+
+  return (
+    <Layout>
+      <section className="hero-section relative min-h-screen flex items-center overflow-hidden bg-[image:var(--gradient-hero)]">
+        <div className="hero-bg">
+          <div className="hero-mosaic hero-mosaic--right">
+            {heroMosaicRightShapes.map((shape, index) => (
+              <div
+                key={index}
+                className={shape.className}
+                style={shape.style}
               />
-            </div>
-          </Col>
-        </Row>
-        <Row as="article" className="align-items-center">
-          <Col className="my-2" md={{ order: 2, span: 6 }}>
-            <div className="h-100 p-4 p-md-5 text-white bg-dark rounded">
-              <h3>Scalability</h3>
-              <p>
-                We design applications with scalability in mind, laying a solid
-                foundation that can grow seamlessly as your business expands.
-                Whether you&apos;re serving a handful of users or millions, our
-                solutions can handle the load.
-              </p>
-            </div>
-          </Col>
-          <Col className="my-2" md={{ order: 1 }}>
-            <div className="ratio ratio-16x9 bg-gray-100 px-4">
-              <Image
-                layout="fill"
-                src="/undraw_startup_life_re_8ow9.svg"
-                alt="Scalable solutions"
-                className="object-fit-contain"
+            ))}
+          </div>
+          <div className="hero-mosaic hero-mosaic--left">
+            {heroMosaicLeftShapes.map((shape, index) => (
+              <div
+                key={index}
+                className={shape.className}
+                style={shape.style}
               />
+            ))}
+          </div>
+          <div className="hero-fade" />
+          <div className="hero-fade-vertical" />
+        </div>
+
+        <div className="site-container relative z-10 pt-32 pb-20">
+          <div className="hero-content w-full max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-[hsl(var(--muted-foreground))] mb-8 animate-slide-up">
+              <span className="badge-dot animate-pulse" />
+              Cloud-Native · Event-Driven · Platform Engineering
             </div>
-          </Col>
-        </Row>
-      </Container>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-8 animate-slide-up delay-100 leading-[1.1]">
+              Built for <span className="gradient-text">Scale.</span>
+              <br />
+              Trusted by <span className="gradient-text">Enterprise.</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-10 animate-slide-up delay-200 leading-relaxed">
+              We architect distributed systems, migrate monoliths to
+              microservices, and build internal platforms that accelerate
+              delivery. API-first design. Full observability. Production-grade
+              from day one.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-start gap-4 animate-slide-up delay-300">
+              <a className="btn btn-hero btn-lg group" href="#contact">
+                Start Your Project
+                <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+              <Link className="btn btn-outline btn-lg" href="/works">
+                View Our Work
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap gap-8 md:gap-12 mt-16 animate-slide-up delay-400">
+              <div className="hero-stat">
+                <div className="hero-stat-top">
+                  <IconLayers className="hero-stat-icon" />
+                  <div className="hero-stat-value gradient-text">20+</div>
+                </div>
+                <div className="hero-stat-label">Years Experience</div>
+              </div>
+              <div className="hero-stat">
+                <div className="hero-stat-top">
+                  <IconCode className="hero-stat-icon" />
+                  <div className="hero-stat-value gradient-text">40+</div>
+                </div>
+                <div className="hero-stat-label">Projects Delivered</div>
+              </div>
+              <div className="hero-stat">
+                <div className="hero-stat-top">
+                  <IconBadgeCheck className="hero-stat-icon" />
+                  <div className="hero-stat-value gradient-text">100%</div>
+                </div>
+                <div className="hero-stat-label">Client Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a
+          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
+          href="#services"
+          aria-label="Scroll to content"
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-[hsl(var(--muted-foreground)_/_0.3)] flex items-start justify-center p-2">
+            <div className="w-1 h-2 rounded-full bg-[hsl(var(--primary))] animate-pulse" />
+          </div>
+          <span className="sr-only">Scroll</span>
+        </a>
+      </section>
+
+      <section id="services" className="section">
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">What We Do</div>
+            <h2 className="section-title">
+              Engineering Excellence,{' '}
+              <span className="gradient-text">Delivered.</span>
+            </h2>
+            <p className="section-lead">
+              We combine deep technical expertise with Lean-Agile methodologies
+              to deliver solutions that scale with your business.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
+            {services.map((service) => (
+              <article key={service.title} className="card hover-lift">
+                <div className="card-glow" />
+                <div className="service-icon" aria-hidden="true">
+                  {service.title === 'Custom Software Development' ? (
+                    <IconCode className="service-icon-svg" />
+                  ) : null}
+                  {service.title === 'Technology Consulting' ? (
+                    <IconCompass className="service-icon-svg" />
+                  ) : null}
+                  {service.title === 'Developer Training' ? (
+                    <IconGraduationCap className="service-icon-svg" />
+                  ) : null}
+                </div>
+                <h3>{service.title}</h3>
+                <p className="section-lead">{service.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map((feature) => (
+                    <span className="tag" key={feature}>
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="section">
+        <div className="site-container">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
+            <div>
+              <div className="section-eyebrow">About Us</div>
+              <h2 className="section-title">
+                We Build Software{' '}
+                <span className="gradient-text">That Matters.</span>
+              </h2>
+              <p className="section-lead">
+                MONAD is a software development consultancy specializing in
+                building enterprise-grade applications. With over 15 years of
+                experience, we have helped companies across industries transform
+                ideas into scalable, maintainable solutions.
+              </p>
+              <p className="section-lead">
+                Our team combines deep technical expertise with a pragmatic
+                approach to software development. We do not just write code. We
+                solve business problems and create lasting partnerships.
+              </p>
+
+              <div className="grid gap-5 mt-3">
+                {values.map((value) => (
+                  <div
+                    className="grid grid-cols-[auto_1fr] items-start gap-3.5"
+                    key={value.title}
+                  >
+                    <CheckIcon />
+                    <div>
+                      <h4 className="value-title">{value.title}</h4>
+                      <p className="section-lead">{value.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="glass card">
+                <h3>Our Approach</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {principles.map((principle) => (
+                    <span key={principle} className="tag">
+                      {principle}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="glass card">
+                <h3>Technology Stack</h3>
+                <div className="grid gap-4">
+                  <div>
+                    <p className="section-eyebrow">Languages & Frameworks</p>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.languages.map((tech) => (
+                        <span key={tech} className="tag-primary">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="section-eyebrow">Infrastructure</p>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.infrastructure.map((tech) => (
+                        <span key={tech} className="tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="section-eyebrow">Data & Messaging</p>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.data.map((tech) => (
+                        <span key={tech} className="tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="section-eyebrow">Observability</p>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.observability.map((tech) => (
+                        <span key={tech} className="tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="glass card">
+                  <div className="hero-stat-value gradient-text">20+</div>
+                  <div className="hero-stat-label">Years Experience</div>
+                </div>
+                <div className="glass card">
+                  <div className="hero-stat-value gradient-text">40+</div>
+                  <div className="hero-stat-label">Projects Delivered</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16">
+            <h3>Core Expertise</h3>
+            <div className="expertise-grid">
+              {expertise.map((item) => (
+                <div key={item.title} className="expertise-card hover-lift">
+                  <div className="expertise-icon">{item.code}</div>
+                  <div>
+                    <h4>{item.title}</h4>
+                    <p className="section-lead">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="partners"
+        className="section bg-[hsl(var(--secondary)_/_0.3)]"
+      >
+        <div className="site-container">
+          <div className="section-header mx-auto text-center">
+            <div className="section-eyebrow">Trusted By</div>
+            <h2 className="section-title">
+              Companies We Have{' '}
+              <span className="gradient-text">Partnered With</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-5">
+            {partners.map((partner) => (
+              <div
+                key={partner.name}
+                className="partner-card hover-lift flex h-[100px] items-center justify-center"
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={160}
+                  height={60}
+                  className={`partner-logo ${
+                    partner.tone === 'light' ? 'partner-logo--light' : ''
+                  } ${partner.tone === 'mono' ? 'partner-logo--mono' : ''}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="section">
+        <div className="site-container grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
+          <div>
+            <div className="section-eyebrow">Get in Touch</div>
+            <h2 className="section-title">
+              Let&apos;s Build Something{' '}
+              <span className="gradient-text">Amazing.</span>
+            </h2>
+            <p className="section-lead">
+              Ready to transform your ideas into reality? We would love to hear
+              about your project. Reach out and let&apos;s discuss how we can
+              help.
+            </p>
+
+            <div className="mt-8 grid gap-6">
+              <div className="flex items-center gap-4">
+                <div className="contact-icon inline-flex h-11 w-11 items-center justify-center rounded-xl">
+                  @
+                </div>
+                <div>
+                  <div className="section-eyebrow">Email</div>
+                  <a href="mailto:hello@monad.hu">hello@monad.hu</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="contact-icon inline-flex h-11 w-11 items-center justify-center rounded-xl">
+                  +
+                </div>
+                <div>
+                  <div className="section-eyebrow">Phone</div>
+                  <a href="tel:+36306360775">+36 30 636 0775</a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="contact-icon inline-flex h-11 w-11 items-center justify-center rounded-xl">
+                  HU
+                </div>
+                <div>
+                  <div className="section-eyebrow">Location</div>
+                  <span>Gödöllő, Hungary</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="glass card">
+            <form id="contactForm" onSubmit={handleContactSubmit}>
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+                <div>
+                  <label htmlFor="name">Name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    className="form-input"
+                    placeholder="Your name"
+                    minLength={2}
+                    maxLength={120}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    className="form-input"
+                    placeholder="your@email.com"
+                    maxLength={254}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="mt-4">
+                <label htmlFor="company">Company</label>
+                <input
+                  id="company"
+                  name="company"
+                  className="form-input"
+                  placeholder="Your company"
+                  maxLength={160}
+                />
+              </div>
+              <div className="mt-4">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  className="form-textarea"
+                  placeholder="Tell us about your project..."
+                  minLength={10}
+                  maxLength={5000}
+                  required
+                />
+              </div>
+
+              <div
+                id="status"
+                role="status"
+                aria-live="polite"
+                className="mt-4 text-[hsl(var(--muted-foreground))]"
+              >
+                {contactStatus}
+              </div>
+
+              <button
+                type="submit"
+                className="btn btn-hero mt-6 w-full"
+                disabled={isSubmittingContact}
+              >
+                {isSubmittingContact ? 'Sending...' : 'Send Message'}
+              </button>
+
+              <div className="recaptcha-row" aria-live="polite">
+                <p className="recaptcha-note">
+                  This site is protected by reCAPTCHA and the Google{' '}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a
+                    href="https://policies.google.com/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Terms of Service
+                  </a>{' '}
+                  apply.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 }
