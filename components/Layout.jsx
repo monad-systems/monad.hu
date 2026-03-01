@@ -50,9 +50,13 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const nextIsScrolled = window.scrollY > 20;
+      setIsScrolled((previous) =>
+        previous === nextIsScrolled ? previous : nextIsScrolled,
+      );
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -99,8 +103,8 @@ export default function Layout({ children }) {
       </Head>
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'glass py-4' : 'py-6'
+        className={`fixed top-0 left-0 right-0 z-50 transition-[padding,background-color,border-color] duration-500 ${
+          isScrolled ? 'glass py-3 md:py-4' : 'py-4 md:py-6'
         }`}
       >
         <div className="site-container flex items-center justify-between gap-6">

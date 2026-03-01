@@ -65,7 +65,7 @@ body {
 
 .app-container {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -125,8 +125,8 @@ img {
 }
 
 .hero-section {
+  min-height: 100vh;
   min-height: 100svh;
-  min-height: 100dvh;
 }
 
 .section-header {
@@ -163,6 +163,10 @@ img {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
+}
+
+header.glass {
+  border: 0;
 }
 
 .gradient-text {
@@ -266,6 +270,7 @@ header > .site-container,
 .hero-section > .site-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  margin: 5rem 0;
 }
 
 .mobile-toggle {
@@ -924,6 +929,7 @@ header > .site-container,
   .hero-section > .site-container {
     padding-left: 3rem;
     padding-right: 3rem;
+    margin: 2rem 0;
   }
 }
 

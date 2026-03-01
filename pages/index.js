@@ -450,27 +450,27 @@ export default function Home() {
 
   return (
     <Layout>
-      <section className="hero-section relative flex items-center overflow-hidden bg-[image:var(--gradient-hero)]">
+      <section className="hero-section relative flex items-start md:items-center overflow-hidden bg-[image:var(--gradient-hero)]">
         <div className="hero-bg">
           <HeroBackground />
           <div className="hero-fade" />
           <div className="hero-fade-vertical" />
         </div>
 
-        <div className="site-container relative z-10 pt-32 pb-20">
+        <div className="site-container relative z-10 pt-[calc(env(safe-area-inset-top)+6.5rem)] pb-16 md:pt-32 md:pb-20">
           <div className="hero-content w-full max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-[hsl(var(--muted-foreground))] mb-8 animate-slide-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-6 md:mb-8 animate-slide-up">
               <span className="badge-dot animate-pulse" />
               Cloud-Native · Event-Driven · Platform Engineering
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-8 animate-slide-up delay-100 leading-[1.1]">
+            <h1 className="text-[clamp(2rem,8vh,2.75rem)] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8 animate-slide-up delay-100 leading-[1.1]">
               Built for <span className="gradient-text">Scale.</span>
               <br />
               Trusted by <span className="gradient-text">Enterprise.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-10 animate-slide-up delay-200 leading-relaxed">
+            <p className="text-base md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-8 md:mb-10 animate-slide-up delay-200 leading-relaxed">
               We architect distributed systems, migrate monoliths to
               microservices, and build internal platforms that accelerate
               delivery. API-first design. Full observability. Production-grade
@@ -487,7 +487,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="flex flex-wrap gap-8 md:gap-12 mt-16 animate-slide-up delay-400">
+            <div className="flex flex-wrap gap-8 md:gap-12 mt-10 md:mt-16 animate-slide-up delay-400">
               <div className="hero-stat">
                 <div className="hero-stat-top">
                   <IconLayers className="hero-stat-icon" />
