@@ -262,15 +262,10 @@ header.glass {
   box-shadow: 0 0 8px hsl(var(--primary) / 0.8);
 }
 
-header > .site-container,
-.hero-section > .site-container {
-  width: min(1280px, 100%);
-}
-
 .hero-section > .site-container {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  margin: 5rem 0;
+  margin: 5rem auto;
 }
 
 .mobile-toggle {
@@ -927,15 +922,6 @@ header > .site-container,
 
 @media (min-width: 768px) {
   .hero-section > .site-container {
-    padding-left: 3rem;
-    padding-right: 3rem;
-    margin: 2rem 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-section > .site-container {
-    padding-left: 4rem;
-    padding-right: 4rem;
+    margin: 2rem auto;
   }
 }
