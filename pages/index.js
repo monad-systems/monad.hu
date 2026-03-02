@@ -42,7 +42,7 @@ const caseStudies = [
   },
   {
     title: 'IdomSoft',
-    category: '',
+    category: 'Platform Engineering',
     description: 'Expert support and consulting.',
     tags: [],
     highlight: true,
