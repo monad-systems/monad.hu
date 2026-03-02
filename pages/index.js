@@ -42,10 +42,9 @@ const caseStudies = [
   },
   {
     title: 'IdomSoft',
-    category: 'Full-Stack Modernization',
-    description:
-      'Modernized a national-scale voting information system with a modular React frontend and a cloud-ready platform foundation. Improved scalability, observability, and long-term maintainability with better developer experience and operational readiness.',
-    tags: ['React', 'Observability', 'Cloud-Ready', 'Modular Frontend'],
+    category: '',
+    description: 'Expert support and consulting.',
+    tags: [],
     highlight: true,
   },
   {
