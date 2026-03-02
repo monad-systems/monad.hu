@@ -85,11 +85,8 @@ export default function Layout({ children }) {
           content="Lean-Agile software development, training and consulting services"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://monad.systems" />
-        <meta
-          property="og:image"
-          content="https://monad.systems/og_1200_630.png"
-        />
+        <meta property="og:url" content="https://monad.hu" />
+        <meta property="og:image" content="/og_1200_630.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
@@ -99,10 +96,7 @@ export default function Layout({ children }) {
           name="twitter:description"
           content="Lean-Agile software development, training and consulting services"
         />
-        <meta
-          name="twitter:image"
-          content="https://monad.systems/og_1200_630.png"
-        />
+        <meta name="twitter:image" content="/og_1200_630.png" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
