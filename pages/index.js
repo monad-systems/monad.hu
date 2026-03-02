@@ -42,9 +42,9 @@ const caseStudies = [
   },
   {
     title: 'IdomSoft',
-    category: 'Platform Engineering',
+    category: 'Cloud Architecture',
     description: 'Expert support and consulting.',
-    tags: [],
+    tags: ['Cloud Architecture', 'Consulting'],
     highlight: true,
   },
   {
