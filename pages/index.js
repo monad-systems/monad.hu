@@ -43,7 +43,8 @@ const caseStudies = [
   {
     title: 'IdomSoft',
     category: 'Cloud Architecture',
-    description: 'Expert support and consulting.',
+    description:
+      'Expert support and consulting related to the currently implemented public cloud architecture.',
     tags: ['Cloud Architecture', 'Consulting'],
     highlight: true,
   },
