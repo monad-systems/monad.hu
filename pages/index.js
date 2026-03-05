@@ -459,25 +459,25 @@ export default function Home() {
 
         <div className="site-container relative z-10 pt-[calc(env(safe-area-inset-top)+6.5rem)] pb-16 md:pt-32 md:pb-20">
           <div className="hero-content w-full max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-6 md:mb-8 animate-slide-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-6 md:mb-8">
               <span className="badge-dot animate-pulse" />
               Cloud-Native · Event-Driven · Platform Engineering
             </div>
 
-            <h1 className="text-[clamp(2rem,8vh,2.75rem)] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8 animate-slide-up delay-100 leading-[1.1]">
+            <h1 className="text-[clamp(2rem,8vh,2.75rem)] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1]">
               Built for <span className="gradient-text">Scale.</span>
               <br />
               Trusted by <span className="gradient-text">Enterprise.</span>
             </h1>
 
-            <p className="text-base md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-8 md:mb-10 animate-slide-up delay-200 leading-relaxed">
+            <p className="text-base md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-8 md:mb-10 leading-relaxed">
               We architect distributed systems, migrate monoliths to
               microservices, and build internal platforms that accelerate
               delivery. API-first design. Full observability. Production-grade
               from day one.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4 animate-slide-up delay-300">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
               <a className="btn btn-hero btn-lg group" href="#contact">
                 Start Your Project
                 <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
@@ -487,7 +487,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="flex flex-wrap gap-8 md:gap-12 mt-10 md:mt-16 animate-slide-up delay-400">
+            <div className="flex flex-wrap gap-8 md:gap-12 mt-10 md:mt-16">
               <div className="hero-stat">
                 <div className="hero-stat-top">
                   <IconLayers className="hero-stat-icon" />
