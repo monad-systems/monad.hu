@@ -1,8 +1,11 @@
 import '../styles/tailwind.css';
 import '../styles/app.scss';
-import '@fontsource/open-sans/400.css';
-import '@fontsource/open-sans/600.css';
-import '@fontsource/open-sans/700.css';
+import '@fontsource/open-sans/latin-400.css';
+import '@fontsource/open-sans/latin-600.css';
+import '@fontsource/open-sans/latin-700.css';
+import '@fontsource/open-sans/latin-ext-400.css';
+import '@fontsource/open-sans/latin-ext-600.css';
+import '@fontsource/open-sans/latin-ext-700.css';
 import Head from 'next/head';
 
 function App({ Component, pageProps }) {

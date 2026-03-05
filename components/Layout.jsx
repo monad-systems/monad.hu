@@ -41,8 +41,8 @@ export default function Layout({ children }) {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const isHome = router.pathname === '/';
+
   const resolveHref = (href) => {
     if (!href?.startsWith('#')) return href;
     return isHome ? href : `/${href}`;
@@ -57,7 +57,7 @@ export default function Layout({ children }) {
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

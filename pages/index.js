@@ -1,9 +1,12 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
-import HeroBackground from '../components/HeroBackground';
 import Layout from '../components/Layout';
+
+const HeroBackground = dynamic(() => import('../components/HeroBackground'), {
+  ssr: false,
+});
 
 const services = [
   {
@@ -482,9 +485,9 @@ export default function Home() {
                 Start Your Project
                 <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <Link className="btn btn-outline btn-lg" href="/#work">
+              <a className="btn btn-outline btn-lg" href="#work">
                 View Our Work
-              </Link>
+              </a>
             </div>
 
             <div className="flex flex-wrap gap-8 md:gap-12 mt-10 md:mt-16">
@@ -810,7 +813,13 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="section-eyebrow">Location</div>
-                  <span>Gödöllő, Hungary</span>
+                  <a
+                    href="https://maps.app.goo.gl/UYrvowK7skeSyuaq5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Gödöllő, Dózsa György út 28.
+                  </a>
                 </div>
               </div>
             </div>
