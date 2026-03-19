@@ -14,6 +14,12 @@ npm install
 npm run dev
 ```
 
+Set `PORT` in `.env.local` to change the local dev/start port, for example:
+
+```bash
+PORT=3010
+```
+
 ## Quality checks
 
 ```bash
@@ -23,6 +29,23 @@ npm audit --omit=dev
 ```
 
 `next.config.js` is set to `output: 'export'`, so `npm run build` also produces static output in `out/`.
+
+## Posts authoring
+
+Posts are markdown files in `posts/`.
+
+```yaml
+---
+title: 'Your post title'
+date: '2026-03-19'
+lead: 'Short summary'
+metaDescription: 'SEO description'
+---
+```
+
+Notes:
+
+- Mermaid blocks are rendered as figures, and headings like `Visual: ...` become `figcaption` text with the `Visual:` prefix removed.
 
 ## Contact form
 

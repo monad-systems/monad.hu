@@ -65,6 +65,7 @@ export default function Layout({ children }) {
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
     { label: 'Work', href: '#work' },
+    { label: 'Posts', href: '/posts' },
     { label: 'Partners', href: '#partners' },
     { label: 'Contact', href: '#contact' },
   ];
@@ -221,6 +222,7 @@ export default function Layout({ children }) {
               <a href={resolveHref('#services')}>Services</a>
               <a href={resolveHref('#about')}>About</a>
               <a href={resolveHref('#work')}>Work</a>
+              <Link href="/posts">Posts</Link>
               <a href={resolveHref('#contact')}>Contact</a>
             </div>
 
