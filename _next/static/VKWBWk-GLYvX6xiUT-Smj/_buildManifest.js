@@ -1,18 +1,21 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/79de2afba3706202.js"
+    "static/chunks/61617351ed46bbe1.js"
   ],
   "/404": [
-    "static/chunks/abc01f61cb5729e6.js"
+    "static/chunks/85d7ffa839c02c0c.js"
   ],
   "/_error": [
-    "static/chunks/8504dd912fa147ec.js"
+    "static/chunks/406d574475c7620e.js"
+  ],
+  "/platform-modernization-review": [
+    "static/chunks/080dcc39502ed6a7.js"
   ],
   "/posts": [
-    "static/chunks/9bae9058b689fb6e.js"
+    "static/chunks/ec172b71b071876c.js"
   ],
   "/posts/[id]": [
-    "static/chunks/808aa6c6fdb84b56.js"
+    "static/chunks/ba8e0dff3f8ccdb3.js"
   ],
   "__rewrites": {
     "afterFiles": [],
@@ -24,6 +27,7 @@ self.__BUILD_MANIFEST = {
     "/404",
     "/_app",
     "/_error",
+    "/platform-modernization-review",
     "/posts",
     "/posts/[id]"
   ]
