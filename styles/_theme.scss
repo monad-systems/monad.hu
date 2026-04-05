@@ -56,6 +56,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-open-sans), "Helvetica Neue", Arial, sans-serif;
@@ -453,7 +454,11 @@ header.glass {
 
 .hero-network {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1200px, 100%);
 }
 
 .hero-network-svg {
@@ -487,13 +492,13 @@ header.glass {
 .hero-fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, hsl(var(--background)) 0%, hsl(var(--background) / 0.95) 40%, transparent 100%);
+  background: linear-gradient(90deg, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 38%, hsl(var(--background) / 0.4) 75%, hsl(var(--background) / 0.55) 100%);
 }
 
 .hero-fade-vertical {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, hsl(var(--background) / 0.5) 0%, transparent 40%, hsl(var(--background) / 0.3) 100%);
+  background: linear-gradient(180deg, hsl(var(--background) / 0.4) 0%, transparent 38%, hsl(var(--background) / 0.25) 100%);
 }
 
 .card {
@@ -743,6 +748,7 @@ header.glass {
 .footer-links,
 .footer-social {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
   align-items: center;
   color: hsl(var(--muted-foreground));
