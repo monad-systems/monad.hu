@@ -62,11 +62,11 @@ export default function Layout({ children }) {
   }, []);
 
   const navLinks = [
-    { label: 'Services', href: '#services' },
-    { label: 'About', href: '#about' },
+    { label: 'Problems', href: '#services' },
+    { label: 'Engagements', href: '#engage' },
+    { label: 'Why MONAD', href: '#why' },
     { label: 'Work', href: '#work' },
     { label: 'Posts', href: '/posts' },
-    { label: 'Partners', href: '#partners' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -74,16 +74,16 @@ export default function Layout({ children }) {
     <div className="app-container">
       <Head>
         <title>
-          MONAD SYSTEMS Lean-Agile software development & consulting
+          MONAD SYSTEMS — Senior Software Consultancy for Platform Modernization
         </title>
         <meta
           name="description"
-          content="Lean-Agile software development, training and consulting services"
+          content="Senior hands-on software consultancy specializing in platform modernization, API-first delivery, event-driven architecture, and production-grade observability."
         />
         <meta property="og:title" content="MONAD SYSTEMS" />
         <meta
           property="og:description"
-          content="Lean-Agile software development, training and consulting services"
+          content="Senior hands-on software consultancy for platform modernization, legacy migration, and production-grade engineering."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://monad.hu" />
@@ -95,7 +95,7 @@ export default function Layout({ children }) {
         <meta name="twitter:title" content="MONAD SYSTEMS" />
         <meta
           name="twitter:description"
-          content="Lean-Agile software development, training and consulting services"
+          content="Senior hands-on software consultancy for platform modernization, legacy migration, and production-grade engineering."
         />
         <meta name="twitter:image" content="/og_1200_630.png" />
         <link
@@ -219,8 +219,9 @@ export default function Layout({ children }) {
             />
 
             <div className="footer-links">
-              <a href={resolveHref('#services')}>Services</a>
-              <a href={resolveHref('#about')}>About</a>
+              <a href={resolveHref('#services')}>Problems</a>
+              <a href={resolveHref('#engage')}>Engagements</a>
+              <a href={resolveHref('#why')}>Why MONAD</a>
               <a href={resolveHref('#work')}>Work</a>
               <Link href="/posts">Posts</Link>
               <a href={resolveHref('#contact')}>Contact</a>
@@ -237,7 +238,7 @@ export default function Layout({ children }) {
                 <span className="sr-only">GitHub</span>
               </a>
               <a
-                href="https://linkedin.comhttps://www.linkedin.com/company/monad-systems/"
+                href="https://www.linkedin.com/company/monad-systems/"
                 rel="noopener noreferrer"
                 target="_blank"
                 aria-label="LinkedIn"

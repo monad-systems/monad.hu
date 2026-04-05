@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
@@ -8,24 +9,102 @@ const HeroBackground = dynamic(() => import('../components/HeroBackground'), {
   ssr: false,
 });
 
-const services = [
+const problems = [
   {
-    title: 'Custom Software Development',
+    title: 'Monolith to Modular Architecture',
     description:
-      'End-to-end development of scalable applications using modern technologies. From MVPs to enterprise-grade systems, we deliver quality code that lasts.',
-    features: ['Full-Stack Delivery', 'API Design', 'Cloud Architecture'],
+      'Your monolith has outgrown your team. Releases are slow, risky, and coupled. You need a pragmatic path to modular or service-oriented architecture — without a full rewrite.',
+    tags: ['Decomposition', 'Bounded Contexts', 'Strangler Fig'],
   },
   {
-    title: 'Technology Consulting',
+    title: 'Integration Complexity',
     description:
-      'Strategic guidance to modernize your tech stack, optimize processes, and adopt best practices. We help you make informed decisions for long-term success.',
-    features: ['Tech Stack Audits', 'Architecture Reviews', 'DevOps Strategy'],
+      'Systems are connected with brittle point-to-point integrations, ad hoc message formats, and no clear ownership. Failures cascade and debugging crosses team boundaries.',
+    tags: ['Event-Driven', 'Kafka', 'Async Messaging'],
   },
   {
-    title: 'Developer Training',
+    title: 'Inconsistent APIs & Poor Contracts',
     description:
-      'Upskill your team with hands-on workshops and courses. From TypeScript to Lean-Agile practices, we empower developers to build better software.',
-    features: ['Workshop Programs', 'Team Coaching', 'Best Practices'],
+      'Every service defines its own conventions. Clients guess at payload shapes. Validation is duplicated. Breaking changes ship unnoticed.',
+    tags: ['OpenAPI', 'AsyncAPI', 'Spec-First', 'JSON Schema'],
+  },
+  {
+    title: 'Platform Friction Slowing Delivery',
+    description:
+      'Developers wait on infrastructure, fight unreliable CI pipelines, and work around missing tooling. The platform is a bottleneck instead of an accelerator.',
+    tags: ['Platform Engineering', 'CI/CD', 'Developer Experience'],
+  },
+  {
+    title: 'Weak Observability & Operational Blind Spots',
+    description:
+      'Production issues surface through user complaints. Distributed traces are absent or incomplete. There is no structured approach to SLOs, alerting, or incident response.',
+    tags: ['OpenTelemetry', 'Grafana', 'Prometheus', 'SLOs'],
+  },
+  {
+    title: 'Rising Cloud Cost & Architecture Inefficiency',
+    description:
+      'Infrastructure spend keeps climbing without a clear link to workload or value. Over-provisioned clusters, redundant services, and unoptimized data paths drive waste.',
+    tags: ['Cost Optimization', 'Right-Sizing', 'Architecture Review'],
+  },
+];
+
+const engagements = [
+  {
+    step: '01',
+    title: 'Architecture & Platform Review',
+    what: 'A focused assessment of your current system architecture, integration patterns, delivery pipeline, and operational posture.',
+    when: 'You suspect architectural debt is slowing you down but need an independent, senior perspective to confirm priorities and risks.',
+    outcome:
+      'A written findings report with a prioritized, actionable roadmap — not a slide deck, but concrete next steps your team can execute.',
+  },
+  {
+    step: '02',
+    title: 'Fractional Architecture Leadership',
+    what: 'Ongoing senior architecture guidance embedded in your team — part-time, on a retained basis. Design reviews, decision records, and hands-on pairing.',
+    when: 'You need principal-level architecture input but cannot justify or find a full-time hire. Your team is strong but needs structured technical direction.',
+    outcome:
+      'Sustained architecture coherence, fewer rework cycles, and a team that levels up through working alongside a senior practitioner.',
+  },
+  {
+    step: '03',
+    title: 'Delivery Engagement',
+    what: 'Hands-on implementation by senior engineers who deliver production-ready code, infrastructure, and observability — not just plans.',
+    when: 'You have a clear modernization scope and need experienced builders who can own delivery end-to-end or work as a tight extension of your team.',
+    outcome:
+      'Working, deployed software with clean contracts, tested boundaries, observability in place, and knowledge transferred to your team.',
+  },
+];
+
+const differentiators = [
+  {
+    title: 'Senior Hands-On Work',
+    description:
+      'No bench rotation, no junior staffing. The people who assess your system are the same people who implement the changes.',
+  },
+  {
+    title: 'Architecture + Delivery',
+    description:
+      'We do not just draw diagrams. We design systems and then build them — with production-grade testing, observability, and deployment.',
+  },
+  {
+    title: 'Pragmatic Modernization',
+    description:
+      'We do not push rewrites for their own sake. Every recommendation is grounded in your real constraints, timelines, and team capabilities.',
+  },
+  {
+    title: 'API & Spec-First Discipline',
+    description:
+      'Contracts are defined before code. OpenAPI, AsyncAPI, and JSON Schema govern boundaries — enabling generated clients, validation, and reliable integration.',
+  },
+  {
+    title: 'Observability & Production-Readiness',
+    description:
+      'Every engagement ships with structured logging, distributed tracing, metrics, and alerting. Not as an afterthought — as a delivery standard.',
+  },
+  {
+    title: 'Full-Stack Platform Depth',
+    description:
+      'Backend, frontend, infrastructure, CI/CD, data pipelines, event-driven integration. One team, coherent architecture, no handoff gaps.',
   },
 ];
 
@@ -34,7 +113,7 @@ const caseStudies = [
     title: 'Fizz',
     category: 'Platform Engineering',
     description:
-      'Stabilized and modernized a cost-inefficient distributed monolith by introducing spec-first (API design-first) delivery, quality gates, and production-grade observability. Improved reliability and security posture while enabling a cleaner evolution toward microservices. Search synchronization was sped up significantly and infrastructure costs were cut by about 90%.',
+      'Cut infrastructure costs by approximately 90% and dramatically improved search synchronization speed for an OTP ecosystem platform. Introduced spec-first API delivery, automated quality gates, and production-grade observability across a distributed monolith — stabilizing reliability and strengthening security posture while establishing a safer, incremental path toward microservices.',
     tags: [
       'API Design-First',
       'Quality Gates',
@@ -47,7 +126,7 @@ const caseStudies = [
     title: 'IdomSoft',
     category: 'Cloud Architecture',
     description:
-      'Expert support and consulting related to the currently implemented public cloud architecture.',
+      'Provided senior architecture consulting for a government technology organization, advising on public cloud infrastructure design, operational practices, and platform evolution strategy.',
     tags: ['Cloud Architecture', 'Consulting'],
     highlight: true,
   },
@@ -55,55 +134,23 @@ const caseStudies = [
     title: 'Netrisk',
     category: 'Cloud Architecture',
     description:
-      'Designed a Node.js microservices architecture with Kafka-based eventing to support high-throughput insurance purchases. Added resilience patterns and end-to-end observability to improve reliability, scalability, and operational confidence.',
+      'Architected a high-throughput insurance purchase platform on Node.js microservices with Kafka-based event-driven messaging. Introduced resilience patterns and end-to-end distributed tracing — improving system reliability and giving operations real-time visibility into production behavior.',
     tags: ['Node.js', 'Kafka', 'Event-Driven', 'Microservices'],
   },
   {
     title: 'IDBC',
     category: 'Banking Infrastructure',
     description:
-      'Built core foundations for a scalable banking platform using Node.js and Kafka-based event-driven architecture. Delivered complex legacy integrations and data migration into a unified, extensible platform.',
+      'Built the foundational architecture for a scalable banking platform using Node.js and Kafka-based event-driven messaging. Delivered complex legacy system integrations and data migration — unifying fragmented data sources into a single, extensible platform designed for regulated financial operations.',
     tags: ['Node.js', 'Kafka', 'Event-Driven', 'Data Migration'],
   },
   {
     title: 'Webshippy',
     category: 'Backend Decomposition',
     description:
-      'Decomposed a PHP monolith into a dedicated backend API and a modular Vue.js frontend. Containerized the system to enable independent releases, clearer boundaries, and a smoother path toward service-oriented evolution.',
+      'Decomposed a monolithic PHP application into a clean backend API and a modular Vue.js frontend. Containerized the full stack with Docker — enabling independent deployments, clearer service boundaries, and reduced delivery friction while establishing the foundation for further service-oriented evolution.',
     tags: ['Vue.js', 'PHP', 'Docker', 'API Design', 'Microservices'],
   },
-];
-
-const values = [
-  {
-    title: 'Lean-Agile Mindset',
-    description:
-      'We embrace iterative development, continuous improvement, and rapid feedback loops to deliver value faster.',
-  },
-  {
-    title: 'Quality First',
-    description:
-      'Clean code, comprehensive testing, and best practices are non-negotiable. We build software that lasts.',
-  },
-  {
-    title: 'Scalability by Design',
-    description:
-      'Every solution is architected for growth. From startup MVPs to enterprise systems, we plan for scale.',
-  },
-  {
-    title: 'Transparent Partnership',
-    description:
-      'Open communication, honest estimates, and collaborative problem-solving define our client relationships.',
-  },
-];
-
-const principles = [
-  'API-Design-First',
-  'Cloud-Native',
-  'Monolith to Microservices',
-  'Security-Focused',
-  'Full Observability',
-  'Platform Engineering',
 ];
 
 const techStack = {
@@ -126,10 +173,10 @@ const techStack = {
 
 const expertise = [
   {
-    code: 'MS',
-    title: 'Monolith to Microservices',
+    code: 'PM',
+    title: 'Platform Modernization',
     description:
-      'Modernizing legacy systems into scalable, distributed architectures',
+      'Incremental migration from monoliths to modular, service-oriented systems',
   },
   {
     code: 'EA',
@@ -137,14 +184,27 @@ const expertise = [
     description: 'Scalable, loosely coupled systems with async messaging',
   },
   {
-    code: 'DG',
-    title: 'Data Contracts',
-    description: 'Schema governance to keep services aligned and reliable',
+    code: 'SF',
+    title: 'API & Spec-First Delivery',
+    description:
+      'Contract-driven development with OpenAPI, AsyncAPI, and JSON Schema',
   },
   {
-    code: 'CI',
-    title: 'Pipeline Engineering',
-    description: 'Automated builds, tests, and deployments for rapid delivery',
+    code: 'OB',
+    title: 'Observability & Production-Readiness',
+    description: 'Structured tracing, metrics, alerting, and SLOs from day one',
+  },
+  {
+    code: 'CO',
+    title: 'Cloud Cost Optimization',
+    description:
+      'Right-sizing infrastructure and eliminating architecture-level waste',
+  },
+  {
+    code: 'PE',
+    title: 'Platform Engineering',
+    description:
+      'Internal platforms, CI/CD, and developer tooling that accelerate delivery',
   },
 ];
 
@@ -270,39 +330,6 @@ const IconBadgeCheck = ({ className }) => (
   >
     <path d="M12 2l2.4 1.4 2.8-.2 1.4 2.4 2.4 1.4-.2 2.8L22 12l1.4 2.4-1.4 2.4-2.8-.2-1.4 2.4-2.8-.2L12 22l-2.4-1.4-2.8.2-1.4-2.4-2.4-1.4.2-2.8L2 12 .6 9.6 2 7.2l2.8.2 1.4-2.4 2.8.2L12 2z" />
     <path d="M16.5 9.5l-5 5-2-2" />
-  </svg>
-);
-
-const IconCompass = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <circle cx="12" cy="12" r="10" />
-    <path d="M16 8l-2.5 7.5L6 18l2.5-7.5L16 8z" />
-  </svg>
-);
-
-const IconGraduationCap = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M22 10l-10-5L2 10l10 5 10-5z" />
-    <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
-    <path d="M2 10v6" />
   </svg>
 );
 
@@ -453,6 +480,7 @@ export default function Home() {
 
   return (
     <Layout>
+      {/* ── Hero ── */}
       <section className="hero-section relative flex items-start md:items-center overflow-hidden bg-[image:var(--gradient-hero)]">
         <div className="hero-bg">
           <HeroBackground />
@@ -464,27 +492,30 @@ export default function Home() {
           <div className="hero-content w-full max-w-2xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-6 md:mb-8">
               <span className="badge-dot animate-pulse" />
-              Cloud-Native · Event-Driven · Platform Engineering
+              Platform Modernization · Spec-First · Production-Grade
             </div>
 
             <h1 className="text-[clamp(2rem,8vh,2.75rem)] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1]">
-              Built for <span className="gradient-text">Scale.</span>
+              Your Platform, <span className="gradient-text">Modernized.</span>
               <br />
-              Trusted by <span className="gradient-text">Enterprise.</span>
+              Your Delivery, <span className="gradient-text">Unblocked.</span>
             </h1>
 
             <p className="text-base md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-8 md:mb-10 leading-relaxed">
-              We architect distributed systems, migrate monoliths to
-              microservices, and build internal platforms that accelerate
-              delivery. API-first design. Full observability. Production-grade
-              from day one.
+              MONAD is a senior hands-on consultancy that helps engineering
+              teams modernize monoliths, tame integration complexity, and ship
+              production-ready systems with spec-first contracts and full
+              observability.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start gap-4">
-              <a className="btn btn-hero btn-lg group" href="#contact">
-                Start Your Project
+              <Link
+                className="btn btn-hero btn-lg group"
+                href="/platform-modernization-review"
+              >
+                Book a Platform Review
                 <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a className="btn btn-outline btn-lg" href="#work">
                 View Our Work
               </a>
@@ -508,9 +539,9 @@ export default function Home() {
               <div className="hero-stat">
                 <div className="hero-stat-top">
                   <IconBadgeCheck className="hero-stat-icon" />
-                  <div className="hero-stat-value gradient-text">100%</div>
+                  <div className="hero-stat-value gradient-text">5</div>
                 </div>
-                <div className="hero-stat-label">Client Satisfaction</div>
+                <div className="hero-stat-label">Platforms Modernized</div>
               </div>
             </div>
           </div>
@@ -518,7 +549,7 @@ export default function Home() {
 
         <a
           className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2"
-          href="#services"
+          href="#best-fit"
           aria-label="Scroll to content"
         >
           <div className="w-6 h-10 rounded-full border-2 border-[hsl(var(--muted-foreground)_/_0.3)] flex items-start justify-center p-2">
@@ -528,41 +559,69 @@ export default function Home() {
         </a>
       </section>
 
+      {/* ── Best Fit For ── */}
+      <section
+        id="best-fit"
+        className="section"
+        style={{ paddingBottom: '3rem' }}
+      >
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Best Fit For</div>
+            <h2 className="section-title">
+              Built for Teams With{' '}
+              <span className="gradient-text">Complex Systems.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              'Product companies scaling beyond early-stage architecture',
+              'Enterprises modernizing monoliths or fragmented systems',
+              'Platform teams improving delivery speed, reliability, and developer experience',
+              'Organizations needing senior hands-on architecture plus implementation',
+            ].map((item) => (
+              <div
+                className="grid grid-cols-[auto_1fr] items-start gap-3.5"
+                key={item}
+              >
+                <CheckIcon />
+                <p className="section-lead" style={{ margin: 0 }}>
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Problems We Solve ── */}
       <section id="services" className="section">
         <div className="site-container">
           <div className="section-header">
-            <div className="section-eyebrow">What We Do</div>
+            <div className="section-eyebrow">Selected Problems We Solve</div>
             <h2 className="section-title">
-              Engineering Excellence,{' '}
-              <span className="gradient-text">Delivered.</span>
+              We Fix What Slows{' '}
+              <span className="gradient-text">Engineering Down.</span>
             </h2>
             <p className="section-lead">
-              We combine deep technical expertise with Lean-Agile methodologies
-              to deliver solutions that scale with your business.
+              These are the recurring patterns we see in platform and product
+              organizations. If any of these sound familiar, we can help.
             </p>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
-            {services.map((service) => (
-              <article key={service.title} className="card hover-lift">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {problems.map((problem) => (
+              <article key={problem.title} className="card hover-lift">
                 <div className="card-glow" />
-                <div className="service-icon" aria-hidden="true">
-                  {service.title === 'Custom Software Development' ? (
-                    <IconCode className="service-icon-svg" />
-                  ) : null}
-                  {service.title === 'Technology Consulting' ? (
-                    <IconCompass className="service-icon-svg" />
-                  ) : null}
-                  {service.title === 'Developer Training' ? (
-                    <IconGraduationCap className="service-icon-svg" />
-                  ) : null}
-                </div>
-                <h3>{service.title}</h3>
-                <p className="section-lead">{service.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {service.features.map((feature) => (
-                    <span className="tag" key={feature}>
-                      {feature}
+                <h3 style={{ fontSize: '1.15rem', marginBottom: '0.75rem' }}>
+                  {problem.title}
+                </h3>
+                <p className="section-lead">{problem.description}</p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {problem.tags.map((tag) => (
+                    <span className="tag" key={tag}>
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -572,29 +631,234 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── How We Engage ── */}
+      <section
+        id="engage"
+        className="section bg-[hsl(var(--secondary)_/_0.15)]"
+      >
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">How We Engage</div>
+            <h2 className="section-title">
+              Three Ways to <span className="gradient-text">Work With Us.</span>
+            </h2>
+            <p className="section-lead">
+              Every engagement starts with understanding your architecture and
+              constraints. We scale involvement to match what you actually need.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {engagements.map((eng) => (
+              <article key={eng.title} className="card hover-lift">
+                <div className="card-glow" />
+                <div
+                  className="expertise-icon"
+                  style={{ marginBottom: '1.25rem' }}
+                >
+                  {eng.step}
+                </div>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
+                  {eng.title}
+                </h3>
+                <div className="grid gap-3">
+                  <div>
+                    <p
+                      className="section-eyebrow"
+                      style={{ marginBottom: '0.3rem' }}
+                    >
+                      What it is
+                    </p>
+                    <p className="section-lead">{eng.what}</p>
+                  </div>
+                  <div>
+                    <p
+                      className="section-eyebrow"
+                      style={{ marginBottom: '0.3rem' }}
+                    >
+                      When it helps
+                    </p>
+                    <p className="section-lead">{eng.when}</p>
+                  </div>
+                  <div>
+                    <p
+                      className="section-eyebrow"
+                      style={{ marginBottom: '0.3rem' }}
+                    >
+                      What you get
+                    </p>
+                    <p className="section-lead">{eng.outcome}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why MONAD ── */}
+      <section id="why" className="section">
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Why MONAD</div>
+            <h2 className="section-title">
+              Not an Agency.{' '}
+              <span className="gradient-text">A Senior Partner.</span>
+            </h2>
+            <p className="section-lead">
+              We are a small, senior consultancy. No account managers, no
+              rotating bench, no juniors learning on your project. Every
+              engagement is delivered by the same senior practitioners from
+              assessment through to production — no handoffs, no surprises.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {differentiators.map((item) => (
+              <div
+                key={item.title}
+                className="grid grid-cols-[auto_1fr] items-start gap-3.5"
+              >
+                <CheckIcon />
+                <div>
+                  <h3 className="value-title">{item.title}</h3>
+                  <p className="section-lead">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Mid-page CTA ── */}
+      <section
+        className="section"
+        style={{ paddingTop: '2rem', paddingBottom: '2rem' }}
+      >
+        <div className="site-container">
+          <div
+            className="glass card text-center"
+            style={{ padding: '3rem 2rem' }}
+          >
+            <h2 className="section-title" style={{ marginBottom: '1rem' }}>
+              Ready to Modernize{' '}
+              <span className="gradient-text">Your Platform?</span>
+            </h2>
+            <p
+              className="section-lead mx-auto"
+              style={{ maxWidth: '50ch', marginBottom: '2rem' }}
+            >
+              Start with a focused architecture review. We will identify your
+              highest-impact bottlenecks and give you a concrete roadmap.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                className="btn btn-hero btn-lg group"
+                href="/platform-modernization-review"
+              >
+                Book a Platform Review
+                <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <a className="btn btn-outline btn-lg" href="#engage">
+                See How We Engage
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Case Studies ── */}
+      <section id="work" className="section">
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Case Studies</div>
+            <h2 className="section-title">
+              Real Problems,{' '}
+              <span className="gradient-text">Real Solutions.</span>
+            </h2>
+            <p className="section-lead">
+              Selected engagements where we helped teams reduce infrastructure
+              costs, improve system reliability, and establish cleaner
+              architecture — with hands-on delivery, not just advice.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {caseStudies.map((study, index) => (
+              <article
+                key={`${study.title}-${index}`}
+                className={`card hover-lift work-card overflow-hidden p-10 transition-[border-color] duration-500 md:p-11 ${
+                  study.highlight && index === 0 ? 'md:col-span-2' : ''
+                }`}
+              >
+                <div className="card-glow" />
+                <div className="relative z-[1] flex h-full flex-col">
+                  <div className="work-category">{study.category}</div>
+                  <h3 className="work-card-title">{study.title}</h3>
+                  <p className="work-card-description">{study.description}</p>
+
+                  <div className="mt-auto flex flex-wrap gap-2">
+                    {study.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── About ── */}
       <section id="about" className="section">
         <div className="site-container">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
             <div>
               <div className="section-eyebrow">About Us</div>
               <h2 className="section-title">
-                We Build Software{' '}
-                <span className="gradient-text">That Matters.</span>
+                Senior Consultancy,{' '}
+                <span className="gradient-text">Hands-On Delivery.</span>
               </h2>
               <p className="section-lead">
-                MONAD is a software development consultancy specializing in
-                building enterprise-grade applications. With over 15 years of
-                experience, we have helped companies across industries transform
-                ideas into scalable, maintainable solutions.
+                MONAD is a founder-led software consultancy with over 20 years
+                of hands-on engineering experience across complex, high-stakes
+                systems — from banking infrastructure and insurance platforms to
+                government cloud and high-growth product companies.
               </p>
               <p className="section-lead">
-                Our team combines deep technical expertise with a pragmatic
-                approach to software development. We do not just write code. We
-                solve business problems and create lasting partnerships.
+                We work as embedded senior engineers and architects, not as
+                external advisors who leave you with a slide deck. The people
+                who assess your architecture are the same people who write the
+                code, deploy the infrastructure, and set up the observability.
+                Every engagement ends with working software and transferred
+                knowledge.
               </p>
 
               <div className="grid gap-5 mt-3">
-                {values.map((value) => (
+                {[
+                  {
+                    title: 'Spec-First Engineering',
+                    description:
+                      'Contracts before code. OpenAPI, AsyncAPI, and JSON Schema govern all system boundaries.',
+                  },
+                  {
+                    title: 'Production-Grade Standards',
+                    description:
+                      'Observability, quality gates, and automated testing are delivery requirements — not optional extras.',
+                  },
+                  {
+                    title: 'Pragmatic Over Dogmatic',
+                    description:
+                      'We choose boring technology where it works and modern tooling where it matters. No hype-driven architecture.',
+                  },
+                  {
+                    title: 'Transparent Partnership',
+                    description:
+                      'Honest estimates, continuous communication, and no surprises. We flag risks early and adjust course together.',
+                  },
+                ].map((value) => (
                   <div
                     className="grid grid-cols-[auto_1fr] items-start gap-3.5"
                     key={value.title}
@@ -611,9 +875,16 @@ export default function Home() {
 
             <div className="grid gap-4">
               <div className="glass card">
-                <h3>Our Approach</h3>
+                <h3>Our Principles</h3>
                 <div className="grid grid-cols-2 gap-3">
-                  {principles.map((principle) => (
+                  {[
+                    'Spec-First',
+                    'Cloud-Native',
+                    'Incremental Modernization',
+                    'Security by Default',
+                    'Full Observability',
+                    'Platform Engineering',
+                  ].map((principle) => (
                     <span key={principle} className="tag">
                       {principle}
                     </span>
@@ -697,49 +968,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="section">
-        <div className="site-container">
-          <div className="section-header">
-            <div className="section-eyebrow">Case Studies</div>
-            <h2 className="section-title">
-              Real Problems,{' '}
-              <span className="gradient-text">Real Solutions.</span>
-            </h2>
-            <p className="section-lead">
-              We help engineering teams modernize legacy systems, adopt
-              microservices, and build platforms that scale — with better DX and
-              lower costs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {caseStudies.map((study, index) => (
-              <article
-                key={`${study.title}-${index}`}
-                className={`card hover-lift work-card overflow-hidden p-10 transition-[border-color] duration-500 md:p-11 ${
-                  study.highlight && index === 0 ? 'md:col-span-2' : ''
-                }`}
-              >
-                <div className="card-glow" />
-                <div className="relative z-[1] flex h-full flex-col">
-                  <div className="work-category">{study.category}</div>
-                  <h3 className="work-card-title">{study.title}</h3>
-                  <p className="work-card-description">{study.description}</p>
-
-                  <div className="mt-auto flex flex-wrap gap-2">
-                    {study.tags.map((tag) => (
-                      <span key={tag} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* ── Partners ── */}
       <section
         id="partners"
         className="section bg-[hsl(var(--secondary)_/_0.3)]"
@@ -749,8 +978,16 @@ export default function Home() {
             <div className="section-eyebrow">Trusted By</div>
             <h2 className="section-title">
               Companies We Have{' '}
-              <span className="gradient-text">Partnered With</span>
+              <span className="gradient-text">Delivered For</span>
             </h2>
+            <p
+              className="section-lead"
+              style={{ maxWidth: '50ch', margin: '0 auto' }}
+            >
+              From government infrastructure to fintech platforms and
+              high-growth product companies — every logo represents a hands-on
+              architecture or delivery engagement.
+            </p>
           </div>
 
           <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-5">
@@ -771,21 +1008,140 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          {/* ── International Buyer Trust Block ── */}
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
+            {[
+              {
+                label: 'EU-Based Consultancy',
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 24, height: 24 }}
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M2 12h20" />
+                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Remote-First Collaboration',
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 24, height: 24 }}
+                    aria-hidden="true"
+                  >
+                    <path d="M15 10l5 0a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2v-6a2 2 0 012-2h5" />
+                    <polyline points="8 14 12 18 16 14" />
+                    <line x1="12" y1="18" x2="12" y2="4" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'English-Speaking Delivery',
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 24, height: 24 }}
+                    aria-hidden="true"
+                  >
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Short Assessments to Long Partnerships',
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 24, height: 24 }}
+                    aria-hidden="true"
+                  >
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                    <path d="M16 3.13a4 4 0 010 7.75" />
+                  </svg>
+                ),
+              },
+              {
+                label: 'Enterprise & Complex-System Experience',
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 24, height: 24 }}
+                    aria-hidden="true"
+                  >
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+                    <line x1="9" y1="6" x2="15" y2="6" />
+                    <line x1="9" y1="10" x2="15" y2="10" />
+                    <line x1="9" y1="14" x2="15" y2="14" />
+                    <line x1="9" y1="18" x2="12" y2="18" />
+                  </svg>
+                ),
+              },
+            ].map((trust) => (
+              <div
+                key={trust.label}
+                className="glass card flex flex-col items-center gap-2"
+                style={{ padding: '1.25rem 1rem' }}
+              >
+                <span style={{ color: 'hsl(var(--primary))' }}>
+                  {trust.icon}
+                </span>
+                <span
+                  className="text-[hsl(var(--muted-foreground))]"
+                  style={{ fontSize: '0.82rem', lineHeight: 1.35 }}
+                >
+                  {trust.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* ── Contact ── */}
       <section id="contact" className="section">
         <div className="site-container grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
           <div>
             <div className="section-eyebrow">Get in Touch</div>
             <h2 className="section-title">
-              Let&apos;s Build Something{' '}
-              <span className="gradient-text">Amazing.</span>
+              Let&apos;s Discuss Your{' '}
+              <span className="gradient-text">Platform Challenges.</span>
             </h2>
             <p className="section-lead">
-              Ready to transform your ideas into reality? We would love to hear
-              about your project. Reach out and let&apos;s discuss how we can
-              help.
+              Whether you need an architecture review, a modernization roadmap,
+              or hands-on senior engineering — reach out and we will figure out
+              the right engagement together.
             </p>
 
             <div className="mt-8 grid gap-6">
@@ -818,7 +1174,7 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Gödöllő, Dózsa György út 28.
+                    Gödöllő, Hungary (EU)
                   </a>
                 </div>
               </div>
@@ -869,7 +1225,7 @@ export default function Home() {
                   id="message"
                   name="message"
                   className="form-textarea"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us about your platform challenges — architecture review, modernization roadmap, or delivery support..."
                   minLength={10}
                   maxLength={5000}
                   required
