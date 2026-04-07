@@ -41,6 +41,24 @@ function ArrowRightIcon(props) {
   );
 }
 
+function XCircleIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx="12" cy="12" r="9" />
+      <line x1="9" y1="9" x2="15" y2="15" />
+      <line x1="15" y1="9" x2="9" y2="15" />
+    </svg>
+  );
+}
+
 /* ── Data ── */
 const bestFitFor = [
   'Series A–C startups whose monolith is slowing delivery',
@@ -110,11 +128,101 @@ const included = [
 ];
 
 const deliverables = [
-  'Architecture assessment document with diagrams',
-  'Prioritized modernization roadmap (6–12 month horizon)',
-  'Bottleneck and risk matrix with severity ratings',
-  'Recommended technology choices with trade-off analysis',
-  'Quick-win list — improvements you can ship in the first sprint',
+  {
+    title: 'Clear current-state architecture overview',
+    format:
+      'System map with service boundaries, dependencies, and failure paths.',
+  },
+  {
+    title: 'Top risks and bottlenecks with business impact explained',
+    format:
+      'Ranked risk register with why each item affects delivery or reliability.',
+  },
+  {
+    title:
+      'Delivery friction map across CI/CD, environments, and team handoffs',
+    format:
+      'Pipeline and workflow map showing where releases slow down or fail.',
+  },
+  {
+    title: 'API and integration issues overview',
+    format:
+      'Contract and integration findings with ownership and dependency notes.',
+  },
+  {
+    title: 'Prioritized 90-day modernization roadmap',
+    format: 'Sequenced plan by priority, dependency, and execution risk.',
+  },
+  {
+    title: 'Optional execution approach for the first modernization steps',
+    format:
+      'Implementation approach outline for phase one; execution support is optional.',
+  },
+];
+
+const weekOne = [
+  'Stakeholder interviews (CTO, engineering, platform)',
+  'System walkthrough (architecture, APIs, infrastructure)',
+  'Delivery pipeline review (CI/CD, environments)',
+  'Focused codebase sampling (critical services)',
+];
+
+const weekTwo = [
+  'Bottleneck and friction mapping',
+  'Architecture risk analysis',
+  'API and integration assessment',
+  'Cost and complexity hotspots',
+  'Creation of a prioritized modernization roadmap',
+];
+
+const notGoodFit = [
+  'Early-stage MVP teams',
+  'Simple systems without architectural pressure',
+  'Teams only looking for extra development capacity',
+  'Projects driven primarily by lowest cost',
+];
+
+const scopeIncluded = [
+  'Two weeks of focused architecture and delivery assessment',
+  'Interviews, system walkthroughs, pipeline review, and targeted code sampling',
+  'Written review pack and leadership readout',
+  'Prioritized 90-day roadmap with clear next-step options',
+];
+
+const scopeExcluded = [
+  'Hands-on implementation during the review window',
+  'Open-ended advisory retainer commitments',
+  'Tool migrations without a prioritized roadmap decision',
+];
+
+const exampleOutcomes = [
+  'Reduced infrastructure cost through targeted platform changes',
+  'Improved delivery reliability across releases and operations',
+  'Introduced production-grade observability for critical services',
+  'Enabled a safer, phased modernization path',
+  'Reduced integration complexity between key systems',
+];
+
+const caseSnapshots = [
+  {
+    context:
+      'B2B SaaS platform where releases were blocked by shared-service coupling and unclear ownership boundaries',
+    outcome:
+      'The review package defined target service boundaries, identified the top delivery blockers, and sequenced a 90-day plan the team used to execute internally.',
+  },
+  {
+    context:
+      'Integration-heavy product with recurring cross-team incidents and weak API contract ownership',
+    outcome:
+      'The review package prioritized integration contract fixes, highlighted observability gaps by critical flow, and clarified ownership decisions that reduced operational friction.',
+  },
+];
+
+const buyerCommitment = [
+  'One 30-minute fit call with engineering leadership',
+  'Three to five stakeholder interviews during week one',
+  'Access to architecture docs, CI/CD pipeline, and critical services',
+  'One final leadership readout session at the end of week two',
 ];
 
 const nextSteps = [
@@ -122,25 +230,25 @@ const nextSteps = [
     step: '1',
     title: 'Book a call',
     detail:
-      'We discuss your architecture, team, and goals in a 30-minute intro call.',
+      'We discuss your architecture, team, and goals in a focused 30-minute call.',
   },
   {
     step: '2',
     title: 'We run the review',
     detail:
-      'A senior consultant embeds with your team for 1–2 weeks of focused analysis.',
+      'Over two weeks, we run interviews, walkthroughs, pipeline review, and focused code sampling.',
   },
   {
     step: '3',
-    title: 'You get the roadmap',
+    title: 'You get the deliverables',
     detail:
-      'We deliver actionable findings and walk your leadership team through them.',
+      'You get the written review pack and leadership readout with prioritized next steps.',
   },
   {
     step: '4',
     title: 'Decide what\u2019s next',
     detail:
-      'Execute independently, or engage us to lead the first decomposition sprint.',
+      'Execute independently, or ask us to support implementation of the first phase.',
   },
 ];
 
@@ -191,16 +299,26 @@ export default function PlatformModernizationReview() {
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Link className="btn btn-hero btn-lg group" href="/#contact">
-                Book Your Review
+                Book a Platform Review Call
                 <ArrowRightIcon
                   className="btn-icon transition-transform duration-300 group-hover:translate-x-1"
                   style={{ width: 18, height: 18 }}
                 />
               </Link>
-              <a className="btn btn-outline btn-lg" href="#whats-included">
-                See What&apos;s Included
+              <a className="btn btn-outline btn-lg" href="#how-review-works">
+                See How the Review Works
               </a>
             </div>
+            <p
+              style={{
+                marginTop: '1rem',
+                color: 'hsl(var(--muted-foreground))',
+                fontSize: '0.95rem',
+              }}
+            >
+              Fixed-scope, focused 2-week engagement designed as a standalone
+              first step with a clear final readout.
+            </p>
           </div>
         </div>
       </section>
@@ -243,6 +361,259 @@ export default function PlatformModernizationReview() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── How the 2-Week Review Works ── */}
+      <section id="how-review-works" className="section">
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Process</div>
+            <h2 className="section-title">How the review works</h2>
+            <p className="section-lead">
+              A clear two-week process so your team knows what happens, when,
+              and why.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="card hover-lift" style={{ padding: '1.75rem' }}>
+              <h3
+                style={{
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  marginBottom: '1rem',
+                }}
+              >
+                Week 1
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  display: 'grid',
+                  gap: '0.85rem',
+                }}
+              >
+                {weekOne.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckIcon
+                      style={{
+                        width: 18,
+                        height: 18,
+                        flexShrink: 0,
+                        marginTop: 4,
+                        color: 'hsl(var(--primary))',
+                      }}
+                    />
+                    <span style={{ lineHeight: 1.6 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card hover-lift" style={{ padding: '1.75rem' }}>
+              <h3
+                style={{
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  marginBottom: '1rem',
+                }}
+              >
+                Week 2
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  display: 'grid',
+                  gap: '0.85rem',
+                }}
+              >
+                {weekTwo.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckIcon
+                      style={{
+                        width: 18,
+                        height: 18,
+                        flexShrink: 0,
+                        marginTop: 4,
+                        color: 'hsl(var(--primary))',
+                      }}
+                    />
+                    <span style={{ lineHeight: 1.6 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Not a Good Fit ── */}
+      <section
+        className="section"
+        style={{ background: 'hsl(var(--secondary))' }}
+      >
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Qualification</div>
+            <h2 className="section-title">Not a good fit</h2>
+            <p className="section-lead">
+              This keeps the engagement focused and useful for the teams who
+              need it most.
+            </p>
+            <p
+              style={{
+                color: 'hsl(var(--muted-foreground))',
+                fontSize: '0.95rem',
+                marginTop: '-0.25rem',
+              }}
+            >
+              If it&apos;s not a fit, we will say so on the first call.
+            </p>
+            <span
+              className="badge glass"
+              style={{ marginTop: '0.75rem', width: 'fit-content' }}
+            >
+              We prefer clear no&apos;s over forced projects.
+            </span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {notGoodFit.map((item) => (
+              <div
+                key={item}
+                className="card hover-lift flex items-start gap-4"
+                style={{ padding: '1.35rem 1.5rem', minHeight: '102px' }}
+              >
+                <div className="card-glow" />
+                <div
+                  style={{
+                    width: 34,
+                    height: 34,
+                    borderRadius: '999px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    background: 'hsl(var(--destructive) / 0.12)',
+                    border: '1px solid hsl(var(--destructive) / 0.35)',
+                  }}
+                >
+                  <XCircleIcon
+                    style={{
+                      width: 17,
+                      height: 17,
+                      color: 'hsl(var(--destructive))',
+                    }}
+                  />
+                </div>
+                <p
+                  style={{
+                    margin: '0.05rem 0 0',
+                    color: 'hsl(var(--foreground))',
+                    lineHeight: 1.55,
+                    fontSize: '1rem',
+                  }}
+                >
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Scope Boundaries ── */}
+      <section
+        className="section"
+        style={{ background: 'hsl(var(--secondary))' }}
+      >
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Scope</div>
+            <h2 className="section-title">Included and not included</h2>
+            <p className="section-lead">
+              A fixed-scope engagement with clear boundaries so there is no
+              ambiguity about what you are buying.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="card hover-lift" style={{ padding: '1.75rem' }}>
+              <h3
+                style={{
+                  fontSize: '1.1rem',
+                  fontWeight: 700,
+                  marginBottom: '0.85rem',
+                }}
+              >
+                Included
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  display: 'grid',
+                  gap: '0.8rem',
+                }}
+              >
+                {scopeIncluded.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckIcon
+                      style={{
+                        width: 18,
+                        height: 18,
+                        flexShrink: 0,
+                        marginTop: 3,
+                        color: 'hsl(var(--primary))',
+                      }}
+                    />
+                    <span style={{ lineHeight: 1.6 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card hover-lift" style={{ padding: '1.75rem' }}>
+              <h3
+                style={{
+                  fontSize: '1.1rem',
+                  fontWeight: 700,
+                  marginBottom: '0.85rem',
+                }}
+              >
+                Not included
+              </h3>
+              <ul
+                style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  display: 'grid',
+                  gap: '0.8rem',
+                }}
+              >
+                {scopeExcluded.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span
+                      style={{
+                        width: 18,
+                        height: 18,
+                        flexShrink: 0,
+                        marginTop: 2,
+                        color: 'hsl(var(--muted-foreground))',
+                        fontWeight: 700,
+                        textAlign: 'center',
+                      }}
+                    >
+                      -
+                    </span>
+                    <span style={{ lineHeight: 1.6 }}>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -356,8 +727,8 @@ export default function PlatformModernizationReview() {
             <div className="section-eyebrow">Deliverables</div>
             <h2 className="section-title">What you walk away&nbsp;with</h2>
             <p className="section-lead">
-              Tangible artifacts you can present to your leadership team, share
-              with your engineers, and act on immediately.
+              Tangible outputs you can share with leadership and engineering,
+              then execute against immediately.
             </p>
           </div>
           <div
@@ -374,7 +745,7 @@ export default function PlatformModernizationReview() {
               }}
             >
               {deliverables.map((d) => (
-                <li key={d} className="flex items-start gap-3">
+                <li key={d.title} className="flex items-start gap-3">
                   <CheckIcon
                     style={{
                       width: 20,
@@ -384,8 +755,65 @@ export default function PlatformModernizationReview() {
                       color: 'hsl(var(--primary))',
                     }}
                   />
-                  <span style={{ fontSize: '1.05rem', lineHeight: 1.6 }}>
-                    {d}
+                  <div>
+                    <div style={{ fontSize: '1.05rem', lineHeight: 1.5 }}>
+                      {d.title}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: '0.3rem',
+                        color: 'hsl(var(--muted-foreground))',
+                        fontSize: '0.92rem',
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {d.format}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Buyer-Side Effort ── */}
+      <section className="section">
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Your Time Commitment</div>
+            <h2 className="section-title">What we need from your team</h2>
+            <p className="section-lead">
+              Lightweight participation so the review stays fast, accurate, and
+              practical.
+            </p>
+          </div>
+          <div
+            className="card glass"
+            style={{ padding: '2rem', maxWidth: '760px' }}
+          >
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'grid',
+                gap: '0.85rem',
+              }}
+            >
+              {buyerCommitment.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckIcon
+                    style={{
+                      width: 20,
+                      height: 20,
+                      flexShrink: 0,
+                      marginTop: 3,
+                      color: 'hsl(var(--primary))',
+                    }}
+                  />
+                  <span style={{ fontSize: '1.03rem', lineHeight: 1.6 }}>
+                    {item}
                   </span>
                 </li>
               ))}
@@ -450,6 +878,84 @@ export default function PlatformModernizationReview() {
         </div>
       </section>
 
+      {/* ── Example Outcomes ── */}
+      <section
+        className="section"
+        style={{ background: 'hsl(var(--secondary))' }}
+      >
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Proof</div>
+            <h2 className="section-title">
+              Example outcomes from similar work
+            </h2>
+          </div>
+          <div
+            className="card glass"
+            style={{ padding: '2rem', maxWidth: '760px' }}
+          >
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'grid',
+                gap: '0.85rem',
+              }}
+            >
+              {exampleOutcomes.map((outcome) => (
+                <li key={outcome} className="flex items-start gap-3">
+                  <CheckIcon
+                    style={{
+                      width: 20,
+                      height: 20,
+                      flexShrink: 0,
+                      marginTop: 3,
+                      color: 'hsl(var(--primary))',
+                    }}
+                  />
+                  <span style={{ fontSize: '1.05rem', lineHeight: 1.6 }}>
+                    {outcome}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div
+              style={{
+                marginTop: '1.5rem',
+                borderTop: '1px solid hsl(var(--border))',
+                paddingTop: '1.25rem',
+                display: 'grid',
+                gap: '1rem',
+              }}
+            >
+              {caseSnapshots.map((item) => (
+                <div key={item.context}>
+                  <p style={{ margin: 0, fontWeight: 700 }}>Scenario</p>
+                  <p
+                    style={{
+                      margin: '0.25rem 0 0.45rem',
+                      color: 'hsl(var(--muted-foreground))',
+                    }}
+                  >
+                    {item.context}
+                  </p>
+                  <p style={{ margin: 0, fontWeight: 700 }}>What changed</p>
+                  <p
+                    style={{
+                      margin: '0.25rem 0 0',
+                      color: 'hsl(var(--muted-foreground))',
+                    }}
+                  >
+                    {item.outcome}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Final CTA ── */}
       <section className="section">
         <div className="site-container" style={{ textAlign: 'center' }}>
@@ -471,11 +977,23 @@ export default function PlatformModernizationReview() {
               className="section-lead"
               style={{ maxWidth: '50ch', margin: '0 auto 2rem' }}
             >
-              Book a 30-minute intro call. We will discuss your architecture,
-              confirm fit, and outline next steps — no commitment required.
+              Book a 30-minute call. We&apos;ll quickly assess if this review is
+              useful for your situation and outline clear next steps. No
+              commitment.
+            </p>
+            <p
+              style={{
+                color: 'hsl(var(--muted-foreground))',
+                maxWidth: '52ch',
+                margin: '0 auto 1.25rem',
+                fontSize: '0.95rem',
+              }}
+            >
+              This review is a standalone engagement. Implementation support is
+              optional and only discussed if you ask for it.
             </p>
             <Link className="btn btn-hero btn-lg group" href="/#contact">
-              Book Your Review
+              Book a Platform Review Call
               <ArrowRightIcon
                 className="btn-icon transition-transform duration-300 group-hover:translate-x-1"
                 style={{ width: 18, height: 18 }}
