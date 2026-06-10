@@ -15,7 +15,7 @@
   --secondary-foreground: 210 40% 98%;
 
   --muted: 222 20% 18%;
-  --muted-foreground: 215 20% 64%;
+  --muted-foreground: 215 20% 55%;
 
   --accent: 195 86% 57%;
   --accent-foreground: 222 23% 8%;
@@ -29,7 +29,7 @@
 
   --radius: 0.75rem;
 
-  --decorative: 174 72% 56%;
+  --decorative: 174 80% 62%;
 
   --gradient-primary: linear-gradient(135deg, hsl(195 86% 57%) 0%, hsl(174 72% 56%) 100%);
   --gradient-hero: linear-gradient(180deg, hsl(222 23% 8%) 0%, hsl(222 23% 12%) 100%);
@@ -456,9 +456,9 @@ header.glass {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(1200px, 100%);
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
 .hero-network-svg {

@@ -1,20 +1,25 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 
-import Layout from '../../components/Layout';
-import { getAllPostIds, getPostData } from '../../lib/posts';
+import Layout from '../../../components/Layout';
+import { normalizeLocale, useTranslation } from '../../../lib/i18n';
+import { getAllPostIds, getPostData } from '../../../lib/posts';
 
 let mermaidRenderCounter = 0;
 
-const formatDate = (value) => {
+const formatDate = (value, locale) => {
   if (!value) return '';
-  return new Date(`${value}T00:00:00Z`).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  });
+  return new Date(`${value}T00:00:00Z`).toLocaleDateString(
+    locale === 'hu' ? 'hu-HU' : 'en-US',
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'UTC',
+    },
+  );
 };
 
 const getMetaDescription = (postData) => {
@@ -59,12 +64,22 @@ const getDiagramCaption = (preBlock) => {
 };
 
 export default function PostPage({ postData }) {
+  const router = useRouter();
+  const { locale, t } = useTranslation();
   const contentRef = useRef(null);
   const postTags = Array.isArray(postData.tags)
     ? postData.tags
         .map((tag) => String(tag).trim())
         .filter((tag) => tag.length > 0)
     : [];
+
+  useEffect(() => {
+    if (!router.isReady || locale !== 'en') return;
+    const nextPath = router.asPath.replace(/^\/en(?=\/|$)/, '') || '/';
+    if (nextPath !== router.asPath) {
+      router.replace(nextPath);
+    }
+  }, [locale, router]);
 
   useEffect(() => {
     let isCanceled = false;
@@ -179,14 +194,28 @@ export default function PostPage({ postData }) {
 
       <article className="site-container blog-post">
         <div className="blog-post__meta">
-          <Link href="/posts" className="blog-post__back-link">
-            All posts
+          <Link
+            href={locale === 'en' ? '/posts' : `/${locale}/posts`}
+            className="blog-post__back-link"
+          >
+            {t('posts.detail.allPosts', 'All posts')}
           </Link>
 
           {postData.date ? (
-            <time dateTime={postData.date}>{formatDate(postData.date)}</time>
+            <time dateTime={postData.date}>
+              {formatDate(postData.date, locale)}
+            </time>
           ) : null}
         </div>
+
+        {postData.isFallbackLocale ? (
+          <p className="section-lead" role="status">
+            {t(
+              'posts.detail.fallbackNotice',
+              'This article is not yet available in this language. Showing English version.',
+            )}
+          </p>
+        ) : null}
 
         <h1 className="blog-post__title">{postData.title}</h1>
 
@@ -195,7 +224,10 @@ export default function PostPage({ postData }) {
         ) : null}
 
         {postTags.length ? (
-          <ul className="blog-post__tags" aria-label="Post topics">
+          <ul
+            className="blog-post__tags"
+            aria-label={t('posts.detail.postTopics', 'Post topics')}
+          >
             {postTags.map((tag) => (
               <li key={tag} className="blog-post__tag">
                 {tag}
@@ -215,18 +247,15 @@ export default function PostPage({ postData }) {
 }
 
 export async function getStaticPaths() {
-  const englishPaths = getAllPostIds()
-    .filter((entry) => entry.params.locale === 'en')
-    .map((entry) => ({ params: { id: entry.params.id } }));
-
   return {
-    paths: englishPaths,
+    paths: getAllPostIds(),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData('en', params.id);
+  const locale = normalizeLocale(params?.locale);
+  const postData = await getPostData(locale, params.id);
   return {
     props: {
       postData,

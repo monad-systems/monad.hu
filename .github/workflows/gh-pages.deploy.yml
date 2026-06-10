@@ -26,6 +26,8 @@ jobs:
           NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
           NEXT_PUBLIC_APPS_SCRIPT_URL: ${{ secrets.NEXT_PUBLIC_APPS_SCRIPT_URL }}
         run: npm run build
+      - name: Canonicalize English paths
+        run: node scripts/generate-en-redirects.mjs
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
       - name: Deploy

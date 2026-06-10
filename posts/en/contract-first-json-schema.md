@@ -1,5 +1,5 @@
 ---
-title: 'Why Spec-First Wins: The Case for Designing Systems Before Coding Them'
+title: 'Designing Systems Before Coding Them'
 date: '2025-04-24'
 lead: "Most teams still treat API contracts as documentation generated after the real work is done. That is backwards. In modern distributed systems, the contract is the work. When interfaces are designed first, teams move faster, integrations fail less often, and architecture becomes something you can actually reason about instead of rediscovering in production."
 metaDescription: "Spec-first development replaces guesswork with explicit contracts. By combining OpenAPI, AsyncAPI, and JSON Schema, teams can generate clients, validate payloads, improve security, and deliver faster with fewer integration failures."
@@ -10,7 +10,7 @@ tags:
     - JSON Schema
     - Generated Clients
     - AJV Validation
-    - Platform Engineering
+    - Custom Software Engineering
 ---
 
 ## Contract should come before the code

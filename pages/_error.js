@@ -1,17 +1,33 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
+import {
+  getLocaleFromPath,
+  normalizeLocale,
+  useTranslation,
+} from '../lib/i18n';
 
 function ErrorPage({ statusCode }) {
+  const router = useRouter();
+  const { t } = useTranslation();
+  const locale = normalizeLocale(getLocaleFromPath(router.asPath));
+
   const code = Number(statusCode) || 500;
   const is4xx = code >= 400 && code < 500;
 
   const title = is4xx
-    ? 'Request could not be completed'
-    : 'Something went wrong';
+    ? t('errors.generic.requestFailed', 'Request could not be completed')
+    : t('errors.generic.serverError', 'Something went wrong');
   const message = is4xx
-    ? 'The requested page or resource is unavailable.'
-    : 'An unexpected server error occurred. Please try again in a moment.';
+    ? t(
+        'errors.generic.requestMessage',
+        'The requested page or resource is unavailable.',
+      )
+    : t(
+        'errors.generic.serverMessage',
+        'An unexpected server error occurred. Please try again in a moment.',
+      );
 
   return (
     <Layout>
@@ -24,11 +40,17 @@ function ErrorPage({ statusCode }) {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Link href="/" className="btn btn-hero">
-              Go to homepage
+            <Link
+              href={locale === 'en' ? '/' : `/${locale}/`}
+              className="btn btn-hero"
+            >
+              {t('errors.generic.home', 'Go to homepage')}
             </Link>
-            <Link href="/#work" className="btn btn-outline">
-              View our work
+            <Link
+              href={locale === 'en' ? '/#work' : `/${locale}/#work`}
+              className="btn btn-outline"
+            >
+              {t('errors.generic.work', 'View our work')}
             </Link>
           </div>
         </div>

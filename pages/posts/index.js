@@ -31,7 +31,7 @@ export default function PostsPage({ allPostsData }) {
           <h1 className="section-title">Posts</h1>
           <p className="section-lead">
             Technical deep dives on contract-first architecture, engineering
-            workflows, and platform modernization.
+            workflows, and custom software engineering.
           </p>
         </header>
 
@@ -64,7 +64,7 @@ export default function PostsPage({ allPostsData }) {
 }
 
 export function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = getSortedPostsData('en');
 
   return {
     props: {

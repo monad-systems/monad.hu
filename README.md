@@ -30,6 +30,10 @@ npm audit --omit=dev
 
 `next.config.js` is set to `output: 'export'`, so `npm run build` also produces static output in `out/`.
 
+Because the site is statically exported, server-level 301 redirects are not available on GitHub Pages.
+The deploy workflow rewrites all exported `/en/*.html` pages into canonical redirect pages that immediately
+forward to clean English URLs (for example, `/en/posts/slug` -> `/posts/slug`).
+
 ## Posts authoring
 
 Posts are markdown files in `posts/`.

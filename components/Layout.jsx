@@ -4,6 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
+import {
+  LOCALE_STORAGE_KEY,
+  getLocaleFromPath,
+  localizePath,
+  normalizeLocale,
+  useTranslation,
+} from '../lib/i18n';
+
 const SocialIconGithub = () => (
   <svg
     viewBox="0 0 24 24"
@@ -26,29 +34,27 @@ const SocialIconLinkedIn = () => (
   </svg>
 );
 
-const SocialIconX = () => (
-  <svg
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-    focusable="false"
-    fill="currentColor"
-  >
-    <path d="M18.9 2H22l-6.8 7.77L23 22h-6.3l-4.93-7.1L5.6 22H2l7.28-8.33L1 2h6.46l4.46 6.5L18.9 2zm-1.1 18h1.72L6.53 3.93H4.68L17.8 20z" />
-  </svg>
-);
-
 export default function Layout({ children }) {
   const router = useRouter();
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isHome = router.pathname === '/';
+  const routeLocale = normalizeLocale(
+    router.query?.locale || getLocaleFromPath(router.asPath),
+  );
+  const isHome = router.pathname === '/' || router.pathname === '/[locale]';
 
   const resolveHref = (href) => {
     if (!href?.startsWith('#')) return href;
-    return isHome ? href : `/${href}`;
+    if (isHome) return href;
+    return routeLocale === 'en' ? `/${href}` : `/${routeLocale}/${href}`;
   };
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, 'en');
+    }
+
     const handleScroll = () => {
       const nextIsScrolled = window.scrollY > 20;
       setIsScrolled((previous) =>
@@ -62,28 +68,32 @@ export default function Layout({ children }) {
   }, []);
 
   const navLinks = [
-    { label: 'Problems', href: '#services' },
-    { label: 'Engagements', href: '#engage' },
-    { label: 'Why MONAD', href: '#why' },
-    { label: 'Work', href: '#work' },
-    { label: 'Posts', href: '/posts' },
-    { label: 'Contact', href: '#contact' },
+    { label: t('layout.nav.problems', 'Problems'), href: '#services' },
+    { label: t('layout.nav.engagements', 'Engagements'), href: '#engage' },
+    { label: t('layout.nav.whyMonad', 'Why Us'), href: '#why' },
+    { label: t('layout.nav.work', 'Work'), href: '#work' },
+    {
+      label: t('layout.nav.posts', 'Posts'),
+      href: localizePath('/posts', routeLocale),
+    },
+    { label: t('layout.nav.contact', 'Contact'), href: '#contact' },
   ];
 
   return (
     <div className="app-container">
       <Head>
         <title>
-          MONAD SYSTEMS — Senior Software Consultancy for Platform Modernization
+          MONAD SYSTEMS — Senior Software Consultancy for Custom Software
+          Engineering
         </title>
         <meta
           name="description"
-          content="Senior hands-on software consultancy specializing in platform modernization, API-first delivery, event-driven architecture, and production-grade observability."
+          content="Senior hands-on software consultancy specializing in custom software engineering, API-first delivery, event-driven architecture, and production-grade observability."
         />
         <meta property="og:title" content="MONAD SYSTEMS" />
         <meta
           property="og:description"
-          content="Senior hands-on software consultancy for platform modernization, legacy migration, and production-grade engineering."
+          content="Senior hands-on software consultancy for custom software engineering, legacy migration, and production-grade engineering."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://monad.hu" />
@@ -95,7 +105,7 @@ export default function Layout({ children }) {
         <meta name="twitter:title" content="MONAD SYSTEMS" />
         <meta
           name="twitter:description"
-          content="Senior hands-on software consultancy for platform modernization, legacy migration, and production-grade engineering."
+          content="Senior hands-on software consultancy for custom software engineering, legacy migration, and production-grade engineering."
         />
         <meta name="twitter:image" content="/og_1200_630.png" />
         <link
@@ -128,7 +138,7 @@ export default function Layout({ children }) {
       >
         <div className="site-container flex items-center justify-between gap-6">
           <Link
-            href="/"
+            href={localizePath('/', routeLocale)}
             className="inline-flex items-center leading-none"
             aria-label="Monad Systems"
           >
@@ -159,7 +169,7 @@ export default function Layout({ children }) {
 
           <div className="desktop-cta">
             <a className="btn btn-hero btn-sm" href={resolveHref('#contact')}>
-              Get in Touch
+              {t('layout.cta.getInTouch', 'Get in Touch')}
             </a>
           </div>
 
@@ -197,7 +207,7 @@ export default function Layout({ children }) {
                 </span>
               ))}
               <a className="btn btn-hero" href={resolveHref('#contact')}>
-                Get in Touch
+                {t('layout.cta.getInTouch', 'Get in Touch')}
               </a>
             </nav>
           </div>
@@ -219,12 +229,22 @@ export default function Layout({ children }) {
             />
 
             <div className="footer-links">
-              <a href={resolveHref('#services')}>Problems</a>
-              <a href={resolveHref('#engage')}>Engagements</a>
-              <a href={resolveHref('#why')}>Why MONAD</a>
-              <a href={resolveHref('#work')}>Work</a>
-              <Link href="/posts">Posts</Link>
-              <a href={resolveHref('#contact')}>Contact</a>
+              <a href={resolveHref('#services')}>
+                {t('layout.nav.problems', 'Problems')}
+              </a>
+              <a href={resolveHref('#engage')}>
+                {t('layout.nav.engagements', 'Engagements')}
+              </a>
+              <a href={resolveHref('#why')}>
+                {t('layout.nav.whyMonad', 'Why Us')}
+              </a>
+              <a href={resolveHref('#work')}>{t('layout.nav.work', 'Work')}</a>
+              <Link href={localizePath('/posts', routeLocale)}>
+                {t('layout.nav.posts', 'Posts')}
+              </Link>
+              <a href={resolveHref('#contact')}>
+                {t('layout.nav.contact', 'Contact')}
+              </a>
             </div>
 
             <div className="footer-social">
@@ -232,19 +252,23 @@ export default function Layout({ children }) {
                 href="https://github.com/monad-systems/"
                 rel="noopener noreferrer"
                 target="_blank"
-                aria-label="GitHub"
+                aria-label={t('layout.social.github', 'GitHub')}
               >
                 <SocialIconGithub />
-                <span className="sr-only">GitHub</span>
+                <span className="sr-only">
+                  {t('layout.social.github', 'GitHub')}
+                </span>
               </a>
               <a
                 href="https://www.linkedin.com/company/monad-systems/"
                 rel="noopener noreferrer"
                 target="_blank"
-                aria-label="LinkedIn"
+                aria-label={t('layout.social.linkedin', 'LinkedIn')}
               >
                 <SocialIconLinkedIn />
-                <span className="sr-only">LinkedIn</span>
+                <span className="sr-only">
+                  {t('layout.social.linkedin', 'LinkedIn')}
+                </span>
               </a>
             </div>
           </div>
