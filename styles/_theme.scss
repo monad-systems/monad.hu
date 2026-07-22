@@ -15,7 +15,7 @@
   --secondary-foreground: 210 40% 98%;
 
   --muted: 222 20% 18%;
-  --muted-foreground: 215 20% 55%;
+  --muted-foreground: 215 20% 62%;
 
   --accent: 195 86% 57%;
   --accent-foreground: 222 23% 8%;
@@ -191,9 +191,13 @@ header.glass {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  border: 0;
   border-radius: 0.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
   font-weight: 600;
   padding: 0.85rem 1.4rem;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -452,38 +456,6 @@ header.glass {
   overflow: hidden;
 }
 
-.hero-network {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-}
-
-.hero-network-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.animate-network-node {
-  animation: network-node 4s ease-in-out infinite;
-}
-
-.animate-network-ring {
-  animation: network-ring 5s ease-in-out infinite;
-}
-
-.animate-network-dot {
-  animation: network-dot 3s ease-in-out infinite;
-}
-
-.animate-network-line {
-  animation: network-line 4s ease-in-out infinite;
-}
-
 .service-icon-svg {
   width: 26px;
   height: 26px;
@@ -508,6 +480,10 @@ header.glass {
   border-radius: 1.25rem;
   border: 1px solid hsl(var(--border));
   padding: 2rem;
+}
+
+.card.glass {
+  background: var(--glass-bg);
 }
 
 .card-glow {
@@ -781,9 +757,19 @@ header.glass {
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid hsl(var(--border));
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: baseline;
+  justify-content: space-between;
   color: hsl(var(--muted-foreground));
   font-size: 0.85rem;
+}
+
+.footer-tagline {
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  letter-spacing: -0.01em;
 }
 
 .sr-only {
@@ -826,50 +812,6 @@ header.glass {
   to { opacity: 1; }
 }
 
-@keyframes network-node {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes network-ring {
-  0%,
-  100% {
-    r: 1.4;
-    stroke-opacity: 0.35;
-  }
-  50% {
-    r: 1.8;
-    stroke-opacity: 0.15;
-  }
-}
-
-@keyframes network-dot {
-  0%,
-  100% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes network-line {
-  0% {
-    stroke-opacity: 0.06;
-  }
-  50% {
-    stroke-opacity: 0.2;
-  }
-  100% {
-    stroke-opacity: 0.06;
-  }
-}
-
 @keyframes hero-bounce {
   0%,
   100% {
@@ -898,10 +840,6 @@ header.glass {
 @media (prefers-reduced-motion: reduce) {
   .animate-slide-up,
   .animate-fade-in,
-  .animate-network-node,
-  .animate-network-ring,
-  .animate-network-dot,
-  .animate-network-line,
   .hero-scroll span,
   .hero-scroll,
   .hero-scroll-icon .wheel {

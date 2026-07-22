@@ -370,10 +370,8 @@ export default function Home() {
   const copy = isHu
     ? {
         heroBadge: 'Egyedi szoftverfejlesztés · Spec-First · Production-Grade',
-        heroLine1: 'Built for',
-        heroLine1Accent: 'Scale.',
-        heroLine2: 'Trusted by',
-        heroLine2Accent: 'Enterprise.',
+        heroLine1: 'Built for Scale.',
+        heroLine2: 'Trusted by Enterprise.',
         heroIntro:
           'We architect distributed systems, migrate monoliths to microservices, and build internal platforms that accelerate delivery. API-first design. Full observability. Production-grade from day one.',
         heroPrimaryCta: 'Szoftverarchitektúra Review foglalása',
@@ -404,10 +402,8 @@ export default function Home() {
     : {
         heroBadge:
           'Custom Software Engineering · Spec-First · Production-Grade',
-        heroLine1: 'Built for',
-        heroLine1Accent: 'Scale.',
-        heroLine2: 'Trusted by',
-        heroLine2Accent: 'Enterprise.',
+        heroLine1: 'Built for Scale.',
+        heroLine2: 'Trusted by Enterprise.',
         heroIntro:
           'We architect distributed systems, migrate monoliths to microservices, and build internal platforms that accelerate delivery. API-first design. Full observability. Production-grade from day one.',
         heroPrimaryCta: 'Book a Software Architecture Review',
@@ -948,11 +944,9 @@ export default function Home() {
             </div>
 
             <h1 className="text-[clamp(2rem,8vh,2.75rem)] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1]">
-              {copy.heroLine1}{' '}
-              <span className="gradient-text">{copy.heroLine1Accent}</span>
+              {copy.heroLine1}
               <br />
-              {copy.heroLine2}{' '}
-              <span className="gradient-text">{copy.heroLine2Accent}</span>
+              <span className="gradient-text">{copy.heroLine2}</span>
             </h1>
 
             <p className="text-base md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-8 md:mb-10 leading-relaxed">

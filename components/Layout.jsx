@@ -274,7 +274,13 @@ export default function Layout({ children }) {
           </div>
 
           <div className="footer-bottom">
-            <div>© {new Date().getFullYear()} MONAD SYSTEMS Kft.</div>
+            <span className="footer-tagline">
+              {t('layout.footer.taglinePlain', 'Built for Scale.')}{' '}
+              <span className="gradient-text">
+                {t('layout.footer.taglineAccent', 'Trusted by Enterprise.')}
+              </span>
+            </span>
+            <span>© {new Date().getFullYear()} MONAD SYSTEMS Kft.</span>
           </div>
         </div>
       </footer>
