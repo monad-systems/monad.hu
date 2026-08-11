@@ -50,6 +50,28 @@ metaDescription: 'SEO description'
 Notes:
 
 - Mermaid blocks are rendered as figures, and headings like `Visual: ...` become `figcaption` text with the `Visual:` prefix removed.
+- English is canonical. `posts/hu/<slug>.md` is optional; a missing translation falls back to the English text with a notice.
+
+### Editing posts for AI writing tells
+
+Every post gets a pass with the `avoid-ai-writing` skill in `.claude/skills/` (MIT, by Conor Bronsdon) before publishing.
+
+```bash
+node .claude/skills/avoid-ai-writing/scan.js posts/en/your-post.md
+```
+
+The scanner is the mechanical half and only catches vocabulary and formatting.
+The tells that actually make long-form posts read as machine-written are structural,
+and `SKILL.md` is the checklist for those:
+
+- negation pivots ("It is not X. It is Y.") — one per post, not eighteen
+- bold-label paragraph leads (`**Term.** Sentence.`) — use a colon in lists, or lead the sentence with the term
+- em dashes in prose — the `- **Term** — description` list form is fine and does not count
+- inflated adjectives (`real`, `genuine`, `actual`) on abstract nouns
+- inventing specifics during a rewrite — never add a number, name, or claim the draft did not have
+
+The Hungarian translation needs the structural pass too. The word tables and the
+function-word entropy signal are English-tuned and will misfire on Hungarian.
 
 ## Contact form
 
