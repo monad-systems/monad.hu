@@ -1,7 +1,7 @@
 ---
-title: 'Miért nyer a Spec-First: Miért a tervezésnek kell megelőznie a kódolást'
+title: 'Tervezd meg a rendszert, mielőtt megírod'
 date: '2025-04-24'
-lead: 'A legtöbb csapat még mindig úgy kezeli az API-szerződéseket, mint utólag generált dokumentációt. Ez fordítva van. Modern, elosztott rendszerekben maga a szerződés a munka. Ha az interfészeket előre tervezzük meg, a csapatok gyorsabban haladnak, kevesebb az integrációs hiba, és az architektúráról valóban lehet gondolkodni, ahelyett hogy productionben fedeznénk fel újra.'
+lead: 'Sok csapat csak az implementáció után generál API-szerződést. Az előre megtervezett interfész egyetlen közös artifactot ad a backendnek, frontendnek, QA-nak és a szolgáltatás fogyasztóinak, még azelőtt, hogy az integrációs hibák drágává válnának.'
 metaDescription: 'A spec-first fejlesztés a találgatást explicit szerződésekkel váltja ki. OpenAPI, AsyncAPI és JSON Schema kombinációjával kliensek generálhatók, payloadok validálhatók, javul a biztonság és gyorsabb lesz a szállítás kevesebb integrációs hibával.'
 tags:
     - Spec-First
@@ -13,117 +13,51 @@ tags:
     - Egyedi szoftverfejlesztés
 ---
 
-## A szerződésnek meg kell előznie a kódot
+## Kezdd a szerződéssel
 
-A legtöbb csapat még mindig melléktermékként kezeli az API-szerződést.
-
-Először endpoint handlereket írnak. Aztán DTO-kat. Aztán validációt kötnek be. Aztán megpróbálnak dokumentációt kinyerni a futó alkalmazásból. Aztán frontend, QA és más szolgáltatások elkezdenek integrálni. Ekkor jönnek a félreértések: eltérően értelmezett nullable mezők, nem dokumentált edge case-ek, duplikált validációs szabályok, inkonzisztens enumok, ad hoc hibaformátumok, és törékeny klienskód több repositoryban szétszórva.
+Sok csapat még mindig melléktermékként kezeli az API-szerződést. Endpoint handlereket írnak, DTO-kat és validációt adnak hozzá, majd a futó alkalmazásból próbálnak dokumentációt kinyerni. Mire a frontend, a QA és más szolgáltatások integrálni kezdenek, a nullable mezőket, enumokat, edge case-eket és hibaformátumokat már eltérően értelmezik. A klienskód közben több repositoryban is szétszóródott.
 
 Kis léptékben ez túlélhető. Platformléptékben viszont delivery-fékké válik.
 
-A spec-first fejlesztés ezt úgy oldja meg, hogy áthelyezi a hangsúlyt. Az implementáció ne implicit módon definiálja az interfészt, hanem az interfész legyen explicit módon előre definiálva, és minden más ebből épüljön.
+A spec-first fejlesztés az implementáció elé hozza ezeket a döntéseket. Amint a szerződés első osztályú forrás-artifact lesz, a design többé nem a controller-kódban rejtőzik. A csapatok review-zhatják, generálhatnak belőle, és újrahasznosíthatják a rendszerhatárokon át.
 
-Ez papíron procedurálisnak tűnhet. A gyakorlatban viszont architekturális.
+## A szerződés a delivery egyik bemenete
 
-Amint a szerződés első osztályú forrás-artifact lesz, a design többé nem a controller-kódban rejtve jelenik meg, hanem review-zható, automatizálható és újrahasznosítható lesz.
-
-Modern, elosztott rendszerekben ez jelentős szemléletváltás.
-
-## A szerződés nem dokumentáció
-
-Ez az első igazán fontos gondolkodásbeli váltás.
-
-Egy OpenAPI dokumentum nem csak arra való, hogy Swagger UI-ban böngészhető endpoint-listát adjunk. Egy AsyncAPI dokumentum nem csak topicok és üzenet-payloadok katalógusa. A JSON Schema nem csak validációs formátum.
+Az OpenAPI többre képes, mint feltölteni a Swagger UI-t. Az AsyncAPI nemcsak topicokat katalogizál, a JSON Schema pedig nemcsak payloadot validál.
 
 Ezek együtt a rendszerhatárt írják le olyan formában, amit emberek és eszközök is megértenek.
 
-Ez a határ jóval többet tartalmaz mezőneveknél és primitív típusoknál. Tartalmazza többek között:
+Ez a határ jóval többet tartalmaz mezőneveknél és primitív típusoknál. Rögzíti a megengedett payloadformákat, a kötelező mezőket, valamint a formátum- és struktúrakorlátokat. Ide tartoznak a hibák, az authentikáció, a szerepkörök és scope-ok, a kompatibilitási szabályok, az eseménypayloadok, továbbá a backend és frontend közös modelszemantikája is.
 
-- megengedett payload formákat
-- kötelező és opcionális mezőket
-- formátum- és struktúrakorlátokat
-- hiba-szerződéseket
-- auth követelményeket
-- szerepkör- és scope elvárásokat
-- kompatibilitási elvárásokat
-- esemény payload definíciókat
-- backend és frontend közti közös model szemantikát
-
-Ha ezt a határt előre definiálod, olyan leverage-et kapsz, amit a code-first csapatok jellemzően az asztalon hagynak.
-
-Nem implementációs részletekből próbálod újra összerakni a rendszert. Tudatosan tervezed.
+Az előre definiált határ közös tervet ad a csapatoknak, így nem implementációs részletekből kell utólag összerakniuk a rendszert.
 
 ## Hogyan néz ki a code-first a valós rendszerekben
 
-A code-first megközelítés vonzó, mert gyorsnak érződik.
+A code-first megközelítés gyorsnak érződik: megírod az endpointot, dekorálod, majd dokumentációt generálsz framework metadatából. Egyes eszközök DTO-kból vagy TypeScript típusokból sémát is inferálnak. Ez a kényelem hasznos, különösen kis szolgáltatásnál, de a design csak akkor válik review-zhatóvá, amikor már kód lett belőle.
 
-Megírod az endpointot. Dekorálod. Generálsz dokumentációt framework metadatából. Talán DTO-kból vagy TypeScript típusokból inferálsz sémákat. Hatékonynak tűnik, mert a kód a forrásigazság, a docs pedig szinte automatikusan megjelenik.
+Egyszerű szolgáltatásoknál működhet elég jól. Nagyobb rendszerekben a dokumentáció minősége a framework-konvenciókhoz kötődik, a designt pedig csak akkor review-zzák, amikor már kódban létezik. A generált szerződés inkább a transport szerkezetet tükrözi, mint a tervezői szándékot. Idővel eltér a backend- és frontendmodell, inkonzisztenssé válik a séma-újrahasználat, duplikálódik a validáció, a klienskönyvtárakban pedig hiányos típusozás vagy runtime guard marad.
 
-Ez a kényelem valós, de vannak korlátai.
-
-Egyszerű szolgáltatásoknál működhet elég jól. Nagyobb rendszerekben, főleg ahol több csapat és több repository dolgozik együtt, elkezd szétesni:
-
-- a dokumentáció minősége implementációs részletektől és framework-konvencióktól függ
-- a designt gyakran csak azután review-zzák, hogy már kódban létezik
-- a generált szerződés gyakran a transport szerkezetet tükrözi, nem a design szándékot
-- frontend/backend model drift idővel megjelenik
-- a séma újrahasználat szolgáltatásonként inkonzisztens
-- a validációs logika túl sok rétegben duplikálódik
-- a klienskönyvtárak gyakran gyengék, runtime guard és tiszta típusozás nélkül
-
-Az eredmény: a rendszer technikailag fut, de biztonságosan nehezebb továbbfejleszteni.
-
-Nem az a gond, hogy a code-first mindig rossz. Az a gond, hogy hajlamos az implementációt olyan hellyé tenni, ahol a design döntések véletlenül születnek.
-
-A spec-first ezeket a döntéseket akkor hozza felszínre, amikor még olcsó változtatni.
+A code-first nem mindig rossz választás. Arra viszont hajlamos, hogy az implementáció legyen az a hely, ahol az interfészdöntések véletlenül megszületnek. A spec-first akkor teszi őket review-zhatóvá, amikor még olcsó változtatni.
 
 ## A JSON Schema sokkal erősebb, mint amit a csapatok többsége kihasznál
 
-Sok csapat már használ JSON Schemát közvetve, mégsem kezeli stratégiai eszközként.
+Sok csapat már használ JSON Schemát közvetve. Megjelenik OpenAPI-ban, validációs toolingban, formgenerálásban és konfiguráció-ellenőrzésben, mégis gyakran plumbingként kezelik ahelyett, hogy a rendszerhatárok közös leírását látnák benne.
 
-Látják OpenAPI-ban. Használják validációs tooling mögött. Talán támaszkodnak rá formgenerálásnál vagy konfiguráció validációnál. De még mindig inkább plumbingként tekintenek rá.
+A JSON Schema az egyik leghatékonyabb boundary-definíciós eszköz modern backend platformokon. Az adatszerkezetek és megszorítások géppel olvasható modelljéből API-specifikáció, runtime validáció, generált típus, frontend űrlap, mock, tesztfixture, contract diff és közös platformkönyvtár is készülhet.
 
-Ez kihagyott lehetőség.
-
-A JSON Schema az egyik leghatékonyabb boundary-definíciós eszköz modern backend platformokon. Géppel olvasható modelt ad adatszerkezetekről és megszorításokról, ami végigutazhat a teljes rendszeren:
-
-- API specifikációk
-- runtime validáció
-- generált típusok
-- frontend űrlapok
-- mockok
-- teszt fixture-ök
-- contract diffing
-- megosztott platform könyvtárak
-
-Itt jön az igazi érték.
-
-Nem abban, hogy van még egy séma-nyelv, hanem abban, hogy van egy közös reprezentáció, amire a delivery lánc különböző részei konzisztensen támaszkodhatnak.
+Az értéke abból jön, hogy a delivery lánc különböző részei ugyanarra a reprezentációra támaszkodhatnak, nem abból, hogy van még egy séma-nyelv.
 
 Amikor a csapatok "single source of truth"-t mondanak, ez az egyik ritka pont, ahol ez tényleg konkrét tartalmat kaphat.
 
 ## Spec-first platformszinten
 
-A spec-first legnagyobb előnye általában akkor látszik, amikor nem szolgáltatásonkénti preferenciának, hanem platform-képességnek tekinted.
+A legnagyobb előnyt a Fizz backend platform építése közben láttuk, ahol a spec-first szolgáltatásonkénti preferencia helyett platform-képesség lett.
 
-Mi ezt a Fizz backend platform építése közben tapasztaltuk.
+Az OpenAPI dokumentum statikus YAML-ként él a service forrásában. Handlereket, típusokat és validátorokat generálunk belőle, az AJV pedig backend- és frontendoldalon is fut. A CI szinkronban tartja a backend fogyasztók, frontendalkalmazások és tesztek HTTP-klienseit. A tesztek így mockok ellen futhatnak URL-ek, metódusok és payloadfeltételezések hardcode-olása nélkül.
 
-A modell egyszerű:
+A szerződés hajtja a kliensgenerálást, ezért a fogyasztók nem rakják össze kézzel a service-hívásokat. A backend validáció és a frontend feltételezések ugyanazt a séma-szókészletet használják, a generált kliensek pedig megóvják a teszteket a request-részletek duplikálásától.
 
-- az OpenAPI dokumentum statikus YAML-ként van a service forráskódban
-- handlerek, típusok és validátorok a szerződésből generálódnak
-- AJV fut backend és frontend oldalon is
-- CI biztosítja, hogy a HTTP kliensek generálva legyenek és szinkronban maradjanak
-- a generált klienseket backend fogyasztók, frontend appok és tesztek is használják
-- tesztek mockok ellen tudnak futni URL/módszer/payload részletek hardcode-olása nélkül
-
-Ez nagyon gyakorlatiasan javítja a developer experience-t.
-
-Nem minden fogyasztó próbálja kézzel újra összerakni, hogyan kell hívni egy szolgáltatást, mert a szerződés hajtja a kliensgenerálást. Nem válik szét backend validáció és frontend feltételezés, mert mindkét oldal ugyanazt a séma-szókészletet használja. Nem törnek el feleslegesen tesztek duplikált request-részletek miatt, mert a generált kliensek stabil integrációs felületet adnak.
-
-A fejlesztői visszajelzés egyértelmű volt: jobb lett a DX, mert nem kell interfész-apróságokat fejben tartani.
-
-Ez nem apró javulás. Pont ez az ismétlődő kognitív overhead lassítja csendben a csapatokat.
+A fejlesztők szerint jobb lett a DX, mert nem kell interfészrészleteket fejben tartani. Az egyes hívásoknál megtakarított idő kicsi, de szolgáltatásokon és repókon át összeadódik.
 
 ## Statikus OpenAPI mint forrás-artifact, nem exportált artifact
 
@@ -131,13 +65,7 @@ Egy finom, de fontos részlet, hogy hol él a szerződés.
 
 Sok code-first setupban az API dokumentum futó alkalmazásból generálódik. Ez olyan függőségi láncot hoz létre, ahol a szerződés a kódból származik, és gyakran csak fordítás vagy boot után áll stabilan rendelkezésre.
 
-Ha a statikus OpenAPI YAML be van commitolva a service forráskódba, ez megfordítja a viszonyt.
-
-A specifikáció a service futása előtt létezik. Review-zható pull requestben. Önállóan lintelhető és validálható. Részt vehet code generationben, breaking-change ellenőrzésben, dokumentáció publikálásban és teszteszközökben, még az implementáció befejezése előtt.
-
-Ekkor a szerződés fejlesztési input lesz, nem runtime melléktermék.
-
-És ha ezt a váltást megléped, az architektúra irányítása lényegesen könnyebb.
+A service forrásába commitolt statikus OpenAPI YAML megfordítja ezt a függőséget. A specifikáció már a service futása előtt létezik, pull requestben review-zható, önállóan lintelhető és validálható. Code generationt, breaking-change ellenőrzést, dokumentációpublikálást és teszteszközöket hajthat még az implementáció elkészülte előtt. A szerződés így a platform által irányítható fejlesztési inputtá válik.
 
 ## Vizuál: implementáció-first vs spec-first
 
@@ -154,39 +82,23 @@ flowchart TD
     I --> J[Korábbi integráció, kevesebb drift]
 ```
 
-## A generált kliensek nem csak kényelmi kódok
+## A generált kliensek kiváltják a duplikált interfészkódot
 
-A generált klienseket gyakran pusztán produktivitási funkciónak tekintik. Ez igaz, de nem teljes kép.
+A generált kliensek időt takarítanak meg, de tartósabb előnyük a konzisztencia.
 
-A fontosabb előny az, hogy helyességet kódolnak.
+Generált kliensek nélkül a fogyasztók kézzel másolják le az interfészt. Helyben építik össze az útvonalakat és query paramétereket, emlékezetből választanak HTTP-metódust, az auth headereket pedig kliensenként eltérően kötik be. A request- és response-típusozás gyakran hiányos, a hibakezelés változó, a tesztek endpoint-részleteket hardcode-olnak, az event-alapú rendszerek topicnevei és payloadformái pedig idővel eltérnek.
 
-Generált kliensek nélkül a fogyasztók általában kézzel ismétlik az interfészt:
-
-- útvonalak és query paraméterek kézzel épülnek
-- HTTP metódusok emlékezetből ismétlődnek
-- auth headerek inkonzisztensen készülnek
-- request/response típusozás hiányos
-- a hibakezelés fogyasztónként eltér
-- tesztek endpoint részleteket hardcode-olnak
-- topic nevek vagy payload formák eldriftelnek event-alapú rendszereknél
-
-Minden egyes ismétlés újabb eltérésforrás.
+Minden ismétlés újabb helyet ad az implementáció és a fogyasztók eltérésének.
 
 Ha a CI biztosítja, hogy a kliensek a friss szerződésből generálódjanak, ennek a hibakategóriának nagy részét kivágod. A fogyasztók nem emlékezetre és konvencióra támaszkodnak, hanem a szerződésből származtatott artifactokra.
 
 Nálunk ez a tesztelést is javította. A generált klienseket end-to-mock tesztekben is használjuk, vagyis a tesztek ugyanazon contract-driven felületen futnak, mint a production fogyasztók. Nincs duplikált URL, nincs kézzel írt fetch wrapper, nincs magic string metódusokra.
 
-Ez jelentős minőségi nyereség, mert teljes törékenységi osztályokat tüntet el.
+A tesztek kevésbé lesznek törékenyek, mert nem hordozzák az interfész második, kézzel írt változatát.
 
-## A runtime validáció legalább olyan fontos, mint a statikus típusozás
+## A típusok runtime előtt véget érnek
 
-TypeScript-heavy rendszerekben visszatérő hiba azt gondolni, hogy compile-time típusok elegendők.
-
-Nem elegendők.
-
-A TypeScript fejlesztés közben segít az elvárt alakzatokban gondolkodni. De runtime-on nem validál külső inputot. Nem véd meg rossz payloadoktól más szolgáltatásokból, régebbi kliensektől, részben rolloutolt fogyasztóktól vagy külső integrációktól.
-
-Itt lesz kulcsfontosságú a JSON Schema + AJV.
+A TypeScript fejlesztés közben segít az elvárt alakzatokban gondolkodni, de runtime-on nem validál külső inputot. Rossz payload továbbra is érkezhet más szolgáltatásból, régebbi kliensből, részben rolloutolt fogyasztótól vagy külső integrációból.
 
 Ha a handlerek, kliensek és űrlapok ugyanabból a séma-családból épülnek, a runtime validáció konzisztenssé válik rendszerhatárokon át.
 
@@ -194,20 +106,17 @@ Ez backend oldalon fontos inbound requesteknél és sokszor outbound szerződés
 
 Az AJV kétoldali használata lezárja a rést a statikus szándék és a runtime valóság között.
 
-Egy jó típusrendszer megmondja, minek kellene történnie.
-Egy jó validátor megmutatja, mi történt ténylegesen.
+A típusrendszer leírja, mit vár a saját kódod. A validátor ellenőrzi, mi lépte át ténylegesen a rendszerhatárt. Mindkettő kell.
 
-Mindkettő kell.
+## Ugyanazok a sémák a frontendet is segíthetik
 
-## A frontend előnyöket gyakran alábecsülik
-
-A spec-first beszélgetések gyakran backend-központúak. Ez hiba, mert a legnagyobb leverage-ek egy része frontend és admin tooling oldalon jelenik meg.
+A spec-first beszélgetések gyakran backend-központúak, pedig a frontend és az admin tooling is újrahasznosíthatja ugyanazokat a sémákat.
 
 Ha az API-k JSON Schema-alapú szerződésekkel leírtak, és ugyanazok a sémák a frontend számára is elérhetők, sokkal többet lehet tenni annál, mint kliensgenerálás.
 
 Például a **JSON Forms** jelentősen gyorsíthatja az admin felületek fejlesztését.
 
-Ez nem azt jelenti, hogy "generáljuk le az egész frontendet sémából". Ez customer-facing UX-re általában túl egyszerű. De belső toolinghoz, admin backoffice-hoz, operációs felületekhez, konfigurációs képernyőkhöz és workflow űrlapokhoz a schema-driven UI óriási gyorsító lehet.
+Egy teljes customer-facing frontend generálása sémából általában túl durva eszköz. Belső toolingnál, admin backoffice-nál, operációs felületeknél, konfigurációs képernyőknél és workflow űrlapoknál viszont a schema-driven UI sok ismétlődő munkát kiválthat.
 
 Különösen jól működik, ha a felelősségeket tisztán szétválasztod:
 
@@ -223,42 +132,19 @@ Ez erős end-to-end illeszkedést ad:
 4. A beküldött payload küldés előtt validálható.
 5. A backend ugyanazt a struktúrát validálja fogadáskor.
 
-Ez lényegesen tisztább modell, mint minden rétegben külön-külön kézzel újraimplementálni mezőket, szabályokat és szerkezeti elvárásokat.
-
-Admin felületeknél ez drámaian csökkentheti az ismétlődő UI kód mennyiségét, miközben növeli a konzisztenciát.
+Így nem kell minden rétegben külön kézzel újraimplementálni a mezőket, szabályokat és szerkezeti elvárásokat. Az admin felületek kevesebb ismétlődő UI kódot igényelnek, és közelebb maradnak az API-szerződéshez.
 
 ## JSON Forms és schema-driven admin felületek
 
-Egyedi szoftverfejlesztési szempontból itt válik igazán érdekessé a téma.
+A belső platformokon könnyen felhalmozódik az operációs űrlapok hosszú sora: termékattribútum-szerkesztők, árazási konfigurációk, integrációs setupok, szabály- és policy-szerkesztők, merchant onboarding, supporteszközök és feature-konfigurációs panelek.
 
-A belső platformok gyakran szenvednek az operációs űrlapok és admin felületek hosszú farok-problémájától:
-
-- termékattribútum szerkesztők
-- árazási konfigurációk
-- integrációs setup képernyők
-- szabály- és policy szerkesztők
-- merchant onboarding űrlapok
-- support eszközök
-- feature konfigurációs panelek
-
-Ezek a felületek fontosak, de ritkán differenciálnak üzletileg. Leginkább pontosnak, karbantarthatónak és gyorsan változtathatónak kell lenniük.
-
-Itt kifejezetten jól működik a schema-driven megközelítés.
+Ezek a felületek fontosak, de ritkán differenciálják a terméket. Pontosnak, karbantarthatónak és könnyen változtathatónak kell lenniük; a mezők többségéhez nem kell egyedi UX.
 
 JSON Forms-szal vagy hasonló eszközökkel a struktúrát és validációt JSON Schemában definiálod, a megjelenítést UI schema-val irányítod, miközben szigorú kompatibilitást tartasz a backend szerződéssel.
 
-Ennek kézzelfogható előnyei:
+Ugyanaz a modell kiváltja a duplikált meződefiníciókat és konzisztensen tartja a validációs üzeneteket. Gyorsabban készülnek el az új admin felületek, olcsóbb követni a sémaváltozásokat, a beküldött adat közelebb marad az API-szerződéshez, és a fejlesztők hamarabb kiismerik a belső toolingot.
 
-- jóval kevesebb duplikált mezőmodellezés
-- konzisztens validációs üzenetek és szabályok
-- gyorsabb új admin felületek létrehozása
-- alacsonyabb karbantartási költség séma-evolúció során
-- nagyobb bizalom abban, hogy a beküldött adat megfelel az API szerződésnek
-- könnyebb onboarding belső eszközöket fejlesztő mérnököknek
-
-A lényeg nem a vak kódgenerálás. A lényeg a szerződésmodell kontrollált újrahasznosítása.
-
-Ha jól csinálod, ez nem "generált UI" érzetet ad, hanem "olyan platformot, ami megszünteti a felesleges ismétlést".
+A cél a szerződésmodell kontrollált újrahasznosítása. Nem az, hogy minden képernyőt vakon generáljunk.
 
 ## Vizuál: schema-driven folyamat API-tól az admin UI-ig
 
@@ -274,36 +160,23 @@ flowchart TD
     H --> I[AJV validál újra backend oldalon]
 ```
 
-## Aszinkron rendszerek még többet nyernek explicit szerződésekkel
+## Az eventszerződések láthatóvá teszik a rejtett csatolást
 
 A spec-first különösen fontossá válik, ha a rendszer nem tisztán szinkron.
 
 HTTP-nél legalább láthatók az interfészek: vannak útvonalak, metódusok, státuszkódok. Üzenetközpontú rendszereknél a felület sokkal kevésbé önleíró, ahogy nő a rendszer. Szaporodnak a topicok. Informálisan változnak a payloadok. Hasonló események jelennek meg eltérő szemantikával. A fogyasztók nem dokumentált feltételezésekre támaszkodnak.
 
-Itt lesz kritikus az AsyncAPI és a fegyelmezett séma-újrahasználat.
+Az AsyncAPI és a fegyelmezett séma-újrahasználat látható formát ad ezeknek a függőségeknek.
 
 Event-driven rendszerekben a kétértelműség veszélyesebb, mert a hibák gyakran késleltetve és szétterülve jelennek meg. Egy hibás feltételezés nem mindig bukik el hangosan. Csendben torzíthat downstream viselkedést, vagy olyan integrációt törhet el, amit drága visszakövetni.
 
-Az explicit event szerződések segítenek definiálni:
+Az explicit eventszerződések rögzítik az üzenetpayloadokat és ownership határokat, továbbá a verziózási megközelítést, korrelációs azonosítókat, kompatibilitási szabályokat, példákat és szemantikai szándékot.
 
-- üzenet payloadokat
-- ownership határokat
-- verziózási megközelítést
-- korrelációs azonosítókat
-- kompatibilitási elvárásokat
-- példákat és szemantikai szándékot
+Ahogy a HTTP API-knál, úgy itt is részt vehet a forráskódban tárolt szerződés a validációban, review-ban, generálásban és governance-ben. Enélkül az event-driven rendszer olyan csatolást halmoz fel, amelyet nehéz észrevenni, amíg egy fogyasztó el nem törik.
 
-Ugyanaz az elv érvényes, mint HTTP API-knál: ha a szerződés első osztályú artifact, részt vehet validációban, review-ban, generálásban és governance-ben.
-
-Enélkül az event-driven architektúrák hajlamosak láthatatlan csatolást felhalmozni.
-
-## A biztonság és jogosultságkezelés könnyebben standardizálható
-
-A spec-first a security gondolkodást is javítja.
+## A security szándék kerüljön az interfész mellé
 
 Túl sok rendszerben az authorization csak azután kerül be, hogy az interfészalak már eldőlt. Endpointok kódban válnak védetté, szerepkörök implikáltak maradnak, a policy elvárások szétszóródnak annotációk, middleware-ek és service-specifikus konvenciók között.
-
-Contract-first megközelítésben jobb helyre kerülnek ezek az információk.
 
 Ha scope-ok, auth sémák és védett műveletek a szerződésben jelennek meg, több minden könnyebb lesz:
 
@@ -312,13 +185,9 @@ Ha scope-ok, auth sémák és védett műveletek a szerződésben jelennek meg, 
 - a fogyasztó csapatok tudják, milyen credential/scope szükséges
 - a hiányosságok design review során derülnek ki, nem rollout után
 
-Ez nem váltja ki a jó authorization architektúrát, de a biztonság szempontjából kritikus információt oda teszi, ahová tartozik: az interfész mellé.
+Ez nem váltja ki a jó authorization architektúrát. A security szándékot viszont az interfész mellé teszi, ahol a reviewerek és a fogyasztók is látják.
 
-Platformcsapatoknál ennek nagy jelentősége van.
-
-## A párhuzamos fejlesztés reális lesz, nem vágyálom
-
-A spec-first egyik legnagyobb szervezeti előnye, hogy kevésbé kockázatos a párhuzamos munka.
+## Stabil szerződés mellett a csapatok párhuzamosan dolgozhatnak
 
 Amint a szerződés elég stabil:
 
@@ -329,15 +198,9 @@ Amint a szerződés elég stabil:
 - az integrációs tesztelés korábban elindulhat
 - fogyasztó szolgáltatások fejleszthetnek a szerződésre, teljesen kész provider nélkül
 
-Ez csökkenti azokat a koordinációs szűk keresztmetszeteket, amelyek service-oriented deliveryben könnyen normává válnak.
+A közös artifact eléggé leszűkíti a bizonytalanságot a párhuzamos munkához. A backendnek, frontendnek, QA-nak és a fogyasztó szolgáltatásoknak nem kell egy deployolt providerre várniuk ahhoz, hogy haladjanak.
 
-Ahelyett, hogy a csapatok bizonytalanság miatt egymásra várnak, kapsz egy közös artifactot, amely eléggé leszűkíti a bizonytalanságot a párhuzamos munkához.
-
-Ez az egyik fő ok, amiért a spec-first nagyon jól skálázódik többcsapatos termékszervezetekben.
-
-## A CI az a hely, ahol ez valóban kikényszeríthető
-
-Az előre megírt szerződés hasznos. A CI által kikényszerített szerződés transzformatív.
+## A CI tartja autoritatívan a szerződést
 
 Ha a CI biztosítja, hogy a specifikáció érvényes, és a generált artifactok naprakészek maradnak, sokkal nehezebb véletlenül megkerülni a folyamatot.
 
@@ -350,9 +213,7 @@ Ha a CI biztosítja, hogy a specifikáció érvényes, és a generált artifacto
 - ellenőrzés, hogy a generált kód helyesen commitolva/publikálva van
 - tesztek futtatása generált kliensekkel és mockokkal
 
-Ez a különbség aközött, hogy "mi szeretjük a contract-firstet" és aközött, hogy "a platformunk contract-driven".
-
-Az utóbbi jóval erősebb, mert nem kizárólag memóriára és csapatfegyelemre épít.
+Ezek az ellenőrzések autoritatívvá teszik a szerződést, így a contract-first nem marad memóriától és csapatfegyelemtől függő preferencia.
 
 ## Vizuál: spec-first platform workflow
 
@@ -368,9 +229,7 @@ flowchart TD
 
 ## Hol csúszhat félre a spec-first
 
-A spec-first nem varázslat.
-
-Ha gyengék a sémák, rossz minőségűek a generált artifactok, vagy a csapat bürokratikus teherként kezeli a specifikációt, a folyamat nehézkessé válhat valódi nyereség nélkül.
+Gyenge sémák, rossz minőségű generált artifactok vagy bürokratikus teherként kezelt specifikáció mellett a folyamat nehézkessé válhat anélkül, hogy sokat adna.
 
 Tipikusan akkor bukik meg, ha:
 
@@ -382,56 +241,22 @@ Tipikusan akkor bukik meg, ha:
 - túlzottan aprólékos modellkényszer jelenik meg
 - senki nem tulajdonosa a contract lifecycle-nak
 
-A megoldás nem az, hogy elengedjük a megközelítést. A megoldás a szelektív, fegyelmezett alkalmazás.
+Ott használd a spec-first megközelítést, ahol a szerződés számít. Tartsd olvashatón a sémákat, csak olyan artifactokat generálj, amelyek munkát váltanak ki vagy eltérést előznek meg, kényszerítsd ki a folyamatot CI-ban, és kezeld a contract review-t design review-ként.
 
-Ott használd, ahol a szerződés számít. Tedd autoritatívvá a specifikációt. Tartsd olvashatón a sémákat. Azokat az artifactokat generáld, amelyek valódi leverage-et adnak. CI-ben kényszerítsd ki a folyamatot. A contract review-t kezeld design review-ként.
+## A fogyasztók számával együtt nő a megtérülés
 
-Itt kezdenek összetetten megtérülni az előnyök.
+Egy termék életének elején szinte bármilyen interfész-megközelítés működhet, mert kevés a fogyasztó és szoros a visszacsatolás. A szolgáltatások, csapatok, környezetek és kompatibilitási elvárások szaporodásával megváltozik a költségprofil.
 
-## Miért lesz ez fontosabb, ahogy érik a rendszer
+A több szolgáltatás, frontend felület, csapat és környezet nagyobb kompatibilitási nyomást, erősebb governance-elvárást, több üzemeltetési eszközt és megbízhatóbb automatizációt igényel. Az interfész ekkor már a platform része, nem lokális implementációs részlet. A spec-first azért térül meg, mert a szerződés a teljes delivery pipeline-ban végrehajtható, nemcsak dokumentálja azt.
 
-Korai fázisban szinte bármilyen interfész-megközelítés elfogadhatónak tűnhet, mert kevés a fogyasztó és szoros a visszacsatolás.
+## Dolgoztasd meg a szerződést
 
-Ahogy érik a rendszer, megváltozik a költségprofil.
+A spec-first elég korán ad explicit formát a szerződéseknek ahhoz, hogy tooling, teszt, validátor, kliens és csapat ugyanarra a forrásmodellre támaszkodhasson.
 
-Ekkor már van:
+A JSON Schema össze tudja kapcsolni az API designt, runtime biztonságot, kliensgenerálást, admin UI generálást és platform governance-t. Ha csak validációs plumbingként kezeljük, ennek nagy része kihasználatlan marad.
 
-- több szolgáltatás
-- több frontend felület
-- több csapat
-- több környezet
-- nagyobb backward kompatibilitási nyomás
-- erősebb governance elvárás
-- több üzemeltetési eszköz
-- nagyobb igény megbízható automatizációra
+A Fizz backend platformon ez statikus, a service forrásában tárolt OpenAPI-t, generált handlereket, típusokat és validátorokat, valamint backend- és frontendoldali AJV-t jelent. A CI naprakészen tartja a service-ekben, frontendkódban és tesztekben használt generált klienseket; a JSON Forms pedig ugyanazokat a sémákat használja az admin UI fejlesztéséhez.
 
-Ezen a ponton az interfész már nem lokális implementációs részlet. A platform részévé válik.
+Az eredmény jobb developer experience, kevesebb duplikált munka, kevesebb integrációs meglepetés és biztonságosabban evolválható platform.
 
-Pont itt kezdi a spec-first egyértelműen felülmúlni a code-first megközelítést.
-
-Mert a valódi érték nem az, hogy a szerződés dokumentált. Hanem az, hogy a szerződés a teljes delivery pipeline-ban végrehajthatóvá válik.
-
-## Összefoglalás
-
-A spec-first nem arról szól, hogy szebb API dokumentáció készüljön.
-
-Arról szól, hogy a szerződések elég korán explicit formát kapjanak ahhoz, hogy ugyanarra a forrásmodellre tudjon támaszkodni tooling, teszt, validátor, kliens és csapat.
-
-Ezért érdemes a JSON Schemára nagyobb hangsúlyt tenni. Nem puszta validációs plumbing. Olyan összekötő szövet, amely egységes workflow-ba tudja kapcsolni az API designt, runtime biztonságot, kliensgenerálást, admin UI gyorsítást és platform governance-t.
-
-A Fizz backend platformon ez különösen tisztán látszott:
-
-- statikus OpenAPI a service forráskódban
-- generált handlerek, típusok és validátorok
-- AJV backend és frontend oldalon
-- CI által kikényszerített kliensgenerálás
-- generált kliensek használata service-ekben, frontendben és tesztekben
-- schema-driven admin UI gyorsítás JSON Forms-szal
-
-Az eredmény nem csak jobb dokumentáció. Hanem jobb developer experience, kevesebb duplikált munka, kevesebb integrációs meglepetés, és biztonságosabban evolválható platform.
-
-Ha a csapatod már használ OpenAPI-t, AsyncAPI-t vagy JSON Schemát, valószínűleg közelebb vagytok ehhez a modellhez, mint gondolnátok.
-
-A valódi kérdés az, hogy a szerződések csak utólag leírják-e a rendszert, vagy aktívan formálják is, hogyan épül fel.
-
-Ebben a különbségben van a leverage.
+Ha a csapatod már használ OpenAPI-t, AsyncAPI-t vagy JSON Schemát, a következő lépés az, hogy ezek a szerződések utólagos leírás helyett ténylegesen formálják a rendszer építését.
