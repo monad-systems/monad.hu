@@ -1,7 +1,7 @@
 ---
 title: 'Designing Systems Before Coding Them'
 date: '2025-04-24'
-lead: "Most teams still treat API contracts as documentation generated after the real work is done. That is backwards. In modern distributed systems, the contract is the work. When interfaces are designed first, teams move faster, integrations fail less often, and architecture becomes something you can actually reason about instead of rediscovering in production."
+lead: "Many teams still generate API contracts after the implementation. Designing the interface first gives backend, frontend, QA, and service consumers one artifact to review, validate, and build against before integration problems become expensive."
 metaDescription: "Spec-first development replaces guesswork with explicit contracts. By combining OpenAPI, AsyncAPI, and JSON Schema, teams can generate clients, validate payloads, improve security, and deliver faster with fewer integration failures."
 tags:
     - Spec-First
@@ -13,117 +13,51 @@ tags:
     - Custom Software Engineering
 ---
 
-## Contract should come before the code
+## Start with the contract
 
-Most teams still treat the API contract as a byproduct.
-
-First they write handlers. Then they add DTOs. Then they wire validation. Then they try to expose documentation from the running application. Then frontend, QA, and other services start integrating. Then the mismatches appear: nullable fields interpreted differently, undocumented edge cases, duplicated validation rules, inconsistent enums, ad hoc error formats, and fragile client code scattered across repositories.
+Many teams still treat the API contract as a byproduct. They write handlers, add DTOs and validation, then expose documentation from the running application. Frontend, QA, and other services begin integrating only to find that nullable fields, enums, edge cases, and error formats have been interpreted differently. Client code has already spread across repositories by then.
 
 At small scale, this is survivable. At platform scale, it becomes delivery drag.
 
-Spec-first development solves this by moving the center of gravity. Instead of allowing the implementation to define the interface implicitly, the interface is defined explicitly first and everything else is built from it.
+Spec-first development moves those decisions ahead of implementation. Once the contract is a source artifact, the design is no longer hidden inside controller code. Teams can review it, generate from it, and reuse it across system boundaries.
 
-That sounds procedural. In practice, it is architectural.
+## A contract is an input to delivery
 
-Because once the contract becomes a first-class source artifact, design stops being something hidden inside controller code and starts becoming something reviewable, automatable, and reusable.
-
-For modern distributed systems, that is a significant shift.
-
-## The contract is not documentation
-
-This is the first mindset change that matters.
-
-An OpenAPI document is not just something you publish to Swagger UI so people can browse endpoints. An AsyncAPI document is not just a catalog of topics and message payloads. JSON Schema is not just a validation format.
+OpenAPI can do more than populate Swagger UI. AsyncAPI can do more than catalogue topics, and JSON Schema can do more than validate a payload.
 
 Taken together, they describe the boundary of a system in a form that both humans and tooling can understand.
 
-That boundary includes far more than field names and primitive types. It includes:
+That boundary includes far more than field names and primitive types. It records which payload shapes are allowed, which fields are required, and which format or structural constraints apply. It also covers errors, authentication, roles and scopes, compatibility rules, event payloads, and model semantics shared by backend and frontend.
 
-- allowed payload shapes
-- required and optional fields
-- format and structural constraints
-- error contracts
-- auth requirements
-- role and scope expectations
-- compatibility expectations
-- event payload definitions
-- shared model semantics across backend and frontend
-
-Once you define that boundary up front, you gain leverage that code-first teams usually leave on the table.
-
-You stop rediscovering your system from implementation details. You start designing it intentionally.
+Defining the boundary up front lets teams work from an agreed design instead of reconstructing it from implementation details.
 
 ## What code-first usually looks like in real systems
 
-Code-first approaches are attractive because they feel fast.
+Code-first approaches feel fast: write the endpoint, decorate it, and generate documentation from framework metadata. Some tools can also infer schemas from DTOs or TypeScript types. The convenience is useful, especially in a small service, but the design is only reviewable after it has become code.
 
-Write the endpoint. Decorate it. Generate documentation from the framework metadata. Maybe infer schemas from DTOs or TypeScript types. It looks efficient because the code is the source of truth and the docs appear almost automatically.
+In simple services, it can work well enough. In larger systems, documentation quality becomes tied to framework conventions, while the design is reviewed only after it already exists in code. Generated contracts tend to reflect transport structure rather than design intent. Over time, backend and frontend models drift, schema reuse becomes inconsistent, validation is duplicated, and client libraries end up with partial typing or no runtime guards.
 
-That convenience is real, but it has limits.
-
-In simple services, it can work well enough. In larger systems, especially where multiple teams and repositories are involved, it starts to break down:
-
-- documentation quality depends on implementation details and framework conventions
-- the design is reviewed only after it already exists in code
-- the generated contract often reflects transport structure but not design intent
-- frontend and backend model drift appears over time
-- schema reuse becomes inconsistent across services
-- validation logic gets duplicated in too many layers
-- client libraries are often weak, missing runtime guards or clear typing
-
-The result is a system that technically runs, but is harder to evolve safely.
-
-The problem is not that code-first is always wrong. The problem is that it tends to make implementation the place where design decisions happen by accident.
-
-Spec-first forces those decisions into the open while they are still cheap.
+Code-first is not always the wrong choice. It does, however, make implementation the place where interface decisions can happen by accident. Spec-first puts those decisions in review while they are still cheap to change.
 
 ## Why JSON Schema is more powerful than most teams realize
 
-A lot of teams already use JSON Schema indirectly without treating it as a strategic asset.
+Many teams already use JSON Schema indirectly. It appears inside OpenAPI, validation tooling, form generation, and configuration checks, yet it is often treated as plumbing rather than a shared description of system boundaries.
 
-They see it inside OpenAPI. They use it through validation tooling. Maybe they rely on it for some form generation or configuration validation. But they still think of it primarily as plumbing.
+JSON Schema is one of the most effective boundary-definition tools available for modern backend platforms. Its machine-readable model of structures and constraints can feed API specifications, runtime validation, generated types, frontend forms, mocks, test fixtures, contract diffing, and shared platform libraries.
 
-That misses the point.
-
-JSON Schema is one of the most effective boundary-definition tools available for modern backend platforms. It gives you a machine-readable model of data structures and constraints that can travel across the system:
-
-- API specifications
-- runtime validation
-- generated types
-- frontend forms
-- mocks
-- test fixtures
-- contract diffing
-- shared platform libraries
-
-That is where the real value is.
-
-Not in having one more schema language, but in having one common representation that different parts of the delivery chain can rely on consistently.
+Its value comes from giving different parts of the delivery chain one representation they can use consistently, not from adding another schema language.
 
 When teams say they want a “single source of truth,” this is one of the few places where that phrase can actually mean something concrete.
 
 ## Spec-first at platform level
 
-The biggest advantage of spec-first usually appears when you stop looking at it as a per-service preference and start treating it as a platform capability.
+We saw the largest benefit when building the Fizz backend platform, where spec-first became a platform capability rather than a preference left to each service.
 
-That was our experience while building the backend platform for Fizz.
+The OpenAPI document lives as static YAML in the service source. We generate handlers, types, and validators from it, then use AJV on both backend and frontend. CI keeps the HTTP clients in sync for backend consumers, frontend applications, and tests. Those tests can run against mocks without hardcoding URLs, methods, or payload assumptions.
 
-The model is straightforward:
+The contract drives client generation, so consumers do not reconstruct service calls by hand. Backend validation and frontend assumptions use the same schema vocabulary, while generated clients keep tests from duplicating request details.
 
-- the OpenAPI document is hosted as a static YAML file in the service source code
-- handlers, types, and validators are generated from the contract
-- AJV is used for validation on both backend and frontend
-- CI ensures HTTP clients are generated and kept in sync
-- the generated clients can be used by backend consumers, frontend applications, and tests
-- tests can execute against mocks without hardcoding request details such as URLs, methods, or payload assumptions
-
-That changes developer experience in a very practical way.
-
-Instead of every consumer manually reconstructing how to call a service, the contract drives client generation. Instead of backend validation logic diverging from frontend assumptions, both sides validate against the same schema vocabulary. Instead of tests becoming brittle because request details are duplicated, generated clients become the stable integration surface.
-
-The feedback from developers was clear: DX improved because the system stopped requiring people to memorize interface trivia.
-
-That may sound like a small improvement. It is not. Interface trivia is exactly the kind of repeated cognitive overhead that slows teams down quietly.
+Developers reported better DX because they no longer had to memorise interface details. The time saved on each call is small; repeated across services and repositories, it becomes meaningful.
 
 ## Static OpenAPI as a source artifact, not an exported artifact
 
@@ -131,13 +65,7 @@ One subtle but important implementation detail is where the contract lives.
 
 In many code-first setups, the API document is something generated by a running application. That creates a dependency chain where the contract is derived from code and often only exists reliably after compilation or bootstrapping.
 
-A static OpenAPI YAML checked into the service source code flips that relationship.
-
-The specification exists before the service runs. It can be reviewed in pull requests. It can be linted and validated independently. It can participate in code generation, breaking-change checks, documentation publishing, and test tooling before the implementation is even complete.
-
-That makes the contract a development input, not a runtime byproduct.
-
-And once you make that shift, architecture becomes much easier to govern.
+A static OpenAPI YAML checked into the service source reverses that dependency. The specification exists before the service runs, can be reviewed in a pull request, and can be linted or validated independently. It can drive code generation, breaking-change checks, documentation publishing, and test tooling before implementation is complete. The contract becomes a development input that the platform can govern.
 
 ## Visual: implementation-first vs spec-first
 
@@ -154,39 +82,23 @@ flowchart TD
     I --> J[Integrate earlier with less drift]
 ```
 
-## Generated clients are not just convenience code
+## Generated clients remove duplicated interface code
 
-Generated clients are often framed as a productivity feature. That is true, but incomplete.
+Generated clients save time, but their more durable benefit is consistency.
 
-The more important benefit is that they encode correctness.
+Without generated clients, consumers replicate the interface by hand. Paths and query parameters are assembled locally, HTTP methods are recalled from memory, and auth headers are wired differently in each client. Request and response typing is often partial, error handling varies, tests hardcode endpoint details, and topic names or payload structures drift in evented systems.
 
-Without generated clients, consumers tend to manually replicate the interface:
-
-- paths and query parameters are assembled by hand
-- HTTP methods are repeated from memory
-- auth headers are wired inconsistently
-- request and response typing is partial
-- error handling differs between consumers
-- tests hardcode endpoint details
-- topic names or payload structures drift in evented systems
-
-Every one of those repetitions creates a chance for divergence.
+Each repetition creates another place for the implementation and its consumers to diverge.
 
 When a CI pipeline ensures the clients are generated from the current contract, you substantially reduce that category of error. Consumers stop depending on memory and conventions. They depend on artifacts derived directly from the contract.
 
 In our case, that also improved testing. Generated clients can be used in end-to-mock tests, which means tests are written against the same contract-driven surface that production consumers use. No duplicated URLs, no hand-rolled fetch wrappers, no magic strings for methods or route shapes.
 
-That is a major quality gain because it removes an entire class of test brittleness.
+The tests become less brittle because they stop carrying a second, handwritten version of the interface.
 
-## Runtime validation matters as much as static typing
+## Types stop at runtime
 
-One recurring mistake in TypeScript-heavy systems is assuming that compile-time types are enough.
-
-They are not.
-
-TypeScript helps developers reason about expected shapes during development. It does not validate external input at runtime. It does not protect you from malformed payloads coming from other services, older clients, partially rolled-out consumers, or third-party integrations.
-
-That is where JSON Schema plus AJV becomes important.
+TypeScript helps developers reason about expected shapes during development, but it cannot validate external input at runtime. Malformed payloads can still arrive from other services, older clients, partially rolled-out consumers, or third-party integrations.
 
 If your handlers, clients, and forms are all rooted in the same schema family, runtime validation becomes consistent across system boundaries.
 
@@ -194,20 +106,17 @@ This matters on the backend, where you need to validate inbound requests and som
 
 Using AJV on both sides helps close the gap between static intent and runtime reality.
 
-A good type system tells you what should happen.  
-A good validator tells you what actually happened.
+The type system describes what your own code expects. The validator checks what actually crossed the boundary. You need both.
 
-You want both.
+## The same schemas can support the frontend
 
-## Frontend benefits are often underestimated
-
-Spec-first discussions often stay backend-centric. That is a mistake, because some of the highest leverage shows up in frontend and admin tooling.
+Spec-first discussions often stay backend-centric, even though frontend and admin tooling can reuse the same schemas.
 
 Once your APIs are described with JSON Schema-backed contracts and the same schemas are accessible to frontend applications, you can start doing much more than generating clients.
 
 You can use libraries like **JSON Forms** to simplify admin interface development significantly.
 
-That does not mean “generate the whole frontend from schema” and call it a day. That approach is usually too simplistic for customer-facing UX. But for internal tooling, admin backoffices, operations screens, configuration editors, and workflow forms, schema-driven UI can be an enormous accelerator.
+Generating a whole customer-facing frontend from a schema is usually too crude. For internal tools, admin backoffices, operations screens, configuration editors, and workflow forms, however, schema-driven UI can remove a large amount of repetitive work.
 
 The pattern is especially effective when you separate concerns cleanly:
 
@@ -223,42 +132,19 @@ This creates a strong end-to-end alignment:
 4. The submitted form payload can be validated before sending.
 5. The backend validates the same structure again on receipt.
 
-That is a much cleaner model than manually reimplementing field definitions, validation rules, and structural assumptions separately in every layer.
-
-For admin surfaces, this can dramatically reduce the amount of repetitive UI code while improving consistency.
+This avoids reimplementing field definitions, validation rules, and structural assumptions in every layer. Admin surfaces need less repetitive UI code and stay closer to the API contract.
 
 ## JSON Forms and schema-driven admin surfaces
 
-This is where things become particularly interesting from a platform-engineering perspective.
+Internal platforms often accumulate a long tail of operational forms: product attribute editors, pricing configuration, integration setup, rules and policy editors, merchant onboarding, support tools, and feature configuration panels.
 
-Internal platforms often suffer from a long tail of operational forms and admin interfaces:
-
-- product attribute editors
-- pricing configuration
-- integration setup screens
-- rules and policy editors
-- merchant onboarding forms
-- support tools
-- feature configuration panels
-
-These interfaces are usually important but not always differentiating. They need to be correct, maintainable, and fast to evolve more than they need bespoke handcrafted UX on every field.
-
-A schema-driven approach works well here.
+These interfaces are important but rarely differentiate the product. They need to be correct, maintainable, and easy to change; most fields do not need bespoke UX.
 
 With JSON Forms or similar tooling, you can define the shape and validation in JSON Schema, use UI schema for presentation and component selection, and still preserve strict compatibility with the backend contract.
 
-That gives you a number of concrete advantages:
+The same model removes duplicated field definitions and keeps validation messages consistent. New admin surfaces are easier to produce, schema changes cost less to maintain, submitted data stays aligned with the API contract, and developers can learn the internal tooling more quickly.
 
-- much less duplicated field modeling
-- consistent validation messages and rules
-- easier generation of new admin surfaces
-- lower maintenance cost when schemas evolve
-- better confidence that submitted data matches the API contract
-- easier onboarding for developers building internal tools
-
-The important part is not blind code generation. The important part is controlled reuse of the contract model.
-
-When done well, this feels less like “generated UI” and more like “a platform that removes avoidable repetition.”
+Controlled reuse of the contract model is the goal. Blindly generating every screen is not.
 
 ## Visual: schema-driven flow from API to admin UI
 
@@ -274,36 +160,23 @@ flowchart TD
     H --> I[AJV validates again on backend]
 ```
 
-## Async systems benefit even more from explicit contracts
+## Event contracts expose otherwise invisible coupling
 
 Spec-first becomes even more important when the system is not purely synchronous.
 
 HTTP at least makes interfaces visible. Endpoints have paths, methods, and status codes. Messaging systems are often much less self-describing once they start growing. Topics multiply. Message payloads evolve informally. Similar events appear with slightly different semantics. Consumers rely on undocumented assumptions.
 
-This is where AsyncAPI and disciplined schema reuse matter.
+AsyncAPI and disciplined schema reuse give those dependencies a visible form.
 
 In event-driven systems, ambiguity is more dangerous because failures are often delayed and distributed. A malformed assumption may not fail loudly. It may quietly corrupt downstream behavior or break an integration in ways that are expensive to trace.
 
-Explicit event contracts help define:
+Explicit event contracts record message payloads and ownership boundaries, along with the versioning approach, correlation identifiers, compatibility rules, examples, and semantic intent.
 
-- message payloads
-- ownership boundaries
-- versioning approach
-- correlation identifiers
-- compatibility expectations
-- examples and semantic intent
+As with HTTP APIs, a source-controlled event contract can participate in validation, review, generation, and governance. Without it, event-driven systems accumulate coupling that is hard to see until a consumer breaks.
 
-The same principle applies as with HTTP APIs: if the contract exists as a first-class artifact, it can participate in validation, review, generation, and governance.
-
-Without that, event-driven architectures tend to accumulate invisible coupling.
-
-## Security and authorization become easier to standardize
-
-Spec-first also improves how teams think about security.
+## Put security intent next to the interface
 
 In too many systems, authorization logic is added after the interface shape is already decided. Endpoints get protected in code, roles are implied rather than modeled, and policy expectations are distributed across framework annotations, middleware, and service-specific conventions.
-
-A contract-first approach gives you a better place to make those concerns visible.
 
 When scopes, auth schemes, and protected operations are represented in the contract, several things get easier:
 
@@ -312,13 +185,9 @@ When scopes, auth schemes, and protected operations are represented in the contr
 - consumer teams know what credentials or scopes are needed
 - gaps become more visible during design review instead of after rollout
 
-It does not eliminate the need for sound authorization architecture, but it moves security-relevant information closer to the interface where it belongs.
+This does not replace sound authorization architecture. It does put security intent next to the interface, where reviewers and consumers can see it.
 
-For platform teams, that matters a lot.
-
-## Parallel development becomes realistic, not aspirational
-
-One of the biggest organizational advantages of spec-first is that it makes parallel work less risky.
+## A stable contract lets teams work in parallel
 
 Once the contract is stable enough:
 
@@ -329,15 +198,9 @@ Once the contract is stable enough:
 - integration tests can start earlier
 - consumer services can develop against the contract without waiting for a fully deployed provider
 
-This reduces coordination bottlenecks that otherwise become normal in service-oriented delivery.
+The shared artifact narrows uncertainty enough for concurrent work. Backend, frontend, QA, and consuming services no longer have to wait for a deployed provider before making progress.
 
-Instead of sequencing teams around uncertainty, you give them a shared artifact that narrows uncertainty enough for concurrent work.
-
-That is one of the main reasons spec-first scales so well in product organizations with multiple teams.
-
-## CI is where the approach becomes enforceable
-
-A contract written first is useful. A contract enforced by CI is transformative.
+## CI keeps the contract authoritative
 
 Once CI ensures that the specification is valid and generated artifacts stay current, the workflow becomes much harder to bypass accidentally.
 
@@ -350,9 +213,7 @@ Typical checks in a mature setup include:
 - verification that generated code is committed or published correctly
 - test execution against generated clients and mocks
 
-This is the difference between “we prefer contract-first” and “our platform is contract-driven.”
-
-The latter is much stronger because it does not rely on memory or discipline alone.
+These checks make the contract authoritative instead of leaving contract-first as a team preference that depends on memory.
 
 ## Visual: spec-first platform workflow
 
@@ -368,9 +229,7 @@ flowchart TD
 
 ## Where spec-first can go wrong
 
-Spec-first is not magic.
-
-If the schemas are weak, the generated artifacts are poor, or the team treats the spec as bureaucratic overhead, the process can become heavy without creating enough value.
+Weak schemas, poor generated artifacts, or a specification treated as bureaucracy can make the process heavy without adding much value.
 
 It usually fails when:
 
@@ -382,56 +241,22 @@ It usually fails when:
 - teams model trivial details too aggressively
 - nobody owns the contract lifecycle
 
-The answer is not to abandon the approach. It is to be selective and disciplined.
+Use spec-first where contracts matter. Keep schemas readable, generate only the artifacts that save work or prevent drift, enforce the workflow in CI, and treat contract reviews as design reviews.
 
-Use it where contracts matter. Make the spec authoritative. Keep schemas readable. Generate the artifacts that create real leverage. Enforce the workflow in CI. Treat contract reviews as design reviews.
+## The payoff grows with the number of consumers
 
-That is where the returns compound.
+Early in a product's life, almost any interface approach can work because there are few consumers and the feedback loop is tight. The cost profile changes as services, teams, environments, and compatibility requirements multiply.
 
-## Why this matters more as systems mature
+With more services, frontend surfaces, teams, and environments come greater compatibility pressure, stronger governance requirements, more operational tooling, and more dependence on reliable automation. Interfaces are now part of the platform rather than a local implementation detail. Spec-first pays off because the contract can execute across the delivery pipeline, not merely document it.
 
-At early stage, almost any interface approach can feel acceptable because the number of consumers is small and the feedback loop is tight.
+## Make the contract do work
 
-As systems mature, the cost profile changes.
+Spec-first makes contracts explicit early enough for tooling, tests, validators, clients, and teams to rely on the same source model.
 
-Now you have:
+JSON Schema can connect API design, runtime safety, client generation, admin UI generation, and platform governance. Treating it only as validation plumbing leaves much of that value unused.
 
-- more services
-- more frontend surfaces
-- more teams
-- more environments
-- more backward compatibility pressure
-- more governance requirements
-- more operational tooling
-- more need for reliable automation
+On the Fizz backend platform, that means static OpenAPI in the service source, generated handlers, types and validators, and AJV on both backend and frontend. CI keeps generated clients current for services, frontend code, and tests; JSON Forms reuses the same schemas for admin UI work.
 
-At that point, interfaces stop being a local implementation detail. They become part of the platform itself.
+The result is better developer experience, less duplicated work, fewer integration surprises, and a platform that is easier to evolve safely.
 
-That is exactly where spec-first starts to outperform code-first decisively.
-
-Because the real value is not just that the contract is documented. It is that the contract becomes executable across the entire delivery pipeline.
-
-## The takeaway
-
-Spec-first is not about producing prettier API docs.
-
-It is about making contracts explicit early enough that your tooling, tests, validators, clients, and teams can all rely on the same source model.
-
-That is why JSON Schema deserves more attention than it usually gets. It is not just validation plumbing. It is the connective tissue that can link API design, runtime safety, client generation, admin UI generation, and platform governance into one coherent workflow.
-
-In our case, that has been especially clear on the Fizz backend platform:
-
-- static OpenAPI in service source code
-- generated handlers, types, and validators
-- AJV on backend and frontend
-- CI-enforced client generation
-- generated clients used across services, frontend, and tests
-- schema-driven admin UI acceleration with tools like JSON Forms
-
-The result is not just better documentation. It is better developer experience, less duplicated work, fewer integration surprises, and a platform that is easier to evolve safely.
-
-If your team already uses OpenAPI, AsyncAPI, or JSON Schema, you are probably closer to this model than you think.
-
-The real question is whether your contracts merely describe the system after the fact, or whether they actively shape how the system is built.
-
-That distinction is where the leverage is.
+If your team already uses OpenAPI, AsyncAPI, or JSON Schema, the remaining step is to let those contracts shape how the system is built instead of generating them after the fact.
