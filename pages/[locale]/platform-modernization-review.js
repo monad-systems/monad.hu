@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
@@ -602,15 +601,7 @@ export default function PlatformModernizationReview() {
       };
 
   return (
-    <Layout>
-      <Head>
-        <title>{copy.pageTitle}</title>
-        <meta name="description" content={copy.pageDescription} />
-        <meta property="og:title" content={copy.pageTitle} />
-        <meta property="og:description" content={copy.pageDescription} />
-        <meta property="og:type" content="website" />
-      </Head>
-
+    <Layout title={copy.pageTitle} description={copy.pageDescription}>
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden"

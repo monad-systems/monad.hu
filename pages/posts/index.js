@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 
 import Layout from '../../components/Layout';
@@ -16,15 +15,10 @@ const formatDate = (value) => {
 
 export default function PostsPage({ allPostsData }) {
   return (
-    <Layout>
-      <Head>
-        <title>Posts | MONAD SYSTEMS</title>
-        <meta
-          name="description"
-          content="Engineering insights on architecture, API design-first delivery, and backend platform development."
-        />
-      </Head>
-
+    <Layout
+      title="Posts | MONAD SYSTEMS"
+      description="Engineering insights on architecture, API design-first delivery, and backend platform development."
+    >
       <section className="site-container posts-page">
         <header className="posts-page__header">
           <p className="section-eyebrow">Insights</p>

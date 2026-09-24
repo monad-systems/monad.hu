@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -33,15 +32,10 @@ export default function PostsPage({ allPostsData }) {
   }, [locale, router]);
 
   return (
-    <Layout>
-      <Head>
-        <title>Posts | MONAD SYSTEMS</title>
-        <meta
-          name="description"
-          content="Engineering insights on architecture, API design-first delivery, and backend platform development."
-        />
-      </Head>
-
+    <Layout
+      title="Posts | MONAD SYSTEMS"
+      description="Engineering insights on architecture, API design-first delivery, and backend platform development."
+    >
       <section className="site-container posts-page">
         <header className="posts-page__header">
           <p className="section-eyebrow">
