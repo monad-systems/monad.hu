@@ -1,33 +1,33 @@
 self.__BUILD_MANIFEST = {
   "/": [
-    "static/chunks/845dd9fab6fc9155.js"
+    "static/chunks/05446c190dd995f8.js"
   ],
   "/404": [
-    "static/chunks/eed31221ccc022de.js"
+    "static/chunks/b851b067c4ef4471.js"
   ],
   "/[locale]": [
-    "static/chunks/98c4de9599ec2df2.js"
+    "static/chunks/b3b139dd835b985d.js"
   ],
   "/[locale]/platform-modernization-review": [
-    "static/chunks/9aa53e817c56906d.js"
+    "static/chunks/61738d5a5c4b63ac.js"
   ],
   "/[locale]/posts": [
-    "static/chunks/a48712233bf5b8a3.js"
+    "static/chunks/3d7ee3c160ead53c.js"
   ],
   "/[locale]/posts/[id]": [
-    "static/chunks/d98786bbbb909d55.js"
+    "static/chunks/5087dd280fb9c65c.js"
   ],
   "/_error": [
-    "static/chunks/6483c3f1e97d178e.js"
+    "static/chunks/a4316eaa753aa4ce.js"
   ],
   "/platform-modernization-review": [
-    "static/chunks/62e099578349a4dd.js"
+    "static/chunks/705f4389ac6f12e1.js"
   ],
   "/posts": [
-    "static/chunks/79eced11f46169af.js"
+    "static/chunks/8ed581cd80ddac5c.js"
   ],
   "/posts/[id]": [
-    "static/chunks/59a4fc3fa9517f39.js"
+    "static/chunks/81aded2f7959d277.js"
   ],
   "__rewrites": {
     "afterFiles": [],
