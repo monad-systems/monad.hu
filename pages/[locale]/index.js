@@ -178,8 +178,8 @@ const techStack = {
 
 const expertise = [
   {
-    code: 'PM',
-    title: 'Custom Software Engineering',
+    code: 'LM',
+    title: 'Legacy Modernization',
     description:
       'Incremental migration from monoliths to modular, service-oriented systems',
   },
@@ -206,7 +206,7 @@ const expertise = [
       'Right-sizing infrastructure and eliminating architecture-level waste',
   },
   {
-    code: 'PE',
+    code: 'CS',
     title: 'Custom Software Engineering',
     description:
       'Internal platforms, CI/CD, and developer tooling that accelerate delivery',
