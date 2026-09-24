@@ -34,7 +34,32 @@ const SocialIconLinkedIn = () => (
   </svg>
 );
 
-export default function Layout({ children }) {
+const DEFAULT_TITLE =
+  'MONAD SYSTEMS — Senior Software Consultancy for Custom Software Engineering';
+const DEFAULT_DESCRIPTION =
+  'Senior hands-on software consultancy specializing in custom software engineering, API-first delivery, event-driven architecture, and production-grade observability.';
+const DEFAULT_SHARE_TITLE = 'MONAD SYSTEMS';
+const DEFAULT_SHARE_DESCRIPTION =
+  'Senior hands-on software consultancy for custom software engineering, legacy migration, and production-grade engineering.';
+
+// Pages pass their metadata here instead of rendering their own <Head>.
+// next/head re-registers a <Head> each time its component re-renders and the
+// last one registered wins, so a second <Head> in Layout (which re-renders on
+// scroll) would override the page's title after hydration.
+export default function Layout({
+  children,
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  ogType = 'website',
+}) {
+  const pageTitle = title ?? DEFAULT_TITLE;
+  const pageDescription = description ?? DEFAULT_DESCRIPTION;
+  const shareTitle = ogTitle ?? title ?? DEFAULT_SHARE_TITLE;
+  const shareDescription =
+    ogDescription ?? description ?? DEFAULT_SHARE_DESCRIPTION;
+
   const router = useRouter();
   const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -82,31 +107,19 @@ export default function Layout({ children }) {
   return (
     <div className="app-container">
       <Head>
-        <title>
-          MONAD SYSTEMS — Senior Software Consultancy for Custom Software
-          Engineering
-        </title>
-        <meta
-          name="description"
-          content="Senior hands-on software consultancy specializing in custom software engineering, API-first delivery, event-driven architecture, and production-grade observability."
-        />
-        <meta property="og:title" content="MONAD SYSTEMS" />
-        <meta
-          property="og:description"
-          content="Senior hands-on software consultancy for custom software engineering, legacy migration, and production-grade engineering."
-        />
-        <meta property="og:type" content="website" />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={shareTitle} />
+        <meta property="og:description" content={shareDescription} />
+        <meta property="og:type" content={ogType} />
         <meta property="og:url" content="https://monad.hu" />
         <meta property="og:image" content="/og_1200_630.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MONAD SYSTEMS" />
-        <meta
-          name="twitter:description"
-          content="Senior hands-on software consultancy for custom software engineering, legacy migration, and production-grade engineering."
-        />
+        <meta name="twitter:title" content={shareTitle} />
+        <meta name="twitter:description" content={shareDescription} />
         <meta name="twitter:image" content="/og_1200_630.png" />
         <link
           rel="apple-touch-icon"

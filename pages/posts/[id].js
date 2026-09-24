@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 
@@ -165,18 +164,11 @@ export default function PostPage({ postData }) {
   const metaDescription = getMetaDescription(postData);
 
   return (
-    <Layout>
-      <Head>
-        <title>{`${postData.title} | MONAD SYSTEMS`}</title>
-        <meta name="description" content={metaDescription} />
-        <meta
-          property="og:title"
-          content={`${postData.title} | MONAD SYSTEMS`}
-        />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="article" />
-      </Head>
-
+    <Layout
+      title={`${postData.title} | MONAD SYSTEMS`}
+      description={metaDescription}
+      ogType="article"
+    >
       <article className="site-container blog-post">
         <div className="blog-post__meta">
           <Link href="/posts" className="blog-post__back-link">
