@@ -178,8 +178,8 @@ const techStack = {
 
 const expertise = [
   {
-    code: 'PM',
-    title: 'Custom Software Engineering',
+    code: 'LM',
+    title: 'Legacy Modernization',
     description:
       'Incremental migration from monoliths to modular, service-oriented systems',
   },
@@ -206,7 +206,7 @@ const expertise = [
       'Right-sizing infrastructure and eliminating architecture-level waste',
   },
   {
-    code: 'PE',
+    code: 'CS',
     title: 'Custom Software Engineering',
     description:
       'Internal platforms, CI/CD, and developer tooling that accelerate delivery',
@@ -288,56 +288,6 @@ const CheckIcon = () => (
   </svg>
 );
 
-const IconCode = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M8 9l-3 3 3 3" />
-    <path d="M16 9l3 3-3 3" />
-    <path d="M14 7l-4 10" />
-  </svg>
-);
-
-const IconLayers = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M12 2l9 5-9 5-9-5 9-5z" />
-    <path d="M3 12l9 5 9-5" />
-    <path d="M3 17l9 5 9-5" />
-  </svg>
-);
-
-const IconBadgeCheck = ({ className }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M12 2l2.4 1.4 2.8-.2 1.4 2.4 2.4 1.4-.2 2.8L22 12l1.4 2.4-1.4 2.4-2.8-.2-1.4 2.4-2.8-.2L12 22l-2.4-1.4-2.8.2-1.4-2.4-2.4-1.4.2-2.8L2 12 .6 9.6 2 7.2l2.8.2 1.4-2.4 2.8.2L12 2z" />
-    <path d="M16.5 9.5l-5 5-2-2" />
-  </svg>
-);
-
 const IconArrowRight = ({ className }) => (
   <svg
     className={className}
@@ -378,7 +328,7 @@ export default function Home() {
         heroSecondaryCta: 'Munkáink',
         statYears: 'Év tapasztalat',
         statProjects: 'Leszállított projekt',
-        statSatisfaction: 'Ügyfél elégedettség',
+        statSavings: 'Éves megtakarítás',
         bestFitEyebrow: 'Kinek ideális',
         bestFitTitlePrefix: 'Olyan csapatoknak, ahol',
         bestFitTitleAccent: 'komplex a rendszer.',
@@ -410,7 +360,7 @@ export default function Home() {
         heroSecondaryCta: 'View Our Work',
         statYears: 'Years Experience',
         statProjects: 'Projects Delivered',
-        statSatisfaction: 'Client Satisfaction',
+        statSavings: 'Annual Client Savings',
         bestFitEyebrow: 'Best Fit For',
         bestFitTitlePrefix: 'Built for Teams With',
         bestFitTitleAccent: 'Complex Systems.',
@@ -644,10 +594,7 @@ export default function Home() {
         projectsLabel: 'Leszállított projekt',
         expertiseTitle: 'Kulcsterületek',
         partnersEyebrow: 'Akik már bíztak bennünk',
-        partnersTitlePrefix: 'Cégek, amelyeknek',
-        partnersTitleAccent: 'szállítottunk',
-        partnersLead:
-          'Kormányzati infrastruktúrától fintech platformokig és gyorsan növekvő termékcégekig, minden logó mögött valódi delivery tapasztalat áll.',
+        partnersTitle: 'Cégek, amelyeknek szállítottunk',
         trustLabels: [
           'EU-alapú tanácsadó csapat',
           'Remote-first együttműködés',
@@ -659,6 +606,7 @@ export default function Home() {
         contactTitleAccent: 'szoftveres kihívásaitokról.',
         contactLead:
           'Legyen szó architektúra review-ról, modernizációs roadmapről vagy hands-on mérnöki támogatásról, együtt megtaláljuk a megfelelő formát.',
+        phoneLabel: 'Telefon',
         locationLabel: 'Helyszín',
         locationValue: 'Gödöllő, Magyarország (EU)',
         nameLabel: 'Név',
@@ -684,8 +632,6 @@ export default function Home() {
         recaptchaNotePrefix: 'Ezt az oldalt a reCAPTCHA védi, és a Google',
         recaptchaNoteMiddle: 'és',
         recaptchaNoteSuffix: 'érvényes.',
-        scrollLabel: 'Ugrás a tartalomhoz',
-        scrollSr: 'Görgetés',
       }
     : {
         problems,
@@ -759,10 +705,7 @@ export default function Home() {
         projectsLabel: 'Projects Delivered',
         expertiseTitle: 'Core Expertise',
         partnersEyebrow: 'Trusted By',
-        partnersTitlePrefix: 'Companies We Have',
-        partnersTitleAccent: 'Delivered For',
-        partnersLead:
-          'From government infrastructure to fintech platforms and high-growth product companies — every logo represents a hands-on architecture or delivery engagement.',
+        partnersTitle: 'Companies we have delivered for',
         trustLabels: [
           'EU-Based Consultancy',
           'Remote-First Collaboration',
@@ -774,6 +717,7 @@ export default function Home() {
         contactTitleAccent: 'Software Engineering Challenges.',
         contactLead:
           'Whether you need an architecture review, a modernization roadmap, or hands-on senior engineering — reach out and we will figure out the right engagement together.',
+        phoneLabel: 'Phone',
         locationLabel: 'Location',
         locationValue: 'Gödöllő, Hungary (EU)',
         nameLabel: 'Name',
@@ -800,8 +744,6 @@ export default function Home() {
           'This site is protected by reCAPTCHA and the Google',
         recaptchaNoteMiddle: 'and',
         recaptchaNoteSuffix: 'apply.',
-        scrollLabel: 'Scroll to content',
-        scrollSr: 'Scroll',
       };
   const contactText = homeContent;
   const [contactStatus, setContactStatus] = useState('');
@@ -928,138 +870,137 @@ export default function Home() {
     }
   };
 
+  const reviewHref =
+    locale === 'en'
+      ? '/platform-modernization-review'
+      : `/${locale}/platform-modernization-review`;
+
   return (
     <Layout>
       {/* ── Hero ── */}
-      <section className="hero-section relative flex items-start md:items-center overflow-hidden">
+      <section className="hero-section relative flex items-center overflow-hidden">
         <div className="hero-bg">
           <HeroBackground />
         </div>
+        <div className="hero-scrim" />
 
-        <div className="site-container relative z-10 pt-[calc(env(safe-area-inset-top)+6.5rem)] pb-16 md:pt-32 md:pb-20">
-          <div className="hero-content w-full max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs sm:text-sm text-[hsl(var(--muted-foreground))] mb-6 md:mb-8">
-              <span className="badge-dot animate-pulse" />
+        <div className="site-container hero-inner relative z-10 w-full">
+          <div className="hero-content max-w-3xl">
+            <p className="hero-eyebrow">
+              <span className="badge-dot" />
               {copy.heroBadge}
-            </div>
+            </p>
 
-            <h1 className="text-[clamp(2rem,8vh,2.75rem)] md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 md:mb-8 leading-[1.1]">
+            <h1 className="hero-heading">
               {copy.heroLine1}
               <br />
               <span className="gradient-text">{copy.heroLine2}</span>
             </h1>
 
-            <p className="text-base md:text-xl text-[hsl(var(--muted-foreground))] max-w-2xl mb-8 md:mb-10 leading-relaxed">
-              {copy.heroIntro}
-            </p>
+            <p className="hero-subtitle">{copy.heroIntro}</p>
 
-            <div className="flex flex-col sm:flex-row items-start gap-4">
-              <Link
-                className="btn btn-hero btn-lg group"
-                href={
-                  locale === 'en'
-                    ? '/platform-modernization-review'
-                    : `/${locale}/platform-modernization-review`
-                }
-              >
+            <div className="hero-actions">
+              <Link className="btn btn-hero btn-lg group" href={reviewHref}>
                 {copy.heroPrimaryCta}
-                <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
+                <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
               <a className="btn btn-outline btn-lg" href="#work">
                 {copy.heroSecondaryCta}
               </a>
             </div>
 
-            <div className="flex flex-wrap gap-8 md:gap-12 mt-10 md:mt-16">
+            <dl className="hero-stats">
               <div className="hero-stat">
-                <div className="hero-stat-top">
-                  <IconLayers className="hero-stat-icon" />
-                  <div className="hero-stat-value gradient-text">20+</div>
-                </div>
-                <div className="hero-stat-label">{copy.statYears}</div>
+                <dd className="hero-stat-value m-0">20+</dd>
+                <dt className="hero-stat-label">{copy.statYears}</dt>
               </div>
               <div className="hero-stat">
-                <div className="hero-stat-top">
-                  <IconCode className="hero-stat-icon" />
-                  <div className="hero-stat-value gradient-text">40+</div>
-                </div>
-                <div className="hero-stat-label">{copy.statProjects}</div>
+                <dd className="hero-stat-value m-0">40+</dd>
+                <dt className="hero-stat-label">{copy.statProjects}</dt>
               </div>
               <div className="hero-stat">
-                <div className="hero-stat-top">
-                  <IconBadgeCheck className="hero-stat-icon" />
-                  <div className="hero-stat-value gradient-text">100%</div>
-                </div>
-                <div className="hero-stat-label">{copy.statSatisfaction}</div>
+                <dd className="hero-stat-value m-0">$100k+</dd>
+                <dt className="hero-stat-label">{copy.statSavings}</dt>
               </div>
-            </div>
+            </dl>
           </div>
         </div>
-
-        <a
-          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2"
-          href="#best-fit"
-          aria-label={homeContent.scrollLabel}
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-[hsl(var(--muted-foreground)_/_0.3)] flex items-start justify-center p-2">
-            <div className="w-1 h-2 rounded-full bg-[hsl(var(--primary))] animate-pulse" />
-          </div>
-          <span className="sr-only">{homeContent.scrollSr}</span>
-        </a>
       </section>
 
-      {/* ── Best Fit For ── */}
-      <section
-        id="best-fit"
-        className="section"
-        style={{ paddingBottom: '3rem' }}
-      >
-        <div className="site-container">
-          <div className="section-header">
-            <div className="section-eyebrow">{copy.bestFitEyebrow}</div>
-            <h2 className="section-title">
-              {copy.bestFitTitlePrefix}{' '}
-              <span className="gradient-text">{copy.bestFitTitleAccent}</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {copy.bestFitItems.map((item) => (
-              <div
-                className="grid grid-cols-[auto_1fr] items-start gap-3.5"
-                key={item}
-              >
-                <CheckIcon />
-                <p className="section-lead" style={{ margin: 0 }}>
-                  {item}
-                </p>
-              </div>
+      {/* ── Client logos ── */}
+      <section id="partners" className="logo-band">
+        <div className="site-container logo-band__inner">
+          <p className="logo-band__label">
+            <strong>{homeContent.partnersEyebrow}</strong>
+            {homeContent.partnersTitle}
+          </p>
+          <div className="logo-band__logos">
+            {partners.map((partner) => (
+              <Image
+                key={partner.name}
+                src={partner.logo}
+                alt={partner.name}
+                width={160}
+                height={60}
+                className={`partner-logo ${
+                  partner.tone === 'light' ? 'partner-logo--light' : ''
+                } ${partner.tone === 'mono' ? 'partner-logo--mono' : ''}`}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Problems We Solve ── */}
-      <section id="services" className="section">
-        <div className="site-container">
-          <div className="section-header">
-            <div className="section-eyebrow">{copy.problemsEyebrow}</div>
+      {/* ── Best Fit For ── */}
+      <section id="best-fit" className="section">
+        <div className="site-container fit-layout">
+          <div>
+            <p className="section-eyebrow">{copy.bestFitEyebrow}</p>
             <h2 className="section-title">
-              {copy.problemsTitlePrefix}{' '}
-              <span className="gradient-text">{copy.problemsTitleAccent}</span>
+              {copy.bestFitTitlePrefix}{' '}
+              <span className="title-muted">{copy.bestFitTitleAccent}</span>
             </h2>
+          </div>
+
+          <ul className="fit-list">
+            {copy.bestFitItems.map((item, index) => (
+              <li key={item}>
+                <span className="fit-list__index">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ── Problems We Solve ── */}
+      <section id="services" className="section section--ruled">
+        <div className="site-container">
+          <div className="section-header section-header--split">
+            <div>
+              <p className="section-eyebrow">
+                <span className="section-eyebrow__index">01</span>
+                {copy.problemsEyebrow}
+              </p>
+              <h2 className="section-title">
+                {copy.problemsTitlePrefix}{' '}
+                <span className="title-muted">{copy.problemsTitleAccent}</span>
+              </h2>
+            </div>
             <p className="section-lead">{copy.problemsLead}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {homeContent.problems.map((problem) => (
-              <article key={problem.title} className="card hover-lift">
-                <div className="card-glow" />
-                <h3 style={{ fontSize: '1.15rem', marginBottom: '0.75rem' }}>
-                  {problem.title}
-                </h3>
-                <p className="section-lead">{problem.description}</p>
-                <div className="flex flex-wrap gap-2 mt-4">
+          <div className="ruled-grid ruled-grid--3">
+            {homeContent.problems.map((problem, index) => (
+              <article key={problem.title} className="ruled-cell">
+                <span className="ruled-cell__index">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="ruled-cell__title">{problem.title}</h3>
+                <p className="body-text">{problem.description}</p>
+                <div className="tag-list">
                   {problem.tags.map((tag) => (
                     <span className="tag" key={tag}>
                       {tag}
@@ -1073,64 +1014,45 @@ export default function Home() {
       </section>
 
       {/* ── How We Engage ── */}
-      <section
-        id="engage"
-        className="section bg-[hsl(var(--secondary)_/_0.15)]"
-      >
+      <section id="engage" className="section section--tint">
         <div className="site-container">
-          <div className="section-header">
-            <div className="section-eyebrow">{copy.engageEyebrow}</div>
-            <h2 className="section-title">
-              {homeContent.engageTitlePrefix}{' '}
-              <span className="gradient-text">
-                {homeContent.engageTitleAccent}
-              </span>
-            </h2>
+          <div className="section-header section-header--split">
+            <div>
+              <p className="section-eyebrow">
+                <span className="section-eyebrow__index">02</span>
+                {copy.engageEyebrow}
+              </p>
+              <h2 className="section-title">
+                {homeContent.engageTitlePrefix}{' '}
+                <span className="title-muted">
+                  {homeContent.engageTitleAccent}
+                </span>
+              </h2>
+            </div>
             <p className="section-lead">{homeContent.engageLead}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="engage-grid">
             {homeContent.engagements.map((eng) => (
-              <article key={eng.title} className="card hover-lift">
-                <div className="card-glow" />
-                <div
-                  className="expertise-icon"
-                  style={{ marginBottom: '1.25rem' }}
-                >
-                  {eng.step}
+              <article key={eng.title} className="engage-card">
+                <div className="engage-card__head">
+                  <h3 className="engage-card__title">{eng.title}</h3>
+                  <span className="engage-card__step">{eng.step}</span>
                 </div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
-                  {eng.title}
-                </h3>
-                <div className="grid gap-3">
+                <dl>
                   <div>
-                    <p
-                      className="section-eyebrow"
-                      style={{ marginBottom: '0.3rem' }}
-                    >
-                      {homeContent.engageWhat}
-                    </p>
-                    <p className="section-lead">{eng.what}</p>
+                    <dt className="mono-label">{homeContent.engageWhat}</dt>
+                    <dd className="body-text">{eng.what}</dd>
                   </div>
                   <div>
-                    <p
-                      className="section-eyebrow"
-                      style={{ marginBottom: '0.3rem' }}
-                    >
-                      {homeContent.engageWhen}
-                    </p>
-                    <p className="section-lead">{eng.when}</p>
+                    <dt className="mono-label">{homeContent.engageWhen}</dt>
+                    <dd className="body-text">{eng.when}</dd>
                   </div>
                   <div>
-                    <p
-                      className="section-eyebrow"
-                      style={{ marginBottom: '0.3rem' }}
-                    >
-                      {homeContent.engageOutcome}
-                    </p>
-                    <p className="section-lead">{eng.outcome}</p>
+                    <dt className="mono-label">{homeContent.engageOutcome}</dt>
+                    <dd className="body-text">{eng.outcome}</dd>
                   </div>
-                </div>
+                </dl>
               </article>
             ))}
           </div>
@@ -1140,28 +1062,30 @@ export default function Home() {
       {/* ── Why MONAD ── */}
       <section id="why" className="section">
         <div className="site-container">
-          <div className="section-header">
-            <div className="section-eyebrow">{copy.whyEyebrow}</div>
-            <h2 className="section-title">
-              {homeContent.whyTitlePrefix}{' '}
-              <span className="gradient-text">
-                {homeContent.whyTitleAccent}
-              </span>
-            </h2>
+          <div className="section-header section-header--split">
+            <div>
+              <p className="section-eyebrow">
+                <span className="section-eyebrow__index">03</span>
+                {copy.whyEyebrow}
+              </p>
+              <h2 className="section-title">
+                {homeContent.whyTitlePrefix}{' '}
+                <span className="title-muted">
+                  {homeContent.whyTitleAccent}
+                </span>
+              </h2>
+            </div>
             <p className="section-lead">{homeContent.whyLead}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="feature-grid">
             {homeContent.differentiators.map((item) => (
-              <div
-                key={item.title}
-                className="grid grid-cols-[auto_1fr] items-start gap-3.5"
-              >
-                <CheckIcon />
-                <div>
-                  <h3 className="value-title">{item.title}</h3>
-                  <p className="section-lead">{item.description}</p>
-                </div>
+              <div key={item.title} className="feature">
+                <span className="feature__icon">
+                  <CheckIcon />
+                </span>
+                <h3 className="value-title">{item.title}</h3>
+                <p className="body-text">{item.description}</p>
               </div>
             ))}
           </div>
@@ -1169,38 +1093,22 @@ export default function Home() {
       </section>
 
       {/* ── Mid-page CTA ── */}
-      <section
-        className="section"
-        style={{ paddingTop: '2rem', paddingBottom: '2rem' }}
-      >
+      <section className="pb-24 max-sm:pb-16">
         <div className="site-container">
-          <div
-            className="glass card text-center"
-            style={{ padding: '3rem 2rem' }}
-          >
-            <h2 className="section-title" style={{ marginBottom: '1rem' }}>
-              {homeContent.midCtaTitlePrefix}{' '}
-              <span className="gradient-text">
-                {homeContent.midCtaTitleAccent}
-              </span>
-            </h2>
-            <p
-              className="section-lead mx-auto"
-              style={{ maxWidth: '50ch', marginBottom: '2rem' }}
-            >
-              {homeContent.midCtaLead}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                className="btn btn-hero btn-lg group"
-                href={
-                  locale === 'en'
-                    ? '/platform-modernization-review'
-                    : `/${locale}/platform-modernization-review`
-                }
-              >
+          <div className="cta-band">
+            <div>
+              <h2 className="section-title">
+                {homeContent.midCtaTitlePrefix}{' '}
+                <span className="title-muted">
+                  {homeContent.midCtaTitleAccent}
+                </span>
+              </h2>
+              <p className="section-lead">{homeContent.midCtaLead}</p>
+            </div>
+            <div className="cta-band__actions">
+              <Link className="btn btn-hero btn-lg group" href={reviewHref}>
                 {homeContent.midCtaPrimary}
-                <IconArrowRight className="btn-icon transition-transform duration-300 group-hover:translate-x-1" />
+                <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
               <a className="btn btn-outline btn-lg" href="#engage">
                 {copy.midCtaSecondary}
@@ -1211,34 +1119,37 @@ export default function Home() {
       </section>
 
       {/* ── Case Studies ── */}
-      <section id="work" className="section">
+      <section id="work" className="section section--ruled">
         <div className="site-container">
-          <div className="section-header">
-            <div className="section-eyebrow">{copy.caseStudiesEyebrow}</div>
-            <h2 className="section-title">
-              {homeContent.caseStudiesTitlePrefix}{' '}
-              <span className="gradient-text">
-                {homeContent.caseStudiesTitleAccent}
-              </span>
-            </h2>
+          <div className="section-header section-header--split">
+            <div>
+              <p className="section-eyebrow">
+                <span className="section-eyebrow__index">04</span>
+                {copy.caseStudiesEyebrow}
+              </p>
+              <h2 className="section-title">
+                {homeContent.caseStudiesTitlePrefix}{' '}
+                <span className="title-muted">
+                  {homeContent.caseStudiesTitleAccent}
+                </span>
+              </h2>
+            </div>
             <p className="section-lead">{homeContent.caseStudiesLead}</p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="case-list">
             {homeContent.caseStudies.map((study, index) => (
               <article
                 key={`${study.title}-${index}`}
-                className={`card hover-lift work-card overflow-hidden p-10 transition-[border-color] duration-500 md:p-11 ${
-                  study.highlight && index === 0 ? 'md:col-span-2' : ''
-                }`}
+                className={`case-row ${index === 0 ? 'case-row--featured' : ''}`}
               >
-                <div className="card-glow" />
-                <div className="relative z-[1] flex h-full flex-col">
-                  <div className="work-category">{study.category}</div>
-                  <h3 className="work-card-title">{study.title}</h3>
-                  <p className="work-card-description">{study.description}</p>
-
-                  <div className="mt-auto flex flex-wrap gap-2">
+                <div className="case-row__meta">
+                  <span className="case-row__category">{study.category}</span>
+                  <h3 className="case-row__title">{study.title}</h3>
+                </div>
+                <div className="case-row__body">
+                  <p>{study.description}</p>
+                  <div className="tag-list">
                     {study.tags.map((tag) => (
                       <span key={tag} className="tag">
                         {tag}
@@ -1253,129 +1164,89 @@ export default function Home() {
       </section>
 
       {/* ── About ── */}
-      <section id="about" className="section">
+      <section id="about" className="section section--tint">
         <div className="site-container">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
-            <div>
-              <div className="section-eyebrow">{homeContent.aboutEyebrow}</div>
+          <div className="about-layout">
+            <div className="about-copy">
+              <p className="section-eyebrow">
+                <span className="section-eyebrow__index">05</span>
+                {homeContent.aboutEyebrow}
+              </p>
               <h2 className="section-title">
                 {homeContent.aboutTitlePrefix}{' '}
-                <span className="gradient-text">
+                <span className="title-muted">
                   {homeContent.aboutTitleAccent}
                 </span>
               </h2>
               <p className="section-lead">{homeContent.aboutLead1}</p>
               <p className="section-lead">{homeContent.aboutLead2}</p>
 
-              <div className="grid gap-5 mt-3">
+              <div className="about-values">
                 {homeContent.aboutValues.map((value) => (
-                  <div
-                    className="grid grid-cols-[auto_1fr] items-start gap-3.5"
-                    key={value.title}
-                  >
-                    <CheckIcon />
-                    <div>
-                      <h3 className="value-title">{value.title}</h3>
-                      <p className="section-lead">{value.description}</p>
-                    </div>
+                  <div key={value.title}>
+                    <h3 className="value-title">{value.title}</h3>
+                    <p className="body-text">{value.description}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="grid gap-4">
-              <div className="glass card">
-                <h3>{homeContent.principlesTitle}</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {homeContent.principles.map((principle) => (
-                    <span key={principle} className="tag">
-                      {principle}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="glass card">
-                <h3>{homeContent.techTitle}</h3>
-                <div className="grid gap-4">
-                  <div>
-                    <p className="section-eyebrow">
-                      {homeContent.techLangLabel}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {techStack.languages.map((tech) => (
-                        <span key={tech} className="tag-primary">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="section-eyebrow">
-                      {homeContent.techInfraLabel}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {techStack.infrastructure.map((tech) => (
-                        <span key={tech} className="tag">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="section-eyebrow">
-                      {homeContent.techDataLabel}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {techStack.data.map((tech) => (
-                        <span key={tech} className="tag">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="section-eyebrow">
-                      {homeContent.techObsLabel}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {techStack.observability.map((tech) => (
-                        <span key={tech} className="tag">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="glass card">
-                  <div className="hero-stat-value gradient-text">20+</div>
-                  <div className="hero-stat-label">
+            <aside className="fact-sheet">
+              <div className="fact-sheet__stats">
+                <div className="fact-sheet__stat">
+                  <div className="hero-stat-value">20+</div>
+                  <div className="hero-stat-label mt-2">
                     {homeContent.yearsLabel}
                   </div>
                 </div>
-                <div className="glass card">
-                  <div className="hero-stat-value gradient-text">40+</div>
-                  <div className="hero-stat-label">
+                <div className="fact-sheet__stat">
+                  <div className="hero-stat-value">40+</div>
+                  <div className="hero-stat-label mt-2">
                     {homeContent.projectsLabel}
                   </div>
                 </div>
               </div>
-            </div>
+
+              <div className="fact-sheet__section">
+                <h3 className="fact-sheet__heading">
+                  {homeContent.principlesTitle}
+                </h3>
+                <ul className="principle-list">
+                  {homeContent.principles.map((principle) => (
+                    <li key={principle}>{principle}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="fact-sheet__section">
+                <h3 className="fact-sheet__heading">{homeContent.techTitle}</h3>
+                <dl className="fact-rows">
+                  {[
+                    [homeContent.techLangLabel, techStack.languages],
+                    [homeContent.techInfraLabel, techStack.infrastructure],
+                    [homeContent.techDataLabel, techStack.data],
+                    [homeContent.techObsLabel, techStack.observability],
+                  ].map(([label, items]) => (
+                    <div className="fact-row" key={label}>
+                      <dt>{label}</dt>
+                      <dd>{items.join(' · ')}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </aside>
           </div>
 
-          <div className="mt-16">
-            <h3>{homeContent.expertiseTitle}</h3>
-            <div className="expertise-grid">
+          <div className="expertise-block">
+            <h3 className="expertise-block__title">
+              {homeContent.expertiseTitle}
+            </h3>
+            <div className="ruled-grid ruled-grid--3">
               {expertise.map((item) => (
-                <div key={item.title} className="expertise-card hover-lift">
-                  <div className="expertise-icon">{item.code}</div>
-                  <div>
-                    <h4>{item.title}</h4>
-                    <p className="section-lead">{item.description}</p>
-                  </div>
+                <div key={item.code} className="ruled-cell">
+                  <span className="ruled-cell__index">{item.code}</span>
+                  <h4 className="ruled-cell__title">{item.title}</h4>
+                  <p className="body-text">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -1383,273 +1254,114 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Partners ── */}
-      <section
-        id="partners"
-        className="section bg-[hsl(var(--secondary)_/_0.3)]"
-      >
-        <div className="site-container">
-          <div className="section-header mx-auto text-center">
-            <div className="section-eyebrow">{homeContent.partnersEyebrow}</div>
-            <h2 className="section-title">
-              {homeContent.partnersTitlePrefix}{' '}
-              <span className="gradient-text">
-                {homeContent.partnersTitleAccent}
-              </span>
-            </h2>
-            <p
-              className="section-lead"
-              style={{ maxWidth: '50ch', margin: '0 auto' }}
-            >
-              {homeContent.partnersLead}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-5">
-            {partners.map((partner) => (
-              <div
-                key={partner.name}
-                className="partner-card hover-lift flex h-[100px] items-center justify-center"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={160}
-                  height={60}
-                  className={`partner-logo ${
-                    partner.tone === 'light' ? 'partner-logo--light' : ''
-                  } ${partner.tone === 'mono' ? 'partner-logo--mono' : ''}`}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* ── International Buyer Trust Block ── */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
-            {[
-              {
-                label: homeContent.trustLabels[0],
-                icon: (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ width: 24, height: 24 }}
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M2 12h20" />
-                    <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-                  </svg>
-                ),
-              },
-              {
-                label: homeContent.trustLabels[1],
-                icon: (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ width: 24, height: 24 }}
-                    aria-hidden="true"
-                  >
-                    <path d="M15 10l5 0a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2v-6a2 2 0 012-2h5" />
-                    <polyline points="8 14 12 18 16 14" />
-                    <line x1="12" y1="18" x2="12" y2="4" />
-                  </svg>
-                ),
-              },
-              {
-                label: homeContent.trustLabels[2],
-                icon: (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ width: 24, height: 24 }}
-                    aria-hidden="true"
-                  >
-                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                  </svg>
-                ),
-              },
-              {
-                label: homeContent.trustLabels[3],
-                icon: (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ width: 24, height: 24 }}
-                    aria-hidden="true"
-                  >
-                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 00-3-3.87" />
-                    <path d="M16 3.13a4 4 0 010 7.75" />
-                  </svg>
-                ),
-              },
-              {
-                label: homeContent.trustLabels[4],
-                icon: (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ width: 24, height: 24 }}
-                    aria-hidden="true"
-                  >
-                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-                    <line x1="9" y1="6" x2="15" y2="6" />
-                    <line x1="9" y1="10" x2="15" y2="10" />
-                    <line x1="9" y1="14" x2="15" y2="14" />
-                    <line x1="9" y1="18" x2="12" y2="18" />
-                  </svg>
-                ),
-              },
-            ].map((trust) => (
-              <div
-                key={trust.label}
-                className="glass card flex flex-col items-center gap-2"
-                style={{ padding: '1.25rem 1rem' }}
-              >
-                <span style={{ color: 'hsl(var(--primary))' }}>
-                  {trust.icon}
-                </span>
-                <span
-                  className="text-[hsl(var(--muted-foreground))]"
-                  style={{ fontSize: '0.82rem', lineHeight: 1.35 }}
-                >
-                  {trust.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Contact ── */}
-      <section id="contact" className="section">
-        <div className="site-container grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-12">
+      <section id="contact" className="section section--ruled">
+        <div className="site-container contact-layout">
           <div>
-            <div className="section-eyebrow">{copy.contactEyebrow}</div>
+            <p className="section-eyebrow">
+              <span className="section-eyebrow__index">06</span>
+              {copy.contactEyebrow}
+            </p>
             <h2 className="section-title">
               {homeContent.contactTitlePrefix}{' '}
-              <span className="gradient-text">
+              <span className="title-muted">
                 {homeContent.contactTitleAccent}
               </span>
             </h2>
             <p className="section-lead">{homeContent.contactLead}</p>
 
-            <div className="mt-8 grid gap-6">
-              <div className="flex items-center gap-4">
-                <div className="contact-icon inline-flex h-11 w-11 items-center justify-center rounded-xl">
-                  @
-                </div>
-                <div>
-                  <div className="section-eyebrow">Email</div>
-                  <a href="mailto:hello@monad.hu">hello@monad.hu</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="contact-icon inline-flex h-11 w-11 items-center justify-center rounded-xl">
-                  +
-                </div>
-                <div>
-                  <div className="section-eyebrow">Phone</div>
-                  <a href="tel:+36306360775">+36 30 636 0775</a>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="contact-icon inline-flex h-11 w-11 items-center justify-center rounded-xl">
-                  HU
-                </div>
-                <div>
-                  <div className="section-eyebrow">Location</div>
-                  <a
-                    href="https://maps.app.goo.gl/UYrvowK7skeSyuaq5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {homeContent.locationValue}
-                  </a>
-                </div>
-              </div>
-            </div>
+            <ul className="contact-details">
+              <li>
+                <span className="mono-label">{homeContent.emailLabel}</span>
+                <a href="mailto:hello@monad.hu">hello@monad.hu</a>
+              </li>
+              <li>
+                <span className="mono-label">{homeContent.phoneLabel}</span>
+                <a href="tel:+36306360775">+36 30 636 0775</a>
+              </li>
+              <li>
+                <span className="mono-label">{homeContent.locationLabel}</span>
+                <a
+                  href="https://maps.app.goo.gl/UYrvowK7skeSyuaq5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {homeContent.locationValue}
+                </a>
+              </li>
+            </ul>
+
+            <ul className="trust-list">
+              {homeContent.trustLabels.map((label) => (
+                <li key={label}>
+                  <CheckIcon />
+                  {label}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="glass card">
+          <div className="form-card">
             <form id="contactForm" onSubmit={handleContactSubmit}>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+              <div className="form-grid">
+                <div className="form-grid form-grid--2">
+                  <div>
+                    <label htmlFor="name">{homeContent.nameLabel}</label>
+                    <input
+                      id="name"
+                      name="name"
+                      className="form-input"
+                      placeholder={homeContent.namePlaceholder}
+                      autoComplete="name"
+                      minLength={2}
+                      maxLength={120}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email">{homeContent.emailLabel}</label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      className="form-input"
+                      placeholder={homeContent.emailPlaceholder}
+                      autoComplete="email"
+                      maxLength={254}
+                      required
+                    />
+                  </div>
+                </div>
                 <div>
-                  <label htmlFor="name">{homeContent.nameLabel}</label>
+                  <label htmlFor="company">{homeContent.companyLabel}</label>
                   <input
-                    id="name"
-                    name="name"
+                    id="company"
+                    name="company"
                     className="form-input"
-                    placeholder={homeContent.namePlaceholder}
-                    minLength={2}
-                    maxLength={120}
-                    required
+                    placeholder={homeContent.companyPlaceholder}
+                    autoComplete="organization"
+                    maxLength={160}
                   />
                 </div>
                 <div>
-                  <label htmlFor="email">{homeContent.emailLabel}</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    className="form-input"
-                    placeholder={homeContent.emailPlaceholder}
-                    maxLength={254}
+                  <label htmlFor="message">{homeContent.messageLabel}</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    className="form-textarea"
+                    placeholder={homeContent.messagePlaceholder}
+                    minLength={10}
+                    maxLength={5000}
                     required
                   />
                 </div>
-              </div>
-              <div className="mt-4">
-                <label htmlFor="company">{homeContent.companyLabel}</label>
-                <input
-                  id="company"
-                  name="company"
-                  className="form-input"
-                  placeholder={homeContent.companyPlaceholder}
-                  maxLength={160}
-                />
-              </div>
-              <div className="mt-4">
-                <label htmlFor="message">{homeContent.messageLabel}</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  className="form-textarea"
-                  placeholder={homeContent.messagePlaceholder}
-                  minLength={10}
-                  maxLength={5000}
-                  required
-                />
               </div>
 
               <div
                 id="status"
                 role="status"
                 aria-live="polite"
-                className="mt-4 text-[hsl(var(--muted-foreground))]"
+                className="form-status"
               >
                 {contactStatus ||
                   (!isContactFormConfigured
@@ -1659,7 +1371,7 @@ export default function Home() {
 
               <button
                 type="submit"
-                className="btn btn-hero mt-6 w-full"
+                className="btn btn-hero btn-lg mt-6 w-full"
                 disabled={isSubmittingContact || !isContactFormConfigured}
               >
                 {isSubmittingContact

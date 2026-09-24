@@ -37,24 +37,28 @@ export default function PostsPage({ allPostsData }) {
 
         <div className="posts-list">
           {allPostsData.map((post) => (
-            <article key={post.id} className="card posts-list__item">
-              {post.date ? (
-                <time className="posts-list__date" dateTime={post.date}>
-                  {formatDate(post.date)}
-                </time>
-              ) : null}
+            <article key={post.id} className="posts-list__item">
+              <div className="posts-list__meta">
+                {post.date ? (
+                  <time className="posts-list__date" dateTime={post.date}>
+                    {formatDate(post.date)}
+                  </time>
+                ) : null}
+              </div>
 
-              <h2 className="posts-list__title">
-                <Link href={`/posts/${post.id}`}>{post.title}</Link>
-              </h2>
+              <div className="posts-list__body">
+                <h2 className="posts-list__title">
+                  <Link href={`/posts/${post.id}`}>{post.title}</Link>
+                </h2>
 
-              {post.lead ? (
-                <p className="posts-list__lead">{post.lead}</p>
-              ) : null}
+                {post.lead ? (
+                  <p className="posts-list__lead">{post.lead}</p>
+                ) : null}
 
-              <Link className="posts-list__link" href={`/posts/${post.id}`}>
-                Read post
-              </Link>
+                <Link className="posts-list__link" href={`/posts/${post.id}`}>
+                  Read post
+                </Link>
+              </div>
             </article>
           ))}
         </div>

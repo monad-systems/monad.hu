@@ -132,14 +132,14 @@ export default function Layout({ children }) {
       </Head>
 
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-[padding,background-color,border-color] duration-500 ${
-          isScrolled ? 'glass py-3 md:py-4' : 'py-4 md:py-6'
+        className={`site-header ${isScrolled ? 'is-scrolled' : ''} ${
+          isMobileMenuOpen ? 'is-menu-open' : ''
         }`}
       >
-        <div className="site-container flex items-center justify-between gap-6">
+        <div className="site-container site-header__bar">
           <Link
             href={localizePath('/', routeLocale)}
-            className="inline-flex items-center leading-none"
+            className="site-header__logo"
             aria-label="Monad Systems"
           >
             <Image
@@ -152,19 +152,25 @@ export default function Layout({ children }) {
           </Link>
 
           <nav className="desktop-nav" aria-label="Primary">
-            {navLinks.map((link) => (
-              <span key={link.label} className="inline-flex items-center">
-                {link.href.startsWith('/') ? (
-                  <Link href={link.href} className="site-nav-link">
-                    {link.label}
-                  </Link>
-                ) : (
-                  <a href={resolveHref(link.href)} className="site-nav-link">
-                    {link.label}
-                  </a>
-                )}
-              </span>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith('/') ? (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="site-nav-link"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={resolveHref(link.href)}
+                  className="site-nav-link"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
           </nav>
 
           <div className="desktop-cta">
@@ -185,28 +191,32 @@ export default function Layout({ children }) {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="mobile-menu glass animate-fade-in">
-            <nav aria-label="Mobile">
-              {navLinks.map((link) => (
-                <span key={link.label}>
-                  {link.href.startsWith('/') ? (
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={resolveHref(link.href)}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.label}
-                    </a>
-                  )}
-                </span>
-              ))}
-              <a className="btn btn-hero" href={resolveHref('#contact')}>
+          <div className="mobile-menu animate-fade-in">
+            <nav className="site-container" aria-label="Mobile">
+              {navLinks.map((link) =>
+                link.href.startsWith('/') ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={resolveHref(link.href)}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ),
+              )}
+              <a
+                className="btn btn-hero"
+                href={resolveHref('#contact')}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 {t('layout.cta.getInTouch', 'Get in Touch')}
               </a>
             </nav>
@@ -220,67 +230,81 @@ export default function Layout({ children }) {
 
       <footer className="site-footer">
         <div className="site-container">
-          <div className="footer-content">
-            <Image
-              src="/logo.svg"
-              alt="MONAD SYSTEMS"
-              width={125}
-              height={42}
-            />
-
-            <div className="footer-links">
-              <a href={resolveHref('#services')}>
-                {t('layout.nav.problems', 'Problems')}
-              </a>
-              <a href={resolveHref('#engage')}>
-                {t('layout.nav.engagements', 'Engagements')}
-              </a>
-              <a href={resolveHref('#why')}>
-                {t('layout.nav.whyMonad', 'Why Us')}
-              </a>
-              <a href={resolveHref('#work')}>{t('layout.nav.work', 'Work')}</a>
-              <Link href={localizePath('/posts', routeLocale)}>
-                {t('layout.nav.posts', 'Posts')}
-              </Link>
-              <a href={resolveHref('#contact')}>
-                {t('layout.nav.contact', 'Contact')}
-              </a>
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <Image
+                src="/logo.svg"
+                alt="MONAD SYSTEMS"
+                width={125}
+                height={42}
+              />
+              <p className="footer-tagline">
+                {t('layout.footer.taglinePlain', 'Built for Scale.')}{' '}
+                <span className="title-muted">
+                  {t('layout.footer.taglineAccent', 'Trusted by Enterprise.')}
+                </span>
+              </p>
+              <div className="footer-social">
+                <a
+                  href="https://github.com/monad-systems/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label={t('layout.social.github', 'GitHub')}
+                >
+                  <SocialIconGithub />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/monad-systems/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label={t('layout.social.linkedin', 'LinkedIn')}
+                >
+                  <SocialIconLinkedIn />
+                </a>
+              </div>
             </div>
 
-            <div className="footer-social">
-              <a
-                href="https://github.com/monad-systems/"
-                rel="noopener noreferrer"
-                target="_blank"
-                aria-label={t('layout.social.github', 'GitHub')}
-              >
-                <SocialIconGithub />
-                <span className="sr-only">
-                  {t('layout.social.github', 'GitHub')}
-                </span>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/monad-systems/"
-                rel="noopener noreferrer"
-                target="_blank"
-                aria-label={t('layout.social.linkedin', 'LinkedIn')}
-              >
-                <SocialIconLinkedIn />
-                <span className="sr-only">
-                  {t('layout.social.linkedin', 'LinkedIn')}
-                </span>
-              </a>
+            <nav aria-label="Footer">
+              <p className="mono-label footer-heading">
+                {t('layout.footer.company', 'Company')}
+              </p>
+              <ul className="footer-links">
+                {navLinks.map((link) => (
+                  <li key={link.label}>
+                    {link.href.startsWith('/') ? (
+                      <Link href={link.href}>{link.label}</Link>
+                    ) : (
+                      <a href={resolveHref(link.href)}>{link.label}</a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div>
+              <p className="mono-label footer-heading">
+                {t('layout.nav.contact', 'Contact')}
+              </p>
+              <ul className="footer-links">
+                <li>
+                  <a href="mailto:hello@monad.hu">hello@monad.hu</a>
+                </li>
+                <li>
+                  <a href="tel:+36306360775">+36 30 636 0775</a>
+                </li>
+                <li>{t('layout.footer.location', 'Gödöllő, Hungary (EU)')}</li>
+              </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span className="footer-tagline">
-              {t('layout.footer.taglinePlain', 'Built for Scale.')}{' '}
-              <span className="gradient-text">
-                {t('layout.footer.taglineAccent', 'Trusted by Enterprise.')}
-              </span>
-            </span>
             <span>© {new Date().getFullYear()} MONAD SYSTEMS Kft.</span>
+            <span>
+              {t(
+                'layout.footer.descriptor',
+                'Senior software consultancy · Architecture & delivery',
+              )}
+            </span>
           </div>
         </div>
       </footer>

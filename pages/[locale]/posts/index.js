@@ -58,39 +58,43 @@ export default function PostsPage({ allPostsData }) {
 
         <div className="posts-list">
           {allPostsData.map((post) => (
-            <article key={post.id} className="card posts-list__item">
-              {post.date ? (
-                <time className="posts-list__date" dateTime={post.date}>
-                  {formatDate(post.date, locale)}
-                </time>
-              ) : null}
+            <article key={post.id} className="posts-list__item">
+              <div className="posts-list__meta">
+                {post.date ? (
+                  <time className="posts-list__date" dateTime={post.date}>
+                    {formatDate(post.date, locale)}
+                  </time>
+                ) : null}
+              </div>
 
-              <h2 className="posts-list__title">
+              <div className="posts-list__body">
+                <h2 className="posts-list__title">
+                  <Link
+                    href={
+                      locale === 'en'
+                        ? `/posts/${post.id}`
+                        : `/${locale}/posts/${post.id}`
+                    }
+                  >
+                    {post.title}
+                  </Link>
+                </h2>
+
+                {post.lead ? (
+                  <p className="posts-list__lead">{post.lead}</p>
+                ) : null}
+
                 <Link
+                  className="posts-list__link"
                   href={
                     locale === 'en'
                       ? `/posts/${post.id}`
                       : `/${locale}/posts/${post.id}`
                   }
                 >
-                  {post.title}
+                  {t('posts.listing.readPost', 'Read post')}
                 </Link>
-              </h2>
-
-              {post.lead ? (
-                <p className="posts-list__lead">{post.lead}</p>
-              ) : null}
-
-              <Link
-                className="posts-list__link"
-                href={
-                  locale === 'en'
-                    ? `/posts/${post.id}`
-                    : `/${locale}/posts/${post.id}`
-                }
-              >
-                {t('posts.listing.readPost', 'Read post')}
-              </Link>
+              </div>
             </article>
           ))}
         </div>
