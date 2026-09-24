@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import Layout from '../components/Layout';
@@ -254,24 +253,11 @@ const nextSteps = [
 
 export default function PlatformModernizationReview() {
   return (
-    <Layout>
-      <Head>
-        <title>Custom Software Engineering Review — MONAD SYSTEMS</title>
-        <meta
-          name="description"
-          content="A focused software architecture review that identifies your highest-impact bottlenecks and gives you a concrete execution roadmap. From MONAD SYSTEMS."
-        />
-        <meta
-          property="og:title"
-          content="Custom Software Engineering Review — MONAD SYSTEMS"
-        />
-        <meta
-          property="og:description"
-          content="A focused software architecture review that maps your bottlenecks, risks, and a prioritized roadmap for custom software engineering delivery."
-        />
-        <meta property="og:type" content="website" />
-      </Head>
-
+    <Layout
+      title="Custom Software Engineering Review — MONAD SYSTEMS"
+      description="A focused software architecture review that identifies your highest-impact bottlenecks and gives you a concrete execution roadmap. From MONAD SYSTEMS."
+      ogDescription="A focused software architecture review that maps your bottlenecks, risks, and a prioritized roadmap for custom software engineering delivery."
+    >
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden"
