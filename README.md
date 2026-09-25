@@ -78,6 +78,18 @@ and `SKILL.md` is the checklist for those:
 The Hungarian translation needs the structural pass too. The word tables and the
 function-word entropy signal are English-tuned and will misfire on Hungarian.
 
+## Analytics
+
+Page views are tracked with [Umami](https://umami.is/), which is cookie-free. The script is only
+included when `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set at build time, and it only counts visits on
+`monad.hu`, so local builds are never tracked. Set `NEXT_PUBLIC_UMAMI_SCRIPT_URL` as well when
+using a self-hosted Umami instance; it defaults to Umami Cloud.
+
+For GitHub Pages deployment, add both as repository secrets (the script URL is optional).
+
+Custom events: `get-in-touch-click`, `review-cta-click` (homepage buttons to the review page), and
+`contact-form-sent`.
+
 ## Contact form
 
 The homepage contact form submits to a Google Apps Script endpoint and uses reCAPTCHA v3.

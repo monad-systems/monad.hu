@@ -251,7 +251,11 @@ export default function Layout({
           </nav>
 
           <div className="desktop-cta">
-            <a className="btn btn-hero btn-sm" href={resolveHref('#contact')}>
+            <a
+              className="btn btn-hero btn-sm"
+              href={resolveHref('#contact')}
+              data-umami-event="get-in-touch-click"
+            >
               {t('layout.cta.getInTouch', 'Get in Touch')}
             </a>
           </div>
@@ -292,6 +296,7 @@ export default function Layout({
               <a
                 className="btn btn-hero"
                 href={resolveHref('#contact')}
+                data-umami-event="get-in-touch-click"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('layout.cta.getInTouch', 'Get in Touch')}

@@ -842,6 +842,7 @@ export default function Home() {
 
         if (data?.ok) {
           setContactStatus(contactText.contactSent);
+          window.umami?.track('contact-form-sent');
           resolvedForm.reset();
           return;
         }
@@ -862,6 +863,7 @@ export default function Home() {
         });
 
         setContactStatus(contactText.contactSentFallback);
+        window.umami?.track('contact-form-sent');
         resolvedForm.reset();
       }
     } catch (err) {
@@ -910,7 +912,11 @@ export default function Home() {
             <p className="hero-subtitle">{copy.heroIntro}</p>
 
             <div className="hero-actions">
-              <Link className="btn btn-hero btn-lg group" href={reviewHref}>
+              <Link
+                className="btn btn-hero btn-lg group"
+                href={reviewHref}
+                data-umami-event="review-cta-click"
+              >
                 {copy.heroPrimaryCta}
                 <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
@@ -1116,7 +1122,11 @@ export default function Home() {
               <p className="section-lead">{homeContent.midCtaLead}</p>
             </div>
             <div className="cta-band__actions">
-              <Link className="btn btn-hero btn-lg group" href={reviewHref}>
+              <Link
+                className="btn btn-hero btn-lg group"
+                href={reviewHref}
+                data-umami-event="review-cta-click"
+              >
                 {homeContent.midCtaPrimary}
                 <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
