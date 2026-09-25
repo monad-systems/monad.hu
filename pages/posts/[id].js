@@ -78,11 +78,13 @@ export default function PostPage({ postData }) {
       if (!mermaidCodeBlocks.length) return;
 
       const mermaidModule = await import('mermaid');
+      const { default: DOMPurify } = await import('dompurify');
       if (isCanceled) return;
 
       const mermaid = mermaidModule.default;
       mermaid.initialize({
         startOnLoad: false,
+        securityLevel: 'strict',
         theme: 'base',
         themeVariables: {
           darkMode: true,
@@ -128,7 +130,11 @@ export default function PostPage({ postData }) {
             return;
           }
 
-          mermaidContainer.innerHTML = svg;
+          mermaidContainer.innerHTML = DOMPurify.sanitize(svg, {
+            ADD_TAGS: ['foreignObject'],
+            ADD_ATTR: ['dominant-baseline'],
+            HTML_INTEGRATION_POINTS: { foreignobject: true },
+          });
           const figure = document.createElement('figure');
           figure.className = 'diagram-figure';
           figure.appendChild(mermaidContainer);
