@@ -31,6 +31,8 @@ jobs:
         run: npm run build
       - name: Canonicalize English paths
         run: node scripts/generate-en-redirects.mjs
+      - name: Generate sitemap and RSS feed
+        run: node scripts/generate-sitemap-and-feed.mjs
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
       - name: Deploy

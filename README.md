@@ -34,6 +34,11 @@ Because the site is statically exported, server-level 301 redirects are not avai
 The deploy workflow rewrites all exported `/en/*.html` pages into canonical redirect pages that immediately
 forward to clean English URLs (for example, `/en/posts/slug` -> `/posts/slug`).
 
+The deploy workflow also runs `scripts/generate-sitemap-and-feed.mjs`, which writes `sitemap.xml` and the
+English RSS feed (`feed.xml`) into `out/` from the pages and `posts/` front matter. The public origin
+(`https://monad.hu`) lives in `lib/site.js`, which also builds canonical and `hreflang` links, Open Graph
+URLs, and JSON-LD structured data; keep the script's copy of the origin in sync with it.
+
 ## Posts authoring
 
 Posts are markdown files in `posts/`.
