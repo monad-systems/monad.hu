@@ -27,3 +27,6 @@ yarn-error.log*
 #netxtJS
 /.next
 /out
+
+# service dependencies
+services/*/node_modules

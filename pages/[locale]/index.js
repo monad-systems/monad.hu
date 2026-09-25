@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import AltchaWidget from '../../components/AltchaWidget';
 import Layout from '../../components/Layout';
 import { LOCALES, useTranslation } from '../../lib/i18n';
 
@@ -220,58 +221,6 @@ const partners = [
   { name: 'IDBC', logo: '/idbc.svg', tone: 'light' },
   { name: 'Webshippy', logo: '/webshippy-dark.svg', tone: 'mono' },
 ];
-
-let recaptchaScriptPromise = null;
-
-const ensureRecaptchaLoaded = async (siteKey) => {
-  if (typeof window === 'undefined') {
-    throw new Error('reCAPTCHA can only load in the browser');
-  }
-
-  if (window.grecaptcha?.execute && window.grecaptcha?.ready) {
-    return window.grecaptcha;
-  }
-
-  if (!recaptchaScriptPromise) {
-    recaptchaScriptPromise = new Promise((resolve, reject) => {
-      const existing = document.querySelector('script[data-recaptcha="true"]');
-
-      const handleLoad = () => {
-        if (window.grecaptcha?.ready) {
-          resolve(window.grecaptcha);
-          return;
-        }
-        reject(new Error('reCAPTCHA failed to initialize'));
-      };
-
-      const handleError = () => {
-        reject(new Error('Failed to load reCAPTCHA script'));
-      };
-
-      if (existing) {
-        existing.addEventListener('load', handleLoad, { once: true });
-        existing.addEventListener('error', handleError, { once: true });
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-      script.async = true;
-      script.defer = true;
-      script.dataset.recaptcha = 'true';
-      script.addEventListener('load', handleLoad, { once: true });
-      script.addEventListener('error', handleError, { once: true });
-      document.head.appendChild(script);
-    }).catch((error) => {
-      recaptchaScriptPromise = null;
-      throw error;
-    });
-  }
-
-  const grecaptcha = await recaptchaScriptPromise;
-  await new Promise((resolve) => grecaptcha.ready(resolve));
-  return grecaptcha;
-};
 
 const CheckIcon = () => (
   <svg
@@ -627,11 +576,10 @@ export default function Home() {
           'A kapcsolatfelvétel átmenetileg nem elérhető. Kérlek írj a hello@monad.hu címre.',
         contactFailed: 'Sikertelen küldés. Kérlek próbáld újra később.',
         contactSent: 'Köszönjük! Az üzenetedet elküldtük.',
-        contactSentFallback:
-          'Köszönjük! Az üzenetet elküldtük. (A böngészőből nem tudtuk visszaigazolni a kézbesítést.)',
-        recaptchaNotePrefix: 'Ezt az oldalt a reCAPTCHA védi, és a Google',
-        recaptchaNoteMiddle: 'és',
-        recaptchaNoteSuffix: 'érvényes.',
+        contactBotCheckFailed:
+          'A spamellenőrzés nem sikerült. Kérlek próbáld újra.',
+        altchaNote:
+          'Spamvédelem: az ALTCHA egy rövid számítási feladatot old meg a böngésződben. Nincs süti, nincs követés, nincs harmadik fél.',
       }
     : {
         problems,
@@ -738,134 +686,71 @@ export default function Home() {
           'Contact form is temporarily unavailable. Please email hello@monad.hu.',
         contactFailed: 'Failed to send. Please try again later.',
         contactSent: 'Thanks! Your message has been sent.',
-        contactSentFallback:
-          "Thanks! Your message has been sent. (We couldn't confirm delivery from your browser.)",
-        recaptchaNotePrefix:
-          'This site is protected by reCAPTCHA and the Google',
-        recaptchaNoteMiddle: 'and',
-        recaptchaNoteSuffix: 'apply.',
+        contactBotCheckFailed: 'The spam check failed. Please try again.',
+        altchaNote:
+          'Spam protection: ALTCHA solves a short computation in your browser. No cookies, no tracking, no third parties.',
       };
   const contactText = homeContent;
   const [contactStatus, setContactStatus] = useState('');
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
-  const isContactFormConfigured =
-    Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) &&
-    Boolean(process.env.NEXT_PUBLIC_APPS_SCRIPT_URL);
+  const contactApiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL;
+  const isContactFormConfigured = Boolean(contactApiUrl);
+  const altchaRef = useRef(null);
 
   const handleContactSubmit = async (event) => {
     event.preventDefault();
-
-    const form =
-      event?.currentTarget instanceof HTMLFormElement
-        ? event.currentTarget
-        : event?.target instanceof HTMLElement
-          ? event.target.closest('form')
-          : null;
+    const form = event.currentTarget;
 
     if (isSubmittingContact) return;
 
+    if (!isContactFormConfigured) {
+      setContactStatus(contactText.contactUnavailableInline);
+      return;
+    }
+
     setIsSubmittingContact(true);
-    setContactStatus('Sending...');
+    setContactStatus(contactText.sendingText);
 
     try {
-      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-      const appsScriptUrl = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL;
-      const action = 'contact_submit';
-
-      if (!siteKey || !appsScriptUrl) {
-        setContactStatus(contactText.contactUnavailableInline);
+      const formData = new FormData(form);
+      const altcha = await altchaRef.current?.ensurePayload(form);
+      if (!altcha) {
+        setContactStatus(contactText.contactBotCheckFailed);
         return;
       }
 
-      const grecaptcha = await ensureRecaptchaLoaded(siteKey);
+      const res = await fetch(`${contactApiUrl}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: String(formData.get('name') ?? '').trim(),
+          email: String(formData.get('email') ?? '').trim(),
+          company: String(formData.get('company') ?? '').trim(),
+          message: String(formData.get('message') ?? '').trim(),
+          locale,
+          altcha,
+        }),
+      });
 
-      const resolvedForm =
-        form ??
-        (typeof document !== 'undefined'
-          ? document.getElementById('contactForm')
-          : null);
-
-      if (!(resolvedForm instanceof HTMLFormElement)) {
-        throw new Error('Could not resolve contact form element');
+      if (res.ok) {
+        setContactStatus(contactText.contactSent);
+        form.reset();
+        window.umami?.track('contact-submitted');
+        return;
       }
 
-      const token = await grecaptcha.execute(siteKey, { action });
-
-      const formData = new FormData(resolvedForm);
-
-      const name = String(formData.get('name') ?? '').trim();
-      const email = String(formData.get('email') ?? '').trim();
-      const company = String(formData.get('company') ?? '').trim();
-      const message = String(formData.get('message') ?? '').trim();
-      const recaptchaToken = String(token ?? '').trim();
-
-      if (name.length < 2 || name.length > 120) throw new Error('Invalid name');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)
-        throw new Error('Invalid email');
-      if (company && company.length > 160) throw new Error('Invalid company');
-      if (message.length < 10 || message.length > 5000)
-        throw new Error('Invalid message length');
-      if (!recaptchaToken) throw new Error('Missing recaptchaToken');
-
-      const payload = {
-        name,
-        email,
-        company,
-        message,
-        recaptchaToken,
-      };
-
-      const body = JSON.stringify(payload);
-
-      // This Apps Script endpoint expects a JSON body. Using `text/plain`
-      // avoids a CORS preflight while still sending JSON.
-      try {
-        const res = await fetch(appsScriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-          body,
-          redirect: 'follow',
-        });
-
-        if (!res.ok) {
-          setContactStatus(contactText.contactFailed);
-          return;
-        }
-
-        const data = await res.json().catch(() => null);
-
-        if (data?.ok) {
-          setContactStatus(contactText.contactSent);
-          resolvedForm.reset();
-          return;
-        }
-
-        setContactStatus(contactText.contactFailed);
-        console.warn('Contact form error:', data);
-      } catch (err) {
-        // If the browser blocks reading the response due to CORS, still attempt
-        // to send the request.
-        console.warn('Contact form submit (CORS fallback):', err);
-
-        await fetch(appsScriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-          body,
-          redirect: 'follow',
-        });
-
-        setContactStatus(contactText.contactSentFallback);
-        resolvedForm.reset();
-      }
-    } catch (err) {
-      console.error(err);
       setContactStatus(
-        err instanceof Error && err.message
-          ? err.message
+        res.status === 403
+          ? contactText.contactBotCheckFailed
           : contactText.contactFailed,
       );
+    } catch (err) {
+      console.error('Contact form submit failed:', err);
+      setContactStatus(contactText.contactFailed);
     } finally {
+      // A payload is single-use, so every attempt, successful or not, needs a
+      // fresh challenge.
+      altchaRef.current?.reset();
       setIsSubmittingContact(false);
     }
   };
@@ -1357,6 +1242,16 @@ export default function Home() {
                 </div>
               </div>
 
+              {isContactFormConfigured ? (
+                <div className="altcha-row">
+                  <AltchaWidget
+                    ref={altchaRef}
+                    challengeUrl={`${contactApiUrl}/altcha/challenge`}
+                    language={locale}
+                  />
+                </div>
+              ) : null}
+
               <div
                 id="status"
                 role="status"
@@ -1381,27 +1276,16 @@ export default function Home() {
                     : homeContent.contactUnavailableButton}
               </button>
 
-              <div className="recaptcha-row" aria-live="polite">
-                <p className="recaptcha-note">
-                  {homeContent.recaptchaNotePrefix}{' '}
-                  <a
-                    href="https://policies.google.com/privacy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Privacy Policy
-                  </a>{' '}
-                  {homeContent.recaptchaNoteMiddle}{' '}
-                  <a
-                    href="https://policies.google.com/terms"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Terms of Service
-                  </a>{' '}
-                  {homeContent.recaptchaNoteSuffix}
-                </p>
-              </div>
+              <p className="altcha-note">
+                {homeContent.altchaNote}{' '}
+                <a
+                  href="https://altcha.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  altcha.org
+                </a>
+              </p>
             </form>
           </div>
         </div>

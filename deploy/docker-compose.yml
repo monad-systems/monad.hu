@@ -1,0 +1,92 @@
+# Backend for the static site: the contact endpoint and Umami analytics, plus
+# the Postgres they share. Runs on one small VM. Nothing publishes a port:
+# cloudflared dials out to Cloudflare, which routes the two public hostnames
+# into this network (see README.md).
+#
+# Secrets are files under ${SECRETS_DIR}, a tmpfs directory (infra ADR-0003).
+# Umami and cloudflared only read environment variables, so each gets an env
+# file from the same tmpfs directory instead.
+
+name: monad-systems-backend
+
+
+services:
+  postgres:
+    image: postgres:17.11-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      # Consumed by initdb/10-databases.sh on first start only.
+      UMAMI_DB_PASSWORD_FILE: /run/secrets/umami_db_password
+      CONTACT_DB_PASSWORD_FILE: /run/secrets/contact_db_password
+    secrets: [postgres_password, umami_db_password, contact_db_password]
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  contact:
+    image: ghcr.io/monad-systems/monad-systems-contact:${CONTACT_IMAGE_TAG:?set CONTACT_IMAGE_TAG to a sha- tag from GHCR}
+    restart: unless-stopped
+    environment:
+      PORT: "8080"
+      ALLOWED_ORIGINS: https://monad.systems,https://www.monad.systems
+      MAIL_FROM: ${MAIL_FROM:-contact@monad.systems}
+      MAIL_TO: ${MAIL_TO:-hello@monad.hu}
+      SCW_REGION: fr-par
+      SCW_PROJECT_ID: ${SCW_PROJECT_ID:?}
+      # Reachable only through the tunnel, so Cloudflare's client address
+      # header can be trusted for rate limiting.
+      TRUST_CF_CONNECTING_IP: "true"
+      ALTCHA_HMAC_SECRET_FILE: /run/secrets/altcha_hmac_secret
+      SCW_SECRET_KEY_FILE: /run/secrets/scw_tem_secret_key
+      DATABASE_URL_FILE: /run/secrets/contact_database_url
+    secrets: [altcha_hmac_secret, scw_tem_secret_key, contact_database_url]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  umami:
+    image: ghcr.io/umami-software/umami:3.4.0
+    restart: unless-stopped
+    environment:
+      # Geolocation must use the visitor's address, not cloudflared's.
+      CLIENT_IP_HEADER: cf-connecting-ip
+      DISABLE_TELEMETRY: "1"
+    # DATABASE_URL and APP_SECRET.
+    env_file:
+      - path: ${SECRETS_DIR:-/run/monad-systems/secrets}/umami.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.9.3
+    restart: unless-stopped
+    command: ["tunnel", "--no-autoupdate", "run"]
+    # TUNNEL_TOKEN.
+    env_file:
+      - path: ${SECRETS_DIR:-/run/monad-systems/secrets}/cloudflared.env
+    depends_on: [contact, umami]
+
+secrets:
+  postgres_password:
+    file: ${SECRETS_DIR:-/run/monad-systems/secrets}/postgres_password
+  umami_db_password:
+    file: ${SECRETS_DIR:-/run/monad-systems/secrets}/umami_db_password
+  contact_db_password:
+    file: ${SECRETS_DIR:-/run/monad-systems/secrets}/contact_db_password
+  contact_database_url:
+    file: ${SECRETS_DIR:-/run/monad-systems/secrets}/contact_database_url
+  altcha_hmac_secret:
+    file: ${SECRETS_DIR:-/run/monad-systems/secrets}/altcha_hmac_secret
+  scw_tem_secret_key:
+    file: ${SECRETS_DIR:-/run/monad-systems/secrets}/scw_tem_secret_key
+
+volumes:
+  postgres-data:

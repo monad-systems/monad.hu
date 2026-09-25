@@ -73,24 +73,31 @@ and `SKILL.md` is the checklist for those:
 The Hungarian translation needs the structural pass too. The word tables and the
 function-word entropy signal are English-tuned and will misfire on Hungarian.
 
-## Contact form
+## Contact form and analytics
 
-The homepage contact form submits to a Google Apps Script endpoint and uses reCAPTCHA v3.
+The homepage contact form posts to our own contact endpoint
+([`services/contact`](services/contact)), which checks an
+[ALTCHA](https://altcha.org) proof of work and forwards the message by email
+through Scaleway Transactional Email (EU). There is no Google reCAPTCHA and no
+Google Apps Script: no third-party scripts, cookies or requests. The widget
+solves a short puzzle in Web Workers while the visitor fills in the form. Page
+views are counted with self-hosted, cookieless [Umami](https://umami.is).
 
-The Apps Script must be deployed as a **Web app** with access set to **Anyone** (anonymous). If it's restricted (e.g., "Only myself"), Google will return a 403 "Access required" page.
+Both backends run outside GitHub Pages; how they are deployed, and every
+one-time set-up step, is in [`deploy/README.md`](deploy/README.md).
 
-Because this site is statically hosted, the browser can't reliably read the response from Apps Script unless the endpoint provides CORS headers or you add an external proxy.
+The site reads three public build-time variables (see `.env.local.example`):
 
-Set these env vars in `.env.local` (see `.env.local.example`):
+- `NEXT_PUBLIC_CONTACT_API_URL`: base URL of the contact endpoint. Unset, the
+  form renders as unavailable.
+- `NEXT_PUBLIC_UMAMI_SCRIPT_URL` and `NEXT_PUBLIC_UMAMI_WEBSITE_ID`: the
+  tracker loads only when both are set, so local and preview builds send
+  nothing.
 
-- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
-- `NEXT_PUBLIC_APPS_SCRIPT_URL`
+For GitHub Pages, set them as repository **variables** (Settings → Secrets and
+variables → Actions → Variables); the deploy workflow passes them to
+`npm run build`.
 
-Then run the app normally.
-
-For GitHub Pages deployment, also set the same values as repository secrets:
-
-- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
-- `NEXT_PUBLIC_APPS_SCRIPT_URL`
-
-The workflow injects these during `npm run build`, so the static output contains the correct public values.
+To work on the form locally, run the contact service (see its tests for a
+minimal in-process set-up) and set `NEXT_PUBLIC_CONTACT_API_URL` to it in
+`.env.local`. Its CORS allow-list must include your dev origin.

@@ -1454,27 +1454,34 @@ a.site-nav-link:hover {
   color: hsl(var(--muted-foreground));
 }
 
-.recaptcha-row {
-  margin-top: 1rem;
-  display: block;
+.altcha-row {
+  margin-top: 1.25rem;
 }
 
-.recaptcha-note {
-  margin: 0;
+.altcha-row altcha-widget {
+  --altcha-max-width: 100%;
+  --altcha-border-color: hsl(var(--border));
+  --altcha-border-radius: var(--radius);
+  --altcha-color-base: hsl(var(--card));
+  --altcha-color-base-content: hsl(var(--card-foreground));
+  --altcha-color-primary: hsl(var(--primary));
+  --altcha-color-primary-content: hsl(var(--primary-foreground));
+  --altcha-input-background-color: hsl(var(--input));
+  --altcha-spinner-color: hsl(var(--primary));
+}
+
+.altcha-note {
+  margin: 1rem 0 0;
   color: hsl(var(--muted-foreground) / 0.85);
   font-size: 0.75rem;
   line-height: 1.5;
 }
 
-.recaptcha-note a {
+.altcha-note a {
   color: hsl(var(--muted-foreground));
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
-}
-
-.grecaptcha-badge {
-  visibility: hidden !important;
 }
 
 /* ── Footer ───────────────────────────────────────── */

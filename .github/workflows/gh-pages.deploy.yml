@@ -26,8 +26,9 @@ jobs:
         run: npm ci
       - name: Build project
         env:
-          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
-          NEXT_PUBLIC_APPS_SCRIPT_URL: ${{ secrets.NEXT_PUBLIC_APPS_SCRIPT_URL }}
+          NEXT_PUBLIC_CONTACT_API_URL: ${{ vars.NEXT_PUBLIC_CONTACT_API_URL }}
+          NEXT_PUBLIC_UMAMI_SCRIPT_URL: ${{ vars.NEXT_PUBLIC_UMAMI_SCRIPT_URL }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
         run: npm run build
       - name: Canonicalize English paths
         run: node scripts/generate-en-redirects.mjs

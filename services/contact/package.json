@@ -1,0 +1,26 @@
+{
+  "name": "@monad-systems/monad-systems-contact",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Contact form endpoint for monad.systems: ALTCHA bot check, then forward by email through Scaleway Transactional Email (EU).",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.3.0",
+    "@fastify/rate-limit": "^11.2.0",
+    "@monad-systems/altcha": "^0.1.0",
+    "fastify": "^5.12.5",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "altcha-lib": "2.5.0"
+  },
+  "license": "UNLICENSED"
+}
