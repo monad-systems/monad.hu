@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 import Layout from '../../components/Layout';
 import { LOCALES, useTranslation } from '../../lib/i18n';
+import { organizationJsonLd, webSiteJsonLd } from '../../lib/site';
 
 const HeroBackground = dynamic(
   () => import('../../components/HeroBackground'),
@@ -319,6 +320,11 @@ export default function Home() {
   const isHu = locale === 'hu';
   const copy = isHu
     ? {
+        // English falls back to Layout's default title and description.
+        pageTitle:
+          'MONAD SYSTEMS — Senior szoftver tanácsadás és egyedi szoftverfejlesztés',
+        pageDescription:
+          'Senior, gyakorlati szoftver tanácsadás: egyedi szoftverfejlesztés, API-first kivitelezés, eseményvezérelt architektúra és éles üzemre kész observability.',
         heroBadge: 'Egyedi szoftverfejlesztés · Spec-First · Production-Grade',
         heroLine1: 'Built for Scale.',
         heroLine2: 'Trusted by Enterprise.',
@@ -836,6 +842,7 @@ export default function Home() {
 
         if (data?.ok) {
           setContactStatus(contactText.contactSent);
+          window.umami?.track('contact-form-sent');
           resolvedForm.reset();
           return;
         }
@@ -856,6 +863,7 @@ export default function Home() {
         });
 
         setContactStatus(contactText.contactSentFallback);
+        window.umami?.track('contact-form-sent');
         resolvedForm.reset();
       }
     } catch (err) {
@@ -876,7 +884,11 @@ export default function Home() {
       : `/${locale}/platform-modernization-review`;
 
   return (
-    <Layout>
+    <Layout
+      title={copy.pageTitle}
+      description={copy.pageDescription}
+      jsonLd={[organizationJsonLd, webSiteJsonLd]}
+    >
       {/* ── Hero ── */}
       <section className="hero-section relative flex items-center overflow-hidden">
         <div className="hero-bg">
@@ -900,7 +912,11 @@ export default function Home() {
             <p className="hero-subtitle">{copy.heroIntro}</p>
 
             <div className="hero-actions">
-              <Link className="btn btn-hero btn-lg group" href={reviewHref}>
+              <Link
+                className="btn btn-hero btn-lg group"
+                href={reviewHref}
+                data-umami-event="review-cta-click"
+              >
                 {copy.heroPrimaryCta}
                 <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
@@ -1106,7 +1122,11 @@ export default function Home() {
               <p className="section-lead">{homeContent.midCtaLead}</p>
             </div>
             <div className="cta-band__actions">
-              <Link className="btn btn-hero btn-lg group" href={reviewHref}>
+              <Link
+                className="btn btn-hero btn-lg group"
+                href={reviewHref}
+                data-umami-event="review-cta-click"
+              >
                 {homeContent.midCtaPrimary}
                 <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>

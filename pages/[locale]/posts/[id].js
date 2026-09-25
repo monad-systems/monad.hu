@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import Layout from '../../../components/Layout';
 import { normalizeLocale, useTranslation } from '../../../lib/i18n';
 import { getAllPostIds, getPostData } from '../../../lib/posts';
+import { getBlogPostingJsonLd } from '../../../lib/site';
 
 let mermaidRenderCounter = 0;
 
@@ -183,6 +184,8 @@ export default function PostPage({ postData }) {
       title={`${postData.title} | MONAD SYSTEMS`}
       description={metaDescription}
       ogType="article"
+      jsonLd={getBlogPostingJsonLd(postData, metaDescription)}
+      isTranslated={!postData.isFallbackLocale}
     >
       <article className="site-container blog-post">
         <div className="blog-post__meta">

@@ -34,6 +34,11 @@ Because the site is statically exported, server-level 301 redirects are not avai
 The deploy workflow rewrites all exported `/en/*.html` pages into canonical redirect pages that immediately
 forward to clean English URLs (for example, `/en/posts/slug` -> `/posts/slug`).
 
+The deploy workflow also runs `scripts/generate-sitemap-and-feed.mjs`, which writes `sitemap.xml` and the
+English RSS feed (`feed.xml`) into `out/` from the pages and `posts/` front matter. The public origin
+(`https://monad.hu`) lives in `lib/site.js`, which also builds canonical and `hreflang` links, Open Graph
+URLs, and JSON-LD structured data; keep the script's copy of the origin in sync with it.
+
 ## Posts authoring
 
 Posts are markdown files in `posts/`.
@@ -72,6 +77,18 @@ and `SKILL.md` is the checklist for those:
 
 The Hungarian translation needs the structural pass too. The word tables and the
 function-word entropy signal are English-tuned and will misfire on Hungarian.
+
+## Analytics
+
+Page views are tracked with [Umami](https://umami.is/), which is cookie-free. The script is only
+included when `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set at build time, and it only counts visits on
+`monad.hu`, so local builds are never tracked. Set `NEXT_PUBLIC_UMAMI_SCRIPT_URL` as well when
+using a self-hosted Umami instance; it defaults to Umami Cloud.
+
+For GitHub Pages deployment, add both as repository secrets (the script URL is optional).
+
+Custom events: `get-in-touch-click`, `review-cta-click` (homepage buttons to the review page), and
+`contact-form-sent`.
 
 ## Contact form
 

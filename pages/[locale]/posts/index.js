@@ -33,8 +33,11 @@ export default function PostsPage({ allPostsData }) {
 
   return (
     <Layout
-      title="Posts | MONAD SYSTEMS"
-      description="Engineering insights on architecture, API design-first delivery, and backend platform development."
+      title={`${t('posts.listing.title', 'Posts')} | MONAD SYSTEMS`}
+      description={t(
+        'posts.listing.metaDescription',
+        'Engineering insights on architecture, API design-first delivery, and backend platform development.',
+      )}
     >
       <section className="site-container posts-page">
         <header className="posts-page__header">
