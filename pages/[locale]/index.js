@@ -919,7 +919,7 @@ export default function Home() {
                 <dt className="hero-stat-label">{copy.statProjects}</dt>
               </div>
               <div className="hero-stat">
-                <dd className="hero-stat-value m-0">$100k+</dd>
+                <dd className="hero-stat-value m-0">$300k+</dd>
                 <dt className="hero-stat-label">{copy.statSavings}</dt>
               </div>
             </dl>
