@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://monad.hu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/" />
+  </url>
+  <url>
+    <loc>https://monad.hu/platform-modernization-review</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/platform-modernization-review" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/platform-modernization-review" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/platform-modernization-review" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu/platform-modernization-review</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/platform-modernization-review" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/platform-modernization-review" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/platform-modernization-review" />
+  </url>
+  <url>
+    <loc>https://monad.hu/posts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu/posts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts" />
+  </url>
+  <url>
+    <loc>https://monad.hu/posts/building-blocks-ai-native-development</loc>
+    <lastmod>2026-08-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/building-blocks-ai-native-development" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts/building-blocks-ai-native-development" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts/building-blocks-ai-native-development" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu/posts/building-blocks-ai-native-development</loc>
+    <lastmod>2026-08-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/building-blocks-ai-native-development" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts/building-blocks-ai-native-development" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts/building-blocks-ai-native-development" />
+  </url>
+  <url>
+    <loc>https://monad.hu/posts/contract-first-json-schema</loc>
+    <lastmod>2025-04-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/contract-first-json-schema" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts/contract-first-json-schema" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts/contract-first-json-schema" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu/posts/contract-first-json-schema</loc>
+    <lastmod>2025-04-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/contract-first-json-schema" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts/contract-first-json-schema" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts/contract-first-json-schema" />
+  </url>
+</urlset>

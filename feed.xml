@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MONAD SYSTEMS Posts</title>
+    <link>https://monad.hu/posts</link>
+    <description>Engineering insights on architecture, API design-first delivery, and backend platform development.</description>
+    <language>en</language>
+    <atom:link href="https://monad.hu/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Your Building Blocks Set the Ceiling on AI-Assisted Delivery</title>
+      <link>https://monad.hu/posts/building-blocks-ai-native-development</link>
+      <guid isPermaLink="true">https://monad.hu/posts/building-blocks-ai-native-development</guid>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 GMT</pubDate>
+      <description>AI made code generation cheap; it did nothing to reduce the cost of being wrong. Shared packages, explicit contracts, executable rules, and reliable gates now determine how much useful work a team can get from AI-assisted development.</description>
+      <category>AI-Native Development</category>
+      <category>Platform Engineering</category>
+      <category>Software Factory</category>
+      <category>Spec-First</category>
+      <category>Agentic Development</category>
+      <category>Architecture Governance</category>
+      <category>Custom Software Engineering</category>
+    </item>
+    <item>
+      <title>Designing Systems Before Coding Them</title>
+      <link>https://monad.hu/posts/contract-first-json-schema</link>
+      <guid isPermaLink="true">https://monad.hu/posts/contract-first-json-schema</guid>
+      <pubDate>Thu, 24 Apr 2025 00:00:00 GMT</pubDate>
+      <description>Many teams still generate API contracts after the implementation. Designing the interface first gives backend, frontend, QA, and service consumers one artifact to review, validate, and build against before integration problems become expensive.</description>
+      <category>Spec-First</category>
+      <category>OpenAPI</category>
+      <category>AsyncAPI</category>
+      <category>JSON Schema</category>
+      <category>Generated Clients</category>
+      <category>AJV Validation</category>
+      <category>Custom Software Engineering</category>
+    </item>
+  </channel>
+</rss>
