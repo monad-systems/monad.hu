@@ -1458,16 +1458,106 @@ a.site-nav-link:hover {
   margin-top: 1.25rem;
 }
 
+/* The ALTCHA widget, styled as a fourth form field: same background, border,
+   radius, padding and type as .form-input, with the checkbox in the primary
+   colour. The widget renders in light DOM, so its classes can be targeted. */
 .altcha-row altcha-widget {
+  display: block;
   --altcha-max-width: 100%;
-  --altcha-border-color: hsl(var(--border));
-  --altcha-border-radius: var(--radius);
-  --altcha-color-base: hsl(var(--card));
-  --altcha-color-base-content: hsl(var(--card-foreground));
+  --altcha-padding: 0.75rem 0.9rem;
+  --altcha-border-width: 1px;
+  --altcha-border-color: hsl(var(--foreground) / 0.12);
+  --altcha-border-radius: 0.5rem;
+  --altcha-color-base: hsl(var(--background));
+  --altcha-color-base-content: hsl(var(--foreground));
+  --altcha-color-neutral: hsl(var(--foreground) / 0.22);
+  --altcha-color-neutral-content: hsl(var(--muted-foreground));
   --altcha-color-primary: hsl(var(--primary));
   --altcha-color-primary-content: hsl(var(--primary-foreground));
-  --altcha-input-background-color: hsl(var(--input));
+  --altcha-color-success: hsl(var(--primary));
+  --altcha-color-success-content: hsl(var(--primary-foreground));
+  --altcha-color-error: hsl(var(--destructive));
+  --altcha-color-error-content: hsl(var(--destructive-foreground));
+  --altcha-checkbox-size: 1.125rem;
+  --altcha-checkbox-border-radius: 0.25rem;
+  --altcha-checkbox-border-color: hsl(var(--foreground) / 0.28);
+  --altcha-checkbox-outline-color: hsl(var(--primary) / 0.5);
+  --altcha-input-background-color: transparent;
   --altcha-spinner-color: hsl(var(--primary));
+  --altcha-popover-color: hsl(var(--card));
+  font-size: 0.9375rem;
+}
+
+.altcha-row .altcha-main {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  min-height: calc(1.5em + 1.5rem + 2px);
+  line-height: 1.5;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.altcha-row .altcha-main:hover {
+  border-color: hsl(var(--foreground) / 0.22);
+}
+
+.altcha-row .altcha-main:focus-within {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.18);
+}
+
+.altcha-row .altcha-checkbox-wrap {
+  gap: 0.65rem;
+}
+
+.altcha-row .altcha-checkbox-wrap label {
+  margin: 0;
+  color: hsl(var(--foreground));
+  font-size: 0.9375rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.altcha-row .altcha-main > .altcha-footer {
+  flex-grow: 0;
+  width: auto;
+  gap: 0.4rem;
+  font-size: 0.6875rem;
+  color: hsl(var(--muted-foreground));
+  opacity: 1;
+  white-space: nowrap;
+}
+
+.altcha-row .altcha-logo {
+  display: flex;
+  align-items: center;
+}
+
+.altcha-row .altcha-logo svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* The widget's own reset strips the check mark's stroke, leaving a plain
+   square once verified. */
+.altcha-row .altcha-checkbox svg {
+  z-index: 1;
+  stroke: hsl(var(--primary-foreground));
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.altcha-row .altcha-checkbox-wrap label {
+  white-space: nowrap;
+}
+
+/* Narrow screens: keep the label on one line. ALTCHA stays credited by its
+   logo here and by the note under the button. */
+@media (max-width: 480px) {
+  .altcha-row .altcha-main > .altcha-footer {
+    display: none;
+  }
 }
 
 .altcha-note {
