@@ -1,0 +1,57 @@
+name: Attribution policy
+
+# Fails any pull request whose title, description or commits carry
+# coding-agent attribution (see CLAUDE.md). The GitHub integration Claude Code
+# uses can append a footer on its own, so this catches what an author missed.
+#
+# `pull_request_target` so a branch cannot weaken the rule it is judged by. It
+# runs the base branch's definition with a read-only token, which is only
+# dangerous to a job that executes the pull request's code: THIS WORKFLOW MUST
+# NEVER CHECK ANYTHING OUT. It reads metadata only, and the title and body
+# reach the script through the environment, never through `${{ }}` in shell.
+
+on:
+  pull_request_target:
+    # `edited` re-runs the check once a footer is removed from the description.
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: attribution-policy-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  attribution:
+    name: no agent attribution
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Reject coding-agent attribution
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+          BODY: ${{ github.event.pull_request.body }}
+          COMMITS: repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/commits
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          # Co-author trailers, session links, "Generated with/by Claude Code"
+          # footers, and Anthropic's noreply author address.
+          pattern='co-authored-by:.*(claude|anthropic)|claude-session:|claude\.ai/code|generated (with|by) \[?claude code|noreply@anthropic\.com'
+          status=0
+          if printf '%s\n%s\n' "$TITLE" "$BODY" | grep -inE "$pattern"; then
+            echo "::error::The pull request title or description carries coding-agent attribution. Remove it, and delete the old revision from the description's edit history."
+            status=1
+          fi
+          if ! commits=$(gh api --paginate "$COMMITS" --jq '.[] | "\(.sha[0:7]) \(.commit.author.name) <\(.commit.author.email)> / \(.commit.committer.name) <\(.commit.committer.email)>\n\(.commit.message)\n"'); then
+            echo "::error::Could not list this pull request's commits."
+            exit 1
+          fi
+          if printf '%s\n' "$commits" | grep -inE "$pattern"; then
+            echo "::error::A commit in this pull request carries coding-agent attribution (trailer, session link or author). Rewrite it out before merging."
+            status=1
+          fi
+          [ "$status" -eq 0 ] && echo "No coding-agent attribution found."
+          exit "$status"
