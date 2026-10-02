@@ -30,7 +30,7 @@ function ErrorPage({ statusCode }) {
       );
 
   return (
-    <Layout>
+    <Layout noIndex>
       <section className="section">
         <div className="site-container">
           <div className="section-header">

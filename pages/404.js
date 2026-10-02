@@ -14,7 +14,7 @@ export default function Custom404() {
   const locale = normalizeLocale(getLocaleFromPath(router.asPath));
 
   return (
-    <Layout>
+    <Layout noIndex>
       <section className="section">
         <div className="site-container">
           <div className="section-header">

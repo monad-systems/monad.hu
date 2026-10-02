@@ -11,6 +11,12 @@ import {
   normalizeLocale,
   useTranslation,
 } from '../lib/i18n';
+import {
+  FEED_PATH,
+  OG_IMAGE_URL,
+  SITE_NAME,
+  getCanonicalUrl,
+} from '../lib/site';
 
 const SocialIconGithub = () => (
   <svg
@@ -53,6 +59,11 @@ export default function Layout({
   ogTitle,
   ogDescription,
   ogType = 'website',
+  jsonLd,
+  // False on a page showing English text under /hu (untranslated post), so the
+  // English URL stays canonical and no Hungarian alternate is advertised.
+  isTranslated = true,
+  noIndex = false,
 }) {
   const pageTitle = title ?? DEFAULT_TITLE;
   const pageDescription = description ?? DEFAULT_DESCRIPTION;
@@ -68,6 +79,15 @@ export default function Layout({
     router.query?.locale || getLocaleFromPath(router.asPath),
   );
   const isHome = router.pathname === '/' || router.pathname === '/[locale]';
+
+  const basePath =
+    router.asPath
+      .split(/[?#]/)[0]
+      .replace(/^\/(en|hu)(?=\/|$)/, '')
+      .replace(/\/$/, '') || '/';
+  const canonicalLocale = isTranslated ? routeLocale : 'en';
+  const canonicalUrl = getCanonicalUrl(basePath, canonicalLocale);
+  const jsonLdItems = [].concat(jsonLd ?? []);
 
   const resolveHref = (href) => {
     if (!href?.startsWith('#')) return href;
@@ -112,15 +132,59 @@ export default function Layout({
         <meta property="og:title" content={shareTitle} />
         <meta property="og:description" content={shareDescription} />
         <meta property="og:type" content={ogType} />
-        <meta property="og:url" content="https://monad.hu" />
-        <meta property="og:image" content="/og_1200_630.png" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta
+          property="og:locale"
+          content={canonicalLocale === 'hu' ? 'hu_HU' : 'en_US'}
+        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={OG_IMAGE_URL} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={shareTitle} />
         <meta name="twitter:description" content={shareDescription} />
-        <meta name="twitter:image" content="/og_1200_630.png" />
+        <meta name="twitter:image" content={OG_IMAGE_URL} />
+        {noIndex ? (
+          <meta name="robots" content="noindex" />
+        ) : (
+          <>
+            <link rel="canonical" href={canonicalUrl} />
+            <link
+              rel="alternate"
+              hrefLang="en"
+              href={getCanonicalUrl(basePath, 'en')}
+            />
+            {isTranslated ? (
+              <link
+                rel="alternate"
+                hrefLang="hu"
+                href={getCanonicalUrl(basePath, 'hu')}
+              />
+            ) : null}
+            <link
+              rel="alternate"
+              hrefLang="x-default"
+              href={getCanonicalUrl(basePath, 'en')}
+            />
+          </>
+        )}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${SITE_NAME} Posts`}
+          href={FEED_PATH}
+        />
+        {jsonLdItems.map((item, index) => (
+          <script
+            key={`jsonld-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(item).replace(/</g, '\\u003c'),
+            }}
+          />
+        ))}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -187,7 +251,11 @@ export default function Layout({
           </nav>
 
           <div className="desktop-cta">
-            <a className="btn btn-hero btn-sm" href={resolveHref('#contact')}>
+            <a
+              className="btn btn-hero btn-sm"
+              href={resolveHref('#contact')}
+              data-umami-event="get-in-touch-click"
+            >
               {t('layout.cta.getInTouch', 'Get in Touch')}
             </a>
           </div>
@@ -228,6 +296,7 @@ export default function Layout({
               <a
                 className="btn btn-hero"
                 href={resolveHref('#contact')}
+                data-umami-event="get-in-touch-click"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('layout.cta.getInTouch', 'Get in Touch')}
