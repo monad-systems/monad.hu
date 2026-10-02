@@ -92,22 +92,17 @@ Custom events: `get-in-touch-click`, `review-cta-click` (homepage buttons to the
 
 ## Contact form
 
-The homepage contact form submits to a Google Apps Script endpoint and uses reCAPTCHA v3.
+The homepage contact form uses [ALTCHA](https://altcha.org), a proof-of-work
+bot check, instead of Google reCAPTCHA: no third-party scripts, cookies or
+requests. The widget solves a short puzzle in Web Workers while the visitor
+fills in the form, and the form posts the result together with the message to
+the contact endpoint, which issues and verifies the challenges.
 
-The Apps Script must be deployed as a **Web app** with access set to **Anyone** (anonymous). If it's restricted (e.g., "Only myself"), Google will return a 403 "Access required" page.
+The endpoint is not part of this repository. The site only needs its public
+base URL at build time:
 
-Because this site is statically hosted, the browser can't reliably read the response from Apps Script unless the endpoint provides CORS headers or you add an external proxy.
+- `NEXT_PUBLIC_CONTACT_API_URL`: base URL of the contact endpoint, without a
+  trailing slash. Unset, the form renders as unavailable and points visitors to
+  hello@monad.hu.
 
-Set these env vars in `.env.local` (see `.env.local.example`):
-
-- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
-- `NEXT_PUBLIC_APPS_SCRIPT_URL`
-
-Then run the app normally.
-
-For GitHub Pages deployment, also set the same values as repository secrets:
-
-- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
-- `NEXT_PUBLIC_APPS_SCRIPT_URL`
-
-The workflow injects these during `npm run build`, so the static output contains the correct public values.
+For GitHub Pages deployment, add it as a repository secret.
