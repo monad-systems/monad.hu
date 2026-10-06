@@ -15,9 +15,9 @@ tags:
 
 ## The blank page is the problem, not the typing
 
-Ask a capable model to add a feature to an empty repository and you will probably get something that runs. You will also get a new configuration pattern, error shape, logging convention, money representation, and repository layer. Each choice may be defensible on its own. Taken together, they form a system nobody designed.
+Ask a capable model to add a feature to an empty repository and you will probably get something that runs. You will also get a new configuration pattern, error shape, logging convention, date handling, and repository layer. Each choice may be defensible on its own. Taken together, they form a system nobody designed.
 
-Give the same task to the same model in a codebase with a shared config package, one route kit, one money type, one error union, and architecture rules enforced in CI. Now it has far fewer decisions to invent and can compose the pieces already there.
+Give the same task to the same model in a codebase with a shared configuration package, one way to define routes, one error format, one logging setup, and architecture rules enforced in CI. Now it has far fewer decisions to invent and can compose the pieces already there.
 
 This part of AI-assisted development gets little attention because it is old and unglamorous. The quality of your building blocks has always limited how fast a team can move safely. AI pushed much more code at that limit, so weak foundations show up sooner and more often.
 
@@ -25,8 +25,8 @@ This part of AI-assisted development gets little attention because it is old and
 
 "Building blocks" often gets read as "libraries." An AI-native workflow depends on four broader categories:
 
-1. **Runtime blocks:** shared packages that do work at runtime. Config, HTTP, auth, money, IDs, monitoring. Code you do not write again.
-2. **Contract blocks:** OpenAPI, AsyncAPI, JSON Schema, TypeBox definitions. The shape of the boundary, defined before the implementation exists.
+1. **Runtime blocks:** shared packages that do work at runtime. Configuration, HTTP handling, auth, logging, monitoring, generated API clients. Code you do not write again.
+2. **Contract blocks:** API, event, and data schemas in a standard format, such as OpenAPI, AsyncAPI, or JSON Schema. The shape of the boundary, defined before the implementation exists.
 3. **Guideline blocks:** architecture invariants, layering rules, naming and ownership conventions. What is allowed, what is forbidden, and why.
 4. **Process blocks:** the gates. Review, approval, CI checks, budgets, branch protection. Where a change has to prove itself before it moves.
 
@@ -66,7 +66,7 @@ For larger organisations, this changes the economics. The report *Platform engin
 
 A useful package catalogue is rarely designed up front. Ours grew out of an ERP monorepo where the same code kept appearing twice, and most good catalogues start the same way.
 
-The split matters more than any list. Generic blocks can travel between systems: configuration, HTTP routing, auth clients, ID generation, monitoring, audit-log hashing, and the shared lint, format, and compiler settings. Product policy should stay in the repository that owns it: domain value objects, business calculations, the platform kernel of one product.
+The split matters more than any list. Generic blocks can travel between systems: configuration, HTTP routing, auth clients, logging, monitoring, generated API clients, audit-log hashing, and the shared lint, format, and compiler settings. Product policy should stay in the repository that owns it: domain value objects, business calculations, the platform kernel of one product.
 
 Publish too much and the result becomes a framework nobody can change. Publish nothing and the same audit-hash function gets written four times, with one subtly different version.
 
@@ -85,7 +85,7 @@ So write the invariants down, and then make them run. Good candidates are the ru
 - every write goes through a use case that owns the transaction
 - every event publish goes through an outbox, never a direct broker call from domain code
 - the system clock is injected, never read directly outside infrastructure
-- monetary values use one money type, never a bare floating-point number
+- domain quantities such as money have a dedicated type, never a bare number
 - schemas are the source of truth, and generated contracts are read-only
 - generated code is never edited by hand
 
@@ -99,7 +99,7 @@ Enforcement turns a style guide into a path an autonomous worker can follow. If 
 flowchart TD
     A[Task description] --> Z[Agent context]
     B[Shared packages] --> Z
-    C[Contracts: OpenAPI, AsyncAPI, TypeBox] --> Z
+    C[API and event contracts] --> Z
     D[Architecture invariants] --> Z
     E[Repository conventions file] --> Z
     Z --> F[Generated change]
@@ -135,7 +135,7 @@ Around the steps, add the guardrails that make unattended runs survivable:
 
 Keep the task, its budget, its result, and its review verdict together, in the place where people already track their work. The record of what an agent did is only useful if someone reads it.
 
-Build this tooling from the same blocks it enforces. Ours runs on the same shared packages and spec-first routes as the systems its agents work on, which makes it the first user of every standard. An awkward package gets noticed by the people who use it every day, and every improvement to the blocks improves both sides.
+Build this tooling from the same blocks it enforces. Ours runs on the same shared packages and contracts as the systems its agents work on, which makes it the first user of every standard. An awkward package gets noticed by the people who use it every day, and every improvement to the blocks improves both sides.
 
 ## Visual: the run pipeline and its gates
 

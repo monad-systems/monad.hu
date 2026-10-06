@@ -15,9 +15,9 @@ tags:
 
 ## Nem a gépelés a probléma, hanem az üres lap
 
-Ha megkérünk egy erős modellt, hogy építsen egy feature-t egy üres repóban, valószínűleg kapunk valamit, ami elindul. Mellé kapunk egy új konfigurációs mintát, hibaformátumot, logging konvenciót, pénzábrázolást és repository réteget is. Külön-külön mindegyik döntés védhető lehet. Együtt olyan rendszert alkotnak, amit senki nem tervezett meg.
+Ha megkérünk egy erős modellt, hogy építsen egy feature-t egy üres repóban, valószínűleg kapunk valamit, ami elindul. Mellé kapunk egy új konfigurációs mintát, hibaformátumot, logging konvenciót, dátumkezelést és repository réteget is. Külön-külön mindegyik döntés védhető lehet. Együtt olyan rendszert alkotnak, amit senki nem tervezett meg.
 
-Adjuk ugyanezt a feladatot ugyanannak a modellnek egy olyan kódbázisban, ahol van közös config package, route kit, money típus, hibaunió és CI-ban kikényszerített architektúra-szabályrendszer. Sokkal kevesebb dologról kell döntenie, mert a meglévő elemekből dolgozhat.
+Adjuk ugyanezt a feladatot ugyanannak a modellnek egy olyan kódbázisban, ahol van közös konfigurációs package, egységes route-definíció, egy hibaformátum, egy logging beállítás és CI-ban kikényszerített architektúra-szabályrendszer. Sokkal kevesebb dologról kell döntenie, mert a meglévő elemekből dolgozhat.
 
 Az AI-támogatott fejlesztésnek ez a része kevés figyelmet kap, mert régi és látványtalan. Az építőelemek minősége mindig is korlátozta, hogy egy csapat milyen gyorsan tud biztonságosan haladni. Az AI-jal sokkal több kód ütközik ebbe a korlátba, ezért a gyenge alapok hamarabb és gyakrabban kiderülnek.
 
@@ -25,8 +25,8 @@ Az AI-támogatott fejlesztésnek ez a része kevés figyelmet kap, mert régi é
 
 Az „építőelem” alatt gyakran library-t értünk, pedig egy AI-native munkafolyamat négy tágabb kategóriára támaszkodik:
 
-1. **Runtime elemek:** közös package-ek, amelyek futásidőben dolgoznak. Config, HTTP, auth, money, ID-k, monitoring. Kód, amit nem kell újra megírni.
-2. **Contract elemek:** OpenAPI, AsyncAPI, JSON Schema, TypeBox definíciók. A rendszerhatár alakja, még az implementáció előtt.
+1. **Runtime elemek:** közös package-ek, amelyek futásidőben dolgoznak. Konfiguráció, HTTP-kezelés, auth, logging, monitoring, generált API kliensek. Kód, amit nem kell újra megírni.
+2. **Contract elemek:** API-, event- és adatsémák valamilyen szabványos formátumban, például OpenAPI, AsyncAPI vagy JSON Schema. A rendszerhatár alakja, még az implementáció előtt.
 3. **Szabályelemek:** architektúra invariánsok, rétegzési szabályok, elnevezési és ownership konvenciók. Mi megengedett, mi tilos, és miért.
 4. **Folyamatelemek:** a kapuk. Review, jóváhagyás, CI check-ek, budget, branch protection. Ahol egy változásnak bizonyítania kell, mielőtt továbbmegy.
 
@@ -66,7 +66,7 @@ Nagyobb szervezeteknél itt kezd érdekes lenni a költségoldal. A *Platform en
 
 Egy jól használható package-katalógust ritkán terveznek meg előre. A miénk egy ERP monorepóból nőtt ki, ahol ugyanaz a kód újra és újra kétszer jelent meg, és a legtöbb jó katalógus hasonlóan indul.
 
-A szétválasztás fontosabb bármilyen listánál. A generikus elemek mehetnek egyik rendszerből a másikba: a konfiguráció, a HTTP routing, az auth kliensek, az ID-generálás, a monitoring, az audit log hash-elése, valamint a közös lint-, formázási és fordítóbeállítások. A terméklogika viszont maradjon abban a repóban, amelyikhez tartozik: a domain value objectek, az üzleti számítások és egy adott termék platformmagja.
+A szétválasztás fontosabb bármilyen listánál. A generikus elemek mehetnek egyik rendszerből a másikba: a konfiguráció, a HTTP routing, az auth kliensek, a logging, a monitoring, a generált API kliensek, az audit log hash-elése, valamint a közös lint-, formázási és fordítóbeállítások. A terméklogika viszont maradjon abban a repóban, amelyikhez tartozik: a domain value objectek, az üzleti számítások és egy adott termék platformmagja.
 
 Ha túl sokat publikálunk, olyan frameworkünk lesz, amihez senki nem mer hozzányúlni. Ha semmit, négyszer írjuk meg az audit-hash függvényt, az egyik verzió pedig finoman eltér a többitől.
 
@@ -85,7 +85,7 @@ Ezért írjuk le az invariánsokat, aztán tegyük futtathatóvá őket. Azokkal
 - minden írás egy use case-en keresztül megy, ami a tranzakciót birtokolja
 - minden event publikálás egy outboxon keresztül történik, soha nem közvetlen broker hívással a domain kódból
 - a rendszeridőt injektáljuk, az infrastruktúrán kívül soha nem olvassuk közvetlenül
-- a pénzértékek egyetlen money típust használnak, soha nem puszta lebegőpontos számot
+- a domain mennyiségeknek, például a pénznek, saját típusuk van, soha nem puszta szám
 - a sémák a forrás, a generált contractok csak olvashatók
 - generált kódot soha nem szerkesztünk kézzel
 
@@ -99,7 +99,7 @@ A kikényszerítéstől lesz a style guide olyan, amit egy autonóm szereplő is
 flowchart TD
     A[Feladatleírás] --> Z[Agent kontextus]
     B[Közös package-ek] --> Z
-    C[Contractok: OpenAPI, AsyncAPI, TypeBox] --> Z
+    C[API és event contractok] --> Z
     D[Architektúra invariánsok] --> Z
     E[Repó konvenciós fájl] --> Z
     Z --> F[Generált változás]
@@ -135,7 +135,7 @@ A lépések köré tegyünk guardraileket, amelyek nélkül a felügyelet nélk�
 
 A feladat, a budgetje, az eredménye és a review verdiktje kerüljön egy helyre, oda, ahol az emberek amúgy is követik a munkájukat. Egy agent munkájának nyoma csak akkor ér valamit, ha valaki el is olvassa.
 
-Ezt az eszközt is ugyanazokból az elemekből építsük, amelyeket kikényszerít. A miénk ugyanazokra a közös package-ekre és spec-first route-okra épül, mint azok a rendszerek, amelyeken az agentjei dolgoznak, így minden standardnak ő az első felhasználója. Egy kényelmetlen package-et azok veszik észre, akik nap mint nap használják, és az építőelemek minden javítása mindkét oldalt javítja.
+Ezt az eszközt is ugyanazokból az elemekből építsük, amelyeket kikényszerít. A miénk ugyanazokra a közös package-ekre és contractokra épül, mint azok a rendszerek, amelyeken az agentjei dolgoznak, így minden standardnak ő az első felhasználója. Egy kényelmetlen package-et azok veszik észre, akik nap mint nap használják, és az építőelemek minden javítása mindkét oldalt javítja.
 
 ## Vizuál: a futási pipeline és a kapui
 
