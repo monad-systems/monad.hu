@@ -53,8 +53,10 @@ const getDiagramCaption = (preBlock) => {
     return null;
   }
 
-  const isVisualHeading = /^visual:\s*/i.test(raw);
-  const text = raw.replace(/^visual:\s*/i, '').trim() || raw;
+  // Hungarian posts mark figure headings with "Vizuál:" instead of "Visual:".
+  const visualPrefix = /^(visual|vizuál):\s*/i;
+  const isVisualHeading = visualPrefix.test(raw);
+  const text = raw.replace(visualPrefix, '').trim() || raw;
 
   return {
     heading,

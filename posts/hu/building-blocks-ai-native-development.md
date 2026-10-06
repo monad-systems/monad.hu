@@ -15,11 +15,11 @@ tags:
 
 ## Nem a gépelés a probléma, hanem az üres lap
 
-Ha megkérünk egy erős modellt, hogy tegyen egy feature-t egy üres repóba, valószínűleg kapunk valamit, ami elindul. Kapunk mellé egy új konfigurációs mintát, hibaformátumot, logging konvenciót, pénzábrázolást és repository réteget is. Külön-külön mindegyik döntés védhető lehet. Együtt olyan rendszert alkotnak, amit senki nem tervezett meg.
+Ha megkérünk egy erős modellt, hogy építsen egy feature-t egy üres repóban, valószínűleg kapunk valamit, ami elindul. Mellé kapunk egy új konfigurációs mintát, hibaformátumot, logging konvenciót, pénzábrázolást és repository réteget is. Külön-külön mindegyik döntés védhető lehet. Együtt olyan rendszert alkotnak, amit senki nem tervezett meg.
 
-Adjuk ugyanezt a feladatot ugyanannak a modellnek egy olyan kódbázisban, ahol van közös config package, route kit, money típus, hibaunió és CI-ban kikényszerített architektúra-szabályrendszer. Sokkal kevesebb döntést kell kitalálnia; össze tudja rakni a már meglévő elemeket.
+Adjuk ugyanezt a feladatot ugyanannak a modellnek egy olyan kódbázisban, ahol van közös config package, route kit, money típus, hibaunió és CI-ban kikényszerített architektúra-szabályrendszer. Sokkal kevesebb dologról kell döntenie, mert a meglévő elemekből dolgozhat.
 
-Az AI-támogatott fejlesztésnek ez a része kevés figyelmet kap, mert régi és látványtalan. Az építőelemek minősége mindig is korlátozta, hogy egy csapat milyen gyorsan tud biztonságosan haladni. Az AI sokkal több kódot nyom neki ennek a korlátnak, ezért a gyenge alapok hamarabb és gyakrabban látszanak.
+Az AI-támogatott fejlesztésnek ez a része kevés figyelmet kap, mert régi és látványtalan. Az építőelemek minősége mindig is korlátozta, hogy egy csapat milyen gyorsan tud biztonságosan haladni. Az AI-jal sokkal több kód ütközik ebbe a korlátba, ezért a gyenge alapok hamarabb és gyakrabban kiderülnek.
 
 ## Az építőelemek négy fajtája
 
@@ -27,12 +27,12 @@ Az „építőelem” alatt gyakran library-t értünk, pedig egy AI-native munk
 
 1. **Runtime elemek:** közös package-ek, amelyek futásidőben dolgoznak. Config, HTTP, auth, money, ID-k, monitoring. Kód, amit nem kell újra megírni.
 2. **Contract elemek:** OpenAPI, AsyncAPI, JSON Schema, TypeBox definíciók. A rendszerhatár alakja, még az implementáció előtt.
-3. **Szabály elemek:** architektúra invariánsok, rétegzési szabályok, elnevezési és ownership konvenciók. Mi megengedett, mi tilos, és miért.
-4. **Folyamat elemek:** a kapuk. Review, jóváhagyás, CI check-ek, budget, branch protection. Ahol egy változásnak bizonyítania kell, mielőtt továbbmegy.
+3. **Szabályelemek:** architektúra invariánsok, rétegzési szabályok, elnevezési és ownership konvenciók. Mi megengedett, mi tilos, és miért.
+4. **Folyamatelemek:** a kapuk. Review, jóváhagyás, CI check-ek, budget, branch protection. Ahol egy változásnak bizonyítania kell, mielőtt továbbmegy.
 
-Egy emberi mérnök az utolsó kettőt hónapok alatt szívja magába. Egy agentnek nincs ilyen története; egy context window-t kap, és azt, amit beleteszünk. Ezért az számít, mennyi tervezői szándék érhető el olyan formában, amit egy intézményi memória nélküli szereplő is fel tud dolgozni, és amivel szemben ellenőrizhető. A modellválasztás ehhez képest sokkal kevesebbet nyom.
+Egy mérnök az utóbbi kettőt hónapok alatt szívja magába. Egy agentnek nincs ilyen előélete: kap egy context window-t, és azt, amit beleteszünk. Ezért az számít, mennyi tervezői szándék érhető el olyan formában, amelyet a cég történetét nem ismerő szereplő is fel tud dolgozni, és amelyhez a munkája ellenőrizhető. Ehhez képest a modellválasztás sokkal kevésbé számít.
 
-Ha a válasz az, hogy „nagyrészt a fejekben és a kódban”, akkor olyan outputot kapunk, ami helyesnek látszik és közben elsodródik.
+Ha a válasz az, hogy „nagyrészt a fejekben és a kódban”, akkor olyan outputot kapunk, ami helyesnek látszik, közben pedig fokozatosan eltávolodik a rendszertől.
 
 ## A korlátok teszik jóvá a generált kódot
 
@@ -42,7 +42,7 @@ A modell a kapott kontextushoz tartozó legvalószínűbb kódot állítja elő.
 
 A kontextus a saját kódbázisunk felé tolja a modellt az internetes átlag helyett.
 
-Mindegyik ezek közül hasznosan szűkíti a teret:
+Az alábbiak mind hasznosan szűkítik a mozgásteret:
 
 - egy közös package, ami az adott problémát már megoldja
 - egy séma, ami definiálja, mi számít érvényes payloadnak
@@ -56,19 +56,19 @@ Ez hétköznapi platform engineering, azon a ponton alkalmazva, ahol a legtöbbe
 
 Az építőelemek kontextust is megtakarítanak, a kontextus pedig véges és drága.
 
-Minden token, amit a modell arra költ, hogy újra felfedezze, hogyan működik az adott kódbázisban az authentikáció, olyan token, amit nem a tényleges problémára fordít. Minden fájl, amit el kell olvasnia egy konvenció kikövetkeztetéséhez, latency, költség és egy esély arra, hogy kicsit rosszul következtet.
+Minden token, amit a modell arra költ, hogy újra felfedezze, hogyan működik az adott kódbázisban az authentikáció, olyan token, amit nem a tényleges problémára fordít. Minden fájl, amit el kell olvasnia egy konvenció kikövetkeztetéséhez, egyben latency, költség és újabb esély arra, hogy kicsit rosszul következtessen.
 
-Egy jól megtervezett package tömörítés. Ha a `@monad-systems/config` ott van a kontextusban, az agentnek nem kell hat környezetváltozó-betöltő implementációt elolvasnia, hogy kitalálja a házi stílust. Egy import sor kivált egy kutatási fázist.
+Egy jól megtervezett package tömörítés. Ha a `@monad-systems/config` ott van a kontextusban, az agentnek nem kell hat környezetváltozó-betöltő implementációt elolvasnia, hogy kitalálja a házi stílust. Egyetlen import sor kivált egy teljes felderítést.
 
-Ugyanez igaz a contractokra. Egy TypeBox route séma rövidebben írja le az interfészt, mint az implementáció, egyértelmű, és géppel ellenőrizhető. Jobb prompt minden promptnál, mert egyben teszt is.
+Ugyanez igaz a contractokra. Egy TypeBox route séma rövidebben írja le az interfészt, mint az implementáció, egyértelmű, és géppel ellenőrizhető. Minden promptnál jobb prompt, mert egyben teszt is.
 
-Nagyobb szervezeteknél itt válik érdekessé a gazdaságtan. A *Platform engineering 2.0: An evolution for the AI era* riport (Weave Intelligence, Broadcom megbízásából, 2026) számokat is tesz e mellé: a fejlesztők két-tízszer több kódot generálnak, a token spend pedig új és jórészt láthatatlan költségkategóriaként érkezik, amire a legtöbb szervezetnek nincs eszköze. Ilyen léptéknél a tömörítés kilép az ízlés kategóriájából, és megjelenik a számlán.
+Nagyobb szervezeteknél itt kezd érdekes lenni a költségoldal. A *Platform engineering 2.0: An evolution for the AI era* riport (Weave Intelligence, Broadcom megbízásából, 2026) számokkal is alátámasztja ezt: a fejlesztők két-tízszer több kódot generálnak, a token spend pedig új és jórészt láthatatlan költségkategóriaként érkezik, amire a legtöbb szervezetnek nincs eszköze. Ekkora méretben a tömörítés már nem ízlés kérdése, hanem megjelenik a számlán.
 
 ## A mi építőelemeink: a `@monad-systems` package-ek
 
 A package-katalógusunk egy ERP platform monorepóból nőtt ki, ahol újra és újra ugyanazt a kódot írtuk meg kétszer. Nem frameworknek terveztük.
 
-Ami ebből kiemelésre került, és ma GitHub Packages-en publikált a `@monad-systems` scope alatt, szándékosan látványtalan:
+Amit ebből kiemeltünk, és ma a GitHub Packages-en, a `@monad-systems` scope alatt publikálunk, szándékosan látványtalan:
 
 - **`config`** — típusos környezeti konfiguráció deklaratív field spec-kel, aggregált hibákkal, cross-field szabályokkal és production hardeninggel
 - **`http-kit`** — spec-first route kit, ami a típusos handlert a TypeBox route sémájához köti, end-to-end inference-szel
@@ -81,15 +81,15 @@ Ami ebből kiemelésre került, és ma GitHub Packages-en publikált a `@monad-s
 
 Mellettük, a repón belül és szándékosan publikálatlanul, ott vannak a platform package-ek (kernel, adapters, testing, workflow), a domain value objectek, mint a money és az invoice math, a generált API és event kliensek, valamint a tooling: architektúra check-ek, kódgenerálás, migration runner és module scaffold.
 
-A szétválasztás fontosabb, mint maga a lista. A generikus elemek utazhatnak a rendszerek között; a terméklogika maradjon az azt birtokló repóban. Ha túl sokat publikálunk, olyan frameworkünk lesz, amihez senki nem mer hozzányúlni. Ha semmit, négyszer írjuk meg az audit-hash függvényt, az egyik verzió pedig finoman eltér a többitől.
+A szétválasztás fontosabb, mint maga a lista. A generikus elemek mehetnek egyik rendszerből a másikba, a terméklogika viszont maradjon abban a repóban, amelyikhez tartozik. Ha túl sokat publikálunk, olyan frameworkünk lesz, amihez senki nem mer hozzányúlni. Ha semmit, négyszer írjuk meg az audit-hash függvényt, az egyik verzió pedig finoman eltér a többitől.
 
-A szabály, amit alkalmazunk, szűk: akkor emelünk ki valamit, ha generikus, egy dolgot csinál, és már most van valódi fogyasztója a repóban. Előbb nem.
+A szabály, amit alkalmazunk, szűk: akkor emelünk ki valamit, ha generikus, egy dolgot csinál, és már most van valódi felhasználója a repóban. Előbb nem.
 
 ## A szabály csak akkor szabály, ha fut
 
-A vállalati kódbázisokban, amiket látunk, bőven van standard, de sok közülük csak prózaként létezik. Egy wikioldal leírhatja, hogy „a domain kód nem importálhatja az adatbázis réteget”; egy CI-check meg is akadályozza, hogy ilyen import productionbe kerüljön.
+Az általunk látott vállalati kódbázisokban bőven vannak standardok, de sok közülük csak leírt szövegként létezik. Egy wikioldal leírhatja, hogy „a domain kód nem importálhatja az adatbázis réteget”; egy CI-check meg is akadályozza, hogy ilyen import productionbe kerüljön.
 
-Ez a különbség eddig is számított. Agentekkel a körben viszont döntővé válik, mert egy agent boldogan teljesíti az összes dokumentált konvenciót, amit megmutattak neki, és megsérti azt az egyet, ami csak implicit volt. Nincs benne az az ösztön, ami szólna, hogy pont ez a kerülőút okozta a tavalyi incidenst.
+Ez a különbség eddig is számított. Ha agentek is dolgoznak a kódon, döntővé válik, mert egy agent boldogan teljesíti az összes dokumentált konvenciót, amit megmutattak neki, és megsérti azt az egyet, ami csak implicit volt. Nincs benne az az ösztön, ami szólna, hogy pont ez a kerülőút okozta a tavalyi incidenst.
 
 Ezért leírjuk az invariánsokat, aztán futtathatóvá tesszük őket. Az ERP platformunkban huszonkettő van belőlük, többek között ezek:
 
@@ -104,7 +104,7 @@ Ezért leírjuk az invariánsokat, aztán futtathatóvá tesszük őket. Az ERP 
 
 Mindegyikhez tartozik kikényszerítés: architektúra check, lint szabály, típushatár vagy teszt. A teljes policy suite egy paranccsal fut, és a CI minden pull requestre lefuttatja. Ember vagy agent, ugyanaz a kapu.
 
-A kikényszerítés teszi a style guide-ot egy autonóm szereplő által is követhető úttá. Ha a változás a szabály teljesítése nélkül nem mergelhető, kevésbé számít, hogy az agent megjegyezte-e a prózát.
+A kikényszerítéstől lesz a style guide olyan, amit egy autonóm szereplő is követni tud. Ha a változás nem mergelhető a szabály betartása nélkül, kevésbé számít, hogy az agent megjegyezte-e a leírást.
 
 ## Visual: mire van szüksége egy agentnek, és honnan jön
 
@@ -128,26 +128,26 @@ flowchart TD
 
 ## A software factory: egy vault, egy orchestrator és egy határ
 
-A Hermes az a software factory orchestrator, amely ezeket az elemeket fogyasztja: feladatok mennek be, agent futások, pull requestek és jegyzetek jönnek ki.
+A Hermes az a software factory orchestrator, amely ezekre az elemekre épül: feladatok mennek be, agent futások, pull requestek és jegyzetek jönnek ki.
 
-A belépési pont szándékosan unalmas. A feladatok jegyzetek egy Obsidian vaultban, frontmatterrel megjelölve. Egy watcher felszedi őket, és a munka haladásával lépteti a státuszukat. A szándék a vaultban él, ami azt jelenti, hogy a feladat, a budgetje, az eredménye és a review verdiktje mind ugyanoda kerül, ahol az ember amúgy is gondolkodik.
+A belépési pont szándékosan unalmas. A feladatok jegyzetek egy Obsidian vaultban, frontmatterrel megjelölve. Egy watcher felszedi őket, és a munka haladásával lépteti a státuszukat. A szándékot a vault tárolja, így a feladat, a budgetje, az eredménye és a review verdiktje mind ugyanoda kerül, ahol az ember amúgy is gondolkodik.
 
-Innen minden feladat négy lépésen megy át, mindegyik friss kontextus, ami csak az előző lépés tömörített artifactját örökli:
+Innen minden feladat négy lépésen megy át, mindegyik friss kontextusban fut, és csak az előző lépés tömörített artifactját kapja meg:
 
 1. **Research.** Checkout a cél repóból, a modell által kiválasztott fájlok elolvasása, majd egy kódbázis-térkép, ahol minden állítás mellett ott a `file:line` hivatkozás.
 2. **Plan.** A research artifact alapján számozott fázisú terv: fájlok, változások, és fázisonként egy verifikációs parancs.
-3. **Implement.** Elutasítja a futást, amíg egy ember jóvá nem hagyta a tervet. Utána generál, branchet push-ol, és pull requestet nyit.
+3. **Implement.** Nem indul el, amíg egy ember jóvá nem hagyja a tervet. Utána generál, branchet push-ol, és pull requestet nyit.
 4. **Review.** Egy friss kontextus csak a jóváhagyott tervet és a keletkezett diffet látja. A research dokumentumot soha, és azt az érvelést sem, ami a kódot előállította. Egy kérdésre válaszol: ez a diff megvalósítja ezt a tervet?
 
 A reviewer szándékosan amnéziás. Soha nem látja a kódot előállító gondolatmenetet, ezért az nem tudja meggyőzni. A szándékot hasonlítja az eredményhez, vagyis azt a munkát végzi, amit egy jó emberi reviewer is, és amiben a változás szerzője általában a leggyengébb.
 
 A verdikt pedig a findingokból következik, nem a modell saját összefoglalójából. Bármelyik nem teljesült tervkritérium vagy blokkoló finding changes requested-et jelent, függetlenül attól, minek nevezte a reviewer. Az a modell, ami „összességében rendben” minősítést ad, miközben három nem teljesült követelményt sorol fel, nem megy át a kapun.
 
-A lépések körül azok a védőkorlátok állnak, amiktől a felügyelet nélküli futás túlélhető:
+A lépéseket guardrailek veszik körül, amelyek nélkül a felügyelet nélküli futás nem lenne biztonságos:
 
 - **Emberi terv-jóváhagyás.** Implementáció nélküle nem indul. Ezt az egy kaput nem áll szándékunkban automatizálni.
 - **Stop the line.** Az implementáció nem fut, amíg a cél repó default branchén bukó check-ek vannak. A research és a tervezés engedélyezett marad, mert így értjük meg, mi romlott el.
-- **Budget.** Minden futás a három plafon közül a legszűkebbet kapja: a futásonkénti elszaladás-limit, a feladat saját budgetje és a projekt spend cap. Az a futás, aminek a budgetje már elfogyott, az első modellhívás előtt elbukik. Mindegyik futásnak van wall-clock plafonja is.
+- **Budget.** Minden futás a három plafon közül a legszűkebbet kapja: a futásonkénti limit, a feladat saját budgetje és a projekt spend cap. Az a futás, aminek a budgetje már elfogyott, az első modellhívás előtt elbukik. Mindegyik futásnak van wall-clock plafonja is.
 - **Egyetlen egress pont.** Minden modellhívás egy proxyn megy át. Egyik lépés sem beszél közvetlenül a szolgáltatóval.
 
 ## Visual: a futási pipeline és a kapui
@@ -167,7 +167,7 @@ flowchart TD
     I -->|igen| K[Emberi review és merge]
 ```
 
-## A PII határ, avagy miért kell a biztonságnak lefelé mozdulnia
+## A PII határ, avagy miért kell a biztonságnak a platformba költöznie
 
 A factory egyik komponense egyáltalán nem generál kódot.
 
@@ -175,9 +175,9 @@ A Hermes és a modellszolgáltató között egy PII agent áll. Ez az egyetlen f
 
 A működése determinisztikus: magyar és angol azonosítókra írt felismerők, adószám, TAJ szám, személyi azonosító, IBAN és bankszámlaszám, kártyaszám ellenőrzőösszeggel, telefonszám, e-mail cím, lakcím és szótáralapú nevek. A talált értékeket futásonként, visszafordíthatóan tokenizálja és adatbázisban tárolja. Kifelé a tokenek mennek; a válasz útján visszaállnak az eredeti értékek. Minden áthaladás hash-láncolt audit logba kerül, ugyanazzal az `audit-hash` package-dzsel, amit a platform többi része is használ.
 
-A felismerés minőségét CI kapu kényszeríti ki: címkézett korpusz, recall és precision küszöbbel, aminek tartania kell, mielőtt a pipeline szállítható.
+A felismerés minőségét CI kapu kényszeríti ki: címkézett korpusz, recall és precision küszöbbel, amelyet teljesíteni kell, mielőtt a pipeline élesbe mehet.
 
-Ez konkrét megvalósítása annak, amit a platform engineering riport „security shifts down” néven ír le. A shift-left előbbre hozta a biztonságot az időtengelyen, és több eszközt meg több felelősséget adott a fejlesztőnek. A shift-down beleteszi a szubsztrátumba, így a fejlesztő számára láthatatlan és tervezésileg megváltoztathatatlan.
+Ez konkrét megvalósítása annak, amit a platform engineering riport „security shifts down” néven ír le. A shift-left előbbre hozta a biztonságot az időtengelyen, és több eszközt meg több felelősséget adott a fejlesztőnek. A shift-down beépíti az alatta lévő platformrétegbe, így a fejlesztő számára láthatatlan és tervezésileg megváltoztathatatlan.
 
 AI workloadoknál a szivárgást tiltó utasítás gyengébb, mint egy olyan architektúra, amelyben a modell soha nem kapja meg a védett adatot. Az utasítás betartása együttműködést feltételez. Az architektúra nem.
 
@@ -189,45 +189,45 @@ Ezt a szimmetriát nem terveztük, de a Hermes egy Fastify szolgáltatás, ami a
 
 Az az eszköz, ami agenteket futtat a repóinkon, ugyanazokból az alkatrészekből áll, mint azok a rendszerek, amiken az agentek dolgoznak.
 
-Így az építőelemek minden javítása egyszerre javítja mindkét oldalt, a factory pedig a saját standardjainak első számú fogyasztójává válik. Ha egy package kényelmetlen használni, azt használat közben tudjuk meg, nem egy kérdőívből.
+Így az építőelemek minden javítása egyszerre javítja mindkét oldalt, a factory pedig a saját standardjainak első számú felhasználójává válik. Ha egy package kényelmetlen használni, azt használat közben tudjuk meg, nem egy kérdőívből.
 
 A kör önmagára záródik. A jobb építőelemektől olcsóbbak és pontosabbak lesznek az agent futások. Az olcsóbb, pontosabb futásoktól könnyebb javítani az építőelemeket.
 
 ## A mérettel együtt nő a platform jelentősége
 
-Mindez elsőre egy kis csapat rendezett setupjának tűnhet. Nagy szervezetben azonban még fontosabb az építőelem-kérdés, mert minden inkonzisztencia több fogyasztót érint.
+Mindez elsőre egy kis csapat rendezett setupjának tűnhet. Nagy szervezetben azonban még fontosabb az építőelem-kérdés, mert minden inkonzisztencia több felhasználót érint.
 
-A sodródás a fogyasztók számával együtt drágul. Tíz csapat, amelyik külön oldja meg a konfigurációt, megtízszerezi a felületet a következő migrációnak, a következő CVE-nek és a következő megfelelőségi követelménynek.
+Az eltérések a felhasználók számával együtt drágulnak. Ha tíz csapat külön oldja meg a konfigurációt, tíz helyen kell hozzányúlni a következő migrációnál, a következő CVE-nél és a következő compliance követelménynél.
 
-Az agentek emellett új felhasználói osztályként érkeznek. A riport ebben egyértelmű: az AI agentek az első új platform persona több mint egy évtizede, és API-kat fogyasztanak, nem felületeket. Verziózott, dokumentált API-k, scope-olt jogosultságok, nem emberi identitás, audit logging, budget kontroll és egress kontroll kell nekik. Ezek mind platform képességek, nem pedig fejlesztői preferenciák. Ha a platformunk nem tudja kifejezni, hogy „ez a szereplő ezeket teheti, legfeljebb ennyiért, és itt a nyoma”, akkor nem tudunk biztonságosan agenteket futtatni, bármilyen jó is a modell.
+Az agentek ráadásul a felhasználók egy új típusát jelentik. A riport ebben egyértelmű: az AI agentek több mint egy évtized óta az első új platform persona, és API-kat használnak, nem felületeket. Verziózott, dokumentált API-k, scope-olt jogosultságok, nem emberi identitás, audit logging, budget kontroll és egress kontroll kell nekik. Ezek mind platform képességek, nem pedig fejlesztői preferenciák. Ha a platformunk nem tudja kifejezni, hogy „ez a szereplő ezeket teheti, legfeljebb ennyiért, és itt a nyoma”, akkor nem tudunk biztonságosan agenteket futtatni, bármilyen jó is a modell.
 
-A bounded autonomy-nak alakja van. Az ezt operacionalizáló csapatok hét témakörre jutnak: identitás, kontextus, képesség, végrehajtás, kiértékelés, biztonság és observability. Olvassuk vissza a fenti factory leírást ezzel a listával: a megfeleltetés pontos. A terv-jóváhagyás és a stop the line képességkorlát. A review lépés a kiértékelés. A PII agent a biztonság. A futási logok, artifactok és a hash-láncolt audit az observability. A budget és a spend cap a végrehajtási plafon. Semmi nem modellspecifikus benne, így túléli a következő modellt.
+A bounded autonomy-nak konkrét összetevői vannak. Azok a csapatok, amelyek a gyakorlatba ültetik, hét területet különítenek el: identitás, kontextus, képesség, végrehajtás, kiértékelés, biztonság és observability. Olvassuk vissza a fenti factory leírást ezzel a listával: a megfeleltetés pontos. A terv-jóváhagyás és a stop the line képességkorlát. A review lépés a kiértékelés. A PII agent a biztonság. A futási logok, artifactok és a hash-láncolt audit az observability. A budget és a spend cap a végrehajtási plafon. Semmi nem modellspecifikus benne, így túléli a következő modellt.
 
-A költség ezzel egyidejűleg első osztályú jellé válik. Az iparági alap nagyjából 35% cloud pazarlás, még mielőtt az AI infrastruktúra rárakódna, az agentic fejlesztésből származó token spend pedig olyan kategória, amire a legtöbb szervezetnek egyáltalán nincs eszköze. Egy futásonkénti költségplafon, ami menet közben megöli a futást, kicsi fejlesztés, és ez a különbség egy kísérlet és egy költségvetési incidens között.
+Közben a költség is kiemelt mutatóvá válik. Iparági átlagban nagyjából 35% a cloud pazarlás, még mielőtt az AI infrastruktúra rárakódna, az agentic fejlesztésből származó token spend pedig olyan kategória, amire a legtöbb szervezetnek egyáltalán nincs eszköze. Egy futásonkénti költségplafon, amely menet közben leállítja a futást, kis fejlesztés, mégis ez választja el a kísérletet a költségvetési incidenstől.
 
-A komponálhatóság a tempó elleni fedezet. A CNCF ökoszisztéma a 2018-as nagyjából 50 projektről mára több mint 200-ra nőtt, a modellképességek és agent minták pedig ennél is gyorsabban cserélődnek. Most senki nem a véglegesen helyes eszközt választja. Amit meg lehet tenni, az az, hogy a csere ne kaszkádoljon végig a rendszeren, és ez ugyanaz a moduláris, API-first, verziózott, contract-alapú fegyelem, amitől a package-eket egyáltalán érdemes volt kiemelni.
+A modularitás véd a gyors változás ellen. A CNCF ökoszisztéma a 2018-as nagyjából 50 projektről mára több mint 200-ra nőtt, a modellképességek és agent minták pedig ennél is gyorsabban cserélődnek. Most senki nem a véglegesen helyes eszközt választja. Annyit tehetünk, hogy egy eszköz cseréje ne gyűrűzzön végig a rendszeren, és ez ugyanaz a moduláris, API-first, verziózott, contract-alapú fegyelem, amitől a package-eket egyáltalán érdemes volt kiemelni.
 
-Ott van aztán a golden path problémája, ahol az agentek átírják a számítást. A standardizált sablonok, amik korábban a deployok többségét kiszolgálták, elkezdik blokkolni azt a csapatot, amelyik valami újat csinál, és minden kivétel visszafut a platform csapathoz. Amikor a scaffolding, a contract-generálás és a migrációs munka olcsóvá válik, a platform csapat több utat engedhet meg magának ahelyett, hogy egyet védene. Egy utat a bővítés költsége tesz ketreccé.
+Aztán ott a golden path problémája, ahol az agentek felborítják a korábbi számítást. A standardizált sablonok, amik korábban a deployok többségét kiszolgálták, elkezdik blokkolni azt a csapatot, amelyik valami újat csinál, és minden kivétel visszafut a platform csapathoz. Amikor a scaffolding, a contract-generálás és a migrációs munka olcsóvá válik, a platform csapat több utat engedhet meg magának ahelyett, hogy egyet védene. Egy golden pathből a bővítés költsége csinál ketrecet.
 
 ## Régi gyakorlatok, nagyobb érték
 
 Minden gyakorlat, amitől a szoftver az AI előtt biztonságosan változtatható volt, ma is ugyanazt a munkát végzi. A többségük többet ér, mint korábban, mert a szűk keresztmetszet elmozdult.
 
-A contract-first tervezés korábban dokumentáció és koordinációs eszköz volt. Ma egyben prompt és kapu is: megmondja az agentnek, mit építsen, és megmondja a CI-nak, hogy azt építette-e. A spec-first jó ötlet volt akkor is, amikor csak emberek fogyasztották. Közel kötelező, amikor már nem.
+A contract-first tervezés korábban dokumentáció és koordinációs eszköz volt. Ma egyben prompt és kapu is: megmondja az agentnek, mit építsen, és megmondja a CI-nak, hogy azt építette-e. A spec-first jó ötlet volt akkor is, amikor a contractokat csak emberek használták. Ma, amikor már nem csak ők, szinte kötelező.
 
-A tesztek szerepe is megváltozott. Egy agent körbe-körbe futtatja a suite-ot, amitől az a generálás fitness függvényévé válik, nem csak utólagos védőháló. Egy gyenge suite ma már rosszabbat tesz annál, mint hogy hibákat enged át: megtanítja a körnek, hogy a törött kód elfogadható.
+A tesztek szerepe is megváltozott. Egy agent újra és újra lefuttatja a test suite-ot, így az a generálás fitness függvénye lesz, nem csak utólagos védőháló. Egy gyenge suite ma már nem csak hibákat enged át: azt is megtanítja a ciklusnak, hogy a hibás kód elfogadható.
 
 A code review lett a szűk keresztmetszet. Ha az írás olcsó, az ellenőrzés a szűkös erőforrás, és az is megváltozott, mire való: kevesebb elgépelés-vadászat, több „azt csinálja ez a diff, amiben megegyeztünk, és csak azt”. A review lépésünk azért ezt kérdezi, mert erre kellene az emberi figyelmet fordítani.
 
-A változások kicsiben és egy témára szabva tartása most többet számít, nem kevesebbet. Amikor a generálás olcsó, csábító nagy diffeket szállítani. Ne tegyük. A review a korlát, és a review költsége gyorsabban nő, mint a diff mérete.
+A kicsi, egy témára szorítkozó változások most többet számítanak, nem kevesebbet. Amikor a generálás olcsó, csábító nagy diffeket szállítani. Ne tegyük. A review a korlát, és a review költsége gyorsabban nő, mint a diff mérete.
 
 A CI marad a kikényszerítő réteg. Az agentek azt követik, ami ki van kényszerítve, nem azt, ami dokumentálva van. Előbb-utóbb mindenki más is. Az agenteknél ez csak azonnal látszik.
 
-Az observability gyorsabban termeli vissza az árát. Ha több kód megy ki gyorsabban, több ismeretlen ismeretlen ér el a productionig. A strukturált logging, a tracing és a metrikák nálunk mindig is delivery standardok voltak, és így derül ki, mit szállított valójában a felgyorsult pipeline.
+Az observability gyorsabban megtérül. Ha több kód megy ki gyorsabban, több előre nem látott probléma jut el a productionig. A strukturált logging, a tracing és a metrikák nálunk mindig is delivery standardok voltak, és így derül ki, mit szállított valójában a felgyorsult pipeline.
 
 A döntési dokumentumok fedik le azt az egyetlen dolgot, amit nem lehet a forrásból újragenerálni: a miértet. Egy ADR, ami egy trade-offot magyaráz, soronként többet ér szinte bárminél, amit írunk, mert ez az a kontextus, amitől a következő változás helyes lesz, nem csak hihető.
 
-A trunk higiénia zárja a sort. A stop the line régi gyártási ötlet, és ugyanazért működik, amiért mindig: törött alapra építeni sokszorozza a kárt. Az automatizálás gyorsabban sokszorozza.
+A sort a trunk tisztán tartása zárja. A stop the line régi gyártási ötlet, és ugyanazért működik, amiért mindig: törött alapra építeni sokszorozza a kárt. Az automatizálás gyorsabban sokszorozza.
 
 A mechanizmus mögötte egyszerű. Az AI megváltoztatta egy megoldásjelölt előállításának költségét, és nagyjából ott hagyta az ellenőrzés költségét, ahol volt. Ezért minden gyakorlat, ami az ellenőrzést javítja, felértékelődik. Minden gyakorlat, ami csak az előállítás sebességét javította, leértékelődik.
 
@@ -235,19 +235,19 @@ A mechanizmus mögötte egyszerű. Az AI megváltoztatta egy megoldásjelölt el
 
 Tapasztalatunk szerint kevesebb idő megy el implementációk gépelésére, és több interfészek specifikálására, invariánsok definiálására, scaffoldok építésére, valamint a szándék és az eredmény összevetésére. A senior mérnöki munka a rendszertervezés felé tolódik.
 
-A dokumentációból futtatható kontextus lesz. Egy konvenciós fájl a repó gyökerében, path-scoped instrukciós fájlok, feladatra triggerelt eljárások. Mindegyik minden futásnál felolvasásra kerül, ezért kijavítják őket, amikor rosszak, ezért igazak maradnak. Ez az első dokumentáció, aminek működő visszacsatolása van.
+A dokumentációból futtatható kontextus lesz. Egy konvenciós fájl a repó gyökerében, path-scoped instrukciós fájlok, feladatra triggerelt eljárások. Mindegyiket minden futás beolvassa, ezért ha hibásak, kijavítják őket, így naprakészek maradnak. Ez az első dokumentáció, aminek működő visszacsatolása van.
 
-Megjelenik egy új nem-funkcionális követelmény-osztály is: egress kontroll, spend cap, nem emberi identitás, akció audit és terv-jóváhagyás. Öt éve ezek egyike sem került backlogra. Ma előfeltételei annak, hogy agenteket futtassunk egy éles kódbázison, és a platformcsapathoz tartoznak.
+Megjelenik a nem funkcionális követelmények egy új csoportja is: egress kontroll, spend cap, nem emberi identitás, akció audit és terv-jóváhagyás. Öt éve ezek egyike sem került backlogra. Ma előfeltételei annak, hogy agenteket futtassunk egy éles kódbázison, és a platformcsapathoz tartoznak.
 
 ## Hol romlik el
 
-A megközelítés karbantartást igényel, és több kiszámítható hibamódja van:
+A megközelítés karbantartást igényel, és kiszámítható módokon romlik el.
 
 Akkor bukik meg, ha:
 
-- a package-ek fogyasztók nélkül kerülnek kiemelésre, és egyetlen use case köré fagy be az API
+- a package-eket felhasználók nélkül emelik ki, és egyetlen use case köré fagy be az API
 - a „közös” pass-through wrapperek és homályos util modulok szemétlerakója lesz
-- a szabályok prózaként íródnak, és soha nem kapnak kikényszerítést
+- a szabályok csak szövegként léteznek, és soha nem kapnak kikényszerítést
 - a terv-jóváhagyás gumibélyegzővé silányul, ami pont az egyetlen érdemi emberi kaput számolja fel
 - ugyanaz a rendszer írja és hagyja jóvá a változást
 - az autonómia előbb bővül, mint ahogy a budget, az audit és az egress kontroll elkészül
@@ -257,8 +257,8 @@ A javítás mindegyik esetben ugyanaz, mint az agentek előtt volt: legyünk sze
 
 ## Előbb építsünk pályát, aztán növeljük a sebességet
 
-Az AI-támogatott fejlesztést az alapján érdemes megítélni, hogy mire érkezik a generált kód, nem az alapján, hogy mennyit tud írni a modell. Erős package-ek, explicit contractok, kikényszerített invariánsok és megbízható kapuk mellett a változás illeszkedik a meglévő rendszerhez. A csak fejekben élő standardok hihető eltéréseket termelnek, amelyeket gyakran csak productionben veszünk észre.
+Az AI-támogatott fejlesztést az alapján érdemes megítélni, hogy mire érkezik a generált kód, nem az alapján, hogy mennyit tud írni a modell. Erős package-ek, explicit contractok, kikényszerített invariánsok és megbízható kapuk mellett a változás illeszkedik a meglévő rendszerhez. A csak fejekben élő standardok hihetőnek tűnő eltéréseket termelnek, amelyeket gyakran csak productionben veszünk észre.
 
 Nálunk ez a gyakorlatban három dolgot jelentett: egy kicsi, közös package katalógust `@monad-systems` alatt publikálva, amit minden általunk épített rendszer használ, huszonkét architektúra invariánst, amelyek check-ként futnak és nem wikiben ülnek, és egy software factory-t, ahol a feladatjegyzetekből pull request lesz egy olyan pipeline-on át, amiben van emberi jóváhagyás, review kapu, költségplafon és egyetlen kijárat: egy determinisztikus PII határ.
 
-Az eszközök sokat változtak. A contract-first tervezés, a hangosan bukó tesztek, a szándék ellenében végzett review, a kicsi diffek, a kikényszerített CI, az observability és a leírt döntések nem. Ma ezek döntik el, hogy az AI a hasznos munkát vagy csak a sodródást gyorsítja fel.
+Az eszközök sokat változtak. A contract-first tervezés, a hangosan bukó tesztek, a szándék ellenében végzett review, a kicsi diffek, a kikényszerített CI, az observability és a leírt döntések nem. Ma ezek döntik el, hogy az AI a hasznos munkát vagy csak a rendszer szétcsúszását gyorsítja fel.
