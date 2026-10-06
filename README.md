@@ -103,6 +103,6 @@ base URL at build time:
 
 - `NEXT_PUBLIC_CONTACT_API_URL`: base URL of the contact endpoint, without a
   trailing slash. Unset, the form renders as unavailable and points visitors to
-  hello@monad.hu.
+  office@monad.hu.
 
 For GitHub Pages deployment, add it as a repository secret.

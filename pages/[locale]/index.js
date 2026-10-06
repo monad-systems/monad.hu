@@ -271,37 +271,38 @@ export default function Home() {
     ? {
         // English falls back to Layout's default title and description.
         pageTitle:
-          'MONAD SYSTEMS — Senior szoftver tanácsadás és egyedi szoftverfejlesztés',
+          'MONAD SYSTEMS — Senior szoftvertanácsadás és egyedi szoftverfejlesztés',
         pageDescription:
-          'Senior, gyakorlati szoftver tanácsadás: egyedi szoftverfejlesztés, API-first kivitelezés, eseményvezérelt architektúra és éles üzemre kész observability.',
-        heroBadge: 'Egyedi szoftverfejlesztés · Spec-First · Production-Grade',
-        heroLine1: 'Built for Scale.',
-        heroLine2: 'Trusted by Enterprise.',
+          'Gyakorlati senior szoftvertanácsadás: egyedi szoftverfejlesztés, API-first megvalósítás, eseményvezérelt architektúra és éles üzemre kész megfigyelhetőség.',
+        heroBadge:
+          'Egyedi szoftverfejlesztés · API-first · Éles üzemre tervezve',
+        heroLine1: 'Skálázásra tervezve.',
+        heroLine2: 'Nagyvállalatok bizalmával.',
         heroIntro:
-          'We architect distributed systems, migrate monoliths to microservices, and build internal platforms that accelerate delivery. API-first design. Full observability. Production-grade from day one.',
-        heroPrimaryCta: 'Szoftverarchitektúra Review foglalása',
-        heroSecondaryCta: 'Munkáink',
+          'Elosztott rendszereket tervezünk, monolitokat bontunk szolgáltatásokra, és olyan belső platformokat építünk, amelyek felgyorsítják a fejlesztést. API-first tervezés, teljes megfigyelhetőség, éles üzemre kész megoldások az első naptól.',
+        heroPrimaryCta: 'Architektúra-felülvizsgálat kérése',
+        heroSecondaryCta: 'Referenciáink',
         statYears: 'Év tapasztalat',
-        statProjects: 'Leszállított projekt',
-        statSavings: 'Éves megtakarítás',
-        bestFitEyebrow: 'Kinek ideális',
-        bestFitTitlePrefix: 'Olyan csapatoknak, ahol',
-        bestFitTitleAccent: 'komplex a rendszer.',
+        statProjects: 'Átadott projekt',
+        statSavings: 'Éves ügyfélmegtakarítás',
+        bestFitEyebrow: 'Kiknek szólunk',
+        bestFitTitlePrefix: 'Összetett rendszerekkel',
+        bestFitTitleAccent: 'dolgozó csapatoknak.',
         bestFitItems: [
-          'Termékcégeknek, amelyek túlnőttek a korai architektúrán',
-          'Vállalatoknak, amelyek monolitot vagy töredezett rendszereket modernizálnak',
-          'Mérnöki csapatoknak, amelyek gyorsabb szállítást, megbízhatóságot és jobb fejlesztői élményt akarnak',
-          'Szervezeteknek, amelyek senior architektúrát és kivitelezést is igényelnek',
+          'Termékcégeknek, amelyek kinőtték a korai architektúrájukat',
+          'Nagyvállalatoknak, amelyek monolitikus vagy széttöredezett rendszereiket modernizálják',
+          'Fejlesztőcsapatoknak, amelyek gyorsabb szállítást, nagyobb megbízhatóságot és jobb fejlesztői élményt szeretnének',
+          'Szervezeteknek, amelyeknek senior architektúra és kivitelezés egyaránt kell',
         ],
-        problemsEyebrow: 'Tipikus problémák, amiket megoldunk',
+        problemsEyebrow: 'Tipikus problémák, amelyeket megoldunk',
         problemsTitlePrefix: 'Azt javítjuk, ami',
-        problemsTitleAccent: 'lassítja a mérnöki munkát.',
+        problemsTitleAccent: 'lassítja a fejlesztést.',
         problemsLead:
-          'Ezek azok a visszatérő minták, amelyeket mérnöki és termékcsapatoknál látunk. Ha ezek közül bármelyik ismerős, tudunk segíteni.',
+          'Ezeket a visszatérő mintákat látjuk fejlesztő- és termékcsapatoknál. Ha valamelyik ismerős, tudunk segíteni.',
         engageEyebrow: 'Együttműködési formák',
-        whyEyebrow: 'Miért minket',
+        whyEyebrow: 'Miért a MONAD',
         midCtaSecondary: 'Így dolgozunk együtt',
-        caseStudiesEyebrow: 'Esettanulmányok',
+        caseStudiesEyebrow: 'Referenciák',
         contactEyebrow: 'Kapcsolat',
       }
     : {
@@ -342,100 +343,100 @@ export default function Home() {
           {
             title: 'Monolitból moduláris architektúra',
             description:
-              'A monolit kinőtte a csapatot. A release-ek lassúak, kockázatosak és szorosan csatoltak. Gyakorlatias utat adunk moduláris vagy service-orientált működéshez teljes újraírás nélkül.',
-            tags: ['Felbontás', 'Bounded Context', 'Strangler Fig'],
+              'A monolit kinőtte a csapatot: a kiadások lassúak, kockázatosak és egymáshoz kötöttek. Teljes újraírás nélkül mutatunk gyakorlati utat a moduláris, szolgáltatásalapú működés felé.',
+            tags: ['Szétbontás', 'Bounded context', 'Strangler fig minta'],
           },
           {
-            title: 'Integrációs komplexitás',
+            title: 'Átláthatatlan integrációk',
             description:
-              'A rendszerek törékeny point-to-point integrációkkal és ad hoc üzenetformátumokkal kapcsolódnak, tiszta ownership nélkül. A hibák láncreakcióban terjednek.',
-            tags: ['Event-Driven', 'Kafka', 'Aszinkron üzenetkezelés'],
+              'A rendszereket törékeny pont-pont kapcsolatok és eseti üzenetformátumok kötik össze, egyértelmű gazda nélkül. A hibák továbbgyűrűznek, a hibakeresés több csapatot érint.',
+            tags: ['Eseményvezérelt', 'Kafka', 'Aszinkron üzenetkezelés'],
           },
           {
-            title: 'Inkonzisztens API-k és gyenge szerződések',
+            title: 'Következetlen API-k, gyenge szerződések',
             description:
-              'Minden szolgáltatás saját konvenciót követ. A kliensek találgatják a payload formátumot. A validáció duplikált, a breaking change-ek észrevétlenül mennek ki.',
-            tags: ['OpenAPI', 'AsyncAPI', 'Spec-First', 'JSON Schema'],
+              'Minden szolgáltatás a saját konvencióit követi. A kliensek találgatják az adatszerkezetet, a validáció ismétlődik, a visszafelé nem kompatibilis változások észrevétlenül élesednek.',
+            tags: ['OpenAPI', 'AsyncAPI', 'Specifikáció alapú', 'JSON Schema'],
           },
           {
-            title: 'Platform friction, ami lassítja a szállítást',
+            title: 'A fejlesztői környezet lassítja a munkát',
             description:
-              'A fejlesztők infrastruktúrára várnak, instabil CI pipeline-okkal küzdenek, és hiányzó toolokat kerülgetnek. A platform gyorsító helyett bottleneck.',
+              'A fejlesztők infrastruktúrára várnak, megbízhatatlan CI-folyamatokkal küzdenek, és hiányzó eszközöket kerülgetnek. A platform gyorsítás helyett szűk keresztmetszet.',
             tags: ['Egyedi szoftverfejlesztés', 'CI/CD', 'Fejlesztői élmény'],
           },
           {
-            title: 'Gyenge megfigyelhetőség és vakfoltok',
+            title: 'Gyenge megfigyelhetőség, vakfoltok',
             description:
-              'A production hibák felhasználói panaszokból derülnek ki. A distributed trace hiányos vagy nincs. Nincs strukturált SLO, alerting és incident response gyakorlat.',
+              'Az éles hibákról a felhasználói panaszokból értesülnek. Az elosztott nyomkövetés hiányos vagy nincs, és nincs kialakult SLO-, riasztási és incidenskezelési gyakorlat.',
             tags: ['OpenTelemetry', 'Grafana', 'Prometheus', 'SLO-k'],
           },
           {
-            title: 'Növekvő cloud költség és architektúrális pazarlás',
+            title: 'Növekvő felhőköltség, architekturális pazarlás',
             description:
-              'Az infrastruktúra költség nő, de nem látszik az értékarány. Túlméretezett klaszterek, redundáns szolgáltatások és nem optimalizált adatutak viszik a büdzsét.',
+              'Az infrastruktúra költsége nő, de nem látszik, mit kapnak érte. Túlméretezett klaszterek, párhuzamos szolgáltatások és optimalizálatlan adatutak viszik el a keretet.',
             tags: [
               'Költségoptimalizálás',
-              'Right-Sizing',
-              'Architektúra review',
+              'Helyes méretezés',
+              'Architektúra-felülvizsgálat',
             ],
           },
         ],
         engagements: [
           {
             step: '01',
-            title: 'Szoftverarchitektúra review',
-            what: 'Fókuszált felmérés a jelenlegi architektúráról, integrációs mintákról, delivery pipeline-ról és üzemeltetési állapotról.',
-            when: 'Azt gyanítjátok, hogy az architekturális adósság lassít, de független senior nézőpont kell a prioritások és kockázatok tisztázásához.',
+            title: 'Architektúra-felülvizsgálat',
+            what: 'Fókuszált felmérés a jelenlegi architektúráról, az integrációkról, a szállítási folyamatról és az üzemeltetés állapotáról.',
+            when: 'Úgy érzik, hogy az architekturális adósság lassítja Önöket, de független, senior nézőpont kell a prioritások és a kockázatok tisztázásához.',
             outcome:
-              'Írásos megállapítások és priorizált, végrehajtható roadmap, konkrét lépésekkel.',
+              'Írásos megállapítások és rangsorolt, végrehajtható ütemterv konkrét lépésekkel.',
           },
           {
             step: '02',
-            title: 'Fractional architektúra vezetés',
-            what: 'Folyamatos senior architektúra támogatás beágyazva a csapatotokba részmunkaidős retained formában.',
-            when: 'Principal szintű iránymutatás kell, de teljes állású hire nem reális vagy nem időben kivitelezhető.',
+            title: 'Részmunkaidős architektúravezetés',
+            what: 'Folyamatos senior architekturális támogatás, a csapatukba beépülve, részmunkaidős, havidíjas formában.',
+            when: 'Vezető architekt szintű iránymutatásra van szükség, de főállású felvétel nem reális, vagy nem oldható meg időben.',
             outcome:
-              'Konzisztensebb architektúra döntések, kevesebb újramunka és gyorsabban fejlődő belső csapat.',
+              'Következetesebb architekturális döntések, kevesebb újramunka és gyorsabban fejlődő belső csapat.',
           },
           {
             step: '03',
-            title: 'Delivery együttműködés',
-            what: 'Hands-on implementáció senior mérnökökkel: production-ready kód, infrastruktúra és observability.',
-            when: 'Tiszta modernizációs scope van, és kell egy tapasztalt csapat, amely end-to-end felelősséget vállal a szállításért.',
+            title: 'Fejlesztési együttműködés',
+            what: 'Gyakorlati megvalósítás senior mérnökökkel: éles üzemre kész kód, infrastruktúra és megfigyelhetőség.',
+            when: 'A modernizáció terjedelme tiszta, és olyan tapasztalt csapat kell, amely elejétől végéig felelősséget vállal a szállításért.',
             outcome:
-              'Élesben futó rendszer tiszta szerződésekkel, tesztelt határokkal, beépített observability-vel és átadott tudással.',
+              'Élesben futó rendszer tiszta szerződésekkel, tesztelt határokkal, beépített megfigyelhetőséggel és átadott tudással.',
           },
         ],
         differentiators: [
           {
-            title: 'Senior, valóban hands-on kivitelezés',
+            title: 'Valóban gyakorlati senior kivitelezés',
             description:
-              'Nincs bench rotáció, nincs junior staffing. Aki felméri a rendszert, az dolgozik a megvalósításon is.',
+              'Nincs cserélődő csapat, nincsenek junior mérnökök. Aki felméri a rendszert, az dolgozik a megvalósításon is.',
           },
           {
-            title: 'Architektúra + delivery együtt',
+            title: 'Architektúra és megvalósítás egy kézben',
             description:
-              'Nem csak diagramokat rajzolunk: megtervezzük és le is szállítjuk a rendszert production szinten.',
+              'Nem csak diagramokat rajzolunk: megtervezzük és élesbe is visszük a rendszert.',
           },
           {
             title: 'Pragmatikus modernizáció',
             description:
-              'Nem erőltetünk rewrite-ot. A javaslatokat a valós korlátaitokhoz, ütemetekhez és csapatotokhoz igazítjuk.',
+              'Nem erőltetünk újraírást. A javaslatainkat az Önök valós korlátaihoz, ütemezéséhez és csapatához igazítjuk.',
           },
           {
-            title: 'API és Spec-First fegyelem',
+            title: 'Szerződés a kód előtt',
             description:
-              'A szerződés megelőzi a kódot. OpenAPI, AsyncAPI és JSON Schema ad megbízható határokat.',
+              'Előbb az API-szerződés, aztán a kód. Az OpenAPI, az AsyncAPI és a JSON Schema megbízható határokat ad.',
           },
           {
-            title: 'Observability és production readiness',
+            title: 'Megfigyelhetőség és üzembiztosság',
             description:
-              'Minden munkában alap a strukturált logging, tracing, metrikák és alerting.',
+              'Minden munkánkban alap a strukturált naplózás, a nyomkövetés, a metrikák és a riasztás.',
           },
           {
-            title: 'Teljes platform mélység',
+            title: 'A teljes platform egy kézben',
             description:
-              'Backend, frontend, infrastruktúra, CI/CD, adatfolyamok, event-driven integráció egy kézben.',
+              'Backend, frontend, infrastruktúra, CI/CD, adatfolyamok és eseményvezérelt integráció.',
           },
         ],
         caseStudies: [
@@ -443,155 +444,205 @@ export default function Home() {
             title: 'Fizz',
             category: 'Egyedi szoftverfejlesztés',
             description:
-              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését — a lassú külső szolgáltatót adapter-mintával Azure AI Search-re cseréltük, évi több százezer USD megtakarítást és jelentősen gyorsabb keresési szinkronizációt elérve. A CI időt kb. egy óráról kb. hat percre csökkentettük. Bevezettük a spec-first API szállítást, automatizált minőségi kapukat és production-grade observability-t, majd a distributed monolitot ténylegesen szétválasztott, lazán csatolt mikroszervizekre bontottuk, tiszta szolgáltatáshatárokkal.',
+              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Searchre cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a specifikáció alapú API-fejlesztést, az automatizált minőségi kapukat és az éles üzemre kész megfigyelhetőséget, majd az elosztott monolitot valóban független, lazán csatolt mikroszolgáltatásokra bontottuk, tiszta szolgáltatáshatárokkal.',
             tags: [
-              'API Design-First',
-              'Quality Gates',
-              'Observability',
-              'Cost Optimization',
+              'API-first tervezés',
+              'Minőségi kapuk',
+              'Megfigyelhetőség',
+              'Költségoptimalizálás',
             ],
             highlight: true,
           },
           {
             title: 'IdomSoft',
-            category: 'Cloud Architecture',
+            category: 'Felhőarchitektúra',
             description:
-              'Senior architektúra tanácsadást adtunk egy kormányzati technológiai szervezetnek cloud infrastruktúra, üzemeltetés és platformstratégia területen.',
-            tags: ['Cloud Architecture', 'Consulting'],
+              'Senior architekturális tanácsadást nyújtottunk egy állami technológiai szervezetnek felhőinfrastruktúra, üzemeltetés és platformstratégia területén.',
+            tags: ['Felhőarchitektúra', 'Tanácsadás'],
             highlight: true,
           },
           {
             title: 'Netrisk',
-            category: 'Cloud Architecture',
+            category: 'Felhőarchitektúra',
             description:
-              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js mikroszervizekkel és Kafka event-driven kommunikációval, jobb megbízhatósággal és trace-elhetőséggel.',
-            tags: ['Node.js', 'Kafka', 'Event-Driven', 'Microservices'],
+              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js mikroszolgáltatásokkal és Kafka alapú eseményvezérelt kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
+            tags: [
+              'Node.js',
+              'Kafka',
+              'Eseményvezérelt',
+              'Mikroszolgáltatások',
+            ],
           },
           {
             title: 'IDBC',
-            category: 'Banking Infrastructure',
+            category: 'Banki infrastruktúra',
             description:
-              'Skálázható banki platform alaparchitektúráját építettük meg Node.js és Kafka alapokon, komplex legacy integrációval és adatvándorlással.',
-            tags: ['Node.js', 'Kafka', 'Event-Driven', 'Data Migration'],
+              'Egy skálázható banki platform alaparchitektúráját építettük meg Node.js és Kafka alapokon, összetett legacy integrációval és adatmigrációval.',
+            tags: ['Node.js', 'Kafka', 'Eseményvezérelt', 'Adatmigráció'],
           },
           {
             title: 'Webshippy',
-            category: 'Backend Decomposition',
+            category: 'Backend szétbontás',
             description:
-              'Monolit PHP alkalmazást bontottunk tiszta backend API-ra és moduláris Vue.js frontend-re. Dockeres full-stack konténerizálással függetlenebb release ciklusokat tettünk lehetővé.',
-            tags: ['Vue.js', 'PHP', 'Docker', 'API Design', 'Microservices'],
+              'Egy monolitikus PHP alkalmazást tiszta backend API-ra és moduláris Vue.js frontendre bontottunk. A Docker alapú, teljes körű konténerizálással egymástól függetlenebb kiadási ciklusokat tettünk lehetővé.',
+            tags: [
+              'Vue.js',
+              'PHP',
+              'Docker',
+              'API-tervezés',
+              'Mikroszolgáltatások',
+            ],
           },
         ],
-        engageTitlePrefix: 'Három mód, hogy',
-        engageTitleAccent: 'együtt dolgozzunk.',
+        expertise: [
+          {
+            code: 'LM',
+            title: 'Legacy rendszerek modernizálása',
+            description:
+              'Fokozatos átállás monolitból moduláris, szolgáltatásalapú rendszerekre',
+          },
+          {
+            code: 'EA',
+            title: 'Eseményvezérelt architektúra',
+            description:
+              'Skálázható, lazán csatolt rendszerek aszinkron üzenetkezeléssel',
+          },
+          {
+            code: 'SF',
+            title: 'API-first, specifikáció alapú fejlesztés',
+            description:
+              'Szerződésvezérelt fejlesztés OpenAPI, AsyncAPI és JSON Schema alapon',
+          },
+          {
+            code: 'OB',
+            title: 'Megfigyelhetőség és üzembiztosság',
+            description:
+              'Strukturált nyomkövetés, metrikák, riasztások és SLO-k az első naptól',
+          },
+          {
+            code: 'CO',
+            title: 'Felhőköltség-optimalizálás',
+            description:
+              'Az infrastruktúra helyes méretezése és az architekturális pazarlás megszüntetése',
+          },
+          {
+            code: 'CS',
+            title: 'Egyedi szoftverfejlesztés',
+            description:
+              'Belső platformok, CI/CD és fejlesztői eszközök, amelyek gyorsítják a szállítást',
+          },
+        ],
+        engageTitlePrefix: 'Három módon',
+        engageTitleAccent: 'dolgozhatunk együtt.',
         engageLead:
-          'Minden együttműködés az architektúra és a korlátok megértésével indul. Az involvement szintjét a valós igényhez igazítjuk.',
+          'Minden együttműködés az architektúra és a korlátok megértésével kezdődik. A részvételünk mértékét a valós igényhez igazítjuk.',
         engageWhat: 'Mi ez',
         engageWhen: 'Mikor segít',
-        engageOutcome: 'Mit kapsz',
-        whyTitlePrefix: 'Nem ügynökség.',
-        whyTitleAccent: 'Senior partner.',
+        engageOutcome: 'Az eredmény',
+        whyTitlePrefix: 'Nem ügynökség,',
+        whyTitleAccent: 'hanem senior partner.',
         whyLead:
-          'Kis, senior tanácsadó csapat vagyunk. Nincs account manager, nincs rotáció, nincs junior tanuló projekt. Ugyanaz a csapat kísér végig a felméréstől productionig.',
-        midCtaTitlePrefix: 'Készen állsz modernizálni',
-        midCtaTitleAccent: 'a szoftveres működéseteket?',
+          'Kis, senior tanácsadócég vagyunk. Nincs account manager, nincs rotáció, nincsenek juniorok, akik az Önök projektjén tanulnak. A felméréstől az éles üzemig ugyanazok a szakemberek dolgoznak.',
+        midCtaTitlePrefix: 'Készen állnak',
+        midCtaTitleAccent: 'a modernizációra?',
         midCtaLead:
-          'Kezdjük egy fókuszált architektúra review-val. Azonosítjuk a legnagyobb hatású bottleneckeket és konkrét roadmapet adunk.',
-        midCtaPrimary: 'Szoftverarchitektúra Review foglalása',
+          'Kezdjük egy fókuszált architektúra-felülvizsgálattal. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét ütemtervet adunk.',
+        midCtaPrimary: 'Architektúra-felülvizsgálat kérése',
         caseStudiesTitlePrefix: 'Valós problémák,',
-        caseStudiesTitleAccent: 'valós megoldások.',
+        caseStudiesTitleAccent: 'működő megoldások.',
         caseStudiesLead:
-          'Olyan együttműködések, ahol kézzel foghatóan csökkentettünk költséget, javítottunk megbízhatóságot és tisztább architektúrát építettünk.',
+          'Kiválasztott projektek, ahol mérhetően csökkentettük a költségeket, javítottuk a megbízhatóságot és tisztább architektúrát építettünk, nem csak tanácsot adtunk.',
         aboutEyebrow: 'Rólunk',
         aboutTitlePrefix: 'Senior tanácsadás,',
-        aboutTitleAccent: 'hands-on szállítás.',
+        aboutTitleAccent: 'gyakorlati megvalósítás.',
         aboutLead1:
-          'A MONAD founder-led szoftver tanácsadó csapat, több mint 20 év gyakorlati mérnöki tapasztalattal komplex, kritikus rendszerekben.',
+          'A MONAD alapítói vezetésű szoftvertanácsadó cég, több mint 20 év gyakorlati mérnöki tapasztalattal összetett, kritikus rendszerekben: banki infrastruktúrában, biztosítási platformokon, állami felhőrendszerekben és gyorsan növekvő termékcégeknél.',
         aboutLead2:
-          'Beágyazott senior mérnökként és architektként dolgozunk. Aki felméri a rendszert, ugyanaz írja a kódot, építi az infrastruktúrát és állítja be az observability-t.',
+          'Beépülő senior mérnökként és architektként dolgozunk, nem külső tanácsadóként, aki egy prezentációval távozik. Aki felméri a rendszert, ugyanő írja a kódot, építi az infrastruktúrát és állítja be a megfigyelhetőséget. Minden együttműködés működő szoftverrel és átadott tudással zárul.',
         aboutValues: [
           {
-            title: 'Spec-First mérnöki működés',
+            title: 'Specifikáció alapú fejlesztés',
             description:
-              'Szerződés a kód előtt. OpenAPI, AsyncAPI és JSON Schema vezérli a rendszerhatárokat.',
+              'Szerződés a kód előtt. Az OpenAPI, az AsyncAPI és a JSON Schema határozza meg a rendszerhatárokat.',
           },
           {
-            title: 'Production-grade standardok',
+            title: 'Éles üzemre kész szabványok',
             description:
-              'Observability, quality gate-ek és automatizált tesztek alapkövetelményként jelennek meg.',
+              'A megfigyelhetőség, a minőségi kapuk és az automatizált tesztek alapkövetelmények, nem opcionális extrák.',
           },
           {
-            title: 'Pragmatikus, nem dogmatikus',
+            title: 'Pragmatizmus dogmák helyett',
             description:
-              'Ahol a bevált technológia jobb, azt választjuk; ahol a modern eszköz számít, ott váltunk.',
+              'Ahol a bevált technológia működik, azt választjuk, ahol a modern eszköz számít, ott azt. Divatból nem tervezünk architektúrát.',
           },
           {
-            title: 'Transzparens együttműködés',
+            title: 'Átlátható együttműködés',
             description:
-              'Őszinte becslések, folyamatos kommunikáció, korai kockázatjelzés és közös iránykorrekció.',
+              'Őszinte becslések, folyamatos kommunikáció, meglepetések nélkül. A kockázatokat korán jelezzük, és közösen korrigálunk.',
           },
         ],
         principlesTitle: 'Alapelveink',
         principles: [
-          'Spec-First',
-          'Cloud-Native',
-          'Inkrementális modernizáció',
-          'Security by Default',
-          'Teljes observability',
+          'Specifikáció alapú tervezés',
+          'Felhőnatív működés',
+          'Fokozatos modernizáció',
+          'Beépített biztonság',
+          'Teljes megfigyelhetőség',
           'Egyedi szoftverfejlesztés',
         ],
-        techTitle: 'Technológiai stack',
+        techTitle: 'Technológiák',
         techLangLabel: 'Nyelvek és keretrendszerek',
         techInfraLabel: 'Infrastruktúra',
         techDataLabel: 'Adat és üzenetkezelés',
-        techObsLabel: 'Observability',
+        techObsLabel: 'Megfigyelhetőség',
         yearsLabel: 'Év tapasztalat',
-        projectsLabel: 'Leszállított projekt',
+        projectsLabel: 'Átadott projekt',
         expertiseTitle: 'Kulcsterületek',
         partnersEyebrow: 'Akik már bíztak bennünk',
-        partnersTitle: 'Cégek, amelyeknek szállítottunk',
+        partnersTitle: 'Cégek, amelyeknek dolgoztunk',
         trustLabels: [
-          'EU-alapú tanácsadó csapat',
-          'Remote-first együttműködés',
-          'Angol nyelvű szállítás',
-          'Rövid felméréstől hosszú partnerségig',
-          'Vállalati és komplex rendszer tapasztalat',
+          'Magyar tulajdonú, EU-s tanácsadó cég',
+          'Távoli és helyszíni együttműködés',
+          'Magyar és angol nyelvű munka',
+          'Rövid felméréstől hosszú távú partnerségig',
+          'Nagyvállalati, összetett rendszerekben szerzett tapasztalat',
         ],
-        contactTitlePrefix: 'Beszéljünk a',
-        contactTitleAccent: 'szoftveres kihívásaitokról.',
+        contactTitlePrefix: 'Beszéljünk',
+        contactTitleAccent: 'a szoftveres kihívásaikról.',
         contactLead:
-          'Legyen szó architektúra review-ról, modernizációs roadmapről vagy hands-on mérnöki támogatásról, együtt megtaláljuk a megfelelő formát.',
+          'Akár architektúra-felülvizsgálatra, modernizációs ütemtervre, gyakorlati fejlesztési támogatásra vagy helyszíni automatizálásra van szükségük, együtt megtaláljuk a megfelelő formát.',
         phoneLabel: 'Telefon',
-        locationLabel: 'Helyszín',
-        locationValue: 'Gödöllő, Magyarország (EU)',
+        locationLabel: 'Iroda',
+        locationValue: 'Gödöllő, Dózsa György út 28/A',
         nameLabel: 'Név',
-        namePlaceholder: 'Neved',
-        emailLabel: 'Email',
-        emailPlaceholder: 'email@pelda.hu',
+        namePlaceholder: 'Az Ön neve',
+        emailLabel: 'E-mail',
+        emailPlaceholder: 'nev@ceg.hu',
         companyLabel: 'Cég',
-        companyPlaceholder: 'Céged neve',
+        companyPlaceholder: 'A cég neve',
         messageLabel: 'Üzenet',
         messagePlaceholder:
-          'Írd le röviden a szoftveres kihívásaitokat: architektúra review, modernizációs roadmap vagy delivery támogatás...',
+          'Írja le röviden, miben segíthetünk: architektúra-felülvizsgálat, modernizációs ütemterv, fejlesztési támogatás vagy helyszíni automatizálás...',
         sendingText: 'Küldés...',
         sendButton: 'Üzenet küldése',
-        contactUnavailableButton: 'Kapcsolatfelvétel nem elérhető',
+        contactUnavailableButton: 'Az űrlap nem elérhető',
         contactUnavailableStatus:
-          'A kapcsolatfelvételi űrlap jelenleg nem elérhető. Kérlek írj a hello@monad.hu címre.',
+          'A kapcsolatfelvételi űrlap jelenleg nem elérhető. Kérjük, írjon az office@monad.hu címre.',
         contactUnavailableInline:
-          'A kapcsolatfelvétel átmenetileg nem elérhető. Kérlek írj a hello@monad.hu címre.',
-        contactFailed: 'Sikertelen küldés. Kérlek próbáld újra később.',
-        contactSent: 'Köszönjük! Az üzenetedet elküldtük.',
+          'A kapcsolatfelvételi űrlap átmenetileg nem elérhető. Kérjük, írjon az office@monad.hu címre.',
+        contactFailed: 'A küldés nem sikerült. Kérjük, próbálja újra később.',
+        contactSent: 'Köszönjük! Üzenetét elküldtük.',
         contactBotCheckFailed:
-          'A spamellenőrzés nem sikerült. Kérlek próbáld újra.',
+          'A spamellenőrzés nem sikerült. Kérjük, próbálja újra.',
         altchaNote:
-          'Spamvédelem: az ALTCHA egy rövid számítási feladatot old meg a böngésződben. Nincs süti, nincs követés, nincs harmadik fél.',
+          'Spamvédelem: az ALTCHA egy rövid számítást végez a böngészőjében. Nincs süti, nincs követés, nincs harmadik fél.',
       }
     : {
         problems,
         engagements,
         differentiators,
         caseStudies,
+        expertise,
         engageTitlePrefix: 'Three Ways to',
         engageTitleAccent: 'Work With Us.',
         engageLead:
@@ -687,9 +738,9 @@ export default function Home() {
         sendButton: 'Send Message',
         contactUnavailableButton: 'Contact Unavailable',
         contactUnavailableStatus:
-          'Contact form is currently unavailable. Please email hello@monad.hu.',
+          'Contact form is currently unavailable. Please email office@monad.hu.',
         contactUnavailableInline:
-          'Contact form is temporarily unavailable. Please email hello@monad.hu.',
+          'Contact form is temporarily unavailable. Please email office@monad.hu.',
         contactFailed: 'Failed to send. Please try again later.',
         contactSent: 'Thanks! Your message has been sent.',
         contactBotCheckFailed: 'The spam check failed. Please try again.',
@@ -1191,7 +1242,7 @@ export default function Home() {
               {homeContent.expertiseTitle}
             </h3>
             <div className="ruled-grid ruled-grid--3">
-              {expertise.map((item) => (
+              {homeContent.expertise.map((item) => (
                 <div key={item.code} className="ruled-cell">
                   <span className="ruled-cell__index">{item.code}</span>
                   <h4 className="ruled-cell__title">{item.title}</h4>
@@ -1222,7 +1273,7 @@ export default function Home() {
             <ul className="contact-details">
               <li>
                 <span className="mono-label">{homeContent.emailLabel}</span>
-                <a href="mailto:hello@monad.hu">hello@monad.hu</a>
+                <a href="mailto:office@monad.hu">office@monad.hu</a>
               </li>
               <li>
                 <span className="mono-label">{homeContent.phoneLabel}</span>

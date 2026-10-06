@@ -380,7 +380,7 @@ export default function Layout({
               </p>
               <ul className="footer-links">
                 <li>
-                  <a href="mailto:hello@monad.hu">hello@monad.hu</a>
+                  <a href="mailto:office@monad.hu">office@monad.hu</a>
                 </li>
                 <li>
                   <a href="tel:+36306360775">+36 30 636 0775</a>

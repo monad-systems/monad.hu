@@ -41,13 +41,6 @@ const WORKING_HOURS_PER_MONTH = 168;
 const DEFAULT_HOURS_PER_MONTH = 40;
 const DEFAULT_MONTHLY_COST_HUF = 600_000;
 
-const PHONE_DISPLAY = '+36 30 636 0775';
-const PHONE_HREF = 'tel:+36306360775';
-const EMAIL = 'hello@monad.hu';
-const EMAIL_HREF = `mailto:${EMAIL}?subject=${encodeURIComponent('Helyszíni felmérés')}`;
-const ADDRESS = '2100 Gödöllő, Dózsa György út 28/A';
-const MAPS_URL = 'https://maps.app.goo.gl/UYrvowK7skeSyuaq5';
-
 const SERVED_TOWNS = [
   'Gödöllő',
   'Veresegyház',
@@ -372,9 +365,9 @@ export default function LocalAutomation() {
               automatizálást.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
-              <a
+              <Link
                 className="btn btn-hero btn-lg group"
-                href="#kapcsolat"
+                href="/hu/#contact"
                 data-umami-event="local-automation-hero-cta"
               >
                 Felmérés egyeztetése
@@ -382,20 +375,11 @@ export default function LocalAutomation() {
                   className="btn-icon transition-transform duration-300 group-hover:translate-x-1"
                   style={{ width: 18, height: 18 }}
                 />
-              </a>
+              </Link>
               <a className="btn btn-outline btn-lg" href="#kalkulator">
                 Mennyit spórolhatnak?
               </a>
             </div>
-            <p
-              style={{
-                marginTop: '1rem',
-                color: 'hsl(var(--muted-foreground))',
-                fontSize: '0.95rem',
-              }}
-            >
-              MONAD SYSTEMS Kft. · {ADDRESS}
-            </p>
           </div>
         </div>
       </section>
@@ -662,72 +646,6 @@ export default function LocalAutomation() {
                 <span style={{ lineHeight: 1.6 }}>{item}</span>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Contact ── */}
-      <section
-        id="kapcsolat"
-        className="section"
-        style={{ background: 'hsl(var(--secondary))' }}
-      >
-        <div className="site-container" style={{ textAlign: 'center' }}>
-          <div
-            className="card glass"
-            style={{
-              maxWidth: '720px',
-              margin: '0 auto',
-              padding: '3rem 2rem',
-            }}
-          >
-            <h2
-              className="section-title"
-              style={{ textAlign: 'center', marginBottom: '1rem' }}
-            >
-              Egyeztessünk egy felmérést
-            </h2>
-            <p
-              className="section-lead"
-              style={{ maxWidth: '52ch', margin: '0 auto 2rem' }}
-            >
-              Egy negyedórás telefonnal kezdünk. Megnézzük, van-e Önöknél olyan
-              folyamat, amelyiknél megéri kimennünk. Ha nincs, ezt már a
-              telefonban megmondjuk.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <a
-                className="btn btn-hero btn-lg group"
-                href={PHONE_HREF}
-                data-umami-event="local-automation-call"
-              >
-                {PHONE_DISPLAY}
-                <ArrowRightIcon
-                  className="btn-icon transition-transform duration-300 group-hover:translate-x-1"
-                  style={{ width: 18, height: 18 }}
-                />
-              </a>
-              <a
-                className="btn btn-outline btn-lg"
-                href={EMAIL_HREF}
-                data-umami-event="local-automation-email"
-              >
-                {EMAIL}
-              </a>
-            </div>
-            <p
-              style={{
-                margin: '1.5rem 0 0',
-                color: 'hsl(var(--muted-foreground))',
-                fontSize: '0.95rem',
-              }}
-            >
-              Írni is lehet a{' '}
-              <Link href="/hu/#contact">kapcsolatfelvételi űrlapon</Link>.{' '}
-              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">
-                {ADDRESS}
-              </a>
-            </p>
           </div>
         </div>
       </section>
