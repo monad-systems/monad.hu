@@ -11,6 +11,8 @@ const outDir = path.join(process.cwd(), 'out');
 const postsDir = path.join(process.cwd(), 'posts');
 
 const STATIC_PAGES = ['/', '/platform-modernization-review', '/posts'];
+// Pages generated only under /hu, with no English version.
+const HUNGARIAN_ONLY_PAGES = ['/helyi-automatizalas'];
 
 const toUrl = (basePath, locale) => {
   const cleanBasePath = basePath === '/' ? '' : basePath;
@@ -54,22 +56,23 @@ const readPosts = async () => {
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 };
 
-const sitemapEntry = ({ basePath, hasHungarian, lastmod }) => {
-  const locales = hasHungarian ? ['en', 'hu'] : ['en'];
-  const alternates = [
-    ...locales.map(
-      (locale) =>
-        `    <xhtml:link rel="alternate" hreflang="${locale}" href="${toUrl(basePath, locale)}" />`,
-    ),
-    `    <xhtml:link rel="alternate" hreflang="x-default" href="${toUrl(basePath, 'en')}" />`,
-  ].join('\n');
+const sitemapEntry = ({ basePath, locales, lastmod }) => {
+  // A Hungarian-only page has no English counterpart to point x-default at.
+  const alternates = locales.includes('en')
+    ? [
+        ...locales.map(
+          (locale) =>
+            `\n    <xhtml:link rel="alternate" hreflang="${locale}" href="${toUrl(basePath, locale)}" />`,
+        ),
+        `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${toUrl(basePath, 'en')}" />`,
+      ].join('')
+    : '';
   const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : '';
 
   return locales
     .map(
       (locale) => `  <url>
-    <loc>${toUrl(basePath, locale)}</loc>${lastmodTag}
-${alternates}
+    <loc>${toUrl(basePath, locale)}</loc>${lastmodTag}${alternates}
   </url>`,
     )
     .join('\n');
@@ -78,12 +81,15 @@ ${alternates}
 const buildSitemap = (posts) => {
   const entries = [
     ...STATIC_PAGES.map((basePath) =>
-      sitemapEntry({ basePath, hasHungarian: true }),
+      sitemapEntry({ basePath, locales: ['en', 'hu'] }),
+    ),
+    ...HUNGARIAN_ONLY_PAGES.map((basePath) =>
+      sitemapEntry({ basePath, locales: ['hu'] }),
     ),
     ...posts.map((post) =>
       sitemapEntry({
         basePath: `/posts/${post.id}`,
-        hasHungarian: post.hasHungarian,
+        locales: post.hasHungarian ? ['en', 'hu'] : ['en'],
         lastmod: post.date,
       }),
     ),

@@ -63,6 +63,9 @@ export default function Layout({
   // False on a page showing English text under /hu (untranslated post), so the
   // English URL stays canonical and no Hungarian alternate is advertised.
   isTranslated = true,
+  // True on a page that exists only under /hu (no English version), so the
+  // Hungarian URL is canonical and no English alternate is advertised.
+  hungarianOnly = false,
   noIndex = false,
 }) {
   const pageTitle = title ?? DEFAULT_TITLE;
@@ -85,7 +88,11 @@ export default function Layout({
       .split(/[?#]/)[0]
       .replace(/^\/(en|hu)(?=\/|$)/, '')
       .replace(/\/$/, '') || '/';
-  const canonicalLocale = isTranslated ? routeLocale : 'en';
+  const canonicalLocale = hungarianOnly
+    ? 'hu'
+    : isTranslated
+      ? routeLocale
+      : 'en';
   const canonicalUrl = getCanonicalUrl(basePath, canonicalLocale);
   const jsonLdItems = [].concat(jsonLd ?? []);
 
@@ -151,23 +158,27 @@ export default function Layout({
         ) : (
           <>
             <link rel="canonical" href={canonicalUrl} />
-            <link
-              rel="alternate"
-              hrefLang="en"
-              href={getCanonicalUrl(basePath, 'en')}
-            />
-            {isTranslated ? (
-              <link
-                rel="alternate"
-                hrefLang="hu"
-                href={getCanonicalUrl(basePath, 'hu')}
-              />
-            ) : null}
-            <link
-              rel="alternate"
-              hrefLang="x-default"
-              href={getCanonicalUrl(basePath, 'en')}
-            />
+            {hungarianOnly ? null : (
+              <>
+                <link
+                  rel="alternate"
+                  hrefLang="en"
+                  href={getCanonicalUrl(basePath, 'en')}
+                />
+                {isTranslated ? (
+                  <link
+                    rel="alternate"
+                    hrefLang="hu"
+                    href={getCanonicalUrl(basePath, 'hu')}
+                  />
+                ) : null}
+                <link
+                  rel="alternate"
+                  hrefLang="x-default"
+                  href={getCanonicalUrl(basePath, 'en')}
+                />
+              </>
+            )}
           </>
         )}
         <link

@@ -850,6 +850,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Local automation offer (Hungarian only) ── */}
+      {isHu ? (
+        <section id="helyi-automatizalas" className="section">
+          <div className="site-container">
+            <div
+              className="card glass flex flex-col md:flex-row md:items-center justify-between gap-6"
+              style={{ padding: '2rem' }}
+            >
+              <div style={{ maxWidth: '60ch' }}>
+                <p className="section-eyebrow">Gödöllő és környéke</p>
+                <h2
+                  style={{
+                    fontSize: '1.4rem',
+                    fontWeight: 700,
+                    margin: '0 0 0.5rem',
+                  }}
+                >
+                  Helyszíni automatizálás környékbeli cégeknek
+                </h2>
+                <p
+                  style={{
+                    margin: 0,
+                    color: 'hsl(var(--muted-foreground))',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Egy nap alatt, nálatok, a saját adataitokon megépítjük az
+                  első automatizálást. Számlák, szállítólevelek, rendelések. Az
+                  ár legfeljebb az első év megtakarítása.
+                </p>
+              </div>
+              <Link
+                className="btn btn-hero btn-lg group"
+                href="/hu/helyi-automatizalas"
+                data-umami-event="local-automation-home-click"
+                style={{ flexShrink: 0 }}
+              >
+                Bizonyító nap
+                <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* ── Best Fit For ── */}
       <section id="best-fit" className="section">
         <div className="site-container fit-layout">
