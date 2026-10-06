@@ -78,6 +78,13 @@ and `SKILL.md` is the checklist for those:
 The Hungarian translation needs the structural pass too. The word tables and the
 function-word entropy signal are English-tuned and will misfire on Hungarian.
 
+### Hungarian copy
+
+Hungarian text follows `.claude/skills/hungarian-copy/SKILL.md`: site pages address
+readers formally, blog posts use the inclusive first person plural, engineering terms
+such as contract, observability and review stay in English, and the file lists the
+calques to rewrite.
+
 ## Analytics
 
 Page views are tracked with [Umami](https://umami.is/), which is cookie-free. The script is only
