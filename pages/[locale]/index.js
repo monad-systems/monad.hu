@@ -876,9 +876,10 @@ export default function Home() {
                     lineHeight: 1.6,
                   }}
                 >
-                  Egy nap alatt, az Önök telephelyén és adatain megépítjük az
-                  első automatizálást. Számlák, szállítólevelek, rendelések. Az
-                  ár legfeljebb az első év megtakarítása.
+                  Egy délelőtt alatt az Önök telephelyén felmérjük, mennyi kézi
+                  munkát vehet le a gép, és néhány napon belül átadjuk az
+                  automatizálást. Számlák, szállítólevelek, rendelések. Az ár
+                  legfeljebb az első év megtakarítása.
                 </p>
               </div>
               <Link
@@ -887,7 +888,7 @@ export default function Home() {
                 data-umami-event="local-automation-home-click"
                 style={{ flexShrink: 0 }}
               >
-                Bizonyító nap
+                Helyszíni felmérés
                 <IconArrowRight className="btn-icon transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
             </div>

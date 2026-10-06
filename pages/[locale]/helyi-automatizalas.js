@@ -25,7 +25,7 @@ const DEFAULT_MONTHLY_COST_HUF = 600_000;
 const PHONE_DISPLAY = '+36 30 636 0775';
 const PHONE_HREF = 'tel:+36306360775';
 const EMAIL = 'hello@monad.hu';
-const EMAIL_HREF = `mailto:${EMAIL}?subject=${encodeURIComponent('Bizonyító nap')}`;
+const EMAIL_HREF = `mailto:${EMAIL}?subject=${encodeURIComponent('Helyszíni felmérés')}`;
 const ADDRESS = '2100 Gödöllő, Dózsa György út 28/A';
 const MAPS_URL = 'https://maps.app.goo.gl/UYrvowK7skeSyuaq5';
 
@@ -95,33 +95,34 @@ const fitFor = [
   'Ahol egy adminisztrátori állás betöltése hónapokig tart, vagy már most is túlórában megy a papírmunka',
 ];
 
-const daySchedule = [
+const steps = [
   {
-    time: '9:00–11:00',
-    title: 'Megnézzük, mit végeznek ma kézzel',
+    when: 'Egy délelőtt',
+    title: 'Felmérés az Önök telephelyén',
     detail:
-      'Mi érkezik, ki gépeli be, hova és hányszor. Azzal ülünk le, aki ténylegesen csinálja.',
-    ask: 'Az a kolléga, aki a munkát végzi, két órára',
+      'Megnézzük, mi érkezik, ki gépeli be, hova és hányszor. Kiválasztjuk a legtöbb kézi munkát vivő folyamatot, és közösen megmérjük, havonta hány órát visz el. A felmérés ingyenes.',
+    ask: 'Az a kolléga, aki a munkát végzi, és fél óra a döntéshozótól',
   },
   {
-    time: '11:00–12:00',
-    title: 'Kiválasztunk egy folyamatot',
+    when: '1–2 munkanapon belül',
+    title: 'Fix áras ajánlat',
     detail:
-      'Azt, amelyik a legtöbb kézi munkát viszi. Közösen megmérjük, havonta hány órát vesz el.',
-    ask: 'Döntés arról, melyik folyamatot nézzük',
+      'A mért megtakarításból számolva. Ha a folyamat nem hoz annyit, hogy megérje, ajánlat helyett ezt írjuk meg.',
+    ask: 'Döntés az ajánlatról',
   },
   {
-    time: '13:00–17:00',
-    title: 'Megépítjük',
-    detail: 'Éles adatokon, az Önök rendszereivel, az Önök telephelyén.',
+    when: 'Néhány napon belül',
+    title: 'Átadás élesben',
+    detail:
+      'Az elfogadás után megépítjük, az Önök éles adatain kipróbáljuk, és működő állapotban átadjuk.',
     ask: 'Hozzáférés ahhoz az egy rendszerhez, semmi máshoz',
   },
   {
-    time: '17:00',
-    title: 'Átadjuk működő állapotban',
+    when: 'Utána',
+    title: 'Üzemeltetés',
     detail:
-      'Megmutatjuk, mi lenne a következő két folyamat, és mennyit hozna. Az automatizálás akkor is az Önöké marad, ha nem dolgozunk tovább együtt.',
-    ask: 'Fél óra a döntéshozótól',
+      'Figyeljük, hogy működik-e. Ha a NAV vagy egy szállító megváltoztatja a formátumot, mi javítjuk.',
+    ask: 'Semmi',
   },
 ];
 
@@ -154,16 +155,16 @@ const firstBuilds = [
 ];
 
 const pricingTerms = [
-  `Az első folyamat ára legfeljebb annyi, amennyit az első ${PAYBACK_MONTHS} hónapban megtakarít. A megtakarítást a bizonyító napon közösen mérjük meg, nem mi becsüljük.`,
+  `Az első folyamat ára legfeljebb annyi, amennyit az első ${PAYBACK_MONTHS} hónapban megtakarít. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa. Ha egy folyamat évente ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
-  'Fix ár, előre egyeztetett terjedelem, három hét alatt élesben. A kód az Önöké, nem bérlik tőlünk.',
+  'Fix ár, előre egyeztetett terjedelem, az elfogadás után néhány napon belül élesben. A kód az Önöké, nem bérlik tőlünk.',
   'Utána havi üzemeltetési díj, amelyet az ajánlatban rögzítünk. Figyeljük, hogy működik-e, és ha a NAV vagy egy szállító megváltoztatja a formátumot, mi javítjuk.',
 ];
 
 const notOffered = [
   'Nem cseréljük le a működő könyvelő- vagy vállalatirányítási rendszert.',
   'Nem hozunk adóügyi döntést. Azt a könyvelőjük mondja meg, mi csak azt intézzük, hogy az adat gépelés nélkül érkezzen meg hozzá.',
-  'Nem adunk írásos tanácsadói jelentést. A bizonyító nap eredménye egy működő automatizálás.',
+  'Tanácsadói jelentést nem írunk. A felmérés eredménye egy fix áras ajánlat egy működő automatizálásra.',
   'Ha kiderül, hogy Önöknél ebből nincs mit kihozni, azt is megmondjuk, és nem küldünk ajánlatot.',
 ];
 
@@ -263,8 +264,8 @@ function SavingsCalculator() {
           <p style={{ margin: 0, lineHeight: 1.6 }}>
             A bevezetés ára legfeljebb{' '}
             <strong>{formatHuf(priceCeiling)} + áfa</strong>, vagyis{' '}
-            {PAYBACK_MONTHS} hónapon belül megtérül. A pontos árat a bizonyító
-            napon mért adatokból adjuk meg.
+            {PAYBACK_MONTHS} hónapon belül megtérül. A pontos árat a felmérésen
+            mért adatokból adjuk meg.
           </p>
         ) : (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
@@ -273,7 +274,7 @@ function SavingsCalculator() {
             {breakEvenHours
               ? ` Ilyen bérköltség mellett havi ${breakEvenHours} óra kézi munkától kezd megérni.`
               : ''}{' '}
-            A bizonyító napon megnézzük, van-e nagyobb, vagy összevonható több
+            A felmérésen megnézzük, van-e nagyobb, vagy összevonható több
             kisebb.
           </p>
         )}
@@ -301,20 +302,20 @@ export default function LocalAutomation() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${pageUrl}#service`,
-    name: 'Helyszíni folyamat-automatizálás: bizonyító nap',
+    name: 'Helyszíni folyamat-automatizálás',
     serviceType: 'Üzleti folyamatok automatizálása',
     url: pageUrl,
     inLanguage: 'hu',
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: SERVED_TOWNS.map((name) => ({ '@type': 'City', name })),
     description:
-      'Kimegyünk a céghez, és egy nap alatt megépítünk egy működő automatizálást a saját adataikon. Az ár legfeljebb az első év megtakarítása.',
+      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Az ár legfeljebb az első év megtakarítása.',
   };
 
   return (
     <Layout
       title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
-      description="Kimegyünk a cégéhez, és egy nap alatt megépítünk egy működő automatizálást a saját adataikon. Számlák, szállítólevelek, rendelések. Az ár legfeljebb az első év megtakarítása."
+      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi papírmunkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Számlák, szállítólevelek, rendelések. Az ár legfeljebb az első év megtakarítása."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly
     >
@@ -334,7 +335,8 @@ export default function LocalAutomation() {
               Helyszíni automatizálás · Gödöllő és környéke
             </div>
             <h1 className="hero-title">
-              Egy nap alatt megmutatjuk, mennyi kézi papírmunkát vesz le a gép.
+              Egy délelőtt alatt felmérjük, mennyi kézi papírmunkát vehet le a
+              gép.
             </h1>
             <p
               className="text-base md:text-xl leading-relaxed mb-8"
@@ -343,10 +345,10 @@ export default function LocalAutomation() {
                 maxWidth: '60ch',
               }}
             >
-              Kimegyünk Önökhöz, és a nap végén egy működő automatizálás fut az
-              Önök adatain. Prezentációt nem hozunk. A bizonyító nap ingyenes,
-              és amit aznap megépítünk, az akkor is az Önöké marad, ha nem
-              dolgozunk tovább együtt.
+              Kimegyünk Önökhöz, megnézzük, mit végeznek ma kézzel, és
+              megmérjük, mennyi időt visz el. A felmérés ingyenes. Ha megéri,
+              fix áras ajánlatot adunk, és néhány napon belül élesben átadjuk az
+              automatizálást.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <a
@@ -354,7 +356,7 @@ export default function LocalAutomation() {
                 href="#kapcsolat"
                 data-umami-event="local-automation-hero-cta"
               >
-                Bizonyító nap egyeztetése
+                Felmérés egyeztetése
                 <ArrowRightIcon
                   className="btn-icon transition-transform duration-300 group-hover:translate-x-1"
                   style={{ width: 18, height: 18 }}
@@ -419,21 +421,21 @@ export default function LocalAutomation() {
         </div>
       </section>
 
-      {/* ── The day ── */}
-      <section id="a-nap" className="section">
+      {/* ── Steps ── */}
+      <section id="menet" className="section">
         <div className="site-container">
           <div className="section-header">
-            <div className="section-eyebrow">A bizonyító nap</div>
-            <h2 className="section-title">Mi történik a napon</h2>
+            <div className="section-eyebrow">Menet</div>
+            <h2 className="section-title">A felméréstől az átadásig</h2>
             <p className="section-lead">
-              Egy napra megyünk ki, az Önök adataival dolgozunk, és a
-              munkatársaiktól összesen néhány órát kérünk.
+              Munkatársaik idejéből a felmérés délelőttjén kérünk néhány órát.
+              Utána a munka nálunk folyik.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {daySchedule.map((slot) => (
+            {steps.map((step) => (
               <div
-                key={slot.time}
+                key={step.when}
                 className="card hover-lift"
                 style={{ padding: '1.75rem' }}
               >
@@ -441,12 +443,12 @@ export default function LocalAutomation() {
                 <div
                   className="gradient-text"
                   style={{
-                    fontSize: '1.35rem',
+                    fontSize: '1.1rem',
                     fontWeight: 700,
                     marginBottom: '0.75rem',
                   }}
                 >
-                  {slot.time}
+                  {step.when}
                 </div>
                 <h3
                   style={{
@@ -455,7 +457,7 @@ export default function LocalAutomation() {
                     marginBottom: '0.5rem',
                   }}
                 >
-                  {slot.title}
+                  {step.title}
                 </h3>
                 <p
                   style={{
@@ -465,7 +467,7 @@ export default function LocalAutomation() {
                     margin: '0 0 1rem',
                   }}
                 >
-                  {slot.detail}
+                  {step.detail}
                 </p>
                 <p
                   style={{
@@ -479,7 +481,7 @@ export default function LocalAutomation() {
                   <span className="mono-label" style={{ display: 'block' }}>
                     Önöktől
                   </span>
-                  {slot.ask}
+                  {step.ask}
                 </p>
               </div>
             ))}
@@ -583,7 +585,9 @@ export default function LocalAutomation() {
         <div className="site-container">
           <div className="section-header">
             <div className="section-eyebrow">Kik vagyunk</div>
-            <h2 className="section-title">Gödöllői cég, banki tapasztalattal</h2>
+            <h2 className="section-title">
+              Gödöllői cég, banki tapasztalattal
+            </h2>
           </div>
           <div
             className="card glass"
@@ -661,7 +665,7 @@ export default function LocalAutomation() {
               className="section-title"
               style={{ textAlign: 'center', marginBottom: '1rem' }}
             >
-              Egyeztessünk egy bizonyító napot
+              Egyeztessünk egy felmérést
             </h2>
             <p
               className="section-lead"
