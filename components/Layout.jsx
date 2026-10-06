@@ -128,7 +128,6 @@ export default function Layout({
       label: t('layout.nav.posts', 'Posts'),
       href: localizePath('/posts', routeLocale),
     },
-    { label: t('layout.nav.contact', 'Contact'), href: '#contact' },
   ];
 
   return (

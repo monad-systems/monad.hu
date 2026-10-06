@@ -1,8 +1,8 @@
 ---
 title: 'Az építőelemek szabják meg az AI-támogatott fejlesztés plafonját'
 date: '2026-08-11'
-lead: "Az AI olcsóvá tette a kódgenerálást, de a tévedés költségét nem csökkentette. A közös package-ek, explicit szerződések, futtatható szabályok és megbízható kapuk ma meghatározzák, mennyi hasznos munkát tud kihozni egy csapat az AI-támogatott fejlesztésből."
-metaDescription: "Miért a közös package-ek, a szerződések, a futtatható architektúra szabályok és a folyamatkapuk döntik el az AI-native szoftverfejlesztés minőségét, miért vállalati kérdés ez, és hogyan építjük ezt a MONAD-nál a @monad-systems package-ekbe és a Hermes software factory-ba."
+lead: "Az AI olcsóvá tette a kódgenerálást, de a tévedés költségét nem csökkentette. A közös package-ek, explicit contractok, futtatható szabályok és megbízható kapuk ma meghatározzák, mennyi hasznos munkát tud kihozni egy csapat az AI-támogatott fejlesztésből."
+metaDescription: "Miért a közös package-ek, a contractok, a futtatható architektúra szabályok és a folyamatkapuk döntik el az AI-native szoftverfejlesztés minőségét, miért vállalati kérdés ez, és hogyan építjük ezt a MONAD-nál a @monad-systems package-ekbe és a Hermes software factory-ba."
 tags:
     - AI-Native fejlesztés
     - Platform Engineering
@@ -26,7 +26,7 @@ Az AI-támogatott fejlesztésnek ez a része kevés figyelmet kap, mert régi é
 Az „építőelem” alatt gyakran library-t értünk, pedig egy AI-native munkafolyamat négy tágabb kategóriára támaszkodik:
 
 1. **Runtime elemek:** közös package-ek, amelyek futásidőben dolgoznak. Config, HTTP, auth, money, ID-k, monitoring. Kód, amit nem kell újra megírni.
-2. **Szerződés elemek:** OpenAPI, AsyncAPI, JSON Schema, TypeBox definíciók. A rendszerhatár alakja, még az implementáció előtt.
+2. **Contract elemek:** OpenAPI, AsyncAPI, JSON Schema, TypeBox definíciók. A rendszerhatár alakja, még az implementáció előtt.
 3. **Szabály elemek:** architektúra invariánsok, rétegzési szabályok, elnevezési és ownership konvenciók. Mi megengedett, mi tilos, és miért.
 4. **Folyamat elemek:** a kapuk. Review, jóváhagyás, CI check-ek, budget, branch protection. Ahol egy változásnak bizonyítania kell, mielőtt továbbmegy.
 
@@ -60,7 +60,7 @@ Minden token, amit a modell arra költ, hogy újra felfedezze, hogyan működik 
 
 Egy jól megtervezett package tömörítés. Ha a `@monad-systems/config` ott van a kontextusban, az agentnek nem kell hat környezetváltozó-betöltő implementációt elolvasnia, hogy kitalálja a házi stílust. Egy import sor kivált egy kutatási fázist.
 
-Ugyanez igaz a szerződésekre. Egy TypeBox route séma rövidebben írja le az interfészt, mint az implementáció, egyértelmű, és géppel ellenőrizhető. Jobb prompt minden promptnál, mert egyben teszt is.
+Ugyanez igaz a contractokra. Egy TypeBox route séma rövidebben írja le az interfészt, mint az implementáció, egyértelmű, és géppel ellenőrizhető. Jobb prompt minden promptnál, mert egyben teszt is.
 
 Nagyobb szervezeteknél itt válik érdekessé a gazdaságtan. A *Platform engineering 2.0: An evolution for the AI era* riport (Weave Intelligence, Broadcom megbízásából, 2026) számokat is tesz e mellé: a fejlesztők két-tízszer több kódot generálnak, a token spend pedig új és jórészt láthatatlan költségkategóriaként érkezik, amire a legtöbb szervezetnek nincs eszköze. Ilyen léptéknél a tömörítés kilép az ízlés kategóriájából, és megjelenik a számlán.
 
@@ -72,7 +72,7 @@ Ami ebből kiemelésre került, és ma GitHub Packages-en publikált a `@monad-s
 
 - **`config`** — típusos környezeti konfiguráció deklaratív field spec-kel, aggregált hibákkal, cross-field szabályokkal és production hardeninggel
 - **`http-kit`** — spec-first route kit, ami a típusos handlert a TypeBox route sémájához köti, end-to-end inference-szel
-- **`contract-schemas`** — közös contract primitívek, amiket a modulszerződések újrahasználnak
+- **`contract-schemas`** — közös contract primitívek, amiket a modul-contractok újrahasználnak
 - **`monitoring`** — OpenTelemetry alapú monitoring eszközök
 - **`auth-keycloak`** — OIDC kliensek és scope alapú ability builder
 - **`audit-hash`** — kanonikus audit log hash-lánc, egy implementáció, amit minden író és az ellenőrző is használ
@@ -99,7 +99,7 @@ Ezért leírjuk az invariánsokat, aztán futtathatóvá tesszük őket. Az ERP 
 - minden event publikálás az outboxon keresztül történik, soha nem közvetlen broker hívással a domain kódból
 - a `Date.now()` és a `new Date()` tilos az infrastructure rétegen kívül, injektált clockot használunk
 - a pénzértékek a money package-et használják, monetáris mezőnél a `number` tilos
-- a TypeBox sémák a forrás, a generált szerződések CI-ban read-only-k
+- a TypeBox sémák a forrás, a generált contractok CI-ban read-only-k
 - generált kódot soha nem szerkesztünk kézzel
 
 Mindegyikhez tartozik kikényszerítés: architektúra check, lint szabály, típushatár vagy teszt. A teljes policy suite egy paranccsal fut, és a CI minden pull requestre lefuttatja. Ember vagy agent, ugyanaz a kapu.
@@ -112,7 +112,7 @@ A kikényszerítés teszi a style guide-ot egy autonóm szereplő által is köv
 flowchart TD
     A[Feladatleírás] --> Z[Agent kontextus]
     B[Közös package-ek] --> Z
-    C[Szerződések: OpenAPI, AsyncAPI, TypeBox] --> Z
+    C[Contractok: OpenAPI, AsyncAPI, TypeBox] --> Z
     D[Architektúra invariánsok] --> Z
     E[Repó konvenciós fájl] --> Z
     Z --> F[Generált változás]
@@ -201,19 +201,19 @@ A sodródás a fogyasztók számával együtt drágul. Tíz csapat, amelyik kül
 
 Az agentek emellett új felhasználói osztályként érkeznek. A riport ebben egyértelmű: az AI agentek az első új platform persona több mint egy évtizede, és API-kat fogyasztanak, nem felületeket. Verziózott, dokumentált API-k, scope-olt jogosultságok, nem emberi identitás, audit logging, budget kontroll és egress kontroll kell nekik. Ezek mind platform képességek, nem pedig fejlesztői preferenciák. Ha a platformunk nem tudja kifejezni, hogy „ez a szereplő ezeket teheti, legfeljebb ennyiért, és itt a nyoma”, akkor nem tudunk biztonságosan agenteket futtatni, bármilyen jó is a modell.
 
-A bounded autonomy-nak alakja van. Az ezt operacionalizáló csapatok hét témakörre jutnak: identitás, kontextus, képesség, végrehajtás, kiértékelés, biztonság és megfigyelhetőség. Olvassuk vissza a fenti factory leírást ezzel a listával: a megfeleltetés pontos. A terv-jóváhagyás és a stop the line képességkorlát. A review lépés a kiértékelés. A PII agent a biztonság. A futási logok, artifactok és a hash-láncolt audit a megfigyelhetőség. A budget és a spend cap a végrehajtási plafon. Semmi nem modellspecifikus benne, így túléli a következő modellt.
+A bounded autonomy-nak alakja van. Az ezt operacionalizáló csapatok hét témakörre jutnak: identitás, kontextus, képesség, végrehajtás, kiértékelés, biztonság és observability. Olvassuk vissza a fenti factory leírást ezzel a listával: a megfeleltetés pontos. A terv-jóváhagyás és a stop the line képességkorlát. A review lépés a kiértékelés. A PII agent a biztonság. A futási logok, artifactok és a hash-láncolt audit az observability. A budget és a spend cap a végrehajtási plafon. Semmi nem modellspecifikus benne, így túléli a következő modellt.
 
 A költség ezzel egyidejűleg első osztályú jellé válik. Az iparági alap nagyjából 35% cloud pazarlás, még mielőtt az AI infrastruktúra rárakódna, az agentic fejlesztésből származó token spend pedig olyan kategória, amire a legtöbb szervezetnek egyáltalán nincs eszköze. Egy futásonkénti költségplafon, ami menet közben megöli a futást, kicsi fejlesztés, és ez a különbség egy kísérlet és egy költségvetési incidens között.
 
-A komponálhatóság a tempó elleni fedezet. A CNCF ökoszisztéma a 2018-as nagyjából 50 projektről mára több mint 200-ra nőtt, a modellképességek és agent minták pedig ennél is gyorsabban cserélődnek. Most senki nem a véglegesen helyes eszközt választja. Amit meg lehet tenni, az az, hogy a csere ne kaszkádoljon végig a rendszeren, és ez ugyanaz a moduláris, API-first, verziózott szerződéses fegyelem, amitől a package-eket egyáltalán érdemes volt kiemelni.
+A komponálhatóság a tempó elleni fedezet. A CNCF ökoszisztéma a 2018-as nagyjából 50 projektről mára több mint 200-ra nőtt, a modellképességek és agent minták pedig ennél is gyorsabban cserélődnek. Most senki nem a véglegesen helyes eszközt választja. Amit meg lehet tenni, az az, hogy a csere ne kaszkádoljon végig a rendszeren, és ez ugyanaz a moduláris, API-first, verziózott, contract-alapú fegyelem, amitől a package-eket egyáltalán érdemes volt kiemelni.
 
-Ott van aztán a golden path problémája, ahol az agentek átírják a számítást. A standardizált sablonok, amik korábban a deployok többségét kiszolgálták, elkezdik blokkolni azt a csapatot, amelyik valami újat csinál, és minden kivétel visszafut a platform csapathoz. Amikor a scaffolding, a szerződésgenerálás és a migrációs munka olcsóvá válik, a platform csapat több utat engedhet meg magának ahelyett, hogy egyet védene. Egy utat a bővítés költsége tesz ketreccé.
+Ott van aztán a golden path problémája, ahol az agentek átírják a számítást. A standardizált sablonok, amik korábban a deployok többségét kiszolgálták, elkezdik blokkolni azt a csapatot, amelyik valami újat csinál, és minden kivétel visszafut a platform csapathoz. Amikor a scaffolding, a contract-generálás és a migrációs munka olcsóvá válik, a platform csapat több utat engedhet meg magának ahelyett, hogy egyet védene. Egy utat a bővítés költsége tesz ketreccé.
 
 ## Régi gyakorlatok, nagyobb érték
 
 Minden gyakorlat, amitől a szoftver az AI előtt biztonságosan változtatható volt, ma is ugyanazt a munkát végzi. A többségük többet ér, mint korábban, mert a szűk keresztmetszet elmozdult.
 
-A szerződés-első tervezés korábban dokumentáció és koordinációs eszköz volt. Ma egyben prompt és kapu is: megmondja az agentnek, mit építsen, és megmondja a CI-nak, hogy azt építette-e. A spec-first jó ötlet volt akkor is, amikor csak emberek fogyasztották. Közel kötelező, amikor már nem.
+A contract-first tervezés korábban dokumentáció és koordinációs eszköz volt. Ma egyben prompt és kapu is: megmondja az agentnek, mit építsen, és megmondja a CI-nak, hogy azt építette-e. A spec-first jó ötlet volt akkor is, amikor csak emberek fogyasztották. Közel kötelező, amikor már nem.
 
 A tesztek szerepe is megváltozott. Egy agent körbe-körbe futtatja a suite-ot, amitől az a generálás fitness függvényévé válik, nem csak utólagos védőháló. Egy gyenge suite ma már rosszabbat tesz annál, mint hogy hibákat enged át: megtanítja a körnek, hogy a törött kód elfogadható.
 
@@ -257,8 +257,8 @@ A javítás mindegyik esetben ugyanaz, mint az agentek előtt volt: legyünk sze
 
 ## Előbb építsünk pályát, aztán növeljük a sebességet
 
-Az AI-támogatott fejlesztést az alapján érdemes megítélni, hogy mire érkezik a generált kód, nem az alapján, hogy mennyit tud írni a modell. Erős package-ek, explicit szerződések, kikényszerített invariánsok és megbízható kapuk mellett a változás illeszkedik a meglévő rendszerhez. A csak fejekben élő standardok hihető eltéréseket termelnek, amelyeket gyakran csak productionben veszünk észre.
+Az AI-támogatott fejlesztést az alapján érdemes megítélni, hogy mire érkezik a generált kód, nem az alapján, hogy mennyit tud írni a modell. Erős package-ek, explicit contractok, kikényszerített invariánsok és megbízható kapuk mellett a változás illeszkedik a meglévő rendszerhez. A csak fejekben élő standardok hihető eltéréseket termelnek, amelyeket gyakran csak productionben veszünk észre.
 
 Nálunk ez a gyakorlatban három dolgot jelentett: egy kicsi, közös package katalógust `@monad-systems` alatt publikálva, amit minden általunk épített rendszer használ, huszonkét architektúra invariánst, amelyek check-ként futnak és nem wikiben ülnek, és egy software factory-t, ahol a feladatjegyzetekből pull request lesz egy olyan pipeline-on át, amiben van emberi jóváhagyás, review kapu, költségplafon és egyetlen kijárat: egy determinisztikus PII határ.
 
-Az eszközök sokat változtak. A szerződés-első tervezés, a hangosan bukó tesztek, a szándék ellenében végzett review, a kicsi diffek, a kikényszerített CI, az observability és a leírt döntések nem. Ma ezek döntik el, hogy az AI a hasznos munkát vagy csak a sodródást gyorsítja fel.
+Az eszközök sokat változtak. A contract-first tervezés, a hangosan bukó tesztek, a szándék ellenében végzett review, a kicsi diffek, a kikényszerített CI, az observability és a leírt döntések nem. Ma ezek döntik el, hogy az AI a hasznos munkát vagy csak a sodródást gyorsítja fel.

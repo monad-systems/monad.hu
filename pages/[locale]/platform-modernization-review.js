@@ -272,22 +272,22 @@ export default function PlatformModernizationReview() {
   const isHu = locale === 'hu';
   const copy = isHu
     ? {
-        pageTitle: 'Architektúra-felülvizsgálat — MONAD SYSTEMS',
+        pageTitle: 'Architektúra review — MONAD SYSTEMS',
         pageDescription:
-          'Fókuszált architektúra-felülvizsgálat, amely feltárja a legnagyobb hatású szűk keresztmetszeteket, és konkrét modernizációs ütemtervet ad.',
+          'Fókuszált architektúra review, amely feltárja a legnagyobb hatású szűk keresztmetszeteket, és konkrét modernizációs roadmapet ad.',
         heroEyebrow: 'Első lépés',
-        heroTitle: 'Architektúra-felülvizsgálat',
+        heroTitle: 'Architektúra review',
         heroLead:
-          'Fókuszált, senior szakemberek által vezetett felülvizsgálat, amely azonosítja a legnagyobb hatású szűk keresztmetszeteket, és konkrét ütemtervet ad, hogy a modernizációt ne találgatásra, hanem tényekre építhessék.',
+          'Fókuszált, senior szakemberek által vezetett review, amely azonosítja a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet ad, hogy a modernizációt ne találgatásra, hanem tényekre építhessék.',
         heroPrimaryCta: 'Egyeztető hívás foglalása',
-        heroSecondaryCta: 'Így zajlik a felülvizsgálat',
+        heroSecondaryCta: 'Így zajlik a review',
         heroNote:
           'Kéthetes, rögzített terjedelmű együttműködés, egyértelmű záró vezetői összefoglalóval.',
         whoEyebrow: 'Kinek szól',
         whoTitle: 'Fordulóponthoz érkezett csapatoknak',
         whoLead:
           'Azoknak a fejlesztési vezetőknek, akik tudják, hogy változtatni kell, de külső, senior nézőpont kell ahhoz, hogy eldöntsék, hol kezdjék.',
-        processTitle: 'Így zajlik a felülvizsgálat',
+        processTitle: 'Így zajlik a review',
         processLead:
           'Átlátható, kéthetes folyamat: a csapat pontosan tudja, mi történik, mikor és miért.',
         notGoodFitTitle: 'Mikor nem jó választás',
@@ -331,17 +331,17 @@ export default function PlatformModernizationReview() {
           'Cégeknek, ahol az előző nagy újraírás elakadt vagy kudarcot vallott',
         ],
         weekOne: [
-          'Interjúk a kulcsszereplőkkel (CTO, fejlesztés, platform)',
+          'Stakeholder interjúk (CTO, engineering, platform)',
           'A rendszer bejárása (architektúra, API-k, infrastruktúra)',
-          'A szállítási folyamat áttekintése (CI/CD, környezetek)',
-          'Célzott kódátnézés a kritikus szolgáltatásokban',
+          'A delivery pipeline áttekintése (CI/CD, környezetek)',
+          'Célzott code review a kritikus szolgáltatásokban',
         ],
         weekTwo: [
           'A szűk keresztmetszetek és akadályok feltérképezése',
           'Architekturális kockázatelemzés',
           'API- és integrációs felmérés',
           'Költség- és komplexitási gócpontok',
-          'Rangsorolt modernizációs ütemterv elkészítése',
+          'Priorizált modernizációs roadmap elkészítése',
         ],
         notGoodFit: [
           'Korai fázisú, MVP-t építő csapatok',
@@ -351,20 +351,20 @@ export default function PlatformModernizationReview() {
         ],
         scopeIncluded: [
           'Két hét fókuszált architektúra- és fejlesztésifolyamat-felmérés',
-          'Interjúk, rendszerbejárás, CI/CD-áttekintés és célzott kódátnézés',
-          'Írásos felülvizsgálati anyag és vezetői összefoglaló',
-          'Rangsorolt 90 napos ütemterv, egyértelmű következő lépésekkel',
+          'Interjúk, rendszerbejárás, CI/CD-áttekintés és célzott code review',
+          'Írásos review anyag és vezetői összefoglaló',
+          'Priorizált 90 napos roadmap, egyértelmű következő lépésekkel',
         ],
         scopeExcluded: [
-          'Fejlesztési munka a felülvizsgálat ideje alatt',
+          'Fejlesztési munka a review ideje alatt',
           'Határozatlan idejű tanácsadói megbízás',
-          'Eszközcsere rangsorolt ütemterv nélkül',
+          'Eszközcsere priorizált roadmap nélkül',
         ],
         symptoms: [
           {
-            title: 'A kiadás napokig tart, nem órákig',
+            title: 'A release napokig tart, nem órákig',
             detail:
-              'Kézi jóváhagyások, hosszú regressziós tesztkörök, vagy egyetlen telepíthető egység, amely mindenkit blokkol.',
+              'Kézi jóváhagyások, hosszú regressziós tesztkörök, vagy egyetlen deployolható egység, amely mindenkit blokkol.',
           },
           {
             title: 'A csapatok akadályozzák egymást',
@@ -374,10 +374,10 @@ export default function PlatformModernizationReview() {
           {
             title: 'Az integrációs hibák továbbgyűrűznek',
             detail:
-              'Ha egy szolgáltatás leáll, magával visz még hármat. Nincs hibahatárolás, és nincsenek tiszta szerződések.',
+              'Ha egy szolgáltatás leáll, magával visz még hármat. Nincs circuit breaker, és nincsenek tiszta contractok.',
           },
           {
-            title: 'A megfigyelhetőség utólagos',
+            title: 'Az observability utólagos',
             detail:
               'Éles hibánál az első óra azzal telik, hogy kiderüljön, melyik szolgáltatás a hibás.',
           },
@@ -407,9 +407,9 @@ export default function PlatformModernizationReview() {
           },
           {
             step: '03',
-            title: 'Rangsorolt ütemterv',
+            title: 'Priorizált roadmap',
             detail:
-              'Konkrét, sorrendbe állított tervet kapnak: mit érdemes először leválasztani, mely szerződéseket kell rögzíteni, és hol kell megfigyelhetőséget kiépíteni, ráfordításbecsléssel.',
+              'Konkrét, sorrendbe állított tervet kapnak: mit érdemes először leválasztani, mely contractokat kell formalizálni, és hol kell observability-t kiépíteni, ráfordításbecsléssel.',
           },
           {
             step: '04',
@@ -428,21 +428,21 @@ export default function PlatformModernizationReview() {
             title:
               'A legfontosabb kockázatok és szűk keresztmetszetek, üzleti hatással',
             format:
-              'Rangsorolt kockázati lista, amely megmutatja, melyik tétel hogyan hat a szállításra vagy a megbízhatóságra.',
+              'Rangsorolt kockázati lista, amely megmutatja, melyik tétel hogyan hat a delivery-re vagy a megbízhatóságra.',
           },
           {
             title:
               'A fejlesztési folyamat akadályai a CI/CD-ben, a környezetekben és a csapatok közötti átadásokban',
             format:
-              'Folyamattérkép, amely megmutatja, hol lassulnak le vagy akadnak el a kiadások.',
+              'Folyamattérkép, amely megmutatja, hol lassulnak le vagy akadnak el a release-ek.',
           },
           {
             title: 'Az API- és integrációs problémák áttekintése',
             format:
-              'Szerződési és integrációs megállapítások, felelősökkel és függőségekkel.',
+              'Contract- és integrációs megállapítások, felelősökkel és függőségekkel.',
           },
           {
-            title: 'Rangsorolt 90 napos modernizációs ütemterv',
+            title: 'Priorizált 90 napos modernizációs roadmap',
             format:
               'Prioritás, függőség és végrehajtási kockázat szerint sorba állított terv.',
           },
@@ -454,7 +454,7 @@ export default function PlatformModernizationReview() {
         ],
         buyerCommitment: [
           'Egy 30 perces egyeztető hívás a fejlesztési vezetéssel',
-          'Három-öt interjú a kulcsszereplőkkel az első héten',
+          'Három-öt stakeholder interjú az első héten',
           'Hozzáférés az architektúra-dokumentációhoz, a CI/CD-hez és a kritikus szolgáltatásokhoz',
           'Egy záró vezetői összefoglaló a második hét végén',
         ],
@@ -467,7 +467,7 @@ export default function PlatformModernizationReview() {
           },
           {
             step: '2',
-            title: 'Elvégezzük a felülvizsgálatot',
+            title: 'Elvégezzük a review-t',
             detail:
               'Két hét alatt interjúkat készítünk, bejárjuk a rendszert, áttekintjük a CI/CD-t, és célzottan átnézzük a kódot.',
           },
@@ -475,7 +475,7 @@ export default function PlatformModernizationReview() {
             step: '3',
             title: 'Átadjuk az eredményeket',
             detail:
-              'Megkapják az írásos felülvizsgálati anyagot és a vezetői összefoglalót, a rangsorolt következő lépésekkel.',
+              'Megkapják az írásos review anyagot és a vezetői összefoglalót, a rangsorolt következő lépésekkel.',
           },
           {
             step: '4',
@@ -486,23 +486,23 @@ export default function PlatformModernizationReview() {
         ],
         exampleOutcomes: [
           'Célzott platformmódosításokkal csökkentett infrastruktúraköltség',
-          'Megbízhatóbb kiadások és üzemeltetés',
-          'Éles üzemre kész megfigyelhetőség a kritikus szolgáltatásokhoz',
+          'Megbízhatóbb release-ek és üzemeltetés',
+          'Production-grade observability a kritikus szolgáltatásokhoz',
           'Biztonságosabb, szakaszos modernizációs út',
           'Kisebb integrációs komplexitás a kulcsrendszerek között',
         ],
         caseSnapshots: [
           {
             context:
-              'B2B SaaS platform, ahol a kiadásokat a közös szolgáltatásokon keresztüli csatolás és a tisztázatlan felelősségi határok blokkolták',
+              'B2B SaaS platform, ahol a release-eket a közös szolgáltatásokon keresztüli csatolás és a tisztázatlan felelősségi határok blokkolták',
             outcome:
-              'A felülvizsgálat kijelölte a cél szolgáltatáshatárokat, azonosította a legfontosabb akadályokat, és sorba állított egy 90 napos tervet, amelyet a csapat saját maga hajtott végre.',
+              'A review kijelölte a cél szolgáltatáshatárokat, azonosította a legfontosabb akadályokat, és sorba állított egy 90 napos tervet, amelyet a csapat saját maga hajtott végre.',
           },
           {
             context:
-              'Integrációkra épülő termék, visszatérő, több csapatot érintő incidensekkel és gazdátlan API-szerződésekkel',
+              'Integrációkra épülő termék, visszatérő, több csapatot érintő incidensekkel és gazdátlan API contractokkal',
             outcome:
-              'A felülvizsgálat rangsorolta az integrációs szerződések javítását, kritikus folyamatonként feltárta a megfigyelhetőségi hiányokat, és tisztázta a felelősségi köröket, ami csökkentette az üzemeltetési súrlódást.',
+              'A review priorizálta az integrációs contractok javítását, kritikus folyamatonként feltárta az observability hiányait, és tisztázta a felelősségi köröket, ami csökkentette az üzemeltetési súrlódást.',
           },
         ],
         processEyebrow: 'Folyamat',
@@ -520,11 +520,11 @@ export default function PlatformModernizationReview() {
         excludedLabel: 'Nem tartalmazza',
         triggersEyebrow: 'Gyakori jelek',
         triggersLead:
-          'Ha ezek közül kettő vagy több ismerős, a felülvizsgálat már az ütemterv elkészülte előtt megtérül.',
+          'Ha ezek közül kettő vagy több ismerős, a review már a roadmap elkészülte előtt megtérül.',
         whatsIncludedEyebrow: 'Mit tartalmaz',
         whatsIncludedTitle: 'Négy szakasz, sallang nélkül',
         whatsIncludedLead:
-          'Minden felülvizsgálat ugyanazt a folyamatot követi, így pontosan tudják, mire számíthatnak, és mit kapnak a végén.',
+          'Minden review ugyanazt a folyamatot követi, így pontosan tudják, mire számíthatnak, és mit kapnak a végén.',
         phaseLabel: 'SZAKASZ',
         deliverablesEyebrow: 'Eredmények',
         deliverablesTitle: 'Amit kézhez kapnak',
@@ -533,18 +533,19 @@ export default function PlatformModernizationReview() {
         commitmentEyebrow: 'Az Önök ráfordítása',
         commitmentTitle: 'Amire a csapatuktól szükségünk van',
         commitmentLead:
-          'Kevés időt kérünk, hogy a felülvizsgálat gyors, pontos és gyakorlatias maradjon.',
+          'Kevés időt kérünk, hogy a review gyors, pontos és gyakorlatias maradjon.',
         nextEyebrow: 'Folyamat',
-        nextLead: 'Az első hívástól a kész ütemtervig legfeljebb két hét.',
+        nextLead: 'Az első hívástól a kész roadmapig legfeljebb két hét.',
         proofEyebrow: 'Referenciák',
         proofTitle: 'Példák hasonló munkák eredményeiből',
         scenarioLabel: 'Helyzet',
         changedLabel: 'Mi változott',
-        finalTitle: 'Szeretnék látni, mi fogja vissza a szoftverfejlesztésüket?',
+        finalTitle:
+          'Szeretnék látni, mi fogja vissza a szoftverfejlesztésüket?',
         finalLead:
-          'Foglaljon egy 30 perces hívást. Gyorsan felmérjük, hasznos-e Önöknek a felülvizsgálat, és felvázoljuk a következő lépéseket. Kötelezettség nélkül.',
+          'Foglaljon egy 30 perces hívást. Gyorsan felmérjük, hasznos-e Önöknek a review, és felvázoljuk a következő lépéseket. Kötelezettség nélkül.',
         finalNote:
-          'A felülvizsgálat önálló megbízás. Megvalósítási támogatásról csak akkor beszélünk, ha Önök kérik.',
+          'A review önálló megbízás. Megvalósítási támogatásról csak akkor beszélünk, ha Önök kérik.',
       }
     : {
         bestFitFor,

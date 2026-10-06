@@ -273,14 +273,13 @@ export default function Home() {
         pageTitle:
           'MONAD SYSTEMS — Senior szoftvertanácsadás és egyedi szoftverfejlesztés',
         pageDescription:
-          'Gyakorlati senior szoftvertanácsadás: egyedi szoftverfejlesztés, API-first megvalósítás, eseményvezérelt architektúra és éles üzemre kész megfigyelhetőség.',
-        heroBadge:
-          'Egyedi szoftverfejlesztés · API-first · Éles üzemre tervezve',
+          'Gyakorlati senior szoftvertanácsadás: egyedi szoftverfejlesztés, API-first megvalósítás, event-driven architektúra és production-ready observability.',
+        heroBadge: 'Egyedi szoftverfejlesztés · Spec-first · Production-grade',
         heroLine1: 'Növekedésre tervezve.',
         heroLine2: 'Nagyvállalatok bizalmával.',
         heroIntro:
-          'Elosztott rendszereket tervezünk, monolitokat bontunk szolgáltatásokra, és olyan belső platformokat építünk, amelyek felgyorsítják a fejlesztést. API-first tervezés, teljes megfigyelhetőség, éles üzemre kész megoldások az első naptól.',
-        heroPrimaryCta: 'Architektúra-felülvizsgálat kérése',
+          'Elosztott rendszereket tervezünk, monolitokat bontunk microservice-ekre, és olyan belső platformokat építünk, amelyek felgyorsítják a fejlesztést. API-first tervezés, teljes observability, production-grade megoldások az első naptól.',
+        heroPrimaryCta: 'Architektúra review kérése',
         heroSecondaryCta: 'Referenciáink',
         statYears: 'Év tapasztalat',
         statProjects: 'Átadott projekt',
@@ -291,7 +290,7 @@ export default function Home() {
         bestFitItems: [
           'Termékcégeknek, amelyek kinőtték a korai architektúrájukat',
           'Nagyvállalatoknak, amelyek monolitikus vagy széttöredezett rendszereiket modernizálják',
-          'Fejlesztőcsapatoknak, amelyek gyorsabb szállítást, nagyobb megbízhatóságot és jobb fejlesztői élményt szeretnének',
+          'Fejlesztőcsapatoknak, amelyek gyorsabb delivery-t, nagyobb megbízhatóságot és jobb developer experience-t szeretnének',
           'Szervezeteknek, amelyeknek senior architektúra és kivitelezés egyaránt kell',
         ],
         problemsEyebrow: 'Tipikus problémák, amelyeket megoldunk',
@@ -343,52 +342,56 @@ export default function Home() {
           {
             title: 'Monolitból moduláris architektúra',
             description:
-              'A monolit kinőtte a csapatot: a kiadások lassúak, kockázatosak és egymáshoz kötöttek. Teljes újraírás nélkül mutatunk gyakorlati utat a moduláris, szolgáltatásalapú működés felé.',
-            tags: ['Szétbontás', 'Bounded context', 'Strangler fig minta'],
+              'A monolit kinőtte a csapatot: a release-ek lassúak, kockázatosak és egymáshoz kötöttek. Teljes újraírás nélkül mutatunk gyakorlati utat a moduláris, service-orientált működés felé.',
+            tags: ['Decomposition', 'Bounded Context', 'Strangler Fig'],
           },
           {
             title: 'Átláthatatlan integrációk',
             description:
               'A rendszereket törékeny pont-pont kapcsolatok és eseti üzenetformátumok kötik össze, egyértelmű gazda nélkül. A hibák továbbgyűrűznek, a hibakeresés több csapatot érint.',
-            tags: ['Eseményvezérelt', 'Kafka', 'Aszinkron üzenetkezelés'],
+            tags: ['Event-Driven', 'Kafka', 'Async Messaging'],
           },
           {
-            title: 'Következetlen API-k, gyenge szerződések',
+            title: 'Következetlen API-k, gyenge contractok',
             description:
               'Minden szolgáltatás a saját konvencióit követi. A kliensek találgatják az adatszerkezetet, a validáció ismétlődik, a visszafelé nem kompatibilis változások észrevétlenül élesednek.',
-            tags: ['OpenAPI', 'AsyncAPI', 'Specifikáció alapú', 'JSON Schema'],
+            tags: ['OpenAPI', 'AsyncAPI', 'Spec-First', 'JSON Schema'],
           },
           {
             title: 'A fejlesztői környezet lassítja a munkát',
             description:
               'A fejlesztők infrastruktúrára várnak, megbízhatatlan CI-folyamatokkal küzdenek, és hiányzó eszközöket kerülgetnek. A platform gyorsítás helyett szűk keresztmetszet.',
-            tags: ['Egyedi szoftverfejlesztés', 'CI/CD', 'Fejlesztői élmény'],
+            tags: [
+              'Egyedi szoftverfejlesztés',
+              'CI/CD',
+              'Developer Experience',
+            ],
           },
           {
-            title: 'Gyenge megfigyelhetőség, vakfoltok',
+            title: 'Gyenge observability, vakfoltok',
             description:
-              'Az éles hibákról a felhasználói panaszokból értesülnek. Az elosztott nyomkövetés hiányos vagy nincs, és nincs kialakult SLO-, riasztási és incidenskezelési gyakorlat.',
+              'Az éles hibákról a felhasználói panaszokból értesülnek. A distributed tracing hiányos vagy nincs, és nincs kialakult SLO-, alerting- és incident response gyakorlat.',
             tags: ['OpenTelemetry', 'Grafana', 'Prometheus', 'SLO-k'],
           },
           {
-            title: 'Növekvő felhőköltség, architekturális pazarlás',
+            title: 'Növekvő cloud költség, architekturális pazarlás',
             description:
               'Az infrastruktúra költsége nő, de nem látszik, mit kapnak érte. Túlméretezett klaszterek, párhuzamos szolgáltatások és optimalizálatlan adatutak viszik el a keretet.',
             tags: [
               'Költségoptimalizálás',
-              'Helyes méretezés',
-              'Architektúra-felülvizsgálat',
+              'Right-Sizing',
+              'Architektúra review',
             ],
           },
         ],
         engagements: [
           {
             step: '01',
-            title: 'Architektúra-felülvizsgálat',
-            what: 'Fókuszált felmérés a jelenlegi architektúráról, az integrációkról, a szállítási folyamatról és az üzemeltetés állapotáról.',
+            title: 'Architektúra review',
+            what: 'Fókuszált felmérés a jelenlegi architektúráról, az integrációkról, a delivery pipeline-ról és az üzemeltetés állapotáról.',
             when: 'Úgy érzik, hogy az architekturális adósság lassítja Önöket, de független, senior nézőpont kell a prioritások és a kockázatok tisztázásához.',
             outcome:
-              'Írásos megállapítások és rangsorolt, végrehajtható ütemterv konkrét lépésekkel.',
+              'Írásos megállapítások és priorizált, végrehajtható roadmap konkrét lépésekkel.',
           },
           {
             step: '02',
@@ -401,10 +404,10 @@ export default function Home() {
           {
             step: '03',
             title: 'Fejlesztési együttműködés',
-            what: 'Gyakorlati megvalósítás senior mérnökökkel: éles üzemre kész kód, infrastruktúra és megfigyelhetőség.',
-            when: 'A modernizáció terjedelme tiszta, és olyan tapasztalt csapat kell, amely elejétől végéig felelősséget vállal a szállításért.',
+            what: 'Gyakorlati megvalósítás senior mérnökökkel: production-ready kód, infrastruktúra és observability.',
+            when: 'A modernizáció terjedelme tiszta, és olyan tapasztalt csapat kell, amely elejétől végéig felelősséget vállal a delivery-ért.',
             outcome:
-              'Élesben futó rendszer tiszta szerződésekkel, tesztelt határokkal, beépített megfigyelhetőséggel és átadott tudással.',
+              'Élesben futó rendszer tiszta contractokkal, tesztelt határokkal, beépített observability-vel és átadott tudással.',
           },
         ],
         differentiators: [
@@ -424,19 +427,19 @@ export default function Home() {
               'Nem erőltetünk újraírást. A javaslatainkat az Önök valós korlátaihoz, ütemezéséhez és csapatához igazítjuk.',
           },
           {
-            title: 'Szerződés a kód előtt',
+            title: 'Spec-first fegyelem',
             description:
-              'Előbb az API-szerződés, aztán a kód. Az OpenAPI, az AsyncAPI és a JSON Schema megbízható határokat ad.',
+              'Előbb a contract, aztán a kód. Az OpenAPI, az AsyncAPI és a JSON Schema megbízható határokat ad.',
           },
           {
-            title: 'Megfigyelhetőség és üzembiztosság',
+            title: 'Observability és üzembiztosság',
             description:
-              'Minden munkánkban alap a strukturált naplózás, a nyomkövetés, a metrikák és a riasztás.',
+              'Minden munkánkban alap a strukturált logging, a tracing, a metrikák és az alerting.',
           },
           {
             title: 'A teljes platform egy kézben',
             description:
-              'Backend, frontend, infrastruktúra, CI/CD, adatfolyamok és eseményvezérelt integráció.',
+              'Backend, frontend, infrastruktúra, CI/CD, adatfolyamok és event-driven integráció.',
           },
         ],
         caseStudies: [
@@ -444,92 +447,81 @@ export default function Home() {
             title: 'Fizz',
             category: 'Egyedi szoftverfejlesztés',
             description:
-              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Searchre cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a specifikáció alapú API-fejlesztést, az automatizált minőségi kapukat és az éles üzemre kész megfigyelhetőséget, majd az elosztott monolitot valóban független, lazán csatolt mikroszolgáltatásokra bontottuk, tiszta szolgáltatáshatárokkal.',
+              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Searchre cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a spec-first API-fejlesztést, az automatizált quality gate-eket és a production-grade observability-t, majd a distributed monolitot valóban független, lazán csatolt microservice-ekre bontottuk, tiszta szolgáltatáshatárokkal.',
             tags: [
-              'API-first tervezés',
-              'Minőségi kapuk',
-              'Megfigyelhetőség',
+              'API Design-First',
+              'Quality Gates',
+              'Observability',
               'Költségoptimalizálás',
             ],
             highlight: true,
           },
           {
             title: 'IdomSoft',
-            category: 'Felhőarchitektúra',
+            category: 'Cloud architektúra',
             description:
-              'Senior architekturális tanácsadást nyújtottunk egy állami technológiai szervezetnek felhőinfrastruktúra, üzemeltetés és platformstratégia területén.',
-            tags: ['Felhőarchitektúra', 'Tanácsadás'],
+              'Senior architekturális tanácsadást nyújtottunk egy állami technológiai szervezetnek cloud infrastruktúra, üzemeltetés és platformstratégia területén.',
+            tags: ['Cloud architektúra', 'Tanácsadás'],
             highlight: true,
           },
           {
             title: 'Netrisk',
-            category: 'Felhőarchitektúra',
+            category: 'Cloud architektúra',
             description:
-              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js mikroszolgáltatásokkal és Kafka alapú eseményvezérelt kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
-            tags: [
-              'Node.js',
-              'Kafka',
-              'Eseményvezérelt',
-              'Mikroszolgáltatások',
-            ],
+              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js microservice-ekkel és Kafka alapú event-driven kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
+            tags: ['Node.js', 'Kafka', 'Event-Driven', 'Microservices'],
           },
           {
             title: 'IDBC',
             category: 'Banki infrastruktúra',
             description:
               'Egy skálázható banki platform alaparchitektúráját építettük meg Node.js és Kafka alapokon, összetett legacy integrációval és adatmigrációval.',
-            tags: ['Node.js', 'Kafka', 'Eseményvezérelt', 'Adatmigráció'],
+            tags: ['Node.js', 'Kafka', 'Event-Driven', 'Adatmigráció'],
           },
           {
             title: 'Webshippy',
             category: 'Backend szétbontás',
             description:
-              'Egy monolitikus PHP alkalmazást tiszta backend API-ra és moduláris Vue.js frontendre bontottunk. A Docker alapú, teljes körű konténerizálással egymástól függetlenebb kiadási ciklusokat tettünk lehetővé.',
-            tags: [
-              'Vue.js',
-              'PHP',
-              'Docker',
-              'API-tervezés',
-              'Mikroszolgáltatások',
-            ],
+              'Egy monolitikus PHP alkalmazást tiszta backend API-ra és moduláris Vue.js frontendre bontottunk. A Docker alapú, teljes körű konténerizálással egymástól függetlenebb release ciklusokat tettünk lehetővé.',
+            tags: ['Vue.js', 'PHP', 'Docker', 'API-tervezés', 'Microservices'],
           },
         ],
         expertise: [
           {
             code: 'LM',
-            title: 'Legacy rendszerek modernizálása',
+            title: 'Legacy modernizáció',
             description:
-              'Fokozatos átállás monolitból moduláris, szolgáltatásalapú rendszerekre',
+              'Fokozatos migráció monolitból moduláris, service-orientált rendszerekre',
           },
           {
             code: 'EA',
-            title: 'Eseményvezérelt architektúra',
+            title: 'Event-driven architektúra',
             description:
               'Skálázható, lazán csatolt rendszerek aszinkron üzenetkezeléssel',
           },
           {
             code: 'SF',
-            title: 'API-first, specifikáció alapú fejlesztés',
+            title: 'API-first, spec-first fejlesztés',
             description:
-              'Szerződésvezérelt fejlesztés OpenAPI, AsyncAPI és JSON Schema alapon',
+              'Contract-driven fejlesztés OpenAPI, AsyncAPI és JSON Schema alapon',
           },
           {
             code: 'OB',
-            title: 'Megfigyelhetőség és üzembiztosság',
+            title: 'Observability és üzembiztosság',
             description:
-              'Strukturált nyomkövetés, metrikák, riasztások és SLO-k az első naptól',
+              'Strukturált tracing, metrikák, alerting és SLO-k az első naptól',
           },
           {
             code: 'CO',
-            title: 'Felhőköltség-optimalizálás',
+            title: 'Cloud költségoptimalizálás',
             description:
-              'Az infrastruktúra helyes méretezése és az architekturális pazarlás megszüntetése',
+              'Az infrastruktúra right-sizingja és az architekturális pazarlás megszüntetése',
           },
           {
             code: 'CS',
             title: 'Egyedi szoftverfejlesztés',
             description:
-              'Belső platformok, CI/CD és fejlesztői eszközök, amelyek gyorsítják a szállítást',
+              'Belső platformok, CI/CD és fejlesztői eszközök, amelyek gyorsítják a delivery-t',
           },
         ],
         engageTitlePrefix: 'Három módon',
@@ -546,8 +538,8 @@ export default function Home() {
         midCtaTitlePrefix: 'Készen állnak',
         midCtaTitleAccent: 'a modernizációra?',
         midCtaLead:
-          'Kezdjük egy fókuszált architektúra-felülvizsgálattal. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét ütemtervet adunk.',
-        midCtaPrimary: 'Architektúra-felülvizsgálat kérése',
+          'Kezdjük egy fókuszált architektúra review-val. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet adunk.',
+        midCtaPrimary: 'Architektúra review kérése',
         caseStudiesTitlePrefix: 'Valós problémák,',
         caseStudiesTitleAccent: 'működő megoldások.',
         caseStudiesLead:
@@ -556,19 +548,19 @@ export default function Home() {
         aboutTitlePrefix: 'Senior tanácsadás,',
         aboutTitleAccent: 'gyakorlati megvalósítás.',
         aboutLead1:
-          'A MONAD alapítói vezetésű szoftvertanácsadó cég, több mint 20 év gyakorlati mérnöki tapasztalattal összetett, kritikus rendszerekben: banki infrastruktúrában, biztosítási platformokon, állami felhőrendszerekben és gyorsan növekvő termékcégeknél.',
+          'A MONAD alapítói vezetésű szoftvertanácsadó cég, több mint 20 év gyakorlati mérnöki tapasztalattal összetett, kritikus rendszerekben: banki infrastruktúrában, biztosítási platformokon, állami cloud rendszerekben és gyorsan növekvő termékcégeknél.',
         aboutLead2:
-          'Beépülő senior mérnökként és architektként dolgozunk, nem külső tanácsadóként, aki egy prezentációval távozik. Aki felméri a rendszert, ugyanő írja a kódot, építi az infrastruktúrát és állítja be a megfigyelhetőséget. Minden együttműködés működő szoftverrel és átadott tudással zárul.',
+          'Beépülő senior mérnökként és architektként dolgozunk, nem külső tanácsadóként, aki egy prezentációval távozik. Aki felméri a rendszert, ugyanő írja a kódot, építi az infrastruktúrát és állítja be az observability-t. Minden együttműködés működő szoftverrel és átadott tudással zárul.',
         aboutValues: [
           {
-            title: 'Specifikáció alapú fejlesztés',
+            title: 'Spec-first fejlesztés',
             description:
-              'Szerződés a kód előtt. Az OpenAPI, az AsyncAPI és a JSON Schema határozza meg a rendszerhatárokat.',
+              'Előbb a contract, aztán a kód. Az OpenAPI, az AsyncAPI és a JSON Schema határozza meg a rendszerhatárokat.',
           },
           {
-            title: 'Éles üzemre kész szabványok',
+            title: 'Production-grade standardok',
             description:
-              'A megfigyelhetőség, a minőségi kapuk és az automatizált tesztek alapkövetelmények, nem opcionális extrák.',
+              'Az observability, a quality gate-ek és az automatizált tesztek alapkövetelmények, nem opcionális extrák.',
           },
           {
             title: 'Pragmatizmus dogmák helyett',
@@ -583,18 +575,18 @@ export default function Home() {
         ],
         principlesTitle: 'Alapelveink',
         principles: [
-          'Specifikáció alapú tervezés',
-          'Felhőnatív működés',
+          'Spec-First',
+          'Cloud-Native',
           'Fokozatos modernizáció',
-          'Beépített biztonság',
-          'Teljes megfigyelhetőség',
+          'Security by Default',
+          'Teljes observability',
           'Egyedi szoftverfejlesztés',
         ],
         techTitle: 'Technológiák',
         techLangLabel: 'Nyelvek és keretrendszerek',
         techInfraLabel: 'Infrastruktúra',
         techDataLabel: 'Adat és üzenetkezelés',
-        techObsLabel: 'Megfigyelhetőség',
+        techObsLabel: 'Observability',
         yearsLabel: 'Év tapasztalat',
         projectsLabel: 'Átadott projekt',
         expertiseTitle: 'Kulcsterületek',
@@ -610,7 +602,7 @@ export default function Home() {
         contactTitlePrefix: 'Beszéljünk',
         contactTitleAccent: 'a szoftveres kihívásaikról.',
         contactLead:
-          'Akár architektúra-felülvizsgálatra, modernizációs ütemtervre, gyakorlati fejlesztési támogatásra vagy helyszíni automatizálásra van szükségük, együtt megtaláljuk a megfelelő formát.',
+          'Akár architektúra review-ra, modernizációs roadmapre, gyakorlati fejlesztési támogatásra vagy helyszíni automatizálásra van szükségük, együtt megtaláljuk a megfelelő formát.',
         phoneLabel: 'Telefon',
         locationLabel: 'Iroda',
         locationValue: 'Gödöllő, Dózsa György út 28/A',
@@ -622,7 +614,7 @@ export default function Home() {
         companyPlaceholder: 'A cég neve',
         messageLabel: 'Üzenet',
         messagePlaceholder:
-          'Írja le röviden, miben segíthetünk: architektúra-felülvizsgálat, modernizációs ütemterv, fejlesztési támogatás vagy helyszíni automatizálás...',
+          'Írja le röviden, miben segíthetünk: architektúra review, modernizációs roadmap, fejlesztési támogatás vagy helyszíni automatizálás...',
         sendingText: 'Küldés...',
         sendButton: 'Üzenet küldése',
         contactUnavailableButton: 'Az űrlap nem elérhető',
