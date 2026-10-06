@@ -878,8 +878,8 @@ export default function Home() {
                 >
                   Egy délelőtt alatt az Önök telephelyén felmérjük, mennyi kézi
                   munkát vehet le a gép, és néhány napon belül átadjuk az
-                  automatizálást. Számlák, szállítólevelek, rendelések. Az ár
-                  legfeljebb az első év megtakarítása.
+                  automatizálást. Számlák, szállítólevelek, rendelések. Az ár az
+                  első évi megtakarítás kétharmada.
                 </p>
               </div>
               <Link

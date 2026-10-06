@@ -12,11 +12,15 @@ const HeroBackground = dynamic(
   },
 );
 
-// Pricing rule agreed by the owner on 2026-10-06: the first process may cost
-// no more than one year of the client's measured saving, and below 1.5M Ft we
-// do not make an offer at all.
-const MINIMUM_PRICE_HUF = 1_500_000;
-const PAYBACK_MONTHS = 12;
+// Pricing rule agreed by the owner on 2026-10-06: the first process costs two
+// thirds of the client's measured first-year saving, so it pays back in about
+// eight months. The smallest project is 1M Ft, which needs a 1.5M Ft yearly
+// saving; below that we do not make an offer at all.
+const PRICE_SHARE_OF_YEARLY_SAVING = 2 / 3;
+const MINIMUM_PRICE_HUF = 1_000_000;
+const MINIMUM_YEARLY_SAVING_HUF =
+  MINIMUM_PRICE_HUF / PRICE_SHARE_OF_YEARLY_SAVING;
+const PAYBACK_MONTHS = Math.round(12 * PRICE_SHARE_OF_YEARLY_SAVING);
 // 21 working days of 8 hours.
 const WORKING_HOURS_PER_MONTH = 168;
 const DEFAULT_HOURS_PER_MONTH = 40;
@@ -155,8 +159,8 @@ const firstBuilds = [
 ];
 
 const pricingTerms = [
-  `Az első folyamat ára legfeljebb annyi, amennyit az első ${PAYBACK_MONTHS} hónapban megtakarít. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
-  `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa. Ha egy folyamat évente ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
+  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
+  `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
   'Fix ár, előre egyeztetett terjedelem, az elfogadás után néhány napon belül élesben. A kód az Önöké, nem bérlik tőlünk.',
   'Utána havi üzemeltetési díj, amelyet az ajánlatban rögzítünk. Figyeljük, hogy működik-e, és ha a NAV vagy egy szállító megváltoztatja a formátumot, mi javítjuk.',
 ];
@@ -176,13 +180,14 @@ function SavingsCalculator() {
 
   const hourlyCost = toNumber(monthlyCost) / WORKING_HOURS_PER_MONTH;
   const monthlySaving = toNumber(hours) * hourlyCost;
-  const yearlySaving = monthlySaving * PAYBACK_MONTHS;
-  const qualifies = yearlySaving >= MINIMUM_PRICE_HUF;
-  // A ceiling quoted as 1 714 286 Ft reads as false precision.
-  const priceCeiling = Math.floor(yearlySaving / 10_000) * 10_000;
+  const yearlySaving = monthlySaving * 12;
+  const qualifies = yearlySaving >= MINIMUM_YEARLY_SAVING_HUF;
+  // A price quoted as 1 142 857 Ft reads as false precision.
+  const price =
+    Math.floor((yearlySaving * PRICE_SHARE_OF_YEARLY_SAVING) / 10_000) * 10_000;
   const breakEvenHours =
     hourlyCost > 0
-      ? Math.ceil(MINIMUM_PRICE_HUF / PAYBACK_MONTHS / hourlyCost)
+      ? Math.ceil(MINIMUM_YEARLY_SAVING_HUF / 12 / hourlyCost)
       : null;
 
   return (
@@ -262,15 +267,14 @@ function SavingsCalculator() {
       >
         {qualifies ? (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
-            A bevezetés ára legfeljebb{' '}
-            <strong>{formatHuf(priceCeiling)} + áfa</strong>, vagyis{' '}
-            {PAYBACK_MONTHS} hónapon belül megtérül. A pontos árat a felmérésen
-            mért adatokból adjuk meg.
+            A bevezetés ára nagyjából <strong>{formatHuf(price)} + áfa</strong>,
+            ami körülbelül {PAYBACK_MONTHS} hónap alatt megtérül. A pontos árat
+            a felmérésen mért adatokból adjuk meg.
           </p>
         ) : (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
-            Ez évente kevesebb, mint {formatHuf(MINIMUM_PRICE_HUF)}, ezért erre
-            az egy folyamatra nem érné meg ajánlatot adnunk.
+            Ez évente kevesebb, mint {formatHuf(MINIMUM_YEARLY_SAVING_HUF)},
+            ezért erre az egy folyamatra nem érné meg ajánlatot adnunk.
             {breakEvenHours
               ? ` Ilyen bérköltség mellett havi ${breakEvenHours} óra kézi munkától kezd megérni.`
               : ''}{' '}
@@ -309,13 +313,13 @@ export default function LocalAutomation() {
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: SERVED_TOWNS.map((name) => ({ '@type': 'City', name })),
     description:
-      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Az ár legfeljebb az első év megtakarítása.',
+      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Az ár az első évi megtakarítás kétharmada.',
   };
 
   return (
     <Layout
       title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
-      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi papírmunkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Számlák, szállítólevelek, rendelések. Az ár legfeljebb az első év megtakarítása."
+      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi papírmunkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly
     >
