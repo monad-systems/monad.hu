@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import {
+  LOCALES,
   LOCALE_STORAGE_KEY,
   getLocaleFromPath,
   localizePath,
@@ -103,10 +104,6 @@ export default function Layout({
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(LOCALE_STORAGE_KEY, 'en');
-    }
-
     const handleScroll = () => {
       const nextIsScrolled = window.scrollY > 20;
       setIsScrolled((previous) =>
@@ -118,6 +115,53 @@ export default function Layout({
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // The same page in the other language. A Hungarian-only page has no English
+  // version, so its English link goes to the English homepage.
+  const currentPath = router.asPath.split('#')[0];
+  const languageLinks = LOCALES.map((locale) => ({
+    locale,
+    label: t(`layout.language.${locale}`, locale.toUpperCase()),
+    href:
+      hungarianOnly && locale !== 'hu'
+        ? localizePath('/', locale)
+        : localizePath(currentPath, locale),
+    isActive: locale === routeLocale,
+  }));
+
+  const rememberLocale = (locale) => {
+    try {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+    } catch {
+      // Storage can be unavailable (private mode); the link still works.
+    }
+  };
+
+  const languageSwitch = (
+    <div
+      className="lang-switch"
+      role="group"
+      aria-label={t('layout.language.label', 'Language')}
+    >
+      {languageLinks.map((link) => (
+        <Link
+          key={link.locale}
+          href={link.href}
+          hrefLang={link.locale}
+          lang={link.locale}
+          className={`lang-switch__link ${link.isActive ? 'is-active' : ''}`}
+          aria-current={link.isActive ? 'true' : undefined}
+          onClick={() => {
+            rememberLocale(link.locale);
+            setIsMobileMenuOpen(false);
+          }}
+          data-umami-event={`language-switch-${link.locale}`}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </div>
+  );
 
   const navLinks = [
     { label: t('layout.nav.problems', 'Problems'), href: '#services' },
@@ -261,6 +305,7 @@ export default function Layout({
           </nav>
 
           <div className="desktop-cta">
+            {languageSwitch}
             <a
               className="btn btn-hero btn-sm"
               href={resolveHref('#contact')}
@@ -311,6 +356,7 @@ export default function Layout({
               >
                 {t('layout.cta.getInTouch', 'Get in Touch')}
               </a>
+              {languageSwitch}
             </nav>
           </div>
         )}
