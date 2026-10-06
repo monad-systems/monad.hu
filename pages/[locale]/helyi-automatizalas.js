@@ -615,9 +615,9 @@ export default function LocalAutomation() {
             style={{ padding: '2rem', maxWidth: '760px' }}
           >
             <p style={{ margin: '0 0 1rem', lineHeight: 1.7 }}>
-              A MONAD SYSTEMS Kft. Gödöllőn, a Dózsa György úton van, a
-              környékbeli cégektől negyedórányira. 2021 óta bankok, biztosítók
-              és állami rendszerek mögött dolgozunk, többek között az OTP
+              Az irodánk Gödöllőn, a Dózsa György úton van, a környékbeli
+              cégektől negyedórányira. 2021 óta bankok, biztosítók és állami
+              rendszerek mögött dolgozunk, többek között az OTP
               ökoszisztémájában, a Netrisknél és az IdomSoftnál.
             </p>
             <p style={{ margin: '0 0 1rem', lineHeight: 1.7 }}>
@@ -626,9 +626,9 @@ export default function LocalAutomation() {
               csapat között.
             </p>
             <p style={{ margin: 0, lineHeight: 1.7 }}>
-              Egy automatizálás annyit ér, ameddig valaki karbantartja. Ezért
-              vállaljuk az üzemeltetést is, és nyereségesen, hitel nélkül
-              működünk.
+              Egy automatizálás annyit ér, ameddig valaki karbantartja. Ezért az
+              üzemeltetést is mi vállaljuk, és ha baj van, nem egy távoli
+              ügyfélszolgálatot kell hívniuk: a szomszédban dolgozunk.
             </p>
           </div>
         </div>
