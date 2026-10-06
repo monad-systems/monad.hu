@@ -21,6 +21,21 @@ const MINIMUM_PRICE_HUF = 1_000_000;
 const MINIMUM_YEARLY_SAVING_HUF =
   MINIMUM_PRICE_HUF / PRICE_SHARE_OF_YEARLY_SAVING;
 const PAYBACK_MONTHS = Math.round(12 * PRICE_SHARE_OF_YEARLY_SAVING);
+// Operations, agreed the same day: 35 000 Ft a month per automation, with the
+// first three months included in the project price as a warranty.
+const MAINTENANCE_FEE_HUF = 35_000;
+const WARRANTY_MONTHS = 3;
+
+// Months until the saving has covered the project price and the operations
+// fee, which only starts after the warranty.
+const paybackWithOperations = (price, monthlySaving) => {
+  const coveredInWarranty = WARRANTY_MONTHS * monthlySaving;
+  if (coveredInWarranty >= price) return price / monthlySaving;
+  return (
+    WARRANTY_MONTHS +
+    (price - coveredInWarranty) / (monthlySaving - MAINTENANCE_FEE_HUF)
+  );
+};
 // 21 working days of 8 hours.
 const WORKING_HOURS_PER_MONTH = 168;
 const DEFAULT_HOURS_PER_MONTH = 40;
@@ -124,8 +139,7 @@ const steps = [
   {
     when: 'Utána',
     title: 'Üzemeltetés',
-    detail:
-      'Figyeljük, hogy működik-e. Ha a NAV vagy egy szállító megváltoztatja a formátumot, mi javítjuk.',
+    detail: `Figyeljük, hogy működik-e, és ha a NAV, egy szállító vagy az Önök rendszere változik, mi javítjuk. Az első ${WARRANTY_MONTHS} hónapban a projektár része, utána havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa.`,
     ask: 'Semmi',
   },
 ];
@@ -159,10 +173,10 @@ const firstBuilds = [
 ];
 
 const pricingTerms = [
-  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
+  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetéssel együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
   'Fix ár, előre egyeztetett terjedelem, az elfogadás után néhány napon belül élesben. A kód az Önöké, nem bérlik tőlünk.',
-  'Utána havi üzemeltetési díj, amelyet az ajánlatban rögzítünk. Figyeljük, hogy működik-e, és ha a NAV vagy egy szállító megváltoztatja a formátumot, mi javítjuk.',
+  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapban garanciaként a projektár része. Benne van a futtatás a mi szerverünkön, a figyelés, a javítás következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havi egy-két óra apró módosítás és egy havi riport arról, mennyi munkát váltott ki. Havonta felmondható, és ilyenkor átadjuk a kódot.`,
 ];
 
 const notOffered = [
@@ -185,6 +199,7 @@ function SavingsCalculator() {
   // A price quoted as 1 142 857 Ft reads as false precision.
   const price =
     Math.floor((yearlySaving * PRICE_SHARE_OF_YEARLY_SAVING) / 10_000) * 10_000;
+  const paybackMonths = Math.round(paybackWithOperations(price, monthlySaving));
   const breakEvenHours =
     hourlyCost > 0
       ? Math.ceil(MINIMUM_YEARLY_SAVING_HUF / 12 / hourlyCost)
@@ -268,8 +283,10 @@ function SavingsCalculator() {
         {qualifies ? (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
             A bevezetés ára nagyjából <strong>{formatHuf(price)} + áfa</strong>,
-            ami körülbelül {PAYBACK_MONTHS} hónap alatt megtérül. A pontos árat
-            a felmérésen mért adatokból adjuk meg.
+            ami körülbelül {PAYBACK_MONTHS} hónap alatt megtérül. A havi{' '}
+            {formatHuf(MAINTENANCE_FEE_HUF)} üzemeltetéssel együtt, amely a{' '}
+            {WARRANTY_MONTHS + 1}. hónaptól indul, körülbelül {paybackMonths}{' '}
+            hónap. A pontos árat a felmérésen mért adatokból adjuk meg.
           </p>
         ) : (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
