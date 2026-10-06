@@ -172,6 +172,13 @@ const pricingTerms = [
   `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapban garanciaként a projektár része. Benne van a futtatás a mi szerverünkön, a figyelés, a javítás következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havi egy-két óra apró módosítás és egy havi riport arról, mennyi munkát váltott ki. Havonta felmondható, és ilyenkor átadjuk a kódot.`,
 ];
 
+const largerScope = [
+  'Több napos helyszíni felmérés: végigkövetjük a munkát, beszélünk az érintett kollégákkal, és átnézzük a használt rendszereket.',
+  'Az eredmény egy rangsorolt lista arról, mit érdemes automatizálni, mennyi munkát vált ki, és mi kell hozzá.',
+  'Az árat és a menetrendet egyedileg adjuk meg, szakaszokra bontva, hogy az első eredmény hamar élesben legyen.',
+  'Az üzemeltetés díja a rendszer méretéhez igazodik.',
+];
+
 const notOffered = [
   'Nem cseréljük le a működő könyvelő- vagy vállalatirányítási rendszert.',
   'Nem hozunk adóügyi döntést. Azt a könyvelőjük mondja meg, mi csak azt intézzük, hogy az adat gépelés nélkül érkezzen meg hozzá.',
@@ -582,43 +589,89 @@ export default function LocalAutomation() {
         </div>
       </section>
 
-      {/* ── Who we are ── */}
+      {/* ── Larger companies ── */}
       <section
+        id="nagyobb-cegeknek"
         className="section"
         style={{ background: 'hsl(var(--secondary))' }}
       >
         <div className="site-container">
           <div className="section-header">
-            <div className="section-eyebrow">Kik vagyunk</div>
+            <div className="section-eyebrow">Nagyobb cégeknek</div>
             <h2 className="section-title">
-              Gödöllői cég, banki tapasztalattal
+              Ha nem egy folyamatról, hanem a teljes működésről van szó
             </h2>
+            <p className="section-lead">
+              A fenti menet egy-egy jól körülhatárolt folyamatra szól. Ha több
+              telephelyet, több rendszert vagy egy teljes folyamatláncot kell
+              összekötni, a munka is más léptékű.
+            </p>
           </div>
           <div
             className="card glass"
             style={{ padding: '2rem', maxWidth: '760px' }}
           >
-            <p style={{ margin: '0 0 1rem', lineHeight: 1.7 }}>
-              Az irodánk Gödöllőn, a Dózsa György úton található, a környékbeli
-              cégektől negyedórányira. 2021 óta bankok, biztosítók és állami
-              rendszerek mögött dolgozunk, többek között az OTP
-              ökoszisztémájában, a Netrisknél és az IdomSoftnál.
-            </p>
-            <p style={{ margin: '0 0 1rem', lineHeight: 1.7 }}>
-              Ugyanaz a mérnök méri fel a folyamatot, aki a kódot írja. Nincs
-              junior, aki az éles rendszeren tanul, és nincs átadás-átvétel két
-              csapat között.
-            </p>
-            <p style={{ margin: 0, lineHeight: 1.7 }}>
-              Egy automatizálás annyit ér, ameddig valaki karbantartja. Ezért az
-              üzemeltetést is mi vállaljuk.
-            </p>
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'grid',
+                gap: '1rem',
+              }}
+            >
+              {largerScope.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckIcon
+                    style={{
+                      width: 20,
+                      height: 20,
+                      flexShrink: 0,
+                      marginTop: 3,
+                      color: 'hsl(var(--primary))',
+                    }}
+                  />
+                  <span style={{ fontSize: '1.03rem', lineHeight: 1.6 }}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              className="btn btn-outline btn-lg"
+              href="/hu/#contact"
+              data-umami-event="local-automation-larger-cta"
+              style={{ marginTop: '1.75rem' }}
+            >
+              Egyeztessünk
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* ── What we don't do ── */}
+      {/* ── Who we are ── */}
       <section className="section">
+        <div className="site-container">
+          <div className="section-header">
+            <div className="section-eyebrow">Rólunk</div>
+            <h2 className="section-title">
+              Nagyvállalati tapasztalat, gödöllői iroda
+            </h2>
+          </div>
+          <p className="section-lead" style={{ maxWidth: '760px', margin: 0 }}>
+            2021 óta dolgozunk bankok, biztosítók és állami rendszerek mögött,
+            többek között az OTP ökoszisztémájában, a Netrisknél és az
+            IdomSoftnál. Ugyanaz a mérnök méri fel a folyamatot, aki a kódot
+            írja, és az üzemeltetést is mi vállaljuk.
+          </p>
+        </div>
+      </section>
+
+      {/* ── What we don't do ── */}
+      <section
+        className="section"
+        style={{ background: 'hsl(var(--secondary))' }}
+      >
         <div className="site-container">
           <div className="section-header">
             <div className="section-eyebrow">Határok</div>
