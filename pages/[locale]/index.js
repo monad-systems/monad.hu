@@ -276,7 +276,7 @@ export default function Home() {
           'Gyakorlati senior szoftvertanácsadás: egyedi szoftverfejlesztés, API-first megvalósítás, eseményvezérelt architektúra és éles üzemre kész megfigyelhetőség.',
         heroBadge:
           'Egyedi szoftverfejlesztés · API-first · Éles üzemre tervezve',
-        heroLine1: 'Skálázásra tervezve.',
+        heroLine1: 'Növekedésre tervezve.',
         heroLine2: 'Nagyvállalatok bizalmával.',
         heroIntro:
           'Elosztott rendszereket tervezünk, monolitokat bontunk szolgáltatásokra, és olyan belső platformokat építünk, amelyek felgyorsítják a fejlesztést. API-first tervezés, teljes megfigyelhetőség, éles üzemre kész megoldások az első naptól.',
