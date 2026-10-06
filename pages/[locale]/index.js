@@ -876,7 +876,7 @@ export default function Home() {
                     lineHeight: 1.6,
                   }}
                 >
-                  Egy nap alatt, nálatok, a saját adataitokon megépítjük az
+                  Egy nap alatt, az Önök telephelyén és adatain megépítjük az
                   első automatizálást. Számlák, szállítólevelek, rendelések. Az
                   ár legfeljebb az első év megtakarítása.
                 </p>

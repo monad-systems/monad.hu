@@ -98,7 +98,7 @@ const fitFor = [
 const daySchedule = [
   {
     time: '9:00–11:00',
-    title: 'Megnézzük, mit csináltok kézzel',
+    title: 'Megnézzük, mit végeznek ma kézzel',
     detail:
       'Mi érkezik, ki gépeli be, hova és hányszor. Azzal ülünk le, aki ténylegesen csinálja.',
     ask: 'Az a kolléga, aki a munkát végzi, két órára',
@@ -113,14 +113,14 @@ const daySchedule = [
   {
     time: '13:00–17:00',
     title: 'Megépítjük',
-    detail: 'Éles adatokon, a ti rendszereitekkel, nálatok.',
+    detail: 'Éles adatokon, az Önök rendszereivel, az Önök telephelyén.',
     ask: 'Hozzáférés ahhoz az egy rendszerhez, semmi máshoz',
   },
   {
     time: '17:00',
     title: 'Átadjuk működő állapotban',
     detail:
-      'Megmutatjuk, mi lenne a következő két folyamat, és mennyit hozna. Az automatizálás akkor is a tiétek marad, ha nem dolgozunk tovább együtt.',
+      'Megmutatjuk, mi lenne a következő két folyamat, és mennyit hozna. Az automatizálás akkor is az Önöké marad, ha nem dolgozunk tovább együtt.',
     ask: 'Fél óra a döntéshozótól',
   },
 ];
@@ -156,15 +156,15 @@ const firstBuilds = [
 const pricingTerms = [
   `Az első folyamat ára legfeljebb annyi, amennyit az első ${PAYBACK_MONTHS} hónapban megtakarít. A megtakarítást a bizonyító napon közösen mérjük meg, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa. Ha egy folyamat évente ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
-  'Fix ár, előre egyeztetett terjedelem, három hét alatt élesben. A kód a tiétek, nem bérelitek tőlünk.',
+  'Fix ár, előre egyeztetett terjedelem, három hét alatt élesben. A kód az Önöké, nem bérlik tőlünk.',
   'Utána havi üzemeltetési díj, amelyet az ajánlatban rögzítünk. Figyeljük, hogy működik-e, és ha a NAV vagy egy szállító megváltoztatja a formátumot, mi javítjuk.',
 ];
 
 const notOffered = [
   'Nem cseréljük le a működő könyvelő- vagy vállalatirányítási rendszert.',
-  'Nem hozunk adóügyi döntést. Azt a könyvelőtök mondja meg, mi csak azt intézzük, hogy az adat gépelés nélkül érkezzen meg hozzá.',
+  'Nem hozunk adóügyi döntést. Azt a könyvelőjük mondja meg, mi csak azt intézzük, hogy az adat gépelés nélkül érkezzen meg hozzá.',
   'Nem adunk írásos tanácsadói jelentést. A bizonyító nap eredménye egy működő automatizálás.',
-  'Ha kiderül, hogy nálatok ebből nincs mit kihozni, azt is megmondjuk, és nem küldünk ajánlatot.',
+  'Ha kiderül, hogy Önöknél ebből nincs mit kihozni, azt is megmondjuk, és nem küldünk ajánlatot.',
 ];
 
 function SavingsCalculator() {
@@ -314,7 +314,7 @@ export default function LocalAutomation() {
   return (
     <Layout
       title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
-      description="Kimegyünk hozzátok, és egy nap alatt megépítünk egy működő automatizálást a saját adataitokon. Számlák, szállítólevelek, rendelések. Az ár legfeljebb az első év megtakarítása."
+      description="Kimegyünk a cégéhez, és egy nap alatt megépítünk egy működő automatizálást a saját adataikon. Számlák, szállítólevelek, rendelések. Az ár legfeljebb az első év megtakarítása."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly
     >
@@ -343,10 +343,10 @@ export default function LocalAutomation() {
                 maxWidth: '60ch',
               }}
             >
-              Kimegyünk hozzátok, és a nap végén egy működő automatizálás fut a
-              ti adataitokon. Prezentációt nem hozunk. A bizonyító nap
-              ingyenes, és amit aznap megépítünk, az akkor is a tiétek marad, ha
-              nem dolgozunk tovább együtt.
+              Kimegyünk Önökhöz, és a nap végén egy működő automatizálás fut az
+              Önök adatain. Prezentációt nem hozunk. A bizonyító nap ingyenes,
+              és amit aznap megépítünk, az akkor is az Önöké marad, ha nem
+              dolgozunk tovább együtt.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <a
@@ -361,7 +361,7 @@ export default function LocalAutomation() {
                 />
               </a>
               <a className="btn btn-outline btn-lg" href="#kalkulator">
-                Mennyit spórolnátok?
+                Mennyit spórolhatnak?
               </a>
             </div>
             <p
@@ -426,8 +426,8 @@ export default function LocalAutomation() {
             <div className="section-eyebrow">A bizonyító nap</div>
             <h2 className="section-title">Mi történik a napon</h2>
             <p className="section-lead">
-              Egy napra megyünk ki, a saját adataitokkal dolgozunk, és a
-              munkatársaitoktól összesen néhány órát kérünk.
+              Egy napra megyünk ki, az Önök adataival dolgozunk, és a
+              munkatársaiktól összesen néhány órát kérünk.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -477,7 +477,7 @@ export default function LocalAutomation() {
                   }}
                 >
                   <span className="mono-label" style={{ display: 'block' }}>
-                    Tőletek
+                    Önöktől
                   </span>
                   {slot.ask}
                 </p>
@@ -536,7 +536,7 @@ export default function LocalAutomation() {
           <div className="section-header">
             <div className="section-eyebrow">Árazás</div>
             <h2 className="section-title">
-              Az árat a megtakarításotok határozza meg
+              Az árat az Önök megtakarítása határozza meg
             </h2>
             <p className="section-lead">
               Nincs árlista. Azt nézzük, mennyi munkaidőt vált ki az
@@ -667,7 +667,7 @@ export default function LocalAutomation() {
               className="section-lead"
               style={{ maxWidth: '52ch', margin: '0 auto 2rem' }}
             >
-              Egy negyedórás telefonnal kezdünk. Megnézzük, van-e nálatok olyan
+              Egy negyedórás telefonnal kezdünk. Megnézzük, van-e Önöknél olyan
               folyamat, amelyiknél megéri kimennünk. Ha nincs, ezt már a
               telefonban megmondjuk.
             </p>
