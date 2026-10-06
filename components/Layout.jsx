@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import {
+  LOCALES,
   LOCALE_STORAGE_KEY,
   getLocaleFromPath,
   localizePath,
@@ -63,6 +64,9 @@ export default function Layout({
   // False on a page showing English text under /hu (untranslated post), so the
   // English URL stays canonical and no Hungarian alternate is advertised.
   isTranslated = true,
+  // True on a page that exists only under /hu (no English version), so the
+  // Hungarian URL is canonical and no English alternate is advertised.
+  hungarianOnly = false,
   noIndex = false,
 }) {
   const pageTitle = title ?? DEFAULT_TITLE;
@@ -85,7 +89,11 @@ export default function Layout({
       .split(/[?#]/)[0]
       .replace(/^\/(en|hu)(?=\/|$)/, '')
       .replace(/\/$/, '') || '/';
-  const canonicalLocale = isTranslated ? routeLocale : 'en';
+  const canonicalLocale = hungarianOnly
+    ? 'hu'
+    : isTranslated
+      ? routeLocale
+      : 'en';
   const canonicalUrl = getCanonicalUrl(basePath, canonicalLocale);
   const jsonLdItems = [].concat(jsonLd ?? []);
 
@@ -96,10 +104,6 @@ export default function Layout({
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem(LOCALE_STORAGE_KEY, 'en');
-    }
-
     const handleScroll = () => {
       const nextIsScrolled = window.scrollY > 20;
       setIsScrolled((previous) =>
@@ -112,6 +116,53 @@ export default function Layout({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // The same page in the other language. A Hungarian-only page has no English
+  // version, so its English link goes to the English homepage.
+  const currentPath = router.asPath.split('#')[0];
+  const languageLinks = LOCALES.map((locale) => ({
+    locale,
+    label: t(`layout.language.${locale}`, locale.toUpperCase()),
+    href:
+      hungarianOnly && locale !== 'hu'
+        ? localizePath('/', locale)
+        : localizePath(currentPath, locale),
+    isActive: locale === routeLocale,
+  }));
+
+  const rememberLocale = (locale) => {
+    try {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+    } catch {
+      // Storage can be unavailable (private mode); the link still works.
+    }
+  };
+
+  const languageSwitch = (
+    <div
+      className="lang-switch"
+      role="group"
+      aria-label={t('layout.language.label', 'Language')}
+    >
+      {languageLinks.map((link) => (
+        <Link
+          key={link.locale}
+          href={link.href}
+          hrefLang={link.locale}
+          lang={link.locale}
+          className={`lang-switch__link ${link.isActive ? 'is-active' : ''}`}
+          aria-current={link.isActive ? 'true' : undefined}
+          onClick={() => {
+            rememberLocale(link.locale);
+            setIsMobileMenuOpen(false);
+          }}
+          data-umami-event={`language-switch-${link.locale}`}
+        >
+          {link.label}
+        </Link>
+      ))}
+    </div>
+  );
+
   const navLinks = [
     { label: t('layout.nav.problems', 'Problems'), href: '#services' },
     { label: t('layout.nav.engagements', 'Engagements'), href: '#engage' },
@@ -121,7 +172,6 @@ export default function Layout({
       label: t('layout.nav.posts', 'Posts'),
       href: localizePath('/posts', routeLocale),
     },
-    { label: t('layout.nav.contact', 'Contact'), href: '#contact' },
   ];
 
   return (
@@ -151,23 +201,27 @@ export default function Layout({
         ) : (
           <>
             <link rel="canonical" href={canonicalUrl} />
-            <link
-              rel="alternate"
-              hrefLang="en"
-              href={getCanonicalUrl(basePath, 'en')}
-            />
-            {isTranslated ? (
-              <link
-                rel="alternate"
-                hrefLang="hu"
-                href={getCanonicalUrl(basePath, 'hu')}
-              />
-            ) : null}
-            <link
-              rel="alternate"
-              hrefLang="x-default"
-              href={getCanonicalUrl(basePath, 'en')}
-            />
+            {hungarianOnly ? null : (
+              <>
+                <link
+                  rel="alternate"
+                  hrefLang="en"
+                  href={getCanonicalUrl(basePath, 'en')}
+                />
+                {isTranslated ? (
+                  <link
+                    rel="alternate"
+                    hrefLang="hu"
+                    href={getCanonicalUrl(basePath, 'hu')}
+                  />
+                ) : null}
+                <link
+                  rel="alternate"
+                  hrefLang="x-default"
+                  href={getCanonicalUrl(basePath, 'en')}
+                />
+              </>
+            )}
           </>
         )}
         <link
@@ -251,6 +305,7 @@ export default function Layout({
           </nav>
 
           <div className="desktop-cta">
+            {languageSwitch}
             <a
               className="btn btn-hero btn-sm"
               href={resolveHref('#contact')}
@@ -301,6 +356,7 @@ export default function Layout({
               >
                 {t('layout.cta.getInTouch', 'Get in Touch')}
               </a>
+              {languageSwitch}
             </nav>
           </div>
         )}
@@ -369,7 +425,7 @@ export default function Layout({
               </p>
               <ul className="footer-links">
                 <li>
-                  <a href="mailto:hello@monad.hu">hello@monad.hu</a>
+                  <a href="mailto:office@monad.hu">office@monad.hu</a>
                 </li>
                 <li>
                   <a href="tel:+36306360775">+36 30 636 0775</a>

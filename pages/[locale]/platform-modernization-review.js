@@ -272,29 +272,29 @@ export default function PlatformModernizationReview() {
   const isHu = locale === 'hu';
   const copy = isHu
     ? {
-        pageTitle: 'Szoftverarchitektúra Felülvizsgálat — MONAD SYSTEMS',
+        pageTitle: 'Architektúra review — MONAD SYSTEMS',
         pageDescription:
-          'Fókuszált architektúra-felülvizsgálat, amely feltárja a legnagyobb hatású szűk keresztmetszeteket és konkrét modernizációs ütemtervet ad.',
-        heroEyebrow: 'Első együttműködés',
-        heroTitle: 'Szoftverarchitektúra Felülvizsgálat',
+          'Fókuszált architektúra review, amely feltárja a legnagyobb hatású szűk keresztmetszeteket, és konkrét modernizációs roadmapet ad.',
+        heroEyebrow: 'Első lépés',
+        heroTitle: 'Architektúra review',
         heroLead:
-          'Fókuszált, senior vezetésű architektúra-felülvizsgálat, amely azonosítja a legnagyobb hatású szűk keresztmetszeteket és konkrét ütemtervet ad — így a modernizációt magabiztosan, nem találgatással végezheted.',
-        heroPrimaryCta: 'Szoftverarchitektúra Review konzultáció foglalása',
-        heroSecondaryCta: 'A review folyamata',
+          'Fókuszált, senior szakemberek által vezetett review, amely azonosítja a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet ad, hogy a modernizációt ne találgatásra, hanem tényekre építhessék.',
+        heroPrimaryCta: 'Egyeztető hívás foglalása',
+        heroSecondaryCta: 'Így zajlik a review',
         heroNote:
-          'Fix scope-os, fókuszált, 2 hetes együttműködés, egyértelmű záró readouttal.',
+          'Kéthetes, rögzített terjedelmű együttműködés, egyértelmű záró vezetői összefoglalóval.',
         whoEyebrow: 'Kinek szól',
-        whoTitle: 'Ideális csapatok fordulópont előtt',
+        whoTitle: 'Fordulóponthoz érkezett csapatoknak',
         whoLead:
-          'Azoknak a mérnöki vezetőknek, akik tudják, hogy változtatni kell, de külső, senior nézőpont kell a kezdő lépésekhez.',
-        processTitle: 'Így működik a review',
+          'Azoknak a fejlesztési vezetőknek, akik tudják, hogy változtatni kell, de külső, senior nézőpont kell ahhoz, hogy eldöntsék, hol kezdjék.',
+        processTitle: 'Így zajlik a review',
         processLead:
-          'Átlátható két hetes folyamat, hogy a csapat pontosan értse mi történik, mikor és miért.',
+          'Átlátható, kéthetes folyamat: a csapat pontosan tudja, mi történik, mikor és miért.',
         notGoodFitTitle: 'Mikor nem jó választás',
-        scopeTitle: 'Mi tartozik bele és mi nem',
+        scopeTitle: 'Mi tartozik bele, és mi nem',
         triggersTitle: 'Ismerős valamelyik?',
-        nextTitle: 'Mi történik ezután',
-        finalCta: 'Szoftverarchitektúra Review konzultáció foglalása',
+        nextTitle: 'A következő lépések',
+        finalCta: 'Egyeztető hívás foglalása',
       }
     : {
         pageTitle: 'Custom Software Engineering Review — MONAD SYSTEMS',
@@ -325,225 +325,227 @@ export default function PlatformModernizationReview() {
   const content = isHu
     ? {
         bestFitFor: [
-          'Series A-C fázisú startupoknak, ahol a monolit már lassítja a szállítást',
-          '10-80 fős mérnöki csapatoknak, növekedési fájdalmakkal',
-          'CTO-knak és VPE-knek, akik egyedi szoftverfejlesztési irányokat mérlegelnek',
-          'Cégeknek, ahol az előző nagy átírás elakadt vagy kudarcot vallott',
+          'A–C befektetési körnél tartó startupoknak, ahol a monolit már lassítja a fejlesztést',
+          '10–80 fős fejlesztőcsapatoknak, amelyek a növekedés korlátaiba ütköznek',
+          'CTO-knak és fejlesztési vezetőknek, akik egyedi szoftverfejlesztési irányokat mérlegelnek',
+          'Cégeknek, ahol az előző nagy újraírás elakadt vagy kudarcot vallott',
         ],
         weekOne: [
           'Stakeholder interjúk (CTO, engineering, platform)',
-          'Rendszerbejárás (architektúra, API-k, infrastruktúra)',
-          'Szállítási pipeline áttekintés (CI/CD, környezetek)',
-          'Célzott kódbázis mintavétel (kritikus szolgáltatások)',
+          'A rendszer bejárása (architektúra, API-k, infrastruktúra)',
+          'A delivery pipeline áttekintése (CI/CD, környezetek)',
+          'Célzott code review a kritikus szolgáltatásokban',
         ],
         weekTwo: [
-          'Szűk keresztmetszetek és friction pontok feltérképezése',
-          'Architektúra kockázatelemzés',
-          'API és integrációs felmérés',
-          'Költség- és komplexitási hotspotok',
+          'A szűk keresztmetszetek és akadályok feltérképezése',
+          'Architekturális kockázatelemzés',
+          'API- és integrációs felmérés',
+          'Költség- és komplexitási gócpontok',
           'Priorizált modernizációs roadmap elkészítése',
         ],
         notGoodFit: [
-          'Korai fázisú MVP csapatok',
-          'Egyszerű rendszerek architekturális nyomás nélkül',
+          'Korai fázisú, MVP-t építő csapatok',
+          'Egyszerű rendszerek, ahol nincs architekturális nyomás',
           'Csapatok, amelyek csak plusz fejlesztői kapacitást keresnek',
-          'Elsősorban legalacsonyabb ár alapján döntő projektek',
+          'Projektek, ahol elsősorban a legalacsonyabb ár dönt',
         ],
         scopeIncluded: [
-          'Két hét fókuszált architektúra- és delivery felmérés',
-          'Interjúk, rendszerbejárás, pipeline review és célzott kódbázis mintavétel',
-          'Írásos review csomag és vezetői readout',
-          'Priorizált 90 napos roadmap, tiszta következő lépésekkel',
+          'Két hét fókuszált architektúra- és fejlesztésifolyamat-felmérés',
+          'Interjúk, rendszerbejárás, CI/CD-áttekintés és célzott code review',
+          'Írásos review anyag és vezetői összefoglaló',
+          'Priorizált 90 napos roadmap, egyértelmű következő lépésekkel',
         ],
         scopeExcluded: [
-          'Hands-on implementáció a review időablakban',
-          'Nyitott végű tanácsadói retainer konstrukciók',
-          'Eszközmigráció roadmap-priorizálás nélkül',
+          'Fejlesztési munka a review ideje alatt',
+          'Határozatlan idejű tanácsadói megbízás',
+          'Eszközcsere priorizált roadmap nélkül',
         ],
         symptoms: [
           {
             title: 'A release napokig tart, nem órákig',
             detail:
-              'Kézi gate-ek, hosszú regressziós körök vagy egyetlen deployolható egység, ami mindenkit blokkol.',
+              'Kézi jóváhagyások, hosszú regressziós tesztkörök, vagy egyetlen deployolható egység, amely mindenkit blokkol.',
           },
           {
-            title: 'A csapatok egymást akadályozzák',
+            title: 'A csapatok akadályozzák egymást',
             detail:
-              'Merge konfliktusok, közös adatbázis és homályos ownership miatt minden sprint egyeztetéssé válik.',
+              'Ütköző módosítások, közös adatbázis és tisztázatlan felelősségi körök miatt minden sprint egyeztetéssé válik.',
           },
           {
-            title: 'Az integrációs hibák láncreakciót okoznak',
+            title: 'Az integrációs hibák továbbgyűrűznek',
             detail:
-              'Egy szolgáltatás hibája további rendszereket dönt le. Nincs circuit breaker vagy tiszta szerződéses határ.',
+              'Ha egy szolgáltatás leáll, magával visz még hármat. Nincs circuit breaker, és nincsenek tiszta contractok.',
           },
           {
-            title: 'Az observability csak utólag kerül be',
+            title: 'Az observability utólagos',
             detail:
-              'Production hiba esetén az első órában azt keresitek, melyik szolgáltatás a hibás.',
+              'Éles hibánál az első óra azzal telik, hogy kiderüljön, melyik szolgáltatás a hibás.',
           },
           {
-            title: 'Lassú onboarding',
+            title: 'Az új kollégák lassan kapcsolódnak be',
             detail:
-              'A kódbázis nehezen átlátható, a tudás törzsi, a dokumentáció hiányos vagy elavult.',
+              'A kódbázis csak a régi kollégák fejében lévő tudással érthető, a dokumentáció hiányos vagy elavult.',
           },
           {
-            title: 'Skálázáskor mindent együtt kell növelni',
+            title: 'A skálázás mindent érint',
             detail:
-              'A hot path-ek külön nem skálázhatók, az egész monolitot együtt kell felnagyítani.',
+              'A leginkább terhelt részeket nem lehet külön skálázni, az egész monolitnak együtt kell nőnie.',
           },
         ],
         included: [
           {
             step: '01',
-            title: 'Mély architektúra-felmérés',
+            title: 'Az architektúra alapos átvilágítása',
             detail:
-              'Átnézzük a kódbázist, infrastruktúrát, CI/CD-t és adatfolyamokat. Kulcsemberekkel interjúzunk a fájdalompontok és korlátok megértéséhez.',
+              'Átnézzük a kódbázist, az infrastruktúrát, a CI/CD-t és az adatfolyamokat, és interjút készítünk a kulcsfejlesztőkkel, hogy megértsük a problémákat és a korlátokat.',
           },
           {
             step: '02',
-            title: 'Szűk keresztmetszetek feltérképezése',
+            title: 'A szűk keresztmetszetek feltérképezése',
             detail:
-              'Azonosítjuk a konkrét csatolási pontokat, skálázási korlátokat és operatív kockázatokat, amelyek ma lassítják a csapatot.',
+              'Azonosítjuk azokat a konkrét csatolási pontokat, skálázási korlátokat és üzemeltetési kockázatokat, amelyek ma lassítják a csapatot.',
           },
           {
             step: '03',
             title: 'Priorizált roadmap',
             detail:
-              'Konkrét, szekvenciált tervet kapsz: mit érdemes először leválasztani, mely szerződéseket kell formalizálni, és hová érdemes observability-t építeni, becsült ráfordítással.',
+              'Konkrét, sorrendbe állított tervet kapnak: mit érdemes először leválasztani, mely contractokat kell formalizálni, és hol kell observability-t kiépíteni, ráfordításbecsléssel.',
           },
           {
             step: '04',
-            title: 'Kockázati értékelés',
+            title: 'Kockázatértékelés',
             detail:
-              'Jelezzük a technikai adósságot, ami üzleti kockázatot hordoz: single point of failure, dokumentálatlan integrációk, adatkonzisztencia-rések.',
+              'Megjelöljük azt a technikai adósságot, amely üzleti kockázatot hordoz: egyetlen hibaponttól függő részeket, dokumentálatlan integrációkat és adatkonzisztencia-hiányokat.',
           },
         ],
         deliverables: [
           {
-            title: 'Tiszta current-state architektúra áttekintés',
+            title: 'Áttekintés a jelenlegi architektúráról',
             format:
-              'Rendszertérkép szolgáltatáshatárokkal, függőségekkel és hibautakkal.',
-          },
-          {
-            title: 'Top kockázatok és bottleneckek üzleti hatással',
-            format:
-              'Rangsorolt kockázati lista azzal, hogy melyik elem hogyan hat a szállításra vagy megbízhatóságra.',
+              'Rendszertérkép a szolgáltatáshatárokkal, a függőségekkel és a hibák terjedési útjaival.',
           },
           {
             title:
-              'Delivery friction térkép CI/CD, környezetek és handoffok mentén',
+              'A legfontosabb kockázatok és szűk keresztmetszetek, üzleti hatással',
             format:
-              'Pipeline és workflow térkép, amely megmutatja hol lassulnak vagy buknak el a release-ek.',
+              'Rangsorolt kockázati lista, amely megmutatja, melyik tétel hogyan hat a delivery-re vagy a megbízhatóságra.',
           },
           {
-            title: 'API és integrációs problématérkép',
+            title:
+              'A fejlesztési folyamat akadályai a CI/CD-ben, a környezetekben és a csapatok közötti átadásokban',
             format:
-              'Szerződés- és integrációs megállapítások ownership és függőségi jelöléssel.',
+              'Folyamattérkép, amely megmutatja, hol lassulnak le vagy akadnak el a release-ek.',
+          },
+          {
+            title: 'Az API- és integrációs problémák áttekintése',
+            format:
+              'Contract- és integrációs megállapítások, felelősökkel és függőségekkel.',
           },
           {
             title: 'Priorizált 90 napos modernizációs roadmap',
             format:
-              'Szekvenciált terv prioritás, függőség és végrehajtási kockázat alapján.',
+              'Prioritás, függőség és végrehajtási kockázat szerint sorba állított terv.',
           },
           {
-            title: 'Opcionális végrehajtási megközelítés az első lépésekhez',
+            title: 'Opcionális megvalósítási javaslat az első lépésekhez',
             format:
-              'Phase-one implementációs megközelítés vázlata; a kivitelezési támogatás opcionális.',
+              'Az első szakasz megvalósításának vázlata; a kivitelezési támogatás nem kötelező.',
           },
         ],
         buyerCommitment: [
-          'Egy 30 perces fit call a mérnöki vezetéssel',
+          'Egy 30 perces egyeztető hívás a fejlesztési vezetéssel',
           'Három-öt stakeholder interjú az első héten',
-          'Hozzáférés az architektúra dokumentációhoz, CI/CD pipeline-hoz és kritikus szolgáltatásokhoz',
-          'Egy záró vezetői readout a második hét végén',
+          'Hozzáférés az architektúra-dokumentációhoz, a CI/CD-hez és a kritikus szolgáltatásokhoz',
+          'Egy záró vezetői összefoglaló a második hét végén',
         ],
         nextSteps: [
           {
             step: '1',
             title: 'Időpontfoglalás',
             detail:
-              'Egy fókuszált 30 perces hívásban átbeszéljük az architektúrát, a csapat helyzetét és a célokat.',
+              'Egy fókuszált, 30 perces hívásban átbeszéljük az architektúrát, a csapatot és a célokat.',
           },
           {
             step: '2',
-            title: 'Lefuttatjuk a review-t',
+            title: 'Elvégezzük a review-t',
             detail:
-              'Két hét alatt interjúk, walkthrough-k, pipeline review és célzott kódbázis mintavétel történik.',
+              'Két hét alatt interjúkat készítünk, bejárjuk a rendszert, áttekintjük a CI/CD-t, és célzottan átnézzük a kódot.',
           },
           {
             step: '3',
-            title: 'Átadjuk a deliverable-öket',
+            title: 'Átadjuk az eredményeket',
             detail:
-              'Megkapod az írásos review csomagot és a vezetői readoutot priorizált következő lépésekkel.',
+              'Megkapják az írásos review anyagot és a vezetői összefoglalót, a rangsorolt következő lépésekkel.',
           },
           {
             step: '4',
             title: 'Döntés a folytatásról',
             detail:
-              'Végrehajthatjátok önállóan, vagy kérhetitek a támogatásunkat az első fázis implementálásához.',
+              'A tervet végrehajthatják önállóan, vagy kérhetik a támogatásunkat az első szakasz megvalósításához.',
           },
         ],
         exampleOutcomes: [
-          'Célzott platformváltoztatásokkal csökkentett infrastruktúra költség',
-          'Javuló szállítási megbízhatóság release és üzemeltetési oldalon',
-          'Production-grade observability bevezetése kritikus folyamatokra',
-          'Biztonságosabb, fázisos modernizációs út kijelölése',
-          'Integrációs komplexitás csökkentése kulcsrendszerek között',
+          'Célzott platformmódosításokkal csökkentett infrastruktúraköltség',
+          'Megbízhatóbb release-ek és üzemeltetés',
+          'Production-grade observability a kritikus szolgáltatásokhoz',
+          'Biztonságosabb, szakaszos modernizációs út',
+          'Kisebb integrációs komplexitás a kulcsrendszerek között',
         ],
         caseSnapshots: [
           {
             context:
-              'B2B SaaS platform, ahol a release-eket közös szolgáltatási csatolások és bizonytalan ownership határok blokkolták',
+              'B2B SaaS platform, ahol a release-eket a közös szolgáltatásokon keresztüli csatolás és a tisztázatlan felelősségi határok blokkolták',
             outcome:
-              'A review csomag kijelölte a cél szolgáltatáshatárokat, azonosította a top delivery blokkolókat, és szekvenciált 90 napos tervet adott belső végrehajtáshoz.',
+              'A review kijelölte a cél szolgáltatáshatárokat, azonosította a legfontosabb akadályokat, és sorba állított egy 90 napos tervet, amelyet a csapat saját maga hajtott végre.',
           },
           {
             context:
-              'Integráció-intenzív termék visszatérő cross-team incidensekkel és gyenge API szerződés ownership-pel',
+              'Integrációkra épülő termék, visszatérő, több csapatot érintő incidensekkel és gazdátlan API contractokkal',
             outcome:
-              'A review priorizálta a szerződéses javításokat, feltárta az observability hiányokat kritikus flow-k mentén, és tisztázta az ownership döntéseket.',
+              'A review priorizálta az integrációs contractok javítását, kritikus folyamatonként feltárta az observability hiányait, és tisztázta a felelősségi köröket, ami csökkentette az üzemeltetési súrlódást.',
           },
         ],
         processEyebrow: 'Folyamat',
         qualificationEyebrow: 'Alkalmasság',
         qualificationLead:
-          'Így marad fókuszált és hasznos az együttműködés azoknak a csapatoknak, akiknek erre valóban szükségük van.',
+          'Így marad az együttműködés fókuszált és hasznos azoknak a csapatoknak, akiknek valóban szükségük van rá.',
         qualificationNote:
-          'Ha nem jó fit, ezt már az első híváson egyértelműen jelezzük.',
-        qualificationBadge: 'A tiszta "nem" jobb, mint egy erőltetett projekt.',
+          'Ha nem megfelelő választás, ezt már az első hívásban megmondjuk.',
+        qualificationBadge:
+          'Inkább egy egyértelmű nem, mint egy erőltetett projekt.',
         scopeEyebrow: 'Terjedelem',
         scopeLead:
-          'Fix scope-os együttműködés egyértelmű határokkal, hogy pontosan tudd mit vásárolsz.',
+          'Rögzített terjedelmű együttműködés egyértelmű határokkal, hogy pontosan tudják, mit vásárolnak.',
         includedLabel: 'Tartalmazza',
         excludedLabel: 'Nem tartalmazza',
-        triggersEyebrow: 'Tipikus kiváltó okok',
+        triggersEyebrow: 'Gyakori jelek',
         triggersLead:
-          'Ha ezek közül kettő vagy több ismerős, a szoftverarchitektúra review már a roadmap vége előtt megtérül.',
+          'Ha ezek közül kettő vagy több ismerős, a review már a roadmap elkészülte előtt megtérül.',
         whatsIncludedEyebrow: 'Mit tartalmaz',
-        whatsIncludedTitle: 'Négy fázis, sallang nélkül',
+        whatsIncludedTitle: 'Négy szakasz, sallang nélkül',
         whatsIncludedLead:
-          'Minden review azonos, kiszámítható folyamatot követ, így pontosan tudod mire számíthatsz és mit kapsz a végén.',
-        phaseLabel: 'FÁZIS',
-        deliverablesEyebrow: 'Deliverable-ök',
-        deliverablesTitle: 'Amit kézhez kapsz',
+          'Minden review ugyanazt a folyamatot követi, így pontosan tudják, mire számíthatnak, és mit kapnak a végén.',
+        phaseLabel: 'SZAKASZ',
+        deliverablesEyebrow: 'Eredmények',
+        deliverablesTitle: 'Amit kézhez kapnak',
         deliverablesLead:
-          'Kézzelfogható kimenetek, amelyeket a vezetés és a mérnöki csapat felé is azonnal használhatsz.',
-        commitmentEyebrow: 'Szükséges ráfordítás tőletek',
-        commitmentTitle: 'Mire van szükségünk a csapatodtól',
+          'Kézzelfogható anyagok, amelyeket a vezetéssel és a fejlesztőcsapattal is azonnal megoszthatnak, és amelyek alapján rögtön elindulhatnak.',
+        commitmentEyebrow: 'Az Önök ráfordítása',
+        commitmentTitle: 'Amire a csapatuktól szükségünk van',
         commitmentLead:
-          'Könnyű együttműködési igény, hogy a review gyors, pontos és gyakorlatias maradjon.',
+          'Kevés időt kérünk, hogy a review gyors, pontos és gyakorlatias maradjon.',
         nextEyebrow: 'Folyamat',
-        nextLead: 'Az első hívástól a kész roadmapig, két héten belül.',
-        proofEyebrow: 'Bizonyíték',
-        proofTitle: 'Példaeredmények hasonló munkákból',
+        nextLead: 'Az első hívástól a kész roadmapig legfeljebb két hét.',
+        proofEyebrow: 'Referenciák',
+        proofTitle: 'Példák hasonló munkák eredményeiből',
         scenarioLabel: 'Helyzet',
         changedLabel: 'Mi változott',
         finalTitle:
-          'Készen állsz látni, mi fogja vissza a szoftveres szállításotokat?',
+          'Szeretnék látni, mi fogja vissza a szoftverfejlesztésüket?',
         finalLead:
-          'Foglalj egy 30 perces hívást. Gyorsan megmondjuk, hogy a review hasznos-e a helyzetedben, és kijelöljük a tiszta következő lépéseket. Kötöttség nélkül.',
+          'Foglaljon egy 30 perces hívást. Gyorsan felmérjük, hasznos-e Önöknek a review, és felvázoljuk a következő lépéseket. Kötelezettség nélkül.',
         finalNote:
-          'A review önálló együttműködés. Implementációs támogatást csak kérésre beszélünk át.',
+          'A review önálló megbízás. Megvalósítási támogatásról csak akkor beszélünk, ha Önök kérik.',
       }
     : {
         bestFitFor,
