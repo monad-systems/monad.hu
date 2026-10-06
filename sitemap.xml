@@ -37,6 +37,9 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts" />
   </url>
   <url>
+    <loc>https://monad.hu/hu/helyi-automatizalas</loc>
+  </url>
+  <url>
     <loc>https://monad.hu/posts/building-blocks-ai-native-development</loc>
     <lastmod>2026-08-11</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/building-blocks-ai-native-development" />
