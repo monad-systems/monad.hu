@@ -9,10 +9,10 @@ self.__BUILD_MANIFEST = {
     "static/chunks/1yfjllq0nm0g4.js"
   ],
   "/[locale]/helyi-automatizalas": [
-    "static/chunks/3udczpewl6ky0.js"
+    "static/chunks/000zn_45j2ssj.js"
   ],
   "/[locale]/platform-modernization-review": [
-    "static/chunks/1algn7qxi59rv.js"
+    "static/chunks/0ok0n30h24nm8.js"
   ],
   "/[locale]/posts": [
     "static/chunks/1xk7folpf-mt0.js"
@@ -24,7 +24,7 @@ self.__BUILD_MANIFEST = {
     "static/chunks/0yj2zcs_6g0l4.js"
   ],
   "/platform-modernization-review": [
-    "static/chunks/2ohg_up7qik3u.js"
+    "static/chunks/2_k0z3pdxpo5y.js"
   ],
   "/posts": [
     "static/chunks/36bu5ma_kbcgb.js"
