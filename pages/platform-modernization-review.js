@@ -265,9 +265,8 @@ export default function PlatformModernizationReview() {
       >
         <div className="hero-bg">
           <HeroBackground />
-          <div className="hero-fade" />
-          <div className="hero-fade-vertical" />
         </div>
+        <div className="hero-scrim" />
         <div className="site-container relative z-10">
           <div style={{ maxWidth: '720px' }}>
             <div className="section-eyebrow">First Engagement</div>
