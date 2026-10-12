@@ -719,18 +719,6 @@ a.site-nav-link:hover {
   line-height: 1.4;
 }
 
-.hero-fade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, hsl(var(--background)) 0%, hsl(var(--background) / 0.9) 38%, hsl(var(--background) / 0.4) 75%, hsl(var(--background) / 0.55) 100%);
-}
-
-.hero-fade-vertical {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, hsl(var(--background) / 0.4) 0%, transparent 38%, hsl(var(--background) / 0.25) 100%);
-}
-
 /* ── Client logo band ─────────────────────────────── */
 
 .logo-band {
