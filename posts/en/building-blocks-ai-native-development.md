@@ -90,7 +90,7 @@ So write the invariants down, and then make them run. Good candidates are the ru
 - schemas are the source of truth, and generated contracts are read-only
 - generated code is never edited by hand
 
-Each needs an enforcement mechanism: an architecture check, a lint rule, a type boundary, or a test. Run the whole suite as one command on every pull request, so that a human and an agent face the same gate. Our ERP platform has twenty-two such invariants; the number matters less than the fact that none of them depends on someone remembering it.
+Each needs an enforcement mechanism: an architecture check, a lint rule, a type boundary, or a test. Run the whole suite as one command on every pull request, so that a human and an agent face the same gate. Our ERP platform has twenty-two such invariants, and eighteen architecture checks run against them on every pull request. Types, package boundaries, and tests hold others. The few no tool can express, such as when a change needs a decision record, are the reviewer's job, and a new check is added only when none of the existing mechanisms can hold the rule.
 
 Enforcement turns a style guide into a path an autonomous worker can follow. If the change cannot merge without satisfying the rule, it matters less whether the agent remembered the prose.
 
@@ -118,20 +118,27 @@ flowchart TD
 
 CI checks the result. Running agents without supervision also needs gates around the work itself, before and after the code exists. The setup we run in our own software factory follows a pattern that does not depend on any particular tool.
 
-Split each task into steps, and give every step a fresh context that inherits only the previous step's condensed output:
+The first gate sits before any model runs. A task enters the queue only with a goal and acceptance criteria, written by the person who wants the change. Those criteria are the human's own verification targets, and every later step is measured against them.
+
+Then split the task into steps, and give every step a fresh context that inherits only the previous step's condensed output:
 
 1. **Research:** read the target repository and produce a map of the relevant code, with a file and line reference for every claim.
-2. **Plan:** turn the research into numbered phases, each with the files it touches and a command that verifies it.
-3. **Implement:** refuse to start until a human has approved the plan, then generate the change and open a pull request.
-4. **Review:** in a fresh context that sees only the approved plan and the resulting diff, answer one question: does this diff implement this plan?
+2. **Plan:** turn the research into numbered phases, each with the files it touches and a command that verifies it, and map every acceptance criterion to a phase that verifies it.
+3. **Implement:** refuse to start until a human has approved the plan. Generate the change, open a pull request, and wait for the repository's own CI. Allow one bounded repair attempt if it fails.
+4. **Review:** in a fresh context that sees only the acceptance criteria, the approved plan, the resulting diff, and the CI evidence, answer one question: does this diff deliver what was agreed? Where the plan and the criteria disagree, the criteria win.
 
-The reviewer should never see the reasoning that produced the code, so that reasoning cannot persuade it. It compares intent with result, which is the job a good human reviewer does and the author of a change usually finds hardest. Derive the verdict from the findings, not from the model's summary: an unmet plan criterion means changes requested, even if the reviewer called the change "good overall."
+The reviewer should never see the reasoning that produced the code, so that reasoning cannot persuade it. It compares intent with result, which is the job a good human reviewer does and the author of a change usually finds hardest. Derive the verdict from the findings, not from the model's summary: an unmet criterion means changes requested, even if the reviewer called the change "good overall." Failed or missing CI evidence forces the same verdict, because a model's opinion cannot waive a red check. Publish the verdict as a status check the repository can require, so a rejected change cannot be merged by accident.
+
+A task can also carry a holdout set: verification scenarios that only the reviewer sees. The planning and implementing steps never receive them, so the generator cannot tune its work to the grading criteria, and the reviewer must report a pass or fail with evidence for each one.
 
 Around the steps, add the guardrails that make unattended runs survivable:
 
 - **Human plan approval:** implementation cannot start without it. This is the one gate worth keeping manual.
+- **A premise check:** if the default branch has moved since the research ran, confirm that the problem still exists before implementing a plan written against older code.
 - **Stop the line:** no implementation while the target's default branch is failing. Research and planning stay allowed, because that is how the breakage gets understood.
 - **Spend ceilings:** each run gets the tightest of a per-run limit, the task's budget, and the project's cap, plus a wall-clock limit. A run with no budget left fails before its first model call.
+- **A watchdog:** halt new work when the same task keeps being dispatched or spend keeps rising without progress. Per-run limits cannot see a pattern that spans runs.
+- **One-way doors stay drafts:** when a change is hard to reverse or needs a manual step, the pull request stays a draft until a human releases it.
 - **A single egress point:** every model call goes through one proxy. No step talks to a provider directly.
 
 Keep the task, its budget, its result, and its review verdict together, in the place where people already track their work. The record of what an agent did is only useful if someone reads it.
@@ -142,14 +149,16 @@ Build this tooling from the same blocks it enforces. Ours runs on the same share
 
 ```mermaid
 flowchart TD
-    A[Task with intent and budget] --> B[Research: code map with file and line references]
-    B --> C[Plan: numbered phases and verification commands]
+    A[Task with goal, acceptance criteria, and budget] --> B[Research: code map with file and line references]
+    B --> C[Plan: phases mapped to acceptance criteria]
     C --> D{Human approves plan}
     D -->|no| C
-    D -->|yes| E{Default branch green}
+    D -->|yes| P{Problem still exists on the current branch}
+    P -->|no| X[Task closed: premise failed]
+    P -->|yes| E{Default branch green}
     E -->|no| F[Blocked: stop the line]
-    E -->|yes| G[Implement: branch and pull request]
-    G --> H[Review: approved plan vs diff, fresh context]
+    E -->|yes| G[Implement: pull request, CI, one repair attempt]
+    G --> H[Review: criteria, plan, diff, and CI evidence, fresh context]
     H --> I{Findings clean}
     I -->|no| J[Changes requested, back to the queue]
     I -->|yes| K[Human review and merge]
@@ -159,7 +168,7 @@ flowchart TD
 
 For AI workloads, an instruction not to leak data is weaker than an architecture in which the model never receives the protected data. The instruction depends on compliance. The architecture does not.
 
-The pattern is a boundary process between your systems and the model provider. It is the only process that holds the provider key and the only one allowed to make an outbound call. It recognises personal data deterministically: tax numbers, national and social security IDs, bank and card numbers with checksum validation, phone numbers, email and postal addresses, names. It replaces each value with a reversible token for the duration of the run, restores the originals on the response path, and writes every crossing to a tamper-evident audit log. Detection quality is a CI gate: a labelled corpus with recall and precision floors that must hold before the boundary ships.
+The pattern is a boundary process between your systems and the model provider. It is the only process that holds the provider key and the only one allowed to make an outbound call. It recognises personal data deterministically: tax numbers, national and social security IDs, bank account and card numbers, with checksum validation wherever the format defines one, phone numbers, email and postal addresses, names. It replaces each value with a reversible token for the duration of the run, restores the originals on the response path, and writes every crossing to a tamper-evident audit log. Detection quality is a CI gate: a labelled corpus with recall and precision floors that must hold before the boundary ships.
 
 This is what the platform engineering report calls security shifting down. Shift-left moved security earlier in the timeline and handed developers more tools and more responsibility. Shift-down moves it into the platform, where it is invisible to the developer and cannot be bypassed by a prompt.
 
@@ -173,7 +182,7 @@ Drift gets expensive as consumers multiply. Ten teams each solving configuration
 
 Agents also arrive as a new class of user. The report is direct about this: AI agents are the first new platform persona in over a decade, and they consume APIs rather than interfaces. They need versioned, well-documented APIs, scoped permissions, non-human identity, audit logging, budget controls, and egress controls. Every one of those is a platform capability rather than a developer preference. If your platform cannot express "this actor may do these things, spending at most this much, and here is the record," you cannot safely run agents at all, however good the model is.
 
-Bounded autonomy turns out to have a shape. Teams operationalising it converge on seven concerns: identity, context, capability, execution, evaluation, security, and observability. The gates above map onto that list. Plan approval and stop-the-line are capability limits. The review step is evaluation. The boundary process is security. Run logs, artifacts, and the audit trail are observability. Spend ceilings are the execution limit. None of it is model-specific, so it survives the next model.
+Bounded autonomy turns out to have a shape. Teams operationalising it converge on seven concerns: identity, context, capability, execution, evaluation, security, and observability. The gates above map onto that list. Plan approval and stop-the-line are capability limits. Acceptance criteria, the review step, and the holdout scenarios are evaluation. The boundary process is security. Run logs, artifacts, and the audit trail are observability. Spend ceilings and the watchdog limit execution. None of it is model-specific, so it survives the next model.
 
 Cost becomes a first-class signal at the same time. The industry baseline is roughly 35% cloud waste before AI infrastructure lands on top of it, and token spend from agentic development is a category most organisations have no tooling for at all. A per-run cost ceiling that stops a run mid-flight is a small thing to build, and it separates an experiment from a budget incident.
 
@@ -234,6 +243,6 @@ If you are starting, the order matters more than the tooling:
 1. Write down the invariants you already rely on, and make the most expensive two or three run in CI.
 2. Extract the shared blocks that already have several users in your codebase, and only those.
 3. Put contracts before implementation for every boundary agents will touch.
-4. Add plan approval, review against the plan, and spend ceilings before giving agents more autonomy.
+4. Require acceptance criteria on every task, and add plan approval, review against those criteria, and spend ceilings before giving agents more autonomy.
 
 The tools changed. Contract-first design, tests that fail loudly, review against intent, small diffs, enforced CI, observability, and written decisions did not. They now decide whether AI speeds up useful work or merely speeds up drift.
