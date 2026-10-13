@@ -108,12 +108,12 @@ correct and short, but written from the system's side. The owner rewrote the key
 
 | Draft (grammatical, still wrong) | The owner's version |
 |---|---|
-| néhány napon belül élesben átadjuk az automatizálást | néhány napon belül már egy használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez |
+| néhány napon belül élesben átadjuk az automatizálást | néhány napon belül már használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez |
 | …és néhány napon belül működik is | (the same) |
 | Cégeknek, ahol a papírmunka viszi el a napot | Cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét |
-| Legtöbbször csak azért gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani. | Legtöbbször csak azért történik a rögzítés mégis manuálisan, mert nem állt rendelkezésre megfelelő szakértői erőforrás vagy idő az esetleges automatizációk bevezetésére. |
+| Legtöbbször csak azért gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani. | Legtöbbször csak azért rögzítik mégis manuálisan az adatokat, mert nem állt rendelkezésre megfelelő szakértői erőforrás vagy idő az esetleges automatizációk bevezetésére. |
 | Ahol ugyanazt az adatot két rendszerbe is beütik, vagy egy táblázatból másolják át a másikba | Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba |
-| Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt | Ahol egy adminisztratív munkatárs beintegrálása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése |
+| Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt | Ahol egy adminisztratív munkatárs betanítása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése |
 | mennyi papírmunkát vehetne át Önöktől a gép | mennyi papírmunkát lehet automatizálni Önöknél |
 | A gép tételesen kiolvassa | Tételesen, automatikusan kiolvassuk |
 | megmérjük, havonta hány órát visz el | felmérjük, havonta hány órát visz el |
@@ -292,19 +292,21 @@ for variety. This is also why the owner accepts „felmérés … felmérjük”
 - Openings like „Tisztelt Intézet!” read as impersonal (Domonkosi Ágnes – Ludányi
   Zsófia 2021/5 p18).
 
-### Where the journal and the owner disagree
+### Where the journal and the owner's sentences met
 
-The owner's sentences are used verbatim and stay as written. Two of them use forms
-the journal criticises:
+Three of the owner's own sentences used forms the journal criticises. Shown the
+journal's alternative with its source, the owner took it every time (2026-10-13):
 
-- „Legtöbbször csak azért **történik** a rögzítés mégis manuálisan…” (the „X … történik”
-  pattern, Láng). The journal's version would be „…azért rögzítik mégis manuálisan…”.
-- „egy adminisztratív munkatárs **beintegrálása**” (redundant *be-*, Büky). The
-  journal's version would be „integrálása” or „betanítása”.
-- „már **egy** használható eszköz van a kezükben” (needless „egy”, Kemény).
+- „…azért **történik a rögzítés** mégis manuálisan…” → „…azért **rögzítik** mégis
+  manuálisan **az adatokat**…” (the „X … történik” pattern, Láng).
+- „egy adminisztratív munkatárs **beintegrálása**” → „…**betanítása**…”, chosen over
+  plain „integrálása” (redundant *be-*, Büky).
+- „már **egy** használható eszköz van a kezükben” → „már használható eszköz…” (needless
+  „egy”, Kemény).
 
-Do not change these on your own. Raise them with the owner once, with the source;
-after that, the owner's decision is recorded here. In new text that is not the
+So the journal's rules apply to the owner's register too; they are not in conflict
+with it. Still do not rewrite an owner's sentence on your own: show the sentence, the
+alternative and the source, and let the owner choose. In new text that is not the
 owner's, follow the journal: active verbs, no „-ra/-re kerül”, no filler „biztosít”.
 
 Not criticised anywhere in the journal: *manuális/manuálisan* (Balázs Géza uses it
