@@ -1,6 +1,7 @@
 ---
 title: 'Designing Systems Before Coding Them'
 date: '2025-04-24'
+image: '/images/posts/contract-first-json-schema.jpg'
 lead: "Many teams still generate API contracts after the implementation. Designing the interface first gives backend, frontend, QA, and service consumers one artifact to review, validate, and build against before integration problems become expensive."
 metaDescription: "Spec-first development replaces guesswork with explicit contracts. By combining OpenAPI, AsyncAPI, and JSON Schema, teams can generate clients, validate payloads, improve security, and deliver faster with fewer integration failures."
 tags:

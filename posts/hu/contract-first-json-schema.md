@@ -1,6 +1,7 @@
 ---
 title: 'Mielőtt implementálnánk, tervezzük meg a rendszert'
 date: '2025-04-24'
+image: '/images/posts/contract-first-json-schema.jpg'
 lead: 'Sok csapat csak az implementáció után generál API contractot. Az előre megtervezett interfész közös forrást ad a backendnek, a frontendnek, a QA-nak és a szolgáltatás consumereinek, még mielőtt az integrációs hibák drágák lennének.'
 metaDescription: 'A spec-first fejlesztésben a találgatás helyére explicit contractok lépnek. Az OpenAPI, az AsyncAPI és a JSON Schema együtt klienseket generál, payloadokat validál, növeli a biztonságot, és kevesebb integrációs hibával gyorsítja a delivery-t.'
 tags:

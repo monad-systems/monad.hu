@@ -13,8 +13,8 @@ import {
   useTranslation,
 } from '../lib/i18n';
 import {
+  DEFAULT_OG_IMAGE,
   FEED_PATH,
-  OG_IMAGE_URL,
   SITE_NAME,
   getCanonicalUrl,
 } from '../lib/site';
@@ -60,6 +60,7 @@ export default function Layout({
   ogTitle,
   ogDescription,
   ogType = 'website',
+  ogImage = DEFAULT_OG_IMAGE,
   jsonLd,
   // False on a page showing English text under /hu (untranslated post), so the
   // English URL stays canonical and no Hungarian alternate is advertised.
@@ -188,14 +189,14 @@ export default function Layout({
           content={canonicalLocale === 'hu' ? 'hu_HU' : 'en_US'}
         />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={OG_IMAGE_URL} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image" content={ogImage.url} />
+        <meta property="og:image:width" content={String(ogImage.width)} />
+        <meta property="og:image:height" content={String(ogImage.height)} />
+        <meta property="og:image:type" content={ogImage.type} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={shareTitle} />
         <meta name="twitter:description" content={shareDescription} />
-        <meta name="twitter:image" content={OG_IMAGE_URL} />
+        <meta name="twitter:image" content={ogImage.url} />
         {noIndex ? (
           <meta name="robots" content="noindex" />
         ) : (
