@@ -159,3 +159,49 @@ jargon, but no slang either.
    word lists are English-tuned; use its structural tells only.
 5. Report what changed as „régi → új” pairs, and list the sentences you were unsure
    about instead of guessing.
+
+## 6. Reference sources (checked 2026-10-13)
+
+What each source is good for, and where it loses to the owner.
+
+**The owner's corrections come first.** They are the tables in section 3. Where a
+source below disagrees with them, the owner wins.
+
+**„Hogyan írjunk közérthetően?”** — Budapest Főváros kisokosa (2025), written from the
+Világos Beszéd handbook:
+<https://budapest.hu/api/file/doc/hogyan-irjunk-kozerthetoen-kisokos.pdf>.
+Take its structural rules; they match what the owner fixed:
+
+- Put the main message first, and say right after it what the reader should do, or
+  that they have nothing to do („nincs teendőjük”).
+- Express the action with a verb, not a noun: „jóváhagyásra kerül” → „jóváhagyjuk”,
+  „nyilatkozat benyújtása szükséges” → „nyújtson be nyilatkozatot”.
+- Address the reader directly („Ön”, „Önök”) and refer to MONAD as „mi”. Do not write
+  „az ügyfél” about the person you are writing to.
+- One sentence, one thing. Subject and verb early, no inserted asides.
+- Cut empty openers („engedje meg, hogy jelen levélben tájékoztassam”).
+- Link text says where the link goes.
+
+Do **not** take its word-choice rule („use the simplest word”: „amennyiben” → „ha”) as
+license to go colloquial. On the SME page and in letters the owner chose the more
+formal word every time: „manuálisan” over „kézzel”, „rögzít” over „begépel”. Its
+15–20-word sentence limit is a guide, not a rule: the owner's own sentences run longer
+when they say what the client gets.
+
+**Hungarian competitors' service pages** (KPMG SmartXtractor, HungaroFlow RPA,
+2026-10-13). Useful for register: formal business Hungarian, magázás, the client's gain
+named („hatékonyabb működés”, „jelentős hatékonyságnövekedés”). **Not** a source of
+phrases: they are full of the calques this file removes. Seen there, avoid:
+
+| On competitor pages | Write instead |
+|---|---|
+| humán interakció nélkül | emberi beavatkozás nélkül |
+| szoftverrobot implementáció | szoftverrobot bevezetése |
+| manuális, repetitív munkafolyamatok | ismétlődő, manuális feladatok |
+| folyamat automatizáció | folyamatok automatizálása |
+| számlák teljeskörűségének ellenőrzése | annak ellenőrzése, hogy minden számla beérkezett-e |
+
+**Not yet read, worth checking:** Balázs Géza, *Magyar nyelvhelyességi lexikon*
+(Corvina, 2001), a reference book with entries on usage; the Nyelvtudományi Kutatóközpont's
+language advice service; and the Magyar Nemzeti Szövegtár to check whether a phrase
+occurs in native Hungarian text. Add rules from them only after reading the entry.
