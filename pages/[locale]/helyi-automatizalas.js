@@ -113,7 +113,7 @@ const steps = [
     title: 'Felmérés az Önök telephelyén',
     detail:
       'Megnézzük, milyen dokumentumok érkeznek, és ki, melyik rendszerben, hányszor rögzíti őket. Kiválasztjuk azt a folyamatot, amelyik a legtöbb manuális munkával jár, és közösen felmérjük, havonta hány munkaórát igényel. A felmérés ingyenes.',
-    ask: 'A folyamatot végző munkatárs, és fél óra a döntéshozó idejéből',
+    ask: 'A folyamatot végző munkatárs és fél óra a döntéshozó idejéből',
   },
   {
     when: '1–2 munkanapon belül',
@@ -166,15 +166,15 @@ const firstBuilds = [
 ];
 
 const pricingTerms = [
-  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük fel, nem mi becsüljük.`,
+  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül 10 hónap alatt. A megtakarítást a felmérésen közösen mérjük fel, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem jelezzük, hogy nem éri meg.`,
   'Fix ár és előre rögzített feladat. Az elfogadás után néhány napon belül használható eszköz van a kezükben. A kód az Önök tulajdona, nem tőlünk bérlik.',
-  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a saját szervereinken, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és egy havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
+  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a saját szervereinken, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy beszállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
 ];
 
 const largerScope = [
   'Többnapos helyszíni felmérés: végigkövetjük a folyamatokat, egyeztetünk az érintett munkatársakkal, és átnézzük a használt rendszereket.',
-  'Az eredmény egy rangsorolt lista arról, mit érdemes automatizálni, mennyi munkát vált ki, és mi kell hozzá.',
+  'Az eredmény rangsorolt lista arról, mit érdemes automatizálni, mennyi munkát vált ki, és mi kell hozzá.',
   'Az árat és az ütemezést egyedileg adjuk meg, szakaszokra bontva, hogy az első eredmények mielőbb használhatók legyenek.',
   'Az üzemeltetés díja a rendszer méretéhez igazodik.',
 ];
@@ -331,13 +331,13 @@ export default function LocalAutomation() {
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: SERVED_TOWNS.map((name) => ({ '@type': 'City', name })),
     description:
-      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát lehet automatizálni Önöknél, és néhány napon belül működő automatizálást adunk át. Az ár az első évi megtakarítás kétharmada.',
+      'Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát lehet automatizálni Önöknél, és néhány napon belül már használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez. Az ár az első évi megtakarítás kétharmada.',
   };
 
   return (
     <Layout
       title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
-      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát lehet automatizálni Önöknél, és néhány napon belül működő automatizálást adunk át. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
+      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát lehet automatizálni Önöknél, és néhány napon belül már használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly
     >

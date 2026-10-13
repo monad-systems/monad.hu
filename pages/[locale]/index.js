@@ -360,7 +360,7 @@ export default function Home() {
           {
             title: 'A fejlesztői környezet lassítja a munkát',
             description:
-              'A fejlesztők infrastruktúrára várnak, megbízhatatlan CI-folyamatokkal küzdenek, és hiányzó eszközöket kerülgetnek. A platform gyorsítás helyett szűk keresztmetszet.',
+              'A fejlesztők infrastruktúrára várnak, megbízhatatlan CI pipeline-okkal küzdenek, és kerülőutakkal pótolják a hiányzó eszközöket. A platform gyorsítás helyett szűk keresztmetszet.',
             tags: [
               'Egyedi szoftverfejlesztés',
               'CI/CD',
@@ -388,7 +388,7 @@ export default function Home() {
           {
             step: '01',
             title: 'Architektúra review',
-            what: 'Fókuszált felmérés a jelenlegi architektúráról, az integrációkról, a delivery pipeline-ról és az üzemeltetés állapotáról.',
+            what: 'Célzott felmérés a jelenlegi architektúráról, az integrációkról, a delivery pipeline-ról és az üzemeltetés állapotáról.',
             when: 'Úgy érzik, hogy az architekturális adósság lassítja Önöket, de független, senior nézőpont kell a prioritások és a kockázatok tisztázásához.',
             outcome:
               'Írásos megállapítások és priorizált, végrehajtható roadmap konkrét lépésekkel.',
@@ -405,7 +405,7 @@ export default function Home() {
             step: '03',
             title: 'Fejlesztési együttműködés',
             what: 'Gyakorlati megvalósítás senior mérnökökkel: production-ready kód, infrastruktúra és observability.',
-            when: 'A modernizáció terjedelme tiszta, és olyan tapasztalt csapat kell, amely elejétől végéig felelősséget vállal a delivery-ért.',
+            when: 'A modernizációs feladat egyértelműen körülhatárolt, és olyan tapasztalt csapat kell, amely elejétől végéig felelősséget vállal a delivery-ért.',
             outcome:
               'Élesben futó rendszer tiszta contractokkal, tesztelt határokkal, beépített observability-vel és átadott tudással.',
           },
@@ -447,7 +447,7 @@ export default function Home() {
             title: 'Fizz',
             category: 'Egyedi szoftverfejlesztés',
             description:
-              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Searchre cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a spec-first API-fejlesztést, az automatizált quality gate-eket és a production-grade observability-t, majd a distributed monolitot valóban független, lazán csatolt microservice-ekre bontottuk, tiszta szolgáltatáshatárokkal.',
+              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Search-re cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a spec-first API-fejlesztést, az automatizált quality gate-eket és a production-grade observability-t, majd a distributed monolitot valóban független, lazán csatolt microservice-ekre bontottuk, tiszta szolgáltatáshatárokkal.',
             tags: [
               'API Design-First',
               'Quality Gates',
@@ -468,7 +468,7 @@ export default function Home() {
             title: 'Netrisk',
             category: 'Cloud architektúra',
             description:
-              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js microservice-ekkel és Kafka alapú event-driven kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
+              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js microservice-ekkel és Kafka-alapú event-driven kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
             tags: ['Node.js', 'Kafka', 'Event-Driven', 'Microservices'],
           },
           {
@@ -482,7 +482,7 @@ export default function Home() {
             title: 'Webshippy',
             category: 'Backend szétbontás',
             description:
-              'Egy monolitikus PHP alkalmazást tiszta backend API-ra és moduláris Vue.js frontendre bontottunk. A Docker alapú, teljes körű konténerizálással egymástól függetlenebb release ciklusokat tettünk lehetővé.',
+              'Egy monolitikus PHP alkalmazást tiszta backend API-ra és moduláris Vue.js frontendre bontottunk. A Docker-alapú, teljes körű konténerizálással egymástól függetlenebb release ciklusokat tettünk lehetővé.',
             tags: ['Vue.js', 'PHP', 'Docker', 'API-tervezés', 'Microservices'],
           },
         ],
@@ -538,7 +538,7 @@ export default function Home() {
         midCtaTitlePrefix: 'Készen állnak',
         midCtaTitleAccent: 'a modernizációra?',
         midCtaLead:
-          'Kezdjük egy fókuszált architektúra review-val. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet adunk.',
+          'Kezdjük célzott architektúra review-val. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet adunk.',
         midCtaPrimary: 'Architektúra review kérése',
         caseStudiesTitlePrefix: 'Valós problémák,',
         caseStudiesTitleAccent: 'működő megoldások.',
@@ -565,7 +565,7 @@ export default function Home() {
           {
             title: 'Pragmatizmus dogmák helyett',
             description:
-              'Ahol a bevált technológia működik, azt választjuk, ahol a modern eszköz számít, ott azt. Divatból nem tervezünk architektúrát.',
+              'Ahol a bevált technológia működik, ott azt választjuk, ahol a modern eszköz számít, ott azt. Divatból nem tervezünk architektúrát.',
           },
           {
             title: 'Átlátható együttműködés',
@@ -627,7 +627,7 @@ export default function Home() {
         contactBotCheckFailed:
           'A spamellenőrzés nem sikerült. Kérjük, próbálja újra.',
         altchaNote:
-          'Spamvédelem: az ALTCHA egy rövid számítást végez a böngészőjében. Nincs süti, nincs követés, nincs harmadik fél.',
+          'Spamvédelem: az ALTCHA rövid számítást végez a böngészőjében. Nincs süti, nincs követés, nincs harmadik fél.',
       }
     : {
         problems,
@@ -919,10 +919,11 @@ export default function Home() {
                     lineHeight: 1.6,
                   }}
                 >
-                  Egy délelőtt alatt az Önök telephelyén felmérjük, mennyi kézi
-                  munkát vehet le a gép, és néhány napon belül átadjuk az
-                  automatizálást. Számlák, szállítólevelek, rendelések. Az ár az
-                  első évi megtakarítás kétharmada.
+                  Egy délelőtt alatt az Önök telephelyén felmérjük, mennyi
+                  papírmunkát lehet automatizálni Önöknél, és néhány napon belül
+                  már használható eszköz van a kezükben a folyamataik
+                  gördülékenyebb működéséhez. Számlák, szállítólevelek,
+                  rendelések. Az ár az első évi megtakarítás kétharmada.
                 </p>
               </div>
               <Link
