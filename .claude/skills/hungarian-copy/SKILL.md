@@ -82,6 +82,12 @@ site:
 | Az AI több kódot nyom neki ennek a korlátnak | Az AI-jal több kód ütközik ebbe a korlátba |
 | A contract a delivery egyik bemenete | A contract a delivery egyik alapja |
 | implementáció-first vs spec-first | code-first és spec-first |
+| mennyi papírmunkát vehet le a gép (*take off your plate*) | mennyi papírmunkát lehet automatizálni Önöknél |
+| a papírmunka eszi meg a napot (*eats up the day*) | cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét (the owner's wording; „viszi el a napot” was still not right) |
+| bankok és állami rendszerek mögött dolgozunk (*behind*) | rendszereket fejlesztünk bankoknak és állami intézményeknek |
+| előre egyeztetett terjedelem (*scope*) | előre rögzített feladat |
+| lezárom a szálat (*close the thread*) | többet nem keresem |
+| mennyi kézi adatbevitel tűnhet el | hogy kevesebbet kelljen kézzel gépelniük |
 
 Patterns behind them:
 
@@ -93,6 +99,42 @@ Patterns behind them:
   drift*) → say what is meant.
 - **„mint amit”** comparisons copied from *than what* → rebuild the comparison.
 - **„X-ként kezel”** repeated to mimic *treat as* → vary or use a verb.
+
+### SME page and letters: say what the client gets
+
+The 2026-10-13 review of the *helyi automatizálás* page and its outreach letters
+removed every calque above and still did not read as Hungarian. The sentences were
+correct and short, but written from the system's side. The owner rewrote the key one:
+
+| Draft (grammatical, still wrong) | The owner's version |
+|---|---|
+| néhány napon belül élesben átadjuk az automatizálást | néhány napon belül már egy használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez |
+| …és néhány napon belül működik is | (the same) |
+| Cégeknek, ahol a papírmunka viszi el a napot | Cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét |
+| Legtöbbször csak azért gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani. | Legtöbbször csak azért történik a rögzítés mégis manuálisan, mert nem állt rendelkezésre megfelelő szakértői erőforrás vagy idő az esetleges automatizációk bevezetésére. |
+| Ahol ugyanazt az adatot két rendszerbe is beütik, vagy egy táblázatból másolják át a másikba | Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba |
+| Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt | Ahol egy adminisztratív munkatárs beintegrálása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése |
+| mennyi papírmunkát vehetne át Önöktől a gép | mennyi papírmunkát lehet automatizálni Önöknél |
+| A gép tételesen kiolvassa | Tételesen, automatikusan kiolvassuk |
+| megmérjük, havonta hány órát visz el | felmérjük, havonta hány órát visz el |
+| Ha a mérés szerint nem éri meg | Ha a felmérés szerint nem éri meg |
+
+The owner's own sentences share a register: formal business Hungarian, not spoken.
+*rögzít*, *manuálisan*, *kézzel történő rögzítés*, *szakértői erőforrás* instead of
+*beüt*, *begépel*, *senkinek nem volt ideje*. Plain is not the same as colloquial: no
+jargon, but no slang either.
+
+- **Name the client's gain in their words**: a tool in their hands, smoother daily
+  work, fewer hours of typing. Not the system's state: *élesben*, *működik*,
+  *átadjuk az automatizálást*.
+- **Short is not automatically better.** „…működik is” is correct and reads like a
+  status line. A fuller sentence is fine when it says what the reader gets.
+- **Never *a gép* for the automation.** *Gép* stays only for real machines (a
+  dealer's tractors) and in NAV's own term *gépi interfész*.
+- **„felmérjük”, never „megmérjük”**; „felmérés szerint”, not „mérés szerint”. The
+  repetition with *felmérés* is accepted: it reads better than the alternative.
+- **When the owner supplies a phrase, use it verbatim** in every text that says the
+  same thing, and add it to the table above.
 
 ## 4. Typography
 
@@ -108,10 +150,60 @@ Patterns behind them:
 
 1. Read the whole text before changing anything.
 2. Pass one: address (section 1). Pass two: terms (section 2). Pass three: calques
-   (section 3), sentence by sentence.
+   (section 3), sentence by sentence. Pass four, on SME pages and letters: read each sentence as the
+   owner of a family firm would, and check that it says what they get (the last part
+   of section 3).
 3. Never change facts, numbers, names, code, inline code, links or front matter keys.
    Never add claims the text did not make.
 4. Blog posts also get the structural checklist of the `avoid-ai-writing` skill. Its
    word lists are English-tuned; use its structural tells only.
 5. Report what changed as „régi → új” pairs, and list the sentences you were unsure
    about instead of guessing.
+
+## 6. Reference sources (checked 2026-10-13)
+
+What each source is good for, and where it loses to the owner.
+
+**The owner's corrections come first.** They are the tables in section 3. Where a
+source below disagrees with them, the owner wins.
+
+**„Hogyan írjunk közérthetően?”** — Budapest Főváros kisokosa (2025), written from the
+Világos Beszéd handbook:
+<https://budapest.hu/api/file/doc/hogyan-irjunk-kozerthetoen-kisokos.pdf>.
+Take its structural rules; they match what the owner fixed:
+
+- Put the main message first, and say right after it what the reader should do, or
+  that they have nothing to do („nincs teendőjük”).
+- Express the action with a verb, not a noun: „jóváhagyásra kerül” → „jóváhagyjuk”,
+  „nyilatkozat benyújtása szükséges” → „nyújtson be nyilatkozatot”.
+- Address the reader directly („Ön”, „Önök”) and refer to MONAD as „mi”. Do not write
+  „az ügyfél” about the person you are writing to.
+- One sentence, one thing. Subject and verb early, no inserted asides.
+- Cut empty openers („engedje meg, hogy jelen levélben tájékoztassam”).
+- Link text says where the link goes.
+
+Do **not** take its word-choice rule („use the simplest word”: „amennyiben” → „ha”) as
+license to go colloquial. On the SME page and in letters the owner chose the more
+formal word every time: „manuálisan” over „kézzel”, „rögzít” over „begépel”. Its
+15–20-word sentence limit is a guide, not a rule: the owner's own sentences run longer
+when they say what the client gets.
+
+**Hungarian competitors' service pages** (KPMG SmartXtractor, HungaroFlow RPA,
+2026-10-13). Useful for register: formal business Hungarian, magázás, the client's gain
+named („hatékonyabb működés”, „jelentős hatékonyságnövekedés”). **Not** a source of
+phrases: they are full of the calques this file removes. Seen there, avoid:
+
+| On competitor pages | Write instead |
+|---|---|
+| humán interakció nélkül | emberi beavatkozás nélkül |
+| szoftverrobot implementáció | szoftverrobot bevezetése |
+| manuális, repetitív munkafolyamatok | ismétlődő, manuális feladatok |
+| folyamat automatizáció | folyamatok automatizálása |
+| számlák teljeskörűségének ellenőrzése | annak ellenőrzése, hogy minden számla beérkezett-e |
+
+**Not yet read, worth checking:** Balázs Géza, *Magyar nyelvhelyességi lexikon*
+(Corvina, 2001), a reference book with entries on usage. It is not available online
+(searched 2026-10-13: no MEK, Arcanum or publisher copy), so it needs a paper copy;
+an open-access review exists in *Iskolakultúra*. Also the Nyelvtudományi Kutatóközpont's
+language advice service; and the Magyar Nemzeti Szövegtár to check whether a phrase
+occurs in native Hungarian text. Add rules from them only after reading the entry.
