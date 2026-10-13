@@ -629,7 +629,7 @@ export default function PlatformModernizationReview() {
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Link
                 className="btn btn-hero btn-lg group"
-                href={locale === 'en' ? '/#contact' : `/${locale}/#contact`}
+                href={locale === 'en' ? '/#contact' : `/${locale}#contact`}
               >
                 {copy.heroPrimaryCta}
                 <ArrowRightIcon
@@ -1299,7 +1299,7 @@ export default function PlatformModernizationReview() {
             </p>
             <Link
               className="btn btn-hero btn-lg group"
-              href={locale === 'en' ? '/#contact' : `/${locale}/#contact`}
+              href={locale === 'en' ? '/#contact' : `/${locale}#contact`}
             >
               {copy.finalCta}
               <ArrowRightIcon

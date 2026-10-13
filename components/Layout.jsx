@@ -101,7 +101,7 @@ export default function Layout({
   const resolveHref = (href) => {
     if (!href?.startsWith('#')) return href;
     if (isHome) return href;
-    return routeLocale === 'en' ? `/${href}` : `/${routeLocale}/${href}`;
+    return routeLocale === 'en' ? `/${href}` : `/${routeLocale}${href}`;
   };
 
   useEffect(() => {
