@@ -103,7 +103,7 @@ function ArrowRightIcon(props) {
 const fitFor = [
   '20–250 fős gyártó, kereskedelmi és logisztikai cégek Gödöllő, Vác és Hatvan környékén',
   'Könyvelőirodák, ahol a könyvelők idejét a bizonylatok rögzítése emészti fel',
-  'Ahol ugyanazt az adatot két rendszerbe is beütik, vagy egy táblázatból másolják át a másikba',
+  'Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba',
   'Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt',
 ];
 
@@ -405,7 +405,9 @@ export default function LocalAutomation() {
             <p className="section-lead">
               A bejövő számlák, szállítólevelek és rendelések többségéből ma már
               automatikusan kiolvashatók az adatok. Legtöbbször csak azért
-              gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani.
+              történik a rögzítés mégis manuálisan, mert nem állt rendelkezésre
+              megfelelő szakértői erőforrás vagy idő az esetleges
+              automatizációk bevezetésére.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-4">

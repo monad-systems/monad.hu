@@ -111,10 +111,17 @@ correct and short, but written from the system's side. The owner rewrote the key
 | néhány napon belül élesben átadjuk az automatizálást | néhány napon belül már egy használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez |
 | …és néhány napon belül működik is | (the same) |
 | Cégeknek, ahol a papírmunka viszi el a napot | Cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét |
+| Legtöbbször csak azért gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani. | Legtöbbször csak azért történik a rögzítés mégis manuálisan, mert nem állt rendelkezésre megfelelő szakértői erőforrás vagy idő az esetleges automatizációk bevezetésére. |
+| Ahol ugyanazt az adatot két rendszerbe is beütik, vagy egy táblázatból másolják át a másikba | Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba |
 | mennyi papírmunkát vehetne át Önöktől a gép | mennyi papírmunkát lehet automatizálni Önöknél |
 | A gép tételesen kiolvassa | Tételesen, automatikusan kiolvassuk |
 | megmérjük, havonta hány órát visz el | felmérjük, havonta hány órát visz el |
 | Ha a mérés szerint nem éri meg | Ha a felmérés szerint nem éri meg |
+
+The owner's own sentences share a register: formal business Hungarian, not spoken.
+*rögzít*, *manuálisan*, *kézzel történő rögzítés*, *szakértői erőforrás* instead of
+*beüt*, *begépel*, *senkinek nem volt ideje*. Plain is not the same as colloquial: no
+jargon, but no slang either.
 
 - **Name the client's gain in their words**: a tool in their hands, smoother daily
   work, fewer hours of typing. Not the system's state: *élesben*, *működik*,
