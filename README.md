@@ -4,8 +4,15 @@ monad.systems website
 
 - Next.js 16 (Pages Router, static export)
 - React 19
-- ESLint 9 with flat config (`eslint.config.mjs`)
-- Node.js current LTS recommended (Node 20+)
+- ESLint 10 with flat config (`eslint.config.mjs`)
+- Node.js current LTS recommended (supported: 20.19+, 22.13+, or 24+)
+
+Linting uses Espree for JavaScript and JSX because Next's bundled Babel parser does
+not yet implement ESLint 10's required ScopeManager API. Next's rule configuration
+is retained, including its compatibility wrappers for React and import rules.
+Scoped npm overrides allow the React, import, and accessibility plugins to use
+ESLint 10 despite their older peer ranges. Remove these workarounds when the
+upstream parser and plugins support ESLint 10.
 
 ## Development
 
