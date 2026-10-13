@@ -82,6 +82,12 @@ site:
 | Az AI több kódot nyom neki ennek a korlátnak | Az AI-jal több kód ütközik ebbe a korlátba |
 | A contract a delivery egyik bemenete | A contract a delivery egyik alapja |
 | implementáció-first vs spec-first | code-first és spec-first |
+| mennyi papírmunkát vehet le a gép (*take off your plate*) | mennyi papírmunkát lehet automatizálni Önöknél |
+| a papírmunka eszi meg a napot (*eats up the day*) | cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét (the owner's wording; „viszi el a napot” was still not right) |
+| bankok és állami rendszerek mögött dolgozunk (*behind*) | rendszereket fejlesztünk bankoknak és állami intézményeknek |
+| előre egyeztetett terjedelem (*scope*) | előre rögzített feladat |
+| lezárom a szálat (*close the thread*) | többet nem keresem |
+| mennyi kézi adatbevitel tűnhet el | hogy kevesebbet kelljen kézzel gépelniük |
 
 Patterns behind them:
 
@@ -93,6 +99,34 @@ Patterns behind them:
   drift*) → say what is meant.
 - **„mint amit”** comparisons copied from *than what* → rebuild the comparison.
 - **„X-ként kezel”** repeated to mimic *treat as* → vary or use a verb.
+
+### SME page and letters: say what the client gets
+
+The 2026-10-13 review of the *helyi automatizálás* page and its outreach letters
+removed every calque above and still did not read as Hungarian. The sentences were
+correct and short, but written from the system's side. The owner rewrote the key one:
+
+| Draft (grammatical, still wrong) | The owner's version |
+|---|---|
+| néhány napon belül élesben átadjuk az automatizálást | néhány napon belül már egy használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez |
+| …és néhány napon belül működik is | (the same) |
+| Cégeknek, ahol a papírmunka viszi el a napot | Cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét |
+| mennyi papírmunkát vehetne át Önöktől a gép | mennyi papírmunkát lehet automatizálni Önöknél |
+| A gép tételesen kiolvassa | Tételesen, automatikusan kiolvassuk |
+| megmérjük, havonta hány órát visz el | felmérjük, havonta hány órát visz el |
+| Ha a mérés szerint nem éri meg | Ha a felmérés szerint nem éri meg |
+
+- **Name the client's gain in their words**: a tool in their hands, smoother daily
+  work, fewer hours of typing. Not the system's state: *élesben*, *működik*,
+  *átadjuk az automatizálást*.
+- **Short is not automatically better.** „…működik is” is correct and reads like a
+  status line. A fuller sentence is fine when it says what the reader gets.
+- **Never *a gép* for the automation.** *Gép* stays only for real machines (a
+  dealer's tractors) and in NAV's own term *gépi interfész*.
+- **„felmérjük”, never „megmérjük”**; „felmérés szerint”, not „mérés szerint”. The
+  repetition with *felmérés* is accepted: it reads better than the alternative.
+- **When the owner supplies a phrase, use it verbatim** in every text that says the
+  same thing, and add it to the table above.
 
 ## 4. Typography
 
@@ -108,7 +142,9 @@ Patterns behind them:
 
 1. Read the whole text before changing anything.
 2. Pass one: address (section 1). Pass two: terms (section 2). Pass three: calques
-   (section 3), sentence by sentence.
+   (section 3), sentence by sentence. Pass four, on SME pages and letters: read each sentence as the
+   owner of a family firm would, and check that it says what they get (the last part
+   of section 3).
 3. Never change facts, numbers, names, code, inline code, links or front matter keys.
    Never add claims the text did not make.
 4. Blog posts also get the structural checklist of the `avoid-ai-writing` skill. Its

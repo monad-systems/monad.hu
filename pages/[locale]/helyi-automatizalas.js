@@ -112,14 +112,14 @@ const steps = [
     when: 'Egy délelőtt',
     title: 'Felmérés az Önök telephelyén',
     detail:
-      'Megnézzük, mi érkezik, ki gépeli be, hova és hányszor. Kiválasztjuk azt a folyamatot, amelyik a legtöbb kézi munkával jár, és közösen megmérjük, havonta hány órát visz el. A felmérés ingyenes.',
+      'Megnézzük, mi érkezik, ki gépeli be, hova és hányszor. Kiválasztjuk azt a folyamatot, amelyik a legtöbb kézi munkával jár, és közösen felmérjük, havonta hány órát visz el. A felmérés ingyenes.',
     ask: 'A kolléga, aki ezt a munkát végzi, és fél óra a döntéshozótól',
   },
   {
     when: '1–2 munkanapon belül',
     title: 'Fix áras ajánlat',
     detail:
-      'Az árat a mért megtakarításból számoljuk. Ha a folyamat nem hoz annyit, hogy megérje, ajánlat helyett ezt írjuk meg.',
+      'Az árat a felmért megtakarításból számoljuk. Ha a folyamat nem hoz annyit, hogy megérje, ajánlat helyett ezt írjuk meg.',
     ask: 'Döntés az ajánlatról',
   },
   {
@@ -141,7 +141,7 @@ const firstBuilds = [
   {
     title: 'Bejövő számla és szállítólevél',
     detail:
-      'PDF-ben vagy fényképen érkezik. A gép tételesen kiolvassa, összeveti a NAV Online Számla adataival és a megrendeléssel, és az adat gépelés nélkül kerül a könyvelésbe vagy a készletbe.',
+      'PDF-ben vagy fényképen érkezik. Tételesen, automatikusan kiolvassuk, összevetjük a NAV Online Számla adataival és a megrendeléssel, és az adat gépelés nélkül kerül a könyvelésbe vagy a készletbe.',
   },
   {
     title: 'Rendelésfelvétel',
@@ -166,9 +166,9 @@ const firstBuilds = [
 ];
 
 const pricingTerms = [
-  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
+  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük fel, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
-  'Fix ár és előre rögzített feladat. Az elfogadás után néhány napon belül működik. A kód az Önök tulajdona, nem tőlünk bérlik.',
+  'Fix ár és előre rögzített feladat. Az elfogadás után néhány napon belül használható eszköz van a kezükben. A kód az Önök tulajdona, nem tőlünk bérlik.',
   `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a mi szerverünkön, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és egy havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
 ];
 
@@ -286,8 +286,8 @@ function SavingsCalculator() {
             ami körülbelül {PAYBACK_MONTHS} hónap alatt megtérül. A{' '}
             {WARRANTY_MONTHS + 1}. hónaptól induló havi{' '}
             {formatHuf(MAINTENANCE_FEE_HUF)} üzemeltetési díjjal együtt
-            körülbelül {paybackMonths} hónap. A pontos árat a felmérésen mért
-            adatokból adjuk meg.
+            körülbelül {paybackMonths} hónap. A pontos árat a felmérés
+            adataiból adjuk meg.
           </p>
         ) : (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
@@ -331,13 +331,13 @@ export default function LocalAutomation() {
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: SERVED_TOWNS.map((name) => ({ '@type': 'City', name })),
     description:
-      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát vehetne át Önöktől a gép, és néhány napon belül működő automatizálást adunk át. Az ár az első évi megtakarítás kétharmada.',
+      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát lehet automatizálni Önöknél, és néhány napon belül működő automatizálást adunk át. Az ár az első évi megtakarítás kétharmada.',
   };
 
   return (
     <Layout
       title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
-      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát vehetne át Önöktől a gép, és néhány napon belül működő automatizálást adunk át. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
+      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát lehet automatizálni Önöknél, és néhány napon belül működő automatizálást adunk át. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly
     >
@@ -356,8 +356,8 @@ export default function LocalAutomation() {
               Helyszíni automatizálás · Gödöllő és környéke
             </div>
             <h1 className="hero-title">
-              Egy délelőtt alatt felmérjük, mennyi papírmunkát vehetne át
-              Önöktől a gép.
+              Egy délelőtt alatt felmérjük, mennyi papírmunkát lehet
+              automatizálni Önöknél.
             </h1>
             <p
               className="text-base md:text-xl leading-relaxed mb-8"
@@ -367,9 +367,9 @@ export default function LocalAutomation() {
               }}
             >
               Kimegyünk Önökhöz, megnézzük, mit csinálnak ma kézzel, és
-              megmérjük, mennyi időt visz el. A felmérés ingyenes. Ha megéri,
-              fix áras ajánlatot adunk, és az elfogadás után néhány napon belül
-              már működik is.
+              felmérjük, mennyi időt visz el. A felmérés ingyenes. Ha megéri,
+              fix áras ajánlatot adunk, és az elfogadás után néhány napon belül már egy használható eszköz van a kezükben
+              a folyamataik gördülékenyebb működéséhez.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Link
@@ -400,11 +400,11 @@ export default function LocalAutomation() {
           <div className="section-header">
             <div className="section-eyebrow">Kinek szól</div>
             <h2 className="section-title">
-              Cégeknek, ahol a papírmunka viszi el a napot
+              Cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét
             </h2>
             <p className="section-lead">
               A bejövő számlák, szállítólevelek és rendelések többségéből ma már
-              egy gép is ki tudja olvasni az adatokat. Legtöbbször csak azért
+              automatikusan kiolvashatók az adatok. Legtöbbször csak azért
               gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani.
             </p>
           </div>
