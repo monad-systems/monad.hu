@@ -112,28 +112,28 @@ const steps = [
     when: 'Egy délelőtt',
     title: 'Felmérés az Önök telephelyén',
     detail:
-      'Megnézzük, mi érkezik, ki gépeli be, hova és hányszor. Kiválasztjuk azt a folyamatot, amelyik a legtöbb kézi munkával jár, és közösen felmérjük, havonta hány órát visz el. A felmérés ingyenes.',
-    ask: 'A kolléga, aki ezt a munkát végzi, és fél óra a döntéshozótól',
+      'Megnézzük, milyen dokumentumok érkeznek, és ki, melyik rendszerben, hányszor rögzíti őket. Kiválasztjuk azt a folyamatot, amelyik a legtöbb manuális munkával jár, és közösen felmérjük, havonta hány munkaórát igényel. A felmérés ingyenes.',
+    ask: 'A folyamatot végző munkatárs, és fél óra a döntéshozó idejéből',
   },
   {
     when: '1–2 munkanapon belül',
     title: 'Fix áras ajánlat',
     detail:
-      'Az árat a felmért megtakarításból számoljuk. Ha a folyamat nem hoz annyit, hogy megérje, ajánlat helyett ezt írjuk meg.',
+      'Az árat a felmért megtakarításból számoljuk. Ha a megtakarítás nem indokolja a beruházást, ajánlat helyett ezt jelezzük.',
     ask: 'Döntés az ajánlatról',
   },
   {
     when: 'Néhány napon belül',
-    title: 'Átadás élesben',
+    title: 'Bevezetés',
     detail:
-      'Az elfogadás után megépítjük, a valódi adataikon kipróbáljuk, és működő állapotban adjuk át.',
-    ask: 'Hozzáférés az érintett rendszerhez, semmi máshoz',
+      'Az elfogadás után elkészítjük, az Önök valós adatain teszteljük, és használatra kész állapotban adjuk át.',
+    ask: 'Hozzáférés kizárólag az érintett rendszerhez',
   },
   {
     when: 'Utána',
     title: 'Üzemeltetés',
-    detail: `Figyeljük a működését, és ha a NAV, egy szállító vagy az Önök rendszere változik, mi igazítjuk hozzá. Az első ${WARRANTY_MONTHS} hónapban ez benne van a projektárban, utána havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa.`,
-    ask: 'Semmi',
+    detail: `Folyamatosan felügyeljük a működését, és ha a NAV, egy beszállító vagy az Önök rendszere változik, elvégezzük a szükséges módosításokat. Az első ${WARRANTY_MONTHS} hónapban a projektár tartalmazza, utána havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa.`,
+    ask: 'Nincs teendőjük',
   },
 ];
 
@@ -141,49 +141,49 @@ const firstBuilds = [
   {
     title: 'Bejövő számla és szállítólevél',
     detail:
-      'PDF-ben vagy fényképen érkezik. Tételesen, automatikusan kiolvassuk, összevetjük a NAV Online Számla adataival és a megrendeléssel, és az adat gépelés nélkül kerül a könyvelésbe vagy a készletbe.',
+      'A PDF-ben vagy fényképen érkező dokumentumok adatait tételesen, automatikusan kiolvassuk, összevetjük a NAV Online Számla adataival és a megrendeléssel, és manuális rögzítés nélkül továbbítjuk a könyvelésbe vagy a készletnyilvántartásba.',
   },
   {
     title: 'Rendelésfelvétel',
     detail:
-      'A rendelés e-mailben, táblázatban vagy portálon érkezik, és gépelés nélkül kerül be a rendszerbe.',
+      'Az e-mailben, táblázatban vagy portálon érkező rendelések manuális rögzítés nélkül kerülnek be a rendszerükbe.',
   },
   {
     title: 'Gyártási és minőségi bizonylatok',
     detail:
-      'Tételszám szerint tároljuk őket, és bármikor visszakereshetők, így egy reklamációnál nem kell mappákat átnézni.',
+      'Tételszám szerint rendszerezve tároljuk és bármikor visszakereshetővé tesszük őket, így egy reklamáció kivizsgálásához nem kell papíralapú iratokat átnézni.',
   },
   {
     title: 'Heti kimutatás',
     detail:
-      'Ami ma minden hétfőn Excel-táblák másolgatásával készül, az magától elkészül.',
+      'Az a kimutatás, amelyet ma minden hétfőn Excel-táblákból állítanak össze manuálisan, automatikusan elkészül.',
   },
   {
     title: 'Több telephely adatai',
     detail:
-      'Ha ugyanazt az adatot két telephelyen is begépelik, az egyik begépelést megspóroljuk.',
+      'Ha ugyanazt az adatot több telephelyen is rögzítik, a párhuzamos rögzítés megszűnik.',
   },
 ];
 
 const pricingTerms = [
   `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük fel, nem mi becsüljük.`,
-  `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
+  `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem jelezzük, hogy nem éri meg.`,
   'Fix ár és előre rögzített feladat. Az elfogadás után néhány napon belül használható eszköz van a kezükben. A kód az Önök tulajdona, nem tőlünk bérlik.',
-  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a mi szerverünkön, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és egy havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
+  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a saját szervereinken, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és egy havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
 ];
 
 const largerScope = [
-  'Többnapos helyszíni felmérés: végigkövetjük a munkát, beszélünk az érintett kollégákkal, és átnézzük a használt rendszereket.',
+  'Többnapos helyszíni felmérés: végigkövetjük a folyamatokat, egyeztetünk az érintett munkatársakkal, és átnézzük a használt rendszereket.',
   'Az eredmény egy rangsorolt lista arról, mit érdemes automatizálni, mennyi munkát vált ki, és mi kell hozzá.',
-  'Az árat és az ütemezést egyedileg adjuk meg, szakaszokra bontva, hogy az első rész hamar működjön.',
+  'Az árat és az ütemezést egyedileg adjuk meg, szakaszokra bontva, hogy az első eredmények mielőbb használhatók legyenek.',
   'Az üzemeltetés díja a rendszer méretéhez igazodik.',
 ];
 
 const notOffered = [
   'Nem cseréljük le a működő könyvelő- vagy vállalatirányítási rendszert.',
-  'Nem hozunk adóügyi döntést. Az a könyvelőjük dolga, mi csak azt intézzük, hogy az adat gépelés nélkül jusson el hozzá.',
+  'Nem hozunk adóügyi döntést. Ez a könyvelőjük feladata, mi azt biztosítjuk, hogy az adatok manuális rögzítés nélkül jussanak el hozzá.',
   'Tanácsadói jelentést nem írunk. A felmérés eredménye egy fix áras ajánlat egy működő automatizálásra.',
-  'Ha kiderül, hogy Önöknél ebből nincs mit kihozni, azt is megmondjuk, és nem küldünk ajánlatot.',
+  'Ha kiderül, hogy Önöknél az automatizálás nem hoz érdemi megtakarítást, ezt is jelezzük, és nem küldünk ajánlatot.',
 ];
 
 function SavingsCalculator() {
@@ -210,7 +210,7 @@ function SavingsCalculator() {
       <div className="form-grid">
         <div>
           <label htmlFor="calc-hours">
-            Hány órát tölt ezzel valaki havonta?
+            Havonta hány munkaórát fordítanak a folyamatra?
           </label>
           <input
             id="calc-hours"
@@ -294,10 +294,10 @@ function SavingsCalculator() {
             Ez évente kevesebb, mint {formatHuf(MINIMUM_YEARLY_SAVING_HUF)},
             ezért erre az egy folyamatra nem érné meg ajánlatot adnunk.
             {breakEvenHours
-              ? ` Ilyen bérköltség mellett havi ${breakEvenHours} óra kézi munkától kezd megérni.`
+              ? ` Ilyen bérköltség mellett havi ${breakEvenHours} munkaórától térül meg.`
               : ''}{' '}
-            A felmérésen megnézzük, van-e nagyobb folyamat, vagy összevonható-e
-            több kisebb.
+            A felmérésen megvizsgáljuk, van-e nagyobb folyamat, vagy
+            összevonható-e több kisebb.
           </p>
         )}
       </div>
@@ -310,9 +310,9 @@ function SavingsCalculator() {
           lineHeight: 1.55,
         }}
       >
-        Csak a megspórolt munkaidővel számolunk. A kevesebb elírást és a
-        gyorsabb átfutást nem számítjuk bele, így a valós megtakarítás inkább
-        nagyobb.
+        Csak a felszabaduló munkaidővel számolunk. A kevesebb hibás rögzítést
+        és a gyorsabb átfutást nem számítjuk bele, így a valós megtakarítás
+        jellemzően nagyobb.
       </p>
     </div>
   );
@@ -366,8 +366,8 @@ export default function LocalAutomation() {
                 maxWidth: '60ch',
               }}
             >
-              Kimegyünk Önökhöz, megnézzük, mit csinálnak ma kézzel, és
-              felmérjük, mennyi időt visz el. A felmérés ingyenes. Ha megéri,
+              Kimegyünk Önökhöz, megnézzük, mely feladatokat végzik ma
+              manuálisan, és felmérjük, mennyi munkaidőt visznek el. A felmérés ingyenes. Ha megéri,
               fix áras ajánlatot adunk, és az elfogadás után néhány napon belül már egy használható eszköz van a kezükben
               a folyamataik gördülékenyebb működéséhez.
             </p>
@@ -384,7 +384,7 @@ export default function LocalAutomation() {
                 />
               </Link>
               <a className="btn btn-outline btn-lg" href="#kalkulator">
-                Mennyit spórolhatnak?
+                Mennyit takaríthatnak meg?
               </a>
             </div>
           </div>
@@ -443,7 +443,7 @@ export default function LocalAutomation() {
             <h2 className="section-title">A felméréstől az átadásig</h2>
             <p className="section-lead">
               Munkatársaik idejéből csak a felmérés délelőttjén kérünk néhány
-              órát. A többi a mi dolgunk.
+              órát, a további munkát mi végezzük.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -511,7 +511,7 @@ export default function LocalAutomation() {
         <div className="site-container">
           <div className="section-header">
             <div className="section-eyebrow">Mivel kezdünk</div>
-            <h2 className="section-title">Ezekkel kezdünk a leggyakrabban</h2>
+            <h2 className="section-title">A leggyakrabban automatizált folyamatok</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {firstBuilds.map((item) => (
