@@ -1,6 +1,6 @@
 __turbopack_load_page_chunks__("/[locale]", [
   "static/chunks/02fli7t0u22jg.js",
   "static/chunks/3_71_tmj6xk92.js",
-  "static/chunks/3gfbqbqhsefss.js",
+  "static/chunks/3ryci6fn7uap3.js",
   "static/chunks/turbopack-2c3mg3r-05n1w.js"
 ])
