@@ -202,6 +202,8 @@ phrases: they are full of the calques this file removes. Seen there, avoid:
 | számlák teljeskörűségének ellenőrzése | annak ellenőrzése, hogy minden számla beérkezett-e |
 
 **Not yet read, worth checking:** Balázs Géza, *Magyar nyelvhelyességi lexikon*
-(Corvina, 2001), a reference book with entries on usage; the Nyelvtudományi Kutatóközpont's
+(Corvina, 2001), a reference book with entries on usage. It is not available online
+(searched 2026-10-13: no MEK, Arcanum or publisher copy), so it needs a paper copy;
+an open-access review exists in *Iskolakultúra*. Also the Nyelvtudományi Kutatóközpont's
 language advice service; and the Magyar Nemzeti Szövegtár to check whether a phrase
 occurs in native Hungarian text. Add rules from them only after reading the entry.
