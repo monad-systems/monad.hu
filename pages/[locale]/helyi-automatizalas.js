@@ -101,10 +101,10 @@ function ArrowRightIcon(props) {
 }
 
 const fitFor = [
-  '20–250 fős gyártó, kereskedő vagy logisztikai cégek Gödöllő, Vác és Hatvan környékén',
-  'Könyvelőirodák, ahol a bizonylatok rögzítése viszi el a könyvelők idejét',
+  '20–250 fős gyártó, kereskedelmi és logisztikai cégek Gödöllő, Vác és Hatvan környékén',
+  'Könyvelőirodák, ahol a könyvelők idejét a bizonylatok rögzítése emészti fel',
   'Ahol ugyanazt az adatot két rendszerbe is beütik, vagy egy táblázatból másolják át a másikba',
-  'Ahol egy adminisztrátori állás betöltése hónapokig tart, vagy már most is túlórában megy a papírmunka',
+  'Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt',
 ];
 
 const steps = [
@@ -112,27 +112,27 @@ const steps = [
     when: 'Egy délelőtt',
     title: 'Felmérés az Önök telephelyén',
     detail:
-      'Megnézzük, mi érkezik, ki gépeli be, hova és hányszor. Kiválasztjuk a legtöbb kézi munkát vivő folyamatot, és közösen megmérjük, havonta hány órát visz el. A felmérés ingyenes.',
-    ask: 'Az a kolléga, aki a munkát végzi, és fél óra a döntéshozótól',
+      'Megnézzük, mi érkezik, ki gépeli be, hova és hányszor. Kiválasztjuk azt a folyamatot, amelyik a legtöbb kézi munkával jár, és közösen megmérjük, havonta hány órát visz el. A felmérés ingyenes.',
+    ask: 'A kolléga, aki ezt a munkát végzi, és fél óra a döntéshozótól',
   },
   {
     when: '1–2 munkanapon belül',
     title: 'Fix áras ajánlat',
     detail:
-      'A mért megtakarításból számolva. Ha a folyamat nem hoz annyit, hogy megérje, ajánlat helyett ezt írjuk meg.',
+      'Az árat a mért megtakarításból számoljuk. Ha a folyamat nem hoz annyit, hogy megérje, ajánlat helyett ezt írjuk meg.',
     ask: 'Döntés az ajánlatról',
   },
   {
     when: 'Néhány napon belül',
     title: 'Átadás élesben',
     detail:
-      'Az elfogadás után megépítjük, az Önök éles adatain kipróbáljuk, és működő állapotban átadjuk.',
-    ask: 'Hozzáférés ahhoz az egy rendszerhez, semmi máshoz',
+      'Az elfogadás után megépítjük, a valódi adataikon kipróbáljuk, és működő állapotban adjuk át.',
+    ask: 'Hozzáférés az érintett rendszerhez, semmi máshoz',
   },
   {
     when: 'Utána',
     title: 'Üzemeltetés',
-    detail: `Figyeljük, hogy működik-e, és ha a NAV, egy szállító vagy az Önök rendszere változik, mi javítjuk. Az első ${WARRANTY_MONTHS} hónapban a projektár része, utána havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa.`,
+    detail: `Figyeljük a működését, és ha a NAV, egy szállító vagy az Önök rendszere változik, mi igazítjuk hozzá. Az első ${WARRANTY_MONTHS} hónapban ez benne van a projektárban, utána havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa.`,
     ask: 'Semmi',
   },
 ];
@@ -141,47 +141,47 @@ const firstBuilds = [
   {
     title: 'Bejövő számla és szállítólevél',
     detail:
-      'PDF-ben vagy fotón érkezik. Tételesen kiolvassuk, összevetjük a NAV Online Számla adataival és a megrendeléssel, és kész adatként kerül a könyveléshez vagy a készletbe.',
+      'PDF-ben vagy fényképen érkezik. A gép tételesen kiolvassa, összeveti a NAV Online Számla adataival és a megrendeléssel, és az adat gépelés nélkül kerül a könyvelésbe vagy a készletbe.',
   },
   {
     title: 'Rendelésfelvétel',
     detail:
-      'Az e-mailben, táblázatban vagy portálon érkező rendelés gépelés nélkül kerül be a rendszerbe.',
+      'A rendelés e-mailben, táblázatban vagy portálon érkezik, és gépelés nélkül kerül be a rendszerbe.',
   },
   {
     title: 'Gyártási és minőségi bizonylatok',
     detail:
-      'Tételszám szerint eltárolva és visszakereshetően, hogy egy reklamációnál ne mappát kelljen keresni.',
+      'Tételszám szerint tároljuk őket, és bármikor visszakereshetők, így egy reklamációnál nem kell mappákat átnézni.',
   },
   {
-    title: 'Heti riport',
+    title: 'Heti kimutatás',
     detail:
-      'Ami ma minden hétfőn Excel-másolással áll össze, az magától összeáll.',
+      'Ami ma minden hétfőn Excel-táblák másolgatásával készül, az magától elkészül.',
   },
   {
     title: 'Több telephely adatai',
     detail:
-      'Ha ugyanazt az adatot két telephelyen is beütik, az egyiket megspóroljuk.',
+      'Ha ugyanazt az adatot két telephelyen is begépelik, az egyik begépelést megspóroljuk.',
   },
 ];
 
 const pricingTerms = [
-  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetéssel együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
+  `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül tíz hónap alatt. A megtakarítást a felmérésen közösen mérjük meg, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem megmondjuk, hogy nem éri meg.`,
-  'Fix ár, előre egyeztetett terjedelem, az elfogadás után néhány napon belül élesben. A kód az Önöké, nem bérlik tőlünk.',
-  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapban garanciaként a projektár része. Benne van a futtatás a mi szerverünkön, a figyelés, a javítás következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havi egy-két óra apró módosítás és egy havi riport arról, mennyi munkát váltott ki. Havonta felmondható, és ilyenkor átadjuk a kódot.`,
+  'Fix ár és előre rögzített feladat. Az elfogadás után néhány napon belül működik. A kód az Önök tulajdona, nem tőlünk bérlik.',
+  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a mi szerverünkön, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy szállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és egy havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
 ];
 
 const largerScope = [
-  'Több napos helyszíni felmérés: végigkövetjük a munkát, beszélünk az érintett kollégákkal, és átnézzük a használt rendszereket.',
+  'Többnapos helyszíni felmérés: végigkövetjük a munkát, beszélünk az érintett kollégákkal, és átnézzük a használt rendszereket.',
   'Az eredmény egy rangsorolt lista arról, mit érdemes automatizálni, mennyi munkát vált ki, és mi kell hozzá.',
-  'Az árat és a menetrendet egyedileg adjuk meg, szakaszokra bontva, hogy az első eredmény hamar élesben legyen.',
+  'Az árat és az ütemezést egyedileg adjuk meg, szakaszokra bontva, hogy az első rész hamar működjön.',
   'Az üzemeltetés díja a rendszer méretéhez igazodik.',
 ];
 
 const notOffered = [
   'Nem cseréljük le a működő könyvelő- vagy vállalatirányítási rendszert.',
-  'Nem hozunk adóügyi döntést. Azt a könyvelőjük mondja meg, mi csak azt intézzük, hogy az adat gépelés nélkül érkezzen meg hozzá.',
+  'Nem hozunk adóügyi döntést. Az a könyvelőjük dolga, mi csak azt intézzük, hogy az adat gépelés nélkül jusson el hozzá.',
   'Tanácsadói jelentést nem írunk. A felmérés eredménye egy fix áras ajánlat egy működő automatizálásra.',
   'Ha kiderül, hogy Önöknél ebből nincs mit kihozni, azt is megmondjuk, és nem küldünk ajánlatot.',
 ];
@@ -283,10 +283,11 @@ function SavingsCalculator() {
         {qualifies ? (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
             A bevezetés ára nagyjából <strong>{formatHuf(price)} + áfa</strong>,
-            ami körülbelül {PAYBACK_MONTHS} hónap alatt megtérül. A havi{' '}
-            {formatHuf(MAINTENANCE_FEE_HUF)} üzemeltetéssel együtt, amely a{' '}
-            {WARRANTY_MONTHS + 1}. hónaptól indul, körülbelül {paybackMonths}{' '}
-            hónap. A pontos árat a felmérésen mért adatokból adjuk meg.
+            ami körülbelül {PAYBACK_MONTHS} hónap alatt megtérül. A{' '}
+            {WARRANTY_MONTHS + 1}. hónaptól induló havi{' '}
+            {formatHuf(MAINTENANCE_FEE_HUF)} üzemeltetési díjjal együtt
+            körülbelül {paybackMonths} hónap. A pontos árat a felmérésen mért
+            adatokból adjuk meg.
           </p>
         ) : (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
@@ -295,8 +296,8 @@ function SavingsCalculator() {
             {breakEvenHours
               ? ` Ilyen bérköltség mellett havi ${breakEvenHours} óra kézi munkától kezd megérni.`
               : ''}{' '}
-            A felmérésen megnézzük, van-e nagyobb, vagy összevonható több
-            kisebb.
+            A felmérésen megnézzük, van-e nagyobb folyamat, vagy összevonható-e
+            több kisebb.
           </p>
         )}
       </div>
@@ -330,13 +331,13 @@ export default function LocalAutomation() {
     provider: { '@id': `${SITE_URL}/#organization` },
     areaServed: SERVED_TOWNS.map((name) => ({ '@type': 'City', name })),
     description:
-      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Az ár az első évi megtakarítás kétharmada.',
+      'Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi munkát vehetne át Önöktől a gép, és néhány napon belül működő automatizálást adunk át. Az ár az első évi megtakarítás kétharmada.',
   };
 
   return (
     <Layout
       title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
-      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi kézi papírmunkát vehet le a gép, és néhány napon belül átadjuk a működő automatizálást. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
+      description="Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát vehetne át Önöktől a gép, és néhány napon belül működő automatizálást adunk át. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly
     >
@@ -355,8 +356,8 @@ export default function LocalAutomation() {
               Helyszíni automatizálás · Gödöllő és környéke
             </div>
             <h1 className="hero-title">
-              Egy délelőtt alatt felmérjük, mennyi kézi papírmunkát vehet le a
-              gép.
+              Egy délelőtt alatt felmérjük, mennyi papírmunkát vehetne át
+              Önöktől a gép.
             </h1>
             <p
               className="text-base md:text-xl leading-relaxed mb-8"
@@ -365,10 +366,10 @@ export default function LocalAutomation() {
                 maxWidth: '60ch',
               }}
             >
-              Kimegyünk Önökhöz, megnézzük, mit végeznek ma kézzel, és
+              Kimegyünk Önökhöz, megnézzük, mit csinálnak ma kézzel, és
               megmérjük, mennyi időt visz el. A felmérés ingyenes. Ha megéri,
-              fix áras ajánlatot adunk, és néhány napon belül élesben átadjuk az
-              automatizálást.
+              fix áras ajánlatot adunk, és az elfogadás után néhány napon belül
+              már működik is.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Link
@@ -399,12 +400,12 @@ export default function LocalAutomation() {
           <div className="section-header">
             <div className="section-eyebrow">Kinek szól</div>
             <h2 className="section-title">
-              Cégeknek, ahol a papírmunka eszi meg a napot
+              Cégeknek, ahol a papírmunka viszi el a napot
             </h2>
             <p className="section-lead">
-              A legtöbb bejövő számla, szállítólevél és rendelés már úgy
-              érkezik, hogy egy gép ki tudja olvasni belőle az adatot. Többnyire
-              azért nem történik meg, mert senki nem ül le megcsinálni.
+              A bejövő számlák, szállítólevelek és rendelések többségéből ma már
+              egy gép is ki tudja olvasni az adatokat. Legtöbbször csak azért
+              gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
@@ -439,8 +440,8 @@ export default function LocalAutomation() {
             <div className="section-eyebrow">Menet</div>
             <h2 className="section-title">A felméréstől az átadásig</h2>
             <p className="section-lead">
-              Munkatársaik idejéből a felmérés délelőttjén kérünk néhány órát.
-              Utána a munka nálunk folyik.
+              Munkatársaik idejéből csak a felmérés délelőttjén kérünk néhány
+              órát. A többi a mi dolgunk.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -508,7 +509,7 @@ export default function LocalAutomation() {
         <div className="site-container">
           <div className="section-header">
             <div className="section-eyebrow">Mivel kezdünk</div>
-            <h2 className="section-title">Amit elsőként szoktunk megépíteni</h2>
+            <h2 className="section-title">Ezekkel kezdünk a leggyakrabban</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {firstBuilds.map((item) => (
@@ -658,9 +659,9 @@ export default function LocalAutomation() {
             </h2>
           </div>
           <p className="section-lead" style={{ maxWidth: '760px', margin: 0 }}>
-            2021 óta dolgozunk bankok, biztosítók és állami rendszerek mögött,
-            többek között az OTP ökoszisztémájában, a Netrisknél és az
-            IdomSoftnál. Ugyanaz a mérnök méri fel a folyamatot, aki a kódot
+            2021 óta fejlesztünk rendszereket bankoknak, biztosítóknak és
+            állami intézményeknek, többek között az OTP ökoszisztémájában, a
+            Netrisknél és az IdomSoftnál. Ugyanaz a mérnök méri fel a folyamatot, aki a kódot
             írja, és az üzemeltetést is mi vállaljuk.
           </p>
         </div>
