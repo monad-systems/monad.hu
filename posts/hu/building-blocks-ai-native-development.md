@@ -90,7 +90,7 @@ Ezért írjuk le az invariánsokat, aztán tegyük futtathatóvá őket. Azokkal
 - a sémák a forrás, a generált contractok csak olvashatók
 - generált kódot soha nem szerkesztünk kézzel
 
-Mindegyikhez kell kikényszerítés: architektúra check, lint szabály, típushatár vagy teszt. A teljes csomag egy paranccsal fusson minden pull requestre, így az ember és az agent ugyanazon a kapun megy át. Az ERP platformunkban huszonkét ilyen invariáns van; nem a szám a lényeg, hanem az, hogy egyik sem azon múlik, emlékszik-e rá valaki.
+Mindegyikhez kell kikényszerítés: architektúra check, lint szabály, típushatár vagy teszt. A teljes csomag egy paranccsal fusson minden pull requestre, így az ember és az agent ugyanazon a kapun megy át. Az ERP platformunkban huszonkét ilyen invariáns van, és tizennyolc architektúra check fut ellenük minden pull requestnél. Másokat a típusok, a package-határok és a tesztek tartanak. Azt a néhányat, amelyet semmilyen eszköz nem tud kifejezni, például hogy mikor kell egy változáshoz döntési dokumentum, a reviewer ellenőrzi, új check pedig csak akkor készül, ha a meglévő eszközök egyike sem tudja tartani a szabályt.
 
 A kikényszerítéstől lesz a style guide olyan, amit egy autonóm szereplő is követni tud. Ha a változás nem mergelhető a szabály betartása nélkül, kevésbé számít, hogy az agent megjegyezte-e a leírást.
 
@@ -118,20 +118,27 @@ flowchart TD
 
 A CI az eredményt ellenőrzi. Ha agenteket felügyelet nélkül futtatunk, magát a munkát is kapukkal kell körülvenni, a kód megszületése előtt és után is. A saját software factory-nk egy olyan mintát követ, amely nem függ semmilyen konkrét eszköztől.
 
-Bontsuk lépésekre a feladatot, és minden lépés friss kontextusban fusson, amely csak az előző lépés tömörített eredményét kapja meg:
+Az első kapu még azelőtt áll, hogy bármelyik modell elindulna. Feladat csak céllal és elfogadási kritériumokkal kerülhet a sorba, és ezeket az írja meg, aki a változást kéri. Ezek az ember saját ellenőrzési céljai, és minden későbbi lépést hozzájuk mérünk.
+
+Ezután bontsuk lépésekre a feladatot, és minden lépés friss kontextusban fusson, amely csak az előző lépés tömörített eredményét kapja meg:
 
 1. **Research:** olvassuk be a cél repót, és készítsünk térképet az érintett kódról, minden állítás mellett fájl- és sorhivatkozással.
-2. **Plan:** a researchből számozott fázisú terv készül, fázisonként az érintett fájlokkal és egy ellenőrző paranccsal.
-3. **Implement:** nem indul el, amíg egy ember jóvá nem hagyja a tervet; utána generálja a változást, és pull requestet nyit.
-4. **Review:** egy friss kontextus csak a jóváhagyott tervet és a keletkezett diffet látja, és egyetlen kérdésre válaszol: ez a diff megvalósítja ezt a tervet?
+2. **Plan:** a researchből számozott fázisú terv készül, fázisonként az érintett fájlokkal és egy ellenőrző paranccsal, és minden elfogadási kritériumhoz tartozik egy fázis, amely ellenőrzi.
+3. **Implement:** nem indul el, amíg egy ember jóvá nem hagyja a tervet. Legenerálja a változást, pull requestet nyit, és megvárja a repó saját CI-át. Ha az elbukik, egy korlátozott javítási kísérletet kap.
+4. **Review:** egy friss kontextus csak az elfogadási kritériumokat, a jóváhagyott tervet, a keletkezett diffet és a CI eredményét látja, és egyetlen kérdésre válaszol: azt szállítja ez a diff, amiben megállapodtunk? Ha a terv és a kritériumok ellentmondanak egymásnak, a kritériumok döntenek.
 
-A reviewer soha ne lássa a kódot előállító gondolatmenetet, mert akkor az meggyőzheti. A szándékot hasonlítja az eredményhez, vagyis azt a munkát végzi, amit egy jó emberi reviewer is, és amiben a változás szerzője általában a leggyengébb. A verdikt a findingokból következzen, ne a modell összefoglalójából: egy nem teljesült tervkritérium changes requested-et jelent, még akkor is, ha a reviewer „összességében rendben” minősítést adott.
+A reviewer soha ne lássa a kódot előállító gondolatmenetet, mert akkor az meggyőzheti. A szándékot hasonlítja az eredményhez, vagyis azt a munkát végzi, amit egy jó emberi reviewer is, és amiben a változás szerzője általában a leggyengébb. A verdikt a findingokból következzen, ne a modell összefoglalójából: egy nem teljesült kritérium changes requested-et jelent, még akkor is, ha a reviewer „összességében rendben” minősítést adott. A bukó vagy hiányzó CI eredmény ugyanezt a verdiktet vonja maga után, mert egy modell véleménye nem írhat felül egy piros checket. A verdiktet olyan status checkként publikáljuk, amelyet a repó kötelezővé tehet, így egy elutasított változást nem lehet véletlenül mergelni.
+
+Egy feladathoz holdout halmaz is tartozhat: olyan ellenőrzési forgatókönyvek, amelyeket csak a reviewer lát. A tervező és az implementáló lépés soha nem kapja meg őket, így a generátor nem tudja az értékelési szempontokhoz igazítani a munkáját, a reviewernek pedig mindegyikről bizonyítékkal alátámasztva kell megmondania, hogy teljesül-e.
 
 A lépések köré tegyünk guardraileket, amelyek nélkül a felügyelet nélküli futás nem lenne biztonságos:
 
 - **Emberi terv-jóváhagyás:** implementáció nélküle nem indul. Ez az az egy kapu, amit érdemes kézben tartani.
+- **Premise check:** ha a default branch továbblépett a research óta, implementálás előtt ellenőrizzük, hogy a probléma még létezik-e, hiszen a terv régebbi kódra készült.
 - **Stop the line:** amíg a cél repó default branchén bukó check-ek vannak, nincs implementáció. A research és a tervezés engedélyezett marad, mert így értjük meg, mi romlott el.
 - **Költségplafon:** minden futás a futásonkénti limit, a feladat budgetje és a projekt plafonja közül a legszűkebbet kapja, plusz egy időkorlátot. Az a futás, amelynek elfogyott a budgetje, az első modellhívás előtt elbukik.
+- **Watchdog:** álljon le az új munka, ha ugyanaz a feladat újra és újra elindul, vagy a költés haladás nélkül nő. A futásonkénti limitek nem látják a több futáson átívelő mintát.
+- **A visszafordíthatatlan változás draft marad:** ha egy változás nehezen vonható vissza, vagy kézi lépést igényel, a pull request draft marad, amíg egy ember fel nem engedi.
 - **Egyetlen egress pont:** minden modellhívás egy proxyn megy át. Egyik lépés sem beszél közvetlenül a szolgáltatóval.
 
 A feladat, a budgetje, az eredménye és a review verdiktje kerüljön egy helyre, oda, ahol az emberek amúgy is követik a munkájukat. Egy agent munkájának nyoma csak akkor ér valamit, ha valaki el is olvassa.
@@ -142,14 +149,16 @@ Ezt az eszközt is ugyanazokból az elemekből építsük, amelyeket kikényszer
 
 ```mermaid
 flowchart TD
-    A[Feladat szándékkal és budgettel] --> B[Research: kódtérkép fájl- és sorhivatkozásokkal]
-    B --> C[Plan: számozott fázisok és ellenőrző parancsok]
+    A[Feladat céllal, elfogadási kritériumokkal és budgettel] --> B[Research: kódtérkép fájl- és sorhivatkozásokkal]
+    B --> C[Plan: elfogadási kritériumokhoz rendelt fázisok]
     C --> D{Ember jóváhagyja a tervet}
     D -->|nem| C
-    D -->|igen| E{Default branch zöld}
+    D -->|igen| P{A probléma még létezik az aktuális branchen}
+    P -->|nem| X[Feladat lezárva: a probléma már nem áll fenn]
+    P -->|igen| E{Default branch zöld}
     E -->|nem| F[Blokkolva: stop the line]
-    E -->|igen| G[Implement: branch és pull request]
-    G --> H[Review: jóváhagyott terv és diff, friss kontextus]
+    E -->|igen| G[Implement: pull request, CI, egy javítási kísérlet]
+    G --> H[Review: kritériumok, terv, diff és CI eredmény, friss kontextus]
     H --> I{Tiszta findingok}
     I -->|nem| J[Changes requested, vissza a sorba]
     I -->|igen| K[Emberi review és merge]
@@ -159,7 +168,7 @@ flowchart TD
 
 AI workloadoknál a szivárgást tiltó utasítás gyengébb, mint egy olyan architektúra, amelyben a modell soha nem kapja meg a védett adatot. Az utasítás betartása együttműködést feltételez. Az architektúra nem.
 
-A minta egy határfolyamat a rendszereink és a modellszolgáltató között. Csak ez a folyamat ismeri a szolgáltatói kulcsot, és csak ez hívhat kifelé. Determinisztikusan ismeri fel a személyes adatokat: adószámot, személyi és TAJ azonosítót, bank- és kártyaszámot ellenőrzőösszeggel, telefonszámot, e-mail és postai címet, neveket. Minden talált értéket a futás idejére visszafordítható tokenre cserél, a válasz útján visszaállítja az eredetit, és minden áthaladást utólag nem módosítható audit logba ír. A felismerés minőségét CI kapu kényszeríti ki: címkézett korpusz, recall és precision küszöbbel, aminek tartania kell, mielőtt a határfolyamat élesbe mehet.
+A minta egy határfolyamat a rendszereink és a modellszolgáltató között. Csak ez a folyamat ismeri a szolgáltatói kulcsot, és csak ez hívhat kifelé. Determinisztikusan ismeri fel a személyes adatokat: adószámot, személyi és TAJ azonosítót, bankszámla- és kártyaszámot, ellenőrzőösszeggel ott, ahol a formátum definiál ilyet, telefonszámot, e-mail és postai címet, neveket. Minden talált értéket a futás idejére visszafordítható tokenre cserél, a válasz útján visszaállítja az eredetit, és minden áthaladást utólag nem módosítható audit logba ír. A felismerés minőségét CI kapu kényszeríti ki: címkézett korpusz, recall és precision küszöbbel, aminek tartania kell, mielőtt a határfolyamat élesbe mehet.
 
 Ezt hívja a platform engineering riport „security shifts down”-nak. A shift-left előbbre hozta a biztonságot az időtengelyen, és több eszközt meg több felelősséget adott a fejlesztőnek. A shift-down a platformba építi be, ahol a fejlesztő számára láthatatlan, és egy prompttal sem kerülhető meg.
 
@@ -173,7 +182,7 @@ Az eltérések a felhasználók számával együtt drágulnak. Ha tíz csapat k�
 
 Az agentek ráadásul a felhasználók egy új típusát jelentik. A riport ebben egyértelmű: az AI agentek több mint egy évtized óta az első új platform persona, és API-kat használnak, nem felületeket. Verziózott, dokumentált API-k, scope-olt jogosultságok, nem emberi identitás, audit logging, budget kontroll és egress kontroll kell nekik. Ezek mind platform képességek, nem pedig fejlesztői preferenciák. Ha a platformunk nem tudja kifejezni, hogy „ez a szereplő ezeket teheti, legfeljebb ennyiért, és itt a nyoma”, akkor nem tudunk biztonságosan agenteket futtatni, bármilyen jó is a modell.
 
-A bounded autonomy-nak konkrét összetevői vannak. Azok a csapatok, amelyek a gyakorlatba ültetik, hét területet különítenek el: identitás, kontextus, képesség, végrehajtás, kiértékelés, biztonság és observability. A fenti kapuk pontosan erre a listára képezhetők le. A terv-jóváhagyás és a stop the line képességkorlát. A review lépés a kiértékelés. A határfolyamat a biztonság. A futási logok, az artifactok és az audit log az observability. A költségplafon a végrehajtás korlátja. Semmi nem modellspecifikus benne, így túléli a következő modellt.
+A bounded autonomy-nak konkrét összetevői vannak. Azok a csapatok, amelyek a gyakorlatba ültetik, hét területet különítenek el: identitás, kontextus, képesség, végrehajtás, kiértékelés, biztonság és observability. A fenti kapuk pontosan erre a listára képezhetők le. A terv-jóváhagyás és a stop the line képességkorlát. Az elfogadási kritériumok, a review lépés és a holdout forgatókönyvek a kiértékelés. A határfolyamat a biztonság. A futási logok, az artifactok és az audit log az observability. A költségplafon és a watchdog a végrehajtást korlátozza. Semmi nem modellspecifikus benne, így túléli a következő modellt.
 
 Közben a költség is kiemelt mutatóvá válik. Iparági átlagban nagyjából 35% a cloud pazarlás, még mielőtt az AI infrastruktúra rárakódna, az agentic fejlesztésből származó token spend pedig olyan kategória, amire a legtöbb szervezetnek egyáltalán nincs eszköze. Egy futásonkénti költségplafon, amely menet közben leállítja a futást, kis fejlesztés, mégis ez választja el a kísérletet a költségvetési incidenstől.
 
@@ -234,6 +243,6 @@ Ha most kezdjük, a sorrend fontosabb az eszközöknél:
 1. Írjuk le az invariánsokat, amelyekre már most is támaszkodunk, és a legdrágább kettőt-hármat futtassuk CI-ban.
 2. Csak azokat a közös elemeket emeljük ki, amelyeknek már több felhasználójuk van a kódbázisban.
 3. Minden olyan határon, amelyhez agentek nyúlnak, a contract előzze meg az implementációt.
-4. Mielőtt több autonómiát adunk az agenteknek, vezessük be a terv-jóváhagyást, a tervhez mért review-t és a költségplafont.
+4. Minden feladathoz követeljünk meg elfogadási kritériumokat, és mielőtt több autonómiát adunk az agenteknek, vezessük be a terv-jóváhagyást, a kritériumokhoz mért review-t és a költségplafont.
 
 Az eszközök sokat változtak. A contract-first tervezés, a hangosan bukó tesztek, a szándék ellenében végzett review, a kicsi diffek, a kikényszerített CI, az observability és a leírt döntések nem. Ma ezek döntik el, hogy az AI a hasznos munkát vagy csak a rendszer szétcsúszását gyorsítja fel.
