@@ -240,6 +240,19 @@ export default function PostPage({ postData }) {
           </ul>
         ) : null}
 
+        {postData.image ? (
+          // The cover repeats the title, so screen readers skip it.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="blog-post__cover"
+            src={postData.image}
+            alt=""
+            width={1200}
+            height={630}
+            decoding="async"
+          />
+        ) : null}
+
         <div
           ref={contentRef}
           className="blog-post__content"
