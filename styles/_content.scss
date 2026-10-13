@@ -253,6 +253,15 @@
   padding: 0.3rem 0.55rem;
 }
 
+.blog-post__cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 2.5rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.625rem;
+}
+
 .blog-post__content .mermaid {
   margin: 1.5rem 0;
   overflow-x: auto;

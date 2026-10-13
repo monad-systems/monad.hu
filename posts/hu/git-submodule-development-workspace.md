@@ -1,6 +1,7 @@
 ---
 title: 'Monorepo a fejlesztő gépén: git submodule-ok mint fejlesztői workspace'
 date: '2026-10-13'
+image: '/images/posts/git-submodule-development-workspace.jpg'
 lead: 'A monorepo megkönnyíti a package-eken átívelő munkát, de minden mást összeköt. A külön repók függetlenek maradnak, a helyi fejlesztés viszont nehézkes velük. Egy git submodule-okból összerakott, vékony workspace megadja a fejlesztőknek az összelinkelt, egyetlen checkoutos élményt, miközben minden package és alkalmazás teljes értékű repó marad, amely önállóan buildelhető, tesztelhető, release-elhető és deployolható.'
 metaDescription: 'Hogyan rakjunk össze git submodule-okból és package manager workspace-ből helyi fejlesztői monorepót: a fejlesztő gépén a package-ek symlinkkel kapcsolódnak, a CI, a build és az éles üzem viszont a registryből telepített, semver szerint verziózott package-eket használja.'
 tags:

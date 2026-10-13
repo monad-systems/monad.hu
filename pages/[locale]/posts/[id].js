@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 import Layout from '../../../components/Layout';
 import { normalizeLocale, useTranslation } from '../../../lib/i18n';
 import { getAllPostIds, getPostData } from '../../../lib/posts';
-import { getBlogPostingJsonLd } from '../../../lib/site';
+import { getBlogPostingJsonLd, getPostOgImage } from '../../../lib/site';
 
 let mermaidRenderCounter = 0;
 
@@ -192,6 +192,7 @@ export default function PostPage({ postData }) {
       title={`${postData.title} | MONAD SYSTEMS`}
       description={metaDescription}
       ogType="article"
+      ogImage={getPostOgImage(postData)}
       jsonLd={getBlogPostingJsonLd(postData, metaDescription)}
       isTranslated={!postData.isFallbackLocale}
     >
@@ -237,6 +238,19 @@ export default function PostPage({ postData }) {
               </li>
             ))}
           </ul>
+        ) : null}
+
+        {postData.image ? (
+          // The cover repeats the title, so screen readers skip it.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            className="blog-post__cover"
+            src={postData.image}
+            alt=""
+            width={1200}
+            height={630}
+            decoding="async"
+          />
         ) : null}
 
         <div
