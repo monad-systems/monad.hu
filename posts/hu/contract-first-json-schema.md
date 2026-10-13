@@ -5,7 +5,7 @@ image: '/images/posts/contract-first-json-schema.jpg'
 lead: 'Sok csapat csak az implementáció után generál API contractot. Az előre megtervezett interfész közös forrást ad a backendnek, a frontendnek, a QA-nak és a szolgáltatás consumereinek, még mielőtt az integrációs hibák drágák lennének.'
 metaDescription: 'A spec-first fejlesztésben a találgatás helyére explicit contractok lépnek. Az OpenAPI, az AsyncAPI és a JSON Schema együtt klienseket generál, payloadokat validál, növeli a biztonságot, és kevesebb integrációs hibával gyorsítja a delivery-t.'
 tags:
-    - Spec-First
+    - Spec-first
     - OpenAPI
     - AsyncAPI
     - JSON Schema
@@ -24,17 +24,17 @@ A spec-first fejlesztés ezeket a döntéseket az implementáció elé hozza. Ha
 
 ## A contract a delivery egyik alapja
 
-Az OpenAPI nem csak arra jó, hogy legyen mit mutatnia a Swagger UI-nak. Az AsyncAPI nem csak egy topiclista, a JSON Schema pedig nem csak payloadvalidátor.
+Az OpenAPI nem csak arra jó, hogy legyen mit mutatnia a Swagger UI-nak. Az AsyncAPI nem csak topiclista, a JSON Schema pedig nem csak payloadvalidátor.
 
 Együtt a rendszerhatárt írják le olyan formában, amelyet emberek és eszközök egyaránt megértenek.
 
-Ez a határ jóval több a mezőneveknél és a primitív típusoknál. Rögzíti a megengedett payloadokat, a kötelező mezőket, a formátumra és a szerkezetre vonatkozó megkötéseket. Ide tartoznak a hibák, az authentikáció, a szerepkörök és scope-ok, a kompatibilitási szabályok, az eseménypayloadok, valamint a backend és a frontend által közösen használt modellek jelentése is.
+Ez a határ jóval több a mezőneveknél és a primitív típusoknál. Rögzíti a megengedett payloadokat, a kötelező mezőket, a formátumra és a szerkezetre vonatkozó megkötéseket. Ide tartoznak a hibák, az autentikáció, a szerepkörök és scope-ok, a kompatibilitási szabályok, az eseménypayloadok, valamint a backend és a frontend által közösen használt modellek jelentése is.
 
 Az előre definiált határ közös tervet ad a csapatoknak, így nem implementációs részletekből kell utólag összerakniuk a rendszert.
 
 ## Hogyan működik a code-first a gyakorlatban
 
-A code-first megközelítés gyorsnak tűnik: megírjuk az endpointot, felannotáljuk, majd a framework metaadataiból dokumentációt generálunk. Egyes eszközök a DTO-kból vagy a TypeScript típusokból a sémát is kikövetkeztetik. Ez a kényelem hasznos, különösen kis szolgáltatásnál, de a design csak akkor válik review-zhatóvá, amikor már kód lett belőle.
+A code-first megközelítés gyorsnak tűnik: megírjuk az endpointot, annotáljuk, majd a framework metaadataiból dokumentációt generálunk. Egyes eszközök a DTO-kból vagy a TypeScript típusokból a sémát is kikövetkeztetik. Ez a kényelem hasznos, különösen kis szolgáltatásnál, de a design csak akkor válik review-zhatóvá, amikor már kód lett belőle.
 
 Egyszerű szolgáltatásoknál ez elég jól működhet. Nagyobb rendszerekben viszont a dokumentáció minősége a framework konvencióin múlik. A generált contract inkább a transport szerkezetét tükrözi, mint a tervezői szándékot. Idővel eltér egymástól a backend- és a frontendmodell, következetlen lesz a sémák újrahasznosítása, duplikálódik a validáció, a klienskönyvtárakból pedig hiányoznak a típusok vagy a runtime ellenőrzések.
 
@@ -80,7 +80,7 @@ flowchart TD
     F[OpenAPI / AsyncAPI tervezése először] --> G[Sémák és viselkedés review-ja]
     G --> H[Típusok, validátorok, handlerek, kliensek generálása]
     H --> I[Implementáció a jóváhagyott contractra]
-    I --> J[Korábbi integráció, kevesebb drift]
+    I --> J[Korábbi integráció, kevesebb eltérés]
 ```
 
 ## A generált kliensek kiváltják a duplikált interfészkódot
@@ -91,7 +91,7 @@ Generált kliensek nélkül a consumerek kézzel másolják le az interfészt. H
 
 Minden ismétlés újabb pont, ahol az implementáció és a consumerek elcsúszhatnak egymástól.
 
-Ha a CI biztosítja, hogy a kliensek mindig a friss contractból generálódjanak, ennek a hibatípusnak a nagy része eltűnik. A consumerek nem emlékezetre és szokásokra támaszkodnak, hanem a contractból generált artifactokra.
+Ha a CI gondoskodik róla, hogy a kliensek mindig a friss contractból generálódjanak, ennek a hibatípusnak a nagy része eltűnik. A consumerek nem emlékezetre és szokásokra támaszkodnak, hanem a contractból generált artifactokra.
 
 Nálunk ez a tesztelést is javította. A generált klienseket end-to-mock tesztekben is használjuk, vagyis a tesztek ugyanazt a contractból generált felületet használják, mint a production consumerek. Nincs duplikált URL, nincs kézzel írt fetch wrapper, és nincsenek magic stringek a metódusoknál.
 
@@ -103,9 +103,9 @@ A TypeScript fejlesztés közben segít végiggondolni, milyen adatot várunk, d
 
 Ha a handlerek, a kliensek és az űrlapok ugyanazokból a sémákból épülnek, a runtime validáció minden rendszerhatáron egységes lesz.
 
-Backend oldalon ez a bejövő requesteknél számít, és gyakran a kimenő contractok védelmében is. A frontenden pedig ott, ahol a felhasználói inputot kell validálni, és biztosítani kell, hogy az elküldött payload megfeleljen az API contractnak.
+Backend oldalon ez a bejövő requesteknél számít, és néha a kimenő contractok védelmében is. A frontenden pedig ott, ahol a felhasználói inputot kell validálni, és ellenőrizni kell, hogy az elküldött payload megfelel-e az API contractnak.
 
-Ha az AJV mindkét oldalon fut, nem marad rés a statikus szándék és a runtime valóság között.
+Ha az AJV mindkét oldalon fut, kisebb lesz a rés a statikus szándék és a runtime valóság között.
 
 A típusrendszer leírja, mit vár a saját kódunk. A validátor ellenőrzi, mi lépte át ténylegesen a rendszerhatárt. Mindkettő kell.
 
@@ -113,7 +113,7 @@ A típusrendszer leírja, mit vár a saját kódunk. A validátor ellenőrzi, mi
 
 A spec-firstről szóló beszélgetések gyakran backend-központúak, pedig ugyanazokat a sémákat a frontend és az admin tooling is használhatja.
 
-Ha az API-kat JSON Schema-alapú contractok írják le, és ezek a sémák a frontend számára is elérhetők, jóval többre használhatók a kliensgenerálásnál.
+Ha az API-kat JSON Schema-alapú contractok írják le, és ezek a sémák a frontendnek is elérhetők, jóval többre használhatók a kliensgenerálásnál.
 
 Például a **JSON Forms** jelentősen gyorsíthatja az admin felületek fejlesztését.
 
@@ -175,18 +175,18 @@ Az explicit event contractok rögzítik az üzenetek payloadját, azt, hogy mely
 
 Ahogy a HTTP API-knál, itt is a forráskódban tárolt contractra épülhet a validáció, a review, a generálás és a governance. Enélkül az event-driven rendszerben észrevétlen csatolások halmozódnak fel, amelyek csak akkor derülnek ki, amikor egy consumer eltörik.
 
-## A security követelmények az interfész mellé tartoznak
+## A biztonsági követelmények az interfész mellé tartoznak
 
 Túl sok rendszerben csak akkor gondolnak az authorizationre, amikor az interfész már kész. Az endpointok a kódban válnak védetté, a szerepkörök kimondatlanok maradnak, a policy-k pedig szétszóródnak annotációk, middleware-ek és service-enként eltérő konvenciók között.
 
 Ha a scope-ok, az auth sémák és a védett műveletek a contractban szerepelnek, több minden egyszerűbb lesz:
 
-- a security követelmények korábban review-zhatók
+- a biztonsági követelmények korábban review-zhatók
 - a generált artifactok egységesen értelmezik az auth követelményeket
 - a consumer csapatok tudják, milyen credential vagy scope kell
 - a hiányosságok a design review során derülnek ki, nem a rollout után
 
-Ez nem helyettesíti a jó authorization architektúrát, de a security követelményeket az interfész mellé teszi, ahol a reviewerek és a consumerek is látják.
+Ez nem helyettesíti a jó authorization architektúrát, de a biztonsági követelményeket az interfész mellé teszi, ahol a reviewerek és a consumerek is látják.
 
 ## Stabil contract mellett a csapatok párhuzamosan dolgozhatnak
 
@@ -203,7 +203,7 @@ A közös contract annyira csökkenti a bizonytalanságot, hogy lehet párhuzamo
 
 ## A CI gondoskodik róla, hogy a contract legyen a mérvadó
 
-Ha a CI biztosítja, hogy a specifikáció érvényes legyen, és a generált artifactok naprakészek maradjanak, sokkal nehezebb véletlenül megkerülni a folyamatot.
+Ha a CI ügyel arra, hogy a specifikáció érvényes legyen, és a generált artifactok naprakészek maradjanak, sokkal nehezebb véletlenül megkerülni a folyamatot.
 
 Egy kiforrott beállításban a tipikus ellenőrzések:
 
@@ -222,7 +222,7 @@ Ezek az ellenőrzések teszik a contractot mérvadóvá, így a contract-first n
 flowchart TD
     A[OpenAPI / AsyncAPI frissítése] --> B[PR review]
     B --> C[Séma és példák validálása]
-    C --> D[Breaking-change ellenőrzés]
+    C --> D[Breaking change-ellenőrzés]
     D --> E[Típusok, validátorok, handlerek, kliensek generálása]
     E --> F[Tesztek futtatása generált kliensekkel és mockokkal]
     F --> G[Service és contract artifactok publikálása]
@@ -248,7 +248,7 @@ Ott használjuk a spec-first megközelítést, ahol a contract számít. Tartsuk
 
 Egy termék életének elején szinte bármilyen interfész-megközelítés működhet, mert kevés a consumer, és gyors a visszajelzés. Ahogy szaporodnak a szolgáltatások, a csapatok, a környezetek és a kompatibilitási elvárások, úgy változik a költségszerkezet.
 
-Több szolgáltatás, frontend, csapat és környezet mellett nő a kompatibilitási nyomás, erősebb governance kell, több üzemeltetési eszköz és megbízhatóbb automatizálás. Az interfész ilyenkor már a platform része, nem egy helyi implementációs részlet. A spec-first azért térül meg, mert a contractot a teljes delivery pipeline betartatja, nem csak dokumentálja.
+Több szolgáltatás, frontend, csapat és környezet mellett nő a kompatibilitási nyomás, erősebb governance kell, több üzemeltetési eszköz és megbízhatóbb automatizálás. Az interfész ilyenkor már a platform része, nem helyi implementációs részlet. A spec-first azért térül meg, mert a contractot a teljes delivery pipeline betartatja, nem csak dokumentálja.
 
 ## Dolgoztassuk meg a contractot
 
@@ -260,4 +260,4 @@ A Fizz backend platformon ez statikus, a service forrásában tárolt OpenAPI-t,
 
 Az eredmény jobb developer experience, kevesebb duplikált munka, kevesebb integrációs meglepetés és biztonságosabban továbbfejleszthető platform.
 
-Ha egy csapat már használ OpenAPI-t, AsyncAPI-t vagy JSON Schemát, a következő lépés az, hogy ezek a contractok ne utólagos leírásként létezzenek, hanem ténylegesen formálják a rendszer építését.
+Ha egy csapat már használ OpenAPI-t, AsyncAPI-t vagy JSON Schemát, a következő lépés az, hogy ezek a contractok ne utólagos leírásként létezzenek, hanem ténylegesen meghatározzák, hogyan épül a rendszer.

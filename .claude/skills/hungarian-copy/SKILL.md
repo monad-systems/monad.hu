@@ -38,6 +38,7 @@ grammar around them. Do not translate them on engineering pages or in blog posts
 | review, code review, architektúra review | review-t, review-zható, review-val |
 | roadmap | roadmapet, roadmapig |
 | quality gate | quality gate-ek |
+| check, CI-check | checkek, checket, checkként, CI-checkek (not *check-ek*) |
 | microservice, event-driven, service-orientált | microservice-ekre, event-driven architektúra |
 | cloud | cloud architektúra, cloud költség, Cloud-Native |
 | consumer, provider | consumerek, a provider |
@@ -45,7 +46,9 @@ grammar around them. Do not translate them on engineering pages or in blog posts
 
 Hungarian is better where the Hungarian word is what engineers actually say:
 *szűk keresztmetszet, élesben / éles üzem, üzemeltetés, kódgenerálás, adatmigráció,
-csatolás, megbízhatóság, felmérés.*
+csatolás, megbízhatóság, felmérés.* The owner added three on 2026-10-13: *rangsorolt*
+(not *priorizált*; a verb use becomes „első helyre tette”), *megállapítás* (not
+*finding*), *biztonsági követelmény* (not *security követelmény*).
 
 The opposite failure is also real: English jargon that a Hungarian reader cannot
 parse. Translate the meaning of *platform friction, readout, deliverable, fit call,
@@ -118,6 +121,7 @@ correct and short, but written from the system's side. The owner rewrote the key
 | A gép tételesen kiolvassa | Tételesen, automatikusan kiolvassuk |
 | megmérjük, havonta hány órát visz el | felmérjük, havonta hány órát visz el |
 | Ha a mérés szerint nem éri meg | Ha a felmérés szerint nem éri meg |
+| ezért erre az egy folyamatra nem érné meg ajánlatot adnunk (reads as if it would not pay *us*) | ezért erre az egy folyamatra nem adunk ajánlatot, mert Önöknek nem érné meg |
 
 The owner's own sentences share a register: formal business Hungarian, not spoken.
 *rögzít*, *manuálisan*, *kézzel történő rögzítés*, *szakértői erőforrás* instead of
