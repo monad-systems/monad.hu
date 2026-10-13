@@ -104,7 +104,7 @@ const fitFor = [
   '20–250 fős gyártó, kereskedelmi és logisztikai cégek Gödöllő, Vác és Hatvan környékén',
   'Könyvelőirodák, ahol a könyvelők idejét a bizonylatok rögzítése emészti fel',
   'Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba',
-  'Ahol egy adminisztratív munkatárs beintegrálása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése',
+  'Ahol egy adminisztratív munkatárs betanítása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése',
 ];
 
 const steps = [
@@ -367,9 +367,10 @@ export default function LocalAutomation() {
               }}
             >
               Kimegyünk Önökhöz, megnézzük, mely feladatokat végzik ma
-              manuálisan, és felmérjük, mennyi munkaidőt visznek el. A felmérés ingyenes. Ha megéri,
-              fix áras ajánlatot adunk, és az elfogadás után néhány napon belül már egy használható eszköz van a kezükben
-              a folyamataik gördülékenyebb működéséhez.
+              manuálisan, és felmérjük, mennyi munkaidőt visznek el. A felmérés
+              ingyenes. Ha megéri, fix áras ajánlatot adunk, és az elfogadás után
+              néhány napon belül már használható eszköz van a kezükben a
+              folyamataik gördülékenyebb működéséhez.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <Link
@@ -405,8 +406,8 @@ export default function LocalAutomation() {
             <p className="section-lead">
               A bejövő számlák, szállítólevelek és rendelések többségéből ma már
               automatikusan kiolvashatók az adatok. Legtöbbször csak azért
-              történik a rögzítés mégis manuálisan, mert nem állt rendelkezésre
-              megfelelő szakértői erőforrás vagy idő az esetleges
+              rögzítik mégis manuálisan az adatokat, mert nem állt
+              rendelkezésre megfelelő szakértői erőforrás vagy idő az esetleges
               automatizációk bevezetésére.
             </p>
           </div>
