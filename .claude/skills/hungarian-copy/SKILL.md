@@ -113,6 +113,7 @@ correct and short, but written from the system's side. The owner rewrote the key
 | Cégeknek, ahol a papírmunka viszi el a napot | Cégeknek, ahol a kézzel történő rögzítés viszi el a munkaidő jelentős részét |
 | Legtöbbször csak azért gépelik be mégis kézzel, mert senkinek nem volt ideje beállítani. | Legtöbbször csak azért történik a rögzítés mégis manuálisan, mert nem állt rendelkezésre megfelelő szakértői erőforrás vagy idő az esetleges automatizációk bevezetésére. |
 | Ahol ugyanazt az adatot két rendszerbe is beütik, vagy egy táblázatból másolják át a másikba | Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba |
+| Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt | Ahol egy adminisztratív munkatárs beintegrálása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése |
 | mennyi papírmunkát vehetne át Önöktől a gép | mennyi papírmunkát lehet automatizálni Önöknél |
 | A gép tételesen kiolvassa | Tételesen, automatikusan kiolvassuk |
 | megmérjük, havonta hány órát visz el | felmérjük, havonta hány órát visz el |

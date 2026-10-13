@@ -104,7 +104,7 @@ const fitFor = [
   '20–250 fős gyártó, kereskedelmi és logisztikai cégek Gödöllő, Vác és Hatvan környékén',
   'Könyvelőirodák, ahol a könyvelők idejét a bizonylatok rögzítése emészti fel',
   'Ahol ugyanazt az adatot több rendszerben is rögzítik, vagy manuálisan másolják át egyik táblázatból a másikba',
-  'Ahol hónapokig tart betölteni egy adminisztrátori állást, vagy már most is túlóráznak a papírmunka miatt',
+  'Ahol egy adminisztratív munkatárs beintegrálása hónapokig is eltarthat, és fölösleges túlórákat okoz az adatok redundáns kezelése',
 ];
 
 const steps = [
