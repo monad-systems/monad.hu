@@ -37,6 +37,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts" />
   </url>
   <url>
+    <loc>https://monad.hu/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/privacy" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/privacy" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/privacy" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/privacy" />
+  </url>
+  <url>
     <loc>https://monad.hu/hu/helyi-automatizalas</loc>
   </url>
   <url>
