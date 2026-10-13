@@ -201,9 +201,111 @@ phrases: they are full of the calques this file removes. Seen there, avoid:
 | folyamat automatizáció | folyamatok automatizálása |
 | számlák teljeskörűségének ellenőrzése | annak ellenőrzése, hogy minden számla beérkezett-e |
 
+**Read instead of the lexicon:** section 7, from the same author's journal.
+
 **Not yet read, worth checking:** Balázs Géza, *Magyar nyelvhelyességi lexikon*
 (Corvina, 2001), a reference book with entries on usage. It is not available online
 (searched 2026-10-13: no MEK, Arcanum or publisher copy), so it needs a paper copy;
 an open-access review exists in *Iskolakultúra*. Also the Nyelvtudományi Kutatóközpont's
 language advice service; and the Magyar Nemzeti Szövegtár to check whether a phrase
 occurs in native Hungarian text. Add rules from them only after reading the entry.
+
+## 7. Usage rules from *Édes Anyanyelvünk* (read 2026-10-13)
+
+The journal of the Anyanyelvápolók Szövetsége; Balázs Géza sits on its editorial board.
+Issues 2006–2025 are full-text PDFs on REAL-J:
+`https://real-j.mtak.hu/{record}/{issue}/edes_anyanyelvunk_{year}_{volume}_{issue}_.pdf`
+(2006 = 25910 … 2011 = 25915, 2013 = 25916 … 2023 = 25926, 2024 = 27248,
+2025 = 28763; 2012 is missing). Every issue 2006–2023 was opened; 2024–2025 were
+keyword-searched. Only articles actually read are cited. Rules are paraphrased, with
+the article's own short example.
+
+Balázs Géza's own pieces in this range are cultural essays („Miért érdekes?”), not
+usage advice. What he says that applies: judge a form by how well it fits the situation
+and the reader (2014/1 p5); a foreign word must not be used to show off or to shut out
+readers who do not know it (2009/1 p14; Fekete László on the Balázs–Zimányi *Magyar
+nyelvhasználati szótár*, 2008/2 p14).
+
+**Verbs, not disguised verbs.** These four forms hide who acts and slow the reader down:
+
+- „-ra/-re kerül”: „megrendezésre kerül” → „megrendezik”, „elfogadásra került” →
+  „elfogadták”, „nem kerül megtartásra” → „elmarad”. Tolerable only where the actor
+  truly does not matter (Dede Éva 2009/2 p16; Kulcsár István 2014/3 p14; Balogh Judit
+  2019/2 p4; Vecsernyés 2013/3 p10). *Bekerül a rendszerbe*, where something really
+  moves, is not this pattern.
+- „X … történik”: „Az oklevél adományozása évente egyszer történik” → „Az oklevelet
+  évente egyszer adományozzák” (Láng Miklós 2010/2 p16, 2014/5 p11).
+- „rendelkezik”: „törzskészlettel rendelkezett” → „törzskészlete volt” (Láng 2010/2
+  p16; Hajdu Ferenc 2009/1 p11).
+- „biztosít” as a filler verb: „hivatott biztosítani” → „ügyel, hogy…”; „keret
+  biztosítása” is tender jargon (Láng 2010/2 p16; Földiák András 2009/5 p6).
+
+**Nominal style.** Turn the action noun back into a verb when the actor is named:
+„vállalja a szolgáltatás nyújtását” → „vállalja, hogy szolgáltatást nyújt”; prefer the
+case ending: „Felhasználó számára” → „Felhasználónak” (Bódi Zoltán 2025/3 pp8–11,
+on official letters to lay readers). „a megfelelőség … vonatkozásában” → „feleljen
+meg …” (Bencédy József 2009/5 p3). Wordy postpositions: „tekintetében”,
+„magasságában”, „megelőzően”, „követően”, „túlmenően”, „mentén” → „szerint”, „-ról”,
+„előtt”, „után”, „alapján” (Buvári Márta 2011/3 p6; Horváth László 2015/5 p9).
+
+**Padding.** „idei évben” → „idén”, „pénzügyi hiány” → „pénzhiány” (Balog Lajos
+2008/3 p11); „lehetővé tegye … a lehetőségét”, „ha és amennyiben”, „csak és
+kizárólag”, „ingyenes ajándék” are doubles (Jakab István 2006/1 p8; Laurenszky Ernő
+2007/2 p10; Schirm Anita 2022/1); „elkövetkezendő” → „következő” (Buvári 2016/2 p8);
+empty fillers „igazából”, „úgymond”, „kvázi” (Kovács József 2013/1 p12; Farkas Eszter
+2008/2 p10). Overused „való” („csatlakozással kapcsolatos” is enough) makes text
+heavy (Q&A 2020/4 p28).
+
+**Needless „egy”** (an English and German habit): drop it before a qualified noun and
+before a predicate noun. „Kérjen egy ingyenes állapotfelmérést” → „Kérjen ingyenes
+állapotfelmérést”; „Ez egy válogatás” → „Ez válogatás”. Keep it when it means „one
+kind of” (Kemény Gábor 2015/5 p7; Balázs Géza 2006/4 p9; Vecsernyés 2013/3 p10).
+
+**Anglicisms seen in business text.** „valós időben” → „azonnal”, „folyamatosan”
+(Büky László 2015/4 p6; Buvári 2014/1, 2020/4); „fókuszál” → „összpontosít” (Büky
+2011/5 p4; Martzy Kinga 2022/5 accepts it as a synonym); „csekkol” → „ellenőriz”;
+„kommunikálja” → „jelzi”, „közli” (Zimányi Árpád 2006/3 p6); „priorál” → „előnyben
+részesít” (Kemény 2018/3 p7); „volumen” → „mennyiség” in everyday text (Martzy
+2022/5); plural after a quantifier, „sok döntésekre” → „sok döntésre” (Sz. Györffy
+Sarolta 2014/3 p9). Redundant prefix on a Latin verb: „beintegrál”, „beinvesztál”,
+„leamortizál”, „beregisztrál” — the Latin prefix already says it (Büky 2014/3 p9;
+Kulcsár 2015/1 p10; Zimányi 2006/5 p6). Plain „integrál” is fine.
+
+**Repetition beats a forced synonym.** Partial synonyms are not interchangeable;
+repeat the key word instead (Gerstner Károly 2014/5 p4; Elekfi László 2009/1 p12;
+Balog 2008/2 p12). For us: do not alternate *számla*, *bizonylat* and *szállítólevél*
+for variety. This is also why the owner accepts „felmérés … felmérjük”.
+
+**Letters and offers.**
+
+- Magázás for customers one does not know; tegezés reads as over-familiarity
+  (Graf Rezső 2007/3 p2; H. Varga Márta 2007/3 p9).
+- No capitalised common nouns („Szolgáltatás”, „Ügyvezető Úr” in running text) and no
+  needless relative clause: „…megkezdtük, mellyel kapcsolatban” → „…megkezdtük. Ezzel
+  kapcsolatban…” (Kemény 2014/5 p11; Elek Lenke 2013/5 p11).
+- No stressed „Én” when introducing yourself („Én megköszönöm…”) (Vecsernyés 2013/3 p10).
+- „hiszen” only for a reason the reader already knows; otherwise „mert” or two
+  sentences (Sz. Györffy 2014/4 p13).
+- An unconditional „akár 50%” misleads, and „Rendelje meg most!” reads as pressure
+  (Láng 2014/3 p14). Same spirit as „we do not promise a saving we have not measured”.
+- A headline verb keeps its object: not „Automatizálunk!” (H. Varga 2007/3 p9).
+- Openings like „Tisztelt Intézet!” read as impersonal (Domonkosi Ágnes – Ludányi
+  Zsófia 2021/5 p18).
+
+### Where the journal and the owner disagree
+
+The owner's sentences are used verbatim and stay as written. Two of them use forms
+the journal criticises:
+
+- „Legtöbbször csak azért **történik** a rögzítés mégis manuálisan…” (the „X … történik”
+  pattern, Láng). The journal's version would be „…azért rögzítik mégis manuálisan…”.
+- „egy adminisztratív munkatárs **beintegrálása**” (redundant *be-*, Büky). The
+  journal's version would be „integrálása” or „betanítása”.
+- „már **egy** használható eszköz van a kezükben” (needless „egy”, Kemény).
+
+Do not change these on your own. Raise them with the owner once, with the source;
+after that, the owner's decision is recorded here. In new text that is not the
+owner's, follow the journal: active verbs, no „-ra/-re kerül”, no filler „biztosít”.
+
+Not criticised anywhere in the journal: *manuális/manuálisan* (Balázs Géza uses it
+himself, 2013/5 p5), *rögzít*, *redundáns*, *felmér*, *automatizálás*.
