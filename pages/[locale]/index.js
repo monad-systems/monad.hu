@@ -628,6 +628,8 @@ export default function Home() {
           'A spamellenőrzés nem sikerült. Kérjük, próbálja újra.',
         altchaNote:
           'Spamvédelem: az ALTCHA rövid számítást végez a böngészőjében. Nincs süti, nincs követés, nincs harmadik fél.',
+        privacyNote: 'Adatait csak a válaszadáshoz használjuk. Részletek:',
+        privacyLink: 'adatkezelési tájékoztató',
       }
     : {
         problems,
@@ -738,6 +740,8 @@ export default function Home() {
         contactBotCheckFailed: 'The spam check failed. Please try again.',
         altchaNote:
           'Spam protection: ALTCHA solves a short computation in your browser. No cookies, no tracking, no third parties.',
+        privacyNote: 'We use your details only to answer you. Details:',
+        privacyLink: 'privacy notice',
       };
   const contactText = homeContent;
   const [contactStatus, setContactStatus] = useState('');
@@ -1393,6 +1397,14 @@ export default function Home() {
                 >
                   altcha.org
                 </a>
+              </p>
+              <p className="altcha-note">
+                {homeContent.privacyNote}{' '}
+                <Link
+                  href={locale === 'en' ? '/privacy' : `/${locale}/privacy`}
+                >
+                  {homeContent.privacyLink}
+                </Link>
               </p>
             </form>
           </div>

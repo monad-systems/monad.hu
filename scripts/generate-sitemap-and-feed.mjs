@@ -10,7 +10,12 @@ const SITE_NAME = 'MONAD SYSTEMS';
 const outDir = path.join(process.cwd(), 'out');
 const postsDir = path.join(process.cwd(), 'posts');
 
-const STATIC_PAGES = ['/', '/platform-modernization-review', '/posts'];
+const STATIC_PAGES = [
+  '/',
+  '/platform-modernization-review',
+  '/posts',
+  '/privacy',
+];
 // Pages generated only under /hu, with no English version.
 const HUNGARIAN_ONLY_PAGES = ['/helyi-automatizalas'];
 
