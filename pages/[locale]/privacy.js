@@ -14,7 +14,9 @@ import { LOCALES, useTranslation } from '../../lib/i18n';
 //     rate limiting and not stored;
 //   - analytics is self-hosted Umami on analytics-dev (monad-systems/infra,
 //     ADR-0008), reached through Cloudflare at stats-dev.monad.systems, with
-//     encrypted backups kept 30 days in Scaleway Object Storage (nl-ams);
+//     encrypted backups kept 30 days in Scaleway Object Storage (nl-ams),
+//     and visit data deleted after 25 months by the stack's `retention`
+//     service (infra ADR-0008 section 8);
 //   - the language choice is kept in localStorage only when a visitor
 //     switches language.
 // Change this page when any of those changes.
@@ -63,7 +65,7 @@ const content = {
           'We count visits with Umami, which we run ourselves on a server in Scaleway’s Paris data centre. It sets no cookies and does not store your IP address.',
           'For each page view it records the page address, the referring site, the browser, operating system and device type, the screen size, the language setting, the country (from the network request), and clicks on a few buttons such as “Get in Touch”. To tell visits apart without a cookie, it derives an identifier from your IP address and browser, mixed with a value that changes every month, so the same visitor cannot be linked from one month to the next.',
           'Legal basis: our legitimate interest in knowing which pages are read and whether the site works (GDPR Article 6(1)(f)). You can object at any time (see Your rights), or block the script at stats-dev.monad.systems in your browser.',
-          'How long: we keep the visit records while they are useful for comparing traffic over time. Encrypted backups are deleted after 30 days.',
+          'How long: we delete visit records after 25 months, and encrypted backups after 30 days.',
         ],
       },
       {
@@ -132,7 +134,7 @@ const content = {
           'A látogatásokat az Umami nevű eszközzel számoljuk, amelyet mi magunk üzemeltetünk a Scaleway párizsi adatközpontjában. Nem használ sütit, és nem tárolja az IP-címét.',
           'Minden oldalmegtekintésnél rögzíti az oldal címét, a hivatkozó oldalt, a böngészőt, az operációs rendszert és az eszköz típusát, a képernyőméretet, a nyelvi beállítást, az országot (a hálózati kérésből), valamint néhány gomb, például a „Kapcsolatfelvétel” megnyomását. Hogy süti nélkül is meg tudja különböztetni a látogatásokat, az IP-címéből és a böngészőjéből képez azonosítót, havonta változó értékkel keverve. Így ugyanaz a látogató az egyik hónapról a másikra nem köthető össze.',
           'Jogalap: jogos érdekünk, hogy tudjuk, mely oldalakat olvassák, és jól működik-e a webhely (GDPR 6. cikk (1) bekezdés f) pont). Bármikor tiltakozhat (lásd: Az Ön jogai), vagy a böngészőjében letilthatja a stats-dev.monad.systems címről betöltődő szkriptet.',
-          'Megőrzés: a látogatási adatokat addig őrizzük, amíg hasznosak a forgalom időbeli összehasonlításához. A titkosított biztonsági mentéseket 30 nap után töröljük.',
+          'Megőrzés: a látogatási adatokat 25 hónap, a titkosított biztonsági mentéseket 30 nap után töröljük.',
         ],
       },
       {
