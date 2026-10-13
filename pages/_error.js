@@ -41,13 +41,13 @@ function ErrorPage({ statusCode }) {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              href={locale === 'en' ? '/' : `/${locale}/`}
+              href={locale === 'en' ? '/' : `/${locale}`}
               className="btn btn-hero"
             >
               {t('errors.generic.home', 'Go to homepage')}
             </Link>
             <Link
-              href={locale === 'en' ? '/#work' : `/${locale}/#work`}
+              href={locale === 'en' ? '/#work' : `/${locale}#work`}
               className="btn btn-outline"
             >
               {t('errors.generic.work', 'View our work')}

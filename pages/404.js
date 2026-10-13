@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Layout from '../components/Layout';
 import {
@@ -12,6 +13,19 @@ export default function Custom404() {
   const router = useRouter();
   const { t } = useTranslation();
   const locale = normalizeLocale(getLocaleFromPath(router.asPath));
+
+  // Pages are exported as `<path>.html`, which GitHub Pages serves without a
+  // trailing slash: /hu works, /hu/ is a 404. Links of the slashed shape were
+  // published until 2026-10, so retry once without the slash, keeping the
+  // #section. The retried URL has no trailing slash, so it cannot loop.
+  useEffect(() => {
+    const { pathname, search, hash } = window.location;
+    if (pathname.length > 1 && pathname.endsWith('/')) {
+      window.location.replace(
+        `${pathname.replace(/\/+$/, '')}${search}${hash}`,
+      );
+    }
+  }, []);
 
   return (
     <Layout noIndex>
@@ -32,13 +46,13 @@ export default function Custom404() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              href={locale === 'en' ? '/' : `/${locale}/`}
+              href={locale === 'en' ? '/' : `/${locale}`}
               className="btn btn-hero"
             >
               {t('errors.notFound.home', 'Go to homepage')}
             </Link>
             <Link
-              href={locale === 'en' ? '/#work' : `/${locale}/#work`}
+              href={locale === 'en' ? '/#work' : `/${locale}#work`}
               className="btn btn-outline"
             >
               {t('errors.notFound.work', 'View our work')}
