@@ -181,8 +181,8 @@ const largerScope = [
 
 const notOffered = [
   'Nem cseréljük le a működő könyvelő- vagy vállalatirányítási rendszert.',
-  'Nem hozunk adóügyi döntést. Ez a könyvelőjük feladata, mi azt biztosítjuk, hogy az adatok manuális rögzítés nélkül jussanak el hozzá.',
-  'Tanácsadói jelentést nem írunk. A felmérés eredménye egy fix áras ajánlat egy működő automatizálásra.',
+  'Nem hozunk adóügyi döntést. Ez a könyvelőjük feladata, mi gondoskodunk arról, hogy az adatok manuális rögzítés nélkül jussanak el hozzá.',
+  'Tanácsadói jelentést nem írunk. A felmérés eredménye fix áras ajánlat egy működő automatizálásra.',
   'Ha kiderül, hogy Önöknél az automatizálás nem hoz érdemi megtakarítást, ezt is jelezzük, és nem küldünk ajánlatot.',
 ];
 
