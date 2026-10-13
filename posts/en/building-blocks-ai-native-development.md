@@ -1,6 +1,7 @@
 ---
 title: 'Your Building Blocks Set the Ceiling on AI-Assisted Delivery'
 date: '2026-08-11'
+image: '/images/posts/building-blocks-ai-native-development.jpg'
 lead: "AI made code generation cheap; it did nothing to reduce the cost of being wrong. Shared packages, explicit contracts, executable rules, and reliable gates now determine how much useful work a team can get from AI-assisted development."
 metaDescription: "Why shared packages, contracts, executable architecture rules, and process gates decide the quality of AI-native software development: what to extract, which rules to enforce, how to gate agent work, and why security has to move into the platform."
 tags:

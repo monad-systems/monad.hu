@@ -1,6 +1,7 @@
 ---
 title: 'A Monorepo for Your Laptop: Git Submodules as a Development Workspace'
 date: '2026-10-13'
+image: '/images/posts/git-submodule-development-workspace.jpg'
 lead: "A monorepo makes cross-package work easy and couples everything else. Separate repositories keep packages independent and make local development painful. A thin workspace built from git submodules gives developers the linked, single-checkout experience while every package and app stays a complete repository that builds, tests, releases, and deploys on its own."
 metaDescription: "How to use git submodules and package-manager workspaces to assemble a local development monorepo: packages are symlinked on developer machines, while CI, builds, and production consume published semver versions from a registry."
 tags:

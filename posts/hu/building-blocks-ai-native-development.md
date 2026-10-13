@@ -1,6 +1,7 @@
 ---
 title: 'Az építőelemek szabják meg az AI-támogatott fejlesztés plafonját'
 date: '2026-08-11'
+image: '/images/posts/building-blocks-ai-native-development.jpg'
 lead: "Az AI olcsóvá tette a kódgenerálást, de a tévedés költségét nem csökkentette. A közös package-ek, explicit contractok, futtatható szabályok és megbízható kapuk ma meghatározzák, mennyi hasznos munkát tud kihozni egy csapat az AI-támogatott fejlesztésből."
 metaDescription: "Miért a közös package-ek, a contractok, a futtatható architektúraszabályok és a folyamatkapuk döntik el az AI-native szoftverfejlesztés minőségét: mit érdemes kiemelni, mely szabályokat kell kikényszeríteni, hogyan kell kapukkal körülvenni az agentek munkáját, és miért kell a biztonságnak a platformba költöznie."
 tags:
