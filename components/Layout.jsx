@@ -437,7 +437,12 @@ export default function Layout({
           </div>
 
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} MONAD SYSTEMS Kft.</span>
+            <span>
+              © {new Date().getFullYear()} MONAD SYSTEMS Kft. ·{' '}
+              <Link href={localizePath('/privacy', routeLocale)}>
+                {t('layout.footer.privacy', 'Privacy notice')}
+              </Link>
+            </span>
             <span>
               {t(
                 'layout.footer.descriptor',
