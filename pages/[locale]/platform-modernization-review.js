@@ -341,7 +341,7 @@ export default function PlatformModernizationReview() {
           'Architekturális kockázatelemzés',
           'API- és integrációs felmérés',
           'Költség- és komplexitási gócpontok',
-          'Priorizált modernizációs roadmap elkészítése',
+          'Rangsorolt modernizációs roadmap elkészítése',
         ],
         notGoodFit: [
           'Korai fázisú, MVP-t építő csapatok',
@@ -353,12 +353,12 @@ export default function PlatformModernizationReview() {
           'Kéthetes, célzott felmérés az architektúráról és a fejlesztési folyamatról',
           'Interjúk, rendszerbejárás, CI/CD-áttekintés és célzott code review',
           'Írásos review anyag és vezetői összefoglaló',
-          'Priorizált 90 napos roadmap, egyértelmű következő lépésekkel',
+          'Rangsorolt 90 napos roadmap, egyértelmű következő lépésekkel',
         ],
         scopeExcluded: [
           'Fejlesztési munka a review ideje alatt',
           'Határozatlan idejű tanácsadói megbízás',
-          'Eszközcsere priorizált roadmap nélkül',
+          'Eszközcsere rangsorolt roadmap nélkül',
         ],
         symptoms: [
           {
@@ -407,7 +407,7 @@ export default function PlatformModernizationReview() {
           },
           {
             step: '03',
-            title: 'Priorizált roadmap',
+            title: 'Rangsorolt roadmap',
             detail:
               'Konkrét, sorrendbe állított tervet kapnak: mit érdemes először leválasztani, mely contractokat kell formalizálni, és hol kell observability-t kiépíteni, ráfordításbecsléssel.',
           },
@@ -442,7 +442,7 @@ export default function PlatformModernizationReview() {
               'Contract- és integrációs megállapítások, felelősökkel és függőségekkel.',
           },
           {
-            title: 'Priorizált 90 napos modernizációs roadmap',
+            title: 'Rangsorolt 90 napos modernizációs roadmap',
             format:
               'Prioritás, függőség és végrehajtási kockázat szerint sorba állított terv.',
           },
@@ -502,7 +502,7 @@ export default function PlatformModernizationReview() {
             context:
               'Integrációkra épülő termék, visszatérő, több csapatot érintő incidensekkel és gazdátlan API contractokkal',
             outcome:
-              'A review priorizálta az integrációs contractok javítását, kritikus folyamatonként feltárta az observability hiányait, és tisztázta a felelősségi köröket, ami csökkentette az üzemeltetési nehézségeket.',
+              'A review első helyre tette az integrációs contractok javítását, kritikus folyamatonként feltárta az observability hiányait, és tisztázta a felelősségi köröket, ami csökkentette az üzemeltetési nehézségeket.',
           },
         ],
         processEyebrow: 'Folyamat',

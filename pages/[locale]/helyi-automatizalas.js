@@ -169,7 +169,7 @@ const pricingTerms = [
   `Az első folyamat ára az első évi megtakarítás kétharmada, így nagyjából ${PAYBACK_MONTHS} hónap alatt megtérül, az üzemeltetési díjjal együtt körülbelül 10 hónap alatt. A megtakarítást a felmérésen közösen mérjük fel, nem mi becsüljük.`,
   `A legkisebb projekt ${formatHuf(MINIMUM_PRICE_HUF)} + áfa, ez évi ${formatHuf(MINIMUM_YEARLY_SAVING_HUF)} megtakarításnak felel meg. Ha egy folyamat ennél kevesebbet takarít meg, nem adunk rá ajánlatot, hanem jelezzük, hogy nem éri meg.`,
   'Fix ár és előre rögzített feladat. Az elfogadás után néhány napon belül használható eszköz van a kezükben. A kód az Önök tulajdona, nem tőlünk bérlik.',
-  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a saját szervereinken, a működés figyelése, a javítás a következő munkanapon belül, ha a NAV, egy beszállító vagy az Önök rendszere változik, havonta egy-két óra kisebb módosítás, és havi kimutatás arról, mennyi munkát váltott ki. Havonta felmondható, ilyenkor átadjuk a kódot.`,
+  `Üzemeltetés automatizálásonként havi ${formatHuf(MAINTENANCE_FEE_HUF)} + áfa, az első ${WARRANTY_MONTHS} hónapot garanciaként a projektár fedezi. A díjban benne van a futtatás a saját szervereinken, a működés figyelése, havonta egy-két óra kisebb módosítás és havi kimutatás arról, mennyi munkát váltott ki. Ha a NAV, egy beszállító vagy az Önök rendszere változik, a következő munkanapon belül javítjuk. Havonta felmondható, ilyenkor átadjuk a kódot.`,
 ];
 
 const largerScope = [
@@ -292,7 +292,8 @@ function SavingsCalculator() {
         ) : (
           <p style={{ margin: 0, lineHeight: 1.6 }}>
             Ez évente kevesebb, mint {formatHuf(MINIMUM_YEARLY_SAVING_HUF)},
-            ezért erre az egy folyamatra nem érné meg ajánlatot adnunk.
+            ezért erre az egy folyamatra nem adunk ajánlatot, mert Önöknek nem
+            érné meg.
             {breakEvenHours
               ? ` Ilyen bérköltség mellett havi ${breakEvenHours} munkaórától térül meg.`
               : ''}{' '}

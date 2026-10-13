@@ -29,7 +29,7 @@ Az „építőelem” alatt gyakran library-t értünk, pedig egy AI-native munk
 1. **Runtime elemek:** közös package-ek, amelyek futásidőben dolgoznak. Konfiguráció, HTTP-kezelés, auth, logging, monitoring, generált API kliensek. Kód, amit nem kell újra megírni.
 2. **Contract elemek:** API-, event- és adatsémák valamilyen szabványos formátumban, például OpenAPI, AsyncAPI vagy JSON Schema. A rendszerhatár definíciója, még az implementáció előtt.
 3. **Szabályelemek:** architektúra invariánsok, rétegzési szabályok, elnevezési és ownership konvenciók. Mi megengedett, mi tilos, és miért.
-4. **Folyamatelemek:** a kapuk. Review, jóváhagyás, CI check-ek, budget, branch protection. Ahol egy változásnak bizonyítania kell, mielőtt továbbmegy.
+4. **Folyamatelemek:** a kapuk. Review, jóváhagyás, CI-checkek, budget, branch protection. Ahol egy változásnak bizonyítania kell, mielőtt továbbmegy.
 
 Egy mérnök az utóbbi kettőt hónapok alatt szívja magába. Egy agentnek nincs ilyen előélete: kap egy context window-t, és azt, amit beleteszünk. Ezért az számít, mennyi tervezői szándék érhető el olyan formában, amelyet a cég történetét nem ismerő szereplő is fel tud dolgozni, és amelyhez a munkája ellenőrizhető. Ehhez képest a modellválasztás sokkal kevésbé számít.
 
@@ -104,7 +104,7 @@ flowchart TD
     D[Architektúra invariánsok] --> Z
     E[Repó konvenciós fájl] --> Z
     Z --> F[Generált változás]
-    F --> G[Architektúra check-ek]
+    F --> G[Architektúra checkek]
     F --> H[Típusellenőrzés és contract validáció]
     F --> I[Tesztek]
     G --> J{Átmegy a kapun}
@@ -127,7 +127,7 @@ Ezután bontsuk lépésekre a feladatot, és minden lépés friss kontextusban f
 3. **Implement:** nem indul el, amíg egy ember jóvá nem hagyja a tervet. Legenerálja a változást, pull requestet nyit, és megvárja a repó saját CI-át. Ha az elbukik, egy korlátozott javítási kísérletet kap.
 4. **Review:** egy friss kontextus csak az elfogadási kritériumokat, a jóváhagyott tervet, a keletkezett diffet és a CI eredményét látja, és egyetlen kérdésre válaszol: azt szállítja ez a diff, amiben megállapodtunk? Ha a terv és a kritériumok ellentmondanak egymásnak, a kritériumok döntenek.
 
-A reviewer soha ne lássa a kódot előállító gondolatmenetet, mert akkor az meggyőzheti. A szándékot hasonlítja az eredményhez, vagyis azt a munkát végzi, amit egy jó emberi reviewer is, és amiben a változás szerzője általában a leggyengébb. A verdikt a findingokból következzen, ne a modell összefoglalójából: egy nem teljesült kritérium changes requested-et jelent, még akkor is, ha a reviewer „összességében rendben” minősítést adott. A bukó vagy hiányzó CI eredmény ugyanezt a verdiktet vonja maga után, mert egy modell véleménye nem írhat felül egy piros checket. A verdiktet olyan status checkként publikáljuk, amelyet a repó kötelezővé tehet, így egy elutasított változást nem lehet véletlenül mergelni.
+A reviewer soha ne lássa a kódot előállító gondolatmenetet, mert akkor az meggyőzheti. A szándékot hasonlítja az eredményhez, vagyis azt a munkát végzi, amit egy jó emberi reviewer is, és amiben a változás szerzője általában a leggyengébb. A verdikt a megállapításokból következzen, ne a modell összefoglalójából: egy nem teljesült kritérium changes requested-et jelent, még akkor is, ha a reviewer „összességében rendben” minősítést adott. A bukó vagy hiányzó CI eredmény ugyanezt a verdiktet vonja maga után, mert egy modell véleménye nem írhat felül egy piros checket. A verdiktet olyan status checkként publikáljuk, amelyet a repó kötelezővé tehet, így egy elutasított változást nem lehet véletlenül mergelni.
 
 Egy feladathoz holdout halmaz is tartozhat: olyan ellenőrzési forgatókönyvek, amelyeket csak a reviewer lát. A tervező és az implementáló lépés soha nem kapja meg őket, így a generátor nem tudja az értékelési szempontokhoz igazítani a munkáját, a reviewernek pedig mindegyikről bizonyítékkal alátámasztva kell megmondania, hogy teljesül-e.
 
@@ -135,7 +135,7 @@ A lépések köré tegyünk guardraileket, amelyek nélkül a felügyelet nélk�
 
 - **Emberi terv-jóváhagyás:** implementáció nélküle nem indul. Ez az az egy kapu, amit érdemes kézben tartani.
 - **Premise check:** ha a default branch továbblépett a research óta, implementálás előtt ellenőrizzük, hogy a probléma még létezik-e, hiszen a terv régebbi kódra készült.
-- **Stop the line:** amíg a cél repó default branchén bukó check-ek vannak, nincs implementáció. A research és a tervezés engedélyezett marad, mert így értjük meg, mi romlott el.
+- **Stop the line:** amíg a cél repó default branchén bukó checkek vannak, nincs implementáció. A research és a tervezés engedélyezett marad, mert így értjük meg, mi romlott el.
 - **Költségplafon:** minden futás a futásonkénti limit, a feladat budgetje és a projekt plafonja közül a legszűkebbet kapja, plusz egy időkorlátot. Az a futás, amelynek elfogyott a budgetje, az első modellhívás előtt elbukik.
 - **Watchdog:** álljon le az új munka, ha ugyanaz a feladat újra és újra elindul, vagy a költés haladás nélkül nő. A futásonkénti limitek nem látják a több futáson átívelő mintát.
 - **A visszafordíthatatlan változás draft marad:** ha egy változás nehezen vonható vissza, vagy kézi lépést igényel, a pull request draft marad, amíg egy ember fel nem engedi.
@@ -159,7 +159,7 @@ flowchart TD
     E -->|nem| F[Blokkolva: stop the line]
     E -->|igen| G[Implement: pull request, CI, egy javítási kísérlet]
     G --> H[Review: kritériumok, terv, diff és CI eredmény, friss kontextus]
-    H --> I{Tiszta findingok}
+    H --> I{Nincs nyitott megállapítás}
     I -->|nem| J[Changes requested, vissza a sorba]
     I -->|igen| K[Emberi review és merge]
 ```

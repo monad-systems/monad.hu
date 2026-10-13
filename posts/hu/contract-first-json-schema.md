@@ -175,18 +175,18 @@ Az explicit event contractok rögzítik az üzenetek payloadját, azt, hogy mely
 
 Ahogy a HTTP API-knál, itt is a forráskódban tárolt contractra épülhet a validáció, a review, a generálás és a governance. Enélkül az event-driven rendszerben észrevétlen csatolások halmozódnak fel, amelyek csak akkor derülnek ki, amikor egy consumer eltörik.
 
-## A security követelmények az interfész mellé tartoznak
+## A biztonsági követelmények az interfész mellé tartoznak
 
 Túl sok rendszerben csak akkor gondolnak az authorizationre, amikor az interfész már kész. Az endpointok a kódban válnak védetté, a szerepkörök kimondatlanok maradnak, a policy-k pedig szétszóródnak annotációk, middleware-ek és service-enként eltérő konvenciók között.
 
 Ha a scope-ok, az auth sémák és a védett műveletek a contractban szerepelnek, több minden egyszerűbb lesz:
 
-- a security követelmények korábban review-zhatók
+- a biztonsági követelmények korábban review-zhatók
 - a generált artifactok egységesen értelmezik az auth követelményeket
 - a consumer csapatok tudják, milyen credential vagy scope kell
 - a hiányosságok a design review során derülnek ki, nem a rollout után
 
-Ez nem helyettesíti a jó authorization architektúrát, de a security követelményeket az interfész mellé teszi, ahol a reviewerek és a consumerek is látják.
+Ez nem helyettesíti a jó authorization architektúrát, de a biztonsági követelményeket az interfész mellé teszi, ahol a reviewerek és a consumerek is látják.
 
 ## Stabil contract mellett a csapatok párhuzamosan dolgozhatnak
 

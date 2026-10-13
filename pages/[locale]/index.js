@@ -391,7 +391,7 @@ export default function Home() {
             what: 'Célzott felmérés a jelenlegi architektúráról, az integrációkról, a delivery pipeline-ról és az üzemeltetés állapotáról.',
             when: 'Úgy érzik, hogy az architekturális adósság lassítja Önöket, de független, senior nézőpont kell a prioritások és a kockázatok tisztázásához.',
             outcome:
-              'Írásos megállapítások és priorizált, végrehajtható roadmap konkrét lépésekkel.',
+              'Írásos megállapítások és rangsorolt, végrehajtható roadmap konkrét lépésekkel.',
           },
           {
             step: '02',
