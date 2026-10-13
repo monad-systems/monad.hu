@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Manual rebuild, e.g. after changing a repository secret the build reads
+  # (NEXT_PUBLIC_*), which a push would otherwise be needed to pick up.
+  workflow_dispatch:
 
 permissions:
   contents: write
