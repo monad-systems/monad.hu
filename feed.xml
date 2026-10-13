@@ -6,7 +6,21 @@
     <description>Engineering insights on architecture, API design-first delivery, and backend platform development.</description>
     <language>en</language>
     <atom:link href="https://monad.hu/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Tue, 11 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 13 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>A Monorepo for Your Laptop: Git Submodules as a Development Workspace</title>
+      <link>https://monad.hu/posts/git-submodule-development-workspace</link>
+      <guid isPermaLink="true">https://monad.hu/posts/git-submodule-development-workspace</guid>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A monorepo makes cross-package work easy and couples everything else. Separate repositories keep packages independent and make local development painful. A thin workspace built from git submodules gives developers the linked, single-checkout experience while every package and app stays a complete repository that builds, tests, releases, and deploys on its own.</description>
+      <category>Git Submodules</category>
+      <category>Monorepo</category>
+      <category>Polyrepo</category>
+      <category>Semantic Versioning</category>
+      <category>Developer Experience</category>
+      <category>Platform Engineering</category>
+      <category>Custom Software Engineering</category>
+    </item>
     <item>
       <title>Your Building Blocks Set the Ceiling on AI-Assisted Delivery</title>
       <link>https://monad.hu/posts/building-blocks-ai-native-development</link>
