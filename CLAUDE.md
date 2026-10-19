@@ -13,3 +13,23 @@
 - Enforced in two places: `.claude/settings.json` turns off Claude Code's own
   attribution (`attribution`), and the **Attribution policy** workflow fails any pull
   request whose title, description or commits still carry it.
+
+## This repository is public
+
+Everything here is public: files, commit messages and author addresses, branch names,
+and pull request titles, descriptions and comments. Deleting a file does not remove it
+from git history.
+
+- Never commit credentials, keys, tokens or `.env` files. Values the build needs go in
+  GitHub Actions secrets.
+- Never name a client or prospect the site does not already publish. Examples in
+  skills, docs and PRs use placeholders („Példa Kft.”).
+- Nothing from the private repositories or the vault: sales pipeline, outreach
+  status, pricing decisions not on the site, internal hostnames, IP addresses, local
+  paths.
+- No personal data about anyone, and no personal email address in commits (use the
+  noreply address above).
+- Enforced in part: GitHub push protection (on since 2026-10-19) rejects a push that
+  contains a recognised credential, and the **Secret scan** workflow runs TruffleHog on
+  every pull request and push to `main`. Both catch credentials only; names and
+  business data are on the author to keep out.

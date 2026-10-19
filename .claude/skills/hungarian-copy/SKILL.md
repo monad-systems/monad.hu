@@ -24,9 +24,8 @@ would. „Ön” in every sentence reads like a bank letter. Letters open with
 
 When no person is named and the letter goes to a company's general address,
 open with **„Tisztelt [cégnév]!”**. Use the short company name the way the
-company writes it on its own site: „Tisztelt Forint-Soft Kft.!”, „Tisztelt
-NOVITAX Kft.!”. Do not open with „Jó napot kívánok!”. This was the owner's
-decision on 2026-10-19, for the NAV pilot letters to software vendors. Letters
+company writes it on its own site: „Tisztelt Példa Kft.!”. Do not open with
+„Jó napot kívánok!”. This was the owner's decision on 2026-10-19. Letters
 already sent keep their greeting.
 
 ## 2. Engineering terms stay in English
@@ -48,7 +47,7 @@ grammar around them. Do not translate them on engineering pages or in blog posts
 | check, CI-check | checkek, checket, checkként, CI-checkek (not *check-ek*) |
 | microservice, event-driven, service-orientált | microservice-ekre, event-driven architektúra |
 | cloud | cloud architektúra, cloud költség, Cloud-Native |
-| repo, branch | GitHub-repójában, repóban, repói; branchen, release branchre, branchei. Not *tároló*, *ág* (owner, 2026-10-19, letters to software vendors) |
+| repo, branch | GitHub-repójában, repóban, repói; branchen, release branchre, branchei. Not *tároló*, *ág* (owner, 2026-10-19, letters to developer readers) |
 | consumer, provider | consumerek, a provider |
 | stakeholder, right-sizing, developer experience, production-ready, production-grade, legacy, guardrail, compliance, correlation ID, bounded context, governance | stakeholder interjúk, guardrailek |
 
