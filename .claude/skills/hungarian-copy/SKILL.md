@@ -48,6 +48,7 @@ grammar around them. Do not translate them on engineering pages or in blog posts
 | check, CI-check | checkek, checket, checkként, CI-checkek (not *check-ek*) |
 | microservice, event-driven, service-orientált | microservice-ekre, event-driven architektúra |
 | cloud | cloud architektúra, cloud költség, Cloud-Native |
+| repo, branch | GitHub-repójában, repóban, repói; branchen, release branchre, branchei. Not *tároló*, *ág* (owner, 2026-10-19, letters to software vendors) |
 | consumer, provider | consumerek, a provider |
 | stakeholder, right-sizing, developer experience, production-ready, production-grade, legacy, guardrail, compliance, correlation ID, bounded context, governance | stakeholder interjúk, guardrailek |
 
