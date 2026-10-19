@@ -46,6 +46,14 @@ English RSS feed (`feed.xml`) into `out/` from the pages and `posts/` front matt
 (`https://monad.hu`) lives in `lib/site.js`, which also builds canonical and `hreflang` links, Open Graph
 URLs, and JSON-LD structured data; keep the script's copy of the origin in sync with it.
 
+The same script writes `llms.txt` (the [llmstxt.org](https://llmstxt.org) format) into `out/`. Titles and meta
+descriptions are read back from the exported HTML and post front matter, so the file repeats what the pages already
+publish and adds no copy of its own. After the Pages deploy, `scripts/ping-indexnow.mjs` submits every URL in
+`sitemap.xml` to [IndexNow](https://www.indexnow.org) so Bing and the search products built on it hear about changes.
+The key lives in `public/<key>.txt` and in the workflow's `INDEXNOW_KEY`; it is public by design, not a secret. The
+step uses `continue-on-error`, so a failed ping never fails the deploy. To rotate the key, change both. Preview the
+request without sending it with `INDEXNOW_KEY=<key> node scripts/ping-indexnow.mjs --dry-run` after a build.
+
 ## Posts authoring
 
 Posts are markdown files in `posts/`.

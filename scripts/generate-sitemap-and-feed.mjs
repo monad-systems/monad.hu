@@ -47,13 +47,24 @@ const readPosts = async () => {
       const { data } = matter(
         await readFile(path.join(englishDir, fileName), 'utf8'),
       );
+      const huPath = path.join(postsDir, 'hu', fileName);
+      const hasHungarian = existsSync(huPath);
+      const huData = hasHungarian
+        ? matter(await readFile(huPath, 'utf8')).data
+        : null;
       return {
         id,
         title: data.title,
         date: data.date,
         lead: data.lead || data.metaDescription || '',
+        // The post page's meta description: metaDescription, then lead.
+        metaDescription: data.metaDescription || data.lead || '',
         tags: Array.isArray(data.tags) ? data.tags : [],
-        hasHungarian: existsSync(path.join(postsDir, 'hu', fileName)),
+        hasHungarian,
+        hu: huData && {
+          title: huData.title,
+          metaDescription: huData.metaDescription || huData.lead || '',
+        },
       };
     }),
   );
@@ -143,13 +154,94 @@ ${items}
 `;
 };
 
+const decodeHtml = (value) =>
+  value
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) =>
+      String.fromCodePoint(parseInt(hex, 16)),
+    )
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+
+// Page titles and descriptions are read back from the exported HTML, so
+// llms.txt repeats exactly what each page already publishes.
+const readPageMeta = async (basePath, locale) => {
+  const cleanBasePath = basePath === '/' ? '' : basePath;
+  const filePath = path.join(
+    outDir,
+    locale === 'hu'
+      ? `hu${cleanBasePath}.html`
+      : `${cleanBasePath || '/index'}.html`,
+  );
+  const html = await readFile(filePath, 'utf8');
+  const title = html.match(/<title[^>]*>([^<]*)<\/title>/)?.[1];
+  const description = html.match(
+    /<meta name="description" content="([^"]*)"/,
+  )?.[1];
+  if (!title || !description) {
+    throw new Error(`Missing <title> or meta description in ${filePath}`);
+  }
+  return { title: decodeHtml(title), description: decodeHtml(description) };
+};
+
+const llmsLink = ({ title, url, description }) =>
+  `- [${title}](${url}): ${description}`;
+
+const buildLlmsTxt = async (posts) => {
+  const englishPages = await Promise.all(
+    STATIC_PAGES.map(async (basePath) => ({
+      ...(await readPageMeta(basePath, 'en')),
+      url: toUrl(basePath, 'en'),
+    })),
+  );
+  const hungarianPages = await Promise.all(
+    [...STATIC_PAGES, ...HUNGARIAN_ONLY_PAGES].map(async (basePath) => ({
+      ...(await readPageMeta(basePath, 'hu')),
+      url: toUrl(basePath, 'hu'),
+    })),
+  );
+  const englishPosts = posts.map((post) => ({
+    title: post.title,
+    description: post.metaDescription,
+    url: toUrl(`/posts/${post.id}`, 'en'),
+  }));
+  const hungarianPosts = posts
+    .filter((post) => post.hasHungarian)
+    .map((post) => ({
+      title: post.hu.title,
+      description: post.hu.metaDescription,
+      url: toUrl(`/posts/${post.id}`, 'hu'),
+    }));
+
+  // The summary is the English homepage's meta description.
+  return `# ${SITE_NAME}
+
+> ${englishPages[0].description}
+
+## Pages
+
+${englishPages.map(llmsLink).join('\n')}
+
+## Posts
+
+${englishPosts.map(llmsLink).join('\n')}
+
+## Magyarul
+
+${[...hungarianPages, ...hungarianPosts].map(llmsLink).join('\n')}
+`;
+};
+
 const main = async () => {
   try {
     const posts = await readPosts();
     await writeFile(path.join(outDir, 'sitemap.xml'), buildSitemap(posts));
     await writeFile(path.join(outDir, 'feed.xml'), buildFeed(posts));
+    await writeFile(path.join(outDir, 'llms.txt'), await buildLlmsTxt(posts));
     console.log(
-      `Generated sitemap.xml and feed.xml for ${posts.length} posts.`,
+      `Generated sitemap.xml, feed.xml and llms.txt for ${posts.length} posts.`,
     );
   } catch (error) {
     console.error('Failed to generate sitemap and feed:', error);
