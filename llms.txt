@@ -1,0 +1,27 @@
+# MONAD SYSTEMS
+
+> Senior hands-on software consultancy specializing in custom software engineering, API-first delivery, event-driven architecture, and production-grade observability.
+
+## Pages
+
+- [MONAD SYSTEMS — Senior Software Consultancy for Custom Software Engineering](https://monad.hu/): Senior hands-on software consultancy specializing in custom software engineering, API-first delivery, event-driven architecture, and production-grade observability.
+- [Custom Software Engineering Review — MONAD SYSTEMS](https://monad.hu/platform-modernization-review): A focused software architecture review that identifies your highest-impact bottlenecks and gives you a concrete execution roadmap. From MONAD SYSTEMS.
+- [Posts | MONAD SYSTEMS](https://monad.hu/posts): Engineering insights on architecture, API design-first delivery, and backend platform development.
+- [Privacy notice | MONAD SYSTEMS](https://monad.hu/privacy): How monad.hu handles personal data: the contact form, cookie-free analytics, hosting, and your rights.
+
+## Posts
+
+- [A Monorepo for Your Laptop: Git Submodules as a Development Workspace](https://monad.hu/posts/git-submodule-development-workspace): How to use git submodules and package-manager workspaces to assemble a local development monorepo: packages are symlinked on developer machines, while CI, builds, and production consume published semver versions from a registry.
+- [Your Building Blocks Set the Ceiling on AI-Assisted Delivery](https://monad.hu/posts/building-blocks-ai-native-development): Why shared packages, contracts, executable architecture rules, and process gates decide the quality of AI-native software development: what to extract, which rules to enforce, how to gate agent work, and why security has to move into the platform.
+- [Designing Systems Before Coding Them](https://monad.hu/posts/contract-first-json-schema): Spec-first development replaces guesswork with explicit contracts. By combining OpenAPI, AsyncAPI, and JSON Schema, teams can generate clients, validate payloads, improve security, and deliver faster with fewer integration failures.
+
+## Magyarul
+
+- [MONAD SYSTEMS — Senior szoftvertanácsadás és egyedi szoftverfejlesztés](https://monad.hu/hu): Gyakorlati senior szoftvertanácsadás: egyedi szoftverfejlesztés, API-first megvalósítás, event-driven architektúra és production-ready observability.
+- [Architektúra review — MONAD SYSTEMS](https://monad.hu/hu/platform-modernization-review): Célzott architektúra review, amely feltárja a legnagyobb hatású szűk keresztmetszeteket, és konkrét modernizációs roadmapet ad.
+- [Blog | MONAD SYSTEMS](https://monad.hu/hu/posts): Szakmai cikkek szoftverarchitektúráról, API-first kivitelezésről és backend platformfejlesztésről.
+- [Adatkezelési tájékoztató | MONAD SYSTEMS](https://monad.hu/hu/privacy): Hogyan kezeli a monad.hu a személyes adatokat: kapcsolatfelvételi űrlap, sütik nélküli statisztika, tárhely és az Ön jogai.
+- [Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS](https://monad.hu/hu/helyi-automatizalas): Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát lehet automatizálni Önöknél, és néhány napon belül már használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada.
+- [Monorepo a fejlesztő gépén: fejlesztői workspace git submodule-okból](https://monad.hu/hu/posts/git-submodule-development-workspace): Hogyan rakjunk össze git submodule-okból és package manager workspace-ből helyi fejlesztői monorepót: a fejlesztő gépén a package-ek symlinkkel kapcsolódnak, a CI, a build és az éles üzem viszont a registryből telepített, semver szerint verziózott package-eket használja.
+- [Az építőelemek szabják meg az AI-támogatott fejlesztés plafonját](https://monad.hu/hu/posts/building-blocks-ai-native-development): Miért a közös package-ek, a contractok, a futtatható architektúraszabályok és a folyamatkapuk döntik el az AI-native szoftverfejlesztés minőségét: mit érdemes kiemelni, mely szabályokat kell kikényszeríteni, hogyan kell kapukkal körülvenni az agentek munkáját, és miért kell a biztonságnak a platformba költöznie.
+- [Mielőtt implementálnánk, tervezzük meg a rendszert](https://monad.hu/hu/posts/contract-first-json-schema): A spec-first fejlesztésben a találgatás helyére explicit contractok lépnek. Az OpenAPI, az AsyncAPI és a JSON Schema együtt klienseket generál, payloadokat validál, növeli a biztonságot, és kevesebb integrációs hibával gyorsítja a delivery-t.
