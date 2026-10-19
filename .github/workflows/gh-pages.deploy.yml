@@ -35,7 +35,7 @@ jobs:
         run: npm run build
       - name: Canonicalize English paths
         run: node scripts/generate-en-redirects.mjs
-      - name: Generate sitemap and RSS feed
+      - name: Generate sitemap, RSS feed and llms.txt
         run: node scripts/generate-sitemap-and-feed.mjs
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
@@ -44,3 +44,11 @@ jobs:
         with:
           branch: gh-pages
           folder: out
+      # The IndexNow key is public by design: the protocol verifies it by
+      # fetching public/<key>.txt from the site. A failed ping never fails the
+      # deploy.
+      - name: Notify IndexNow
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: bfecd5ab327f5197cf8898da2f63d9fb
+        run: node scripts/ping-indexnow.mjs

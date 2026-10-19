@@ -15,6 +15,7 @@ import {
 import {
   DEFAULT_OG_IMAGE,
   FEED_PATH,
+  SITE_DESCRIPTION,
   SITE_NAME,
   getCanonicalUrl,
 } from '../lib/site';
@@ -43,8 +44,7 @@ const SocialIconLinkedIn = () => (
 
 const DEFAULT_TITLE =
   'MONAD SYSTEMS — Senior Software Consultancy for Custom Software Engineering';
-const DEFAULT_DESCRIPTION =
-  'Senior hands-on software consultancy specializing in custom software engineering, API-first delivery, event-driven architecture, and production-grade observability.';
+const DEFAULT_DESCRIPTION = SITE_DESCRIPTION;
 const DEFAULT_SHARE_TITLE = 'MONAD SYSTEMS';
 const DEFAULT_SHARE_DESCRIPTION =
   'Senior hands-on software consultancy for custom software engineering, legacy migration, and production-grade engineering.';
