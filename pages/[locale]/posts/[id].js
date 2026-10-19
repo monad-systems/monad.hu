@@ -5,7 +5,11 @@ import { useEffect, useRef } from 'react';
 import Layout from '../../../components/Layout';
 import { normalizeLocale, useTranslation } from '../../../lib/i18n';
 import { getAllPostIds, getPostData } from '../../../lib/posts';
-import { getBlogPostingJsonLd, getPostOgImage } from '../../../lib/site';
+import {
+  getAuthorName,
+  getBlogPostingJsonLd,
+  getPostOgImage,
+} from '../../../lib/site';
 
 let mermaidRenderCounter = 0;
 
@@ -205,11 +209,17 @@ export default function PostPage({ postData }) {
             {t('posts.detail.allPosts', 'All posts')}
           </Link>
 
-          {postData.date ? (
-            <time dateTime={postData.date}>
-              {formatDate(postData.date, locale)}
-            </time>
-          ) : null}
+          <span>
+            {getAuthorName(locale)}
+            {postData.date ? (
+              <>
+                {' · '}
+                <time dateTime={postData.date}>
+                  {formatDate(postData.date, locale)}
+                </time>
+              </>
+            ) : null}
+          </span>
         </div>
 
         {postData.isFallbackLocale ? (

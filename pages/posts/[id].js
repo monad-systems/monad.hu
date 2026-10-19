@@ -3,7 +3,11 @@ import { useEffect, useRef } from 'react';
 
 import Layout from '../../components/Layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
-import { getBlogPostingJsonLd, getPostOgImage } from '../../lib/site';
+import {
+  getAuthorName,
+  getBlogPostingJsonLd,
+  getPostOgImage,
+} from '../../lib/site';
 
 let mermaidRenderCounter = 0;
 
@@ -184,9 +188,17 @@ export default function PostPage({ postData }) {
             All posts
           </Link>
 
-          {postData.date ? (
-            <time dateTime={postData.date}>{formatDate(postData.date)}</time>
-          ) : null}
+          <span>
+            {getAuthorName('en')}
+            {postData.date ? (
+              <>
+                {' · '}
+                <time dateTime={postData.date}>
+                  {formatDate(postData.date)}
+                </time>
+              </>
+            ) : null}
+          </span>
         </div>
 
         <h1 className="blog-post__title">{postData.title}</h1>
