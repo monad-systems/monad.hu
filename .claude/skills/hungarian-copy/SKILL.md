@@ -22,6 +22,13 @@ Formal text: lean on 3rd-person verb forms and drop the pronoun where Hungarian
 would. „Ön” in every sentence reads like a bank letter. Letters open with
 „Kedves [Név]!” and close with „Üdvözlettel:”.
 
+When no person is named and the letter goes to a company's general address,
+open with **„Tisztelt [cégnév]!”**. Use the short company name the way the
+company writes it on its own site: „Tisztelt Forint-Soft Kft.!”, „Tisztelt
+NOVITAX Kft.!”. Do not open with „Jó napot kívánok!”. This was the owner's
+decision on 2026-10-19, for the NAV pilot letters to software vendors. Letters
+already sent keep their greeting.
+
 ## 2. Engineering terms stay in English
 
 Hungarian developers say these in English, so write them in English with Hungarian
@@ -294,7 +301,8 @@ for variety. This is also why the owner accepts „felmérés … felmérjük”
   (Láng 2014/3 p14). Same spirit as „we do not promise a saving we have not measured”.
 - A headline verb keeps its object: not „Automatizálunk!” (H. Varga 2007/3 p9).
 - Openings like „Tisztelt Intézet!” read as impersonal (Domonkosi Ágnes – Ludányi
-  Zsófia 2021/5 p18).
+  Zsófia 2021/5 p18). Use a person's name whenever you have one. Without a
+  name, the owner's „Tisztelt [cégnév]!” rule in section 1 applies.
 
 ### Where the journal and the owner's sentences met
 
