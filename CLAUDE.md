@@ -29,6 +29,7 @@ from git history.
   paths.
 - No personal data about anyone, and no personal email address in commits (use the
   noreply address above).
-- Enforced in part: the **Secret scan** workflow runs TruffleHog on every pull request
-  and push to `main`. It catches credentials only; names and business data are on the
-  author to keep out.
+- Enforced in part: GitHub push protection (on since 2026-10-19) rejects a push that
+  contains a recognised credential, and the **Secret scan** workflow runs TruffleHog on
+  every pull request and push to `main`. Both catch credentials only; names and
+  business data are on the author to keep out.
