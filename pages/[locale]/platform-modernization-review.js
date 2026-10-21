@@ -422,7 +422,7 @@ export default function PlatformModernizationReview() {
           {
             title: 'Áttekintés a jelenlegi architektúráról',
             format:
-              'Rendszertérkép a szolgáltatáshatárokkal, a függőségekkel és a hibák terjedési útjaival.',
+              'Rendszertérkép a service boundary-kkel, a függőségekkel és a hibák terjedési útjaival.',
           },
           {
             title:
@@ -496,7 +496,7 @@ export default function PlatformModernizationReview() {
             context:
               'B2B SaaS platform, ahol a release-eket a közös szolgáltatásokon keresztüli csatolás és a tisztázatlan felelősségi határok blokkolták',
             outcome:
-              'A review kijelölte a kívánt szolgáltatáshatárokat, azonosította a legfontosabb akadályokat, és 90 napos ütemtervet készített, amelyet a csapat saját maga hajtott végre.',
+              'A review kijelölte a kívánt service boundary-ket, azonosította a legfontosabb akadályokat, és 90 napos ütemtervet készített, amelyet a csapat saját maga hajtott végre.',
           },
           {
             context:

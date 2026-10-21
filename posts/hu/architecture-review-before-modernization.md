@@ -52,7 +52,7 @@ A térkép bizonyítékból készül, nem a wikin lévő ábrából. A hívási 
 
 A második kérdés egy módosítást követ a fejlesztő branchétől az éles üzemig. Hol várakozik? Review-ra, környezetre, kézi tesztkörre, release-ablakra? Mely lépések automatizáltak, és melyek függenek egyetlen embertől? Az eredmény a delivery pipeline folyamattérképe azokkal a pontokkal, ahol a release-ek lelassulnak vagy elakadnak.
 
-A review-ból gyakran ez a rész hasznosítható a leggyorsabban. Egy szűk keresztmetszetet a pipeline-ban hetek alatt meg lehet szüntetni, egy szolgáltatáshatár áthelyezése negyedévekig tart.
+A review-ból gyakran ez a rész hasznosítható a leggyorsabban. Egy szűk keresztmetszetet a pipeline-ban hetek alatt meg lehet szüntetni, egy service boundary áthelyezése negyedévekig tart.
 
 ### Melyik adósság hordoz üzleti kockázatot?
 

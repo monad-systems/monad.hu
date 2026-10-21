@@ -447,7 +447,7 @@ export default function Home() {
             title: 'Fizz',
             category: 'Egyedi szoftverfejlesztés',
             description:
-              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Search-re cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a spec-first API-fejlesztést, az automatizált quality gate-eket és a production-grade observability-t, majd a distributed monolitot valóban független, lazán csatolt microservice-ekre bontottuk, tiszta szolgáltatáshatárokkal.',
+              'Modernizáltuk az OTP ökoszisztéma egyik platformjának keresését: a lassú külső szolgáltatót adapter mintával Azure AI Search-re cseréltük, ami évi több százezer dolláros megtakarítást és jóval gyorsabb keresési szinkronizációt hozott. A CI futásidejét kb. egy óráról kb. hat percre csökkentettük. Bevezettük a spec-first API-fejlesztést, az automatizált quality gate-eket és a production-grade observability-t, majd a distributed monolitot valóban független, lazán csatolt microservice-ekre bontottuk, tiszta service boundary-kkel.',
             tags: [
               'API Design-First',
               'Quality Gates',
