@@ -294,6 +294,15 @@
   margin: 0 auto;
 }
 
+// Mermaid colours edge labels with primaryTextColor, the dark text meant for
+// the turquoise nodes, which leaves it invisible on the dark label background.
+// Its generated styles are scoped by the diagram's id, so plain specificity
+// cannot win here.
+.blog-post__content .mermaid .edgeLabel,
+.blog-post__content .mermaid .edgeLabel p {
+  color: #e8eef8 !important;
+}
+
 @media (max-width: 768px) {
   .posts-page {
     padding-top: 3rem;
