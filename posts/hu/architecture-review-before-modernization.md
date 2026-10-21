@@ -15,7 +15,7 @@ tags:
 
 ## Az újraírás, amely elakad
 
-A legtöbb modernizációs program ésszerűnek hangzó döntéssel kezdődik. A monolitnak mennie kell, ezért a csapat megtervezi az utódját. Elkészül a célarchitektúra szolgáltatásokkal, eseménybusszal és új adatmodellel. Egy-két évvel később a régi rendszer még mindig kiszolgálja az ügyfeleket, az új a töredéküket, és mindkettőt karban kell tartani.
+A legtöbb modernizációs program ésszerűnek hangzó döntéssel kezdődik. A monolitnak mennie kell, ezért a csapat megtervezi az utódját. Elkészül a célarchitektúra szolgáltatásokkal, event busszal és új adatmodellel. Egy-két évvel később a régi rendszer még mindig kiszolgálja az ügyfeleket, az új a töredéküket, és mindkettőt karban kell tartani.
 
 Nem a cél volt rossz, hanem a sorrend. A csapat eldöntötte, hová megy, mielőtt kiderítette volna, hol áll.
 
@@ -97,7 +97,7 @@ A csapattól három dolog kell: olvasási hozzáférés a repókhoz, az infrastr
 
 Mielőtt elfogadnánk egy roadmapet, olvassuk végig négy szempont szerint.
 
-1. Minden tétel megnevezi a tünetet, amelyet megszüntet. Az „Eseménybusz bevezetése” megoldás, amely problémát keres magának. A „Ne bukjon el a rendelés frissítése, ha a készletszolgáltatás lassú” megállapítás.
+1. Minden tétel megnevezi a tünetet, amelyet megszüntet. Az „Event bus bevezetése” megoldás, amely problémát keres magának. A „Ne bukjon el a rendelés frissítése, ha a készletszolgáltatás lassú” megállapítás.
 2. Az első tétel kicsi és mérhető. Heteket vesz igénybe, és a végén a csapat meg tudja mondani, működött-e.
 3. A függőségek explicitek: mely contractokat kell formalizálni, mielőtt egy szolgáltatást le lehet választani, és hol kell observability, mielőtt egy migrációt mérni lehet.
 4. A ráfordítást tételenként becsüljük, és minden becslés megmondja, mit feltételez.
