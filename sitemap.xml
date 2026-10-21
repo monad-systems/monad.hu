@@ -52,6 +52,20 @@
     <loc>https://monad.hu/hu/helyi-automatizalas</loc>
   </url>
   <url>
+    <loc>https://monad.hu/posts/architecture-review-before-modernization</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/architecture-review-before-modernization" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts/architecture-review-before-modernization" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts/architecture-review-before-modernization" />
+  </url>
+  <url>
+    <loc>https://monad.hu/hu/posts/architecture-review-before-modernization</loc>
+    <lastmod>2026-10-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/architecture-review-before-modernization" />
+    <xhtml:link rel="alternate" hreflang="hu" href="https://monad.hu/hu/posts/architecture-review-before-modernization" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://monad.hu/posts/architecture-review-before-modernization" />
+  </url>
+  <url>
     <loc>https://monad.hu/posts/git-submodule-development-workspace</loc>
     <lastmod>2026-10-13</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://monad.hu/posts/git-submodule-development-workspace" />

@@ -6,7 +6,20 @@
     <description>Engineering insights on architecture, API design-first delivery, and backend platform development.</description>
     <language>en</language>
     <atom:link href="https://monad.hu/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>Tue, 13 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Architecture Review Before Modernization: What to Look at in a Legacy Platform</title>
+      <link>https://monad.hu/posts/architecture-review-before-modernization</link>
+      <guid isPermaLink="true">https://monad.hu/posts/architecture-review-before-modernization</guid>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Most modernization programmes start with a target architecture and end with a half-finished migration. A two-week architecture review turns the order around: first find out where the legacy platform slows delivery, which technical debt carries business risk and what to change first, then write the roadmap.</description>
+      <category>Software Architecture Review</category>
+      <category>Legacy Modernization</category>
+      <category>Monolith Decomposition</category>
+      <category>Technical Debt</category>
+      <category>Modernization Roadmap</category>
+      <category>Custom Software Engineering</category>
+    </item>
     <item>
       <title>A Monorepo for Your Laptop: Git Submodules as a Development Workspace</title>
       <link>https://monad.hu/posts/git-submodule-development-workspace</link>
