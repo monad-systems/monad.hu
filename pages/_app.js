@@ -46,6 +46,7 @@ function App({ Component, pageProps, router }) {
             src={UMAMI_SCRIPT_URL}
             data-website-id={UMAMI_WEBSITE_ID}
             data-domains="monad.hu"
+            data-performance="true"
             strategy="afterInteractive"
           />
         ) : null}

@@ -107,6 +107,11 @@ included when `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set at build time, and it only c
 `monad.hu`, so local builds are never tracked. Set `NEXT_PUBLIC_UMAMI_SCRIPT_URL` as well when
 using a self-hosted Umami instance; it defaults to Umami Cloud.
 
+The script also reports Core Web Vitals (LCP, INP, CLS, FCP, TTFB) through `data-performance`,
+which needs Umami 3.1 or later. They appear under the site's Performance tab in Umami. Search
+Console's Core Web Vitals report is separate: Google fills it from Chrome UX Report field data,
+and nothing on the site feeds it.
+
 For GitHub Pages deployment, add both as repository secrets (the script URL is optional).
 
 Custom events: `get-in-touch-click`, `review-cta-click` (homepage buttons to the review page), and
