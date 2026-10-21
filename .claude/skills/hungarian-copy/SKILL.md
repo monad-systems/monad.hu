@@ -50,6 +50,9 @@ grammar around them. Do not translate them on engineering pages or in blog posts
 | repo, branch | GitHub-repójában, repóban, repói; branchen, release branchre, branchei. Not *tároló*, *ág* (owner, 2026-10-19, letters to developer readers) |
 | consumer, provider | consumerek, a provider |
 | stakeholder, right-sizing, developer experience, production-ready, production-grade, legacy, guardrail, compliance, correlation ID, bounded context, governance | stakeholder interjúk, guardrailek |
+| service boundary | service boundary-k, service boundary-kkel, service boundary-ket. Not *szolgáltatáshatár* (owner, 2026-10-21: „bután hangzik”) |
+| data flow | data flow-k, data flow-kat, data flow-król. Not *adatfolyam* (owner, 2026-10-21) |
+| event bus | event busszal, event bust (direct suffix, as with *busz*). Not *eseménybusz* (owner, 2026-10-21) |
 
 Hungarian is better where the Hungarian word is what engineers actually say:
 *szűk keresztmetszet, élesben / éles üzem, üzemeltetés, kódgenerálás, adatmigráció,
