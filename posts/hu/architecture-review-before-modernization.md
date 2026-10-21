@@ -19,24 +19,24 @@ A legtöbb modernizációs program ésszerűnek hangzó döntéssel kezdődik. A
 
 Nem a cél volt rossz, hanem a sorrend. A csapat eldöntötte, hová megy, mielőtt kiderítette volna, hol áll.
 
-Egy évek óta növekvő rendszer tele van olyan döntésekkel, amelyekre már senki nem emlékszik. A határok a szervezeti ábrán léteznek, a kódban nem. Két szolgáltatás közös adatbázist használ, mert egyszer az volt a gyorsabb. Az integrációt, amelytől mindenki függ, egyetlen kolléga fejében dokumentálták. Az ilyen tudás nélkül rajzolt célarchitektúra találgatás, és a találgatásra épülő migráció incidensről incidensre fedezi fel a valódi korlátokat.
+Az évek óta növekvő rendszer tele van olyan döntésekkel, amelyekre már senki nem emlékszik. A határok a szervezeti ábrán léteznek, a kódban nem. Két szolgáltatás közös adatbázist használ, mert egyszer az volt a gyorsabb. Az integráció, amelytől mindenki függ, csak egyetlen kolléga fejében van meg. Az ilyen tudás nélkül rajzolt célarchitektúra találgatás, és a találgatásra épülő migráció incidensről incidensre fedezi fel a valódi korlátokat.
 
-Az architektúra review a feltárást teszi az első helyre. A feladata, hogy leírja a rendszert úgy, ahogy van, megtalálja, hol lassítja a csapatot vagy hol jelent üzleti kockázatot, és ebből sorrendet csináljon. Rövid, a legtöbb rendszerhez két hét elég, és az eredménye írásos, hogy a későbbi döntéseket hozzá lehessen mérni.
+Az architektúra review a feltárást teszi az első helyre. A feladata, hogy leírja a rendszert úgy, ahogy van, megtalálja, hol lassítja a csapatot vagy hol jelent üzleti kockázatot, és ezekből sorrendet állítson fel. Rövid, a legtöbb rendszerhez két hét elég, és az eredménye írásos, hogy a későbbi döntéseket hozzá lehessen mérni.
 
 ## Mikor térül meg a review
 
 A jel ritkán az, hogy valaki kimondja: rossz az architektúra. Inkább tünetek sora, amelyekkel a csapat megtanult együtt élni:
 
 - A release napokig tart. Kézi jóváhagyások, hosszú regressziós tesztkörök vagy egyetlen deployolható egység, amely mindenkit blokkol.
-- A csapatok egymás lábára lépnek. Ütköző módosítások, közös adatbázis és tisztázatlan felelősségi körök miatt minden sprint egyeztetéssé válik.
-- Az integrációs hibák láncban terjednek. Ha egy szolgáltatás leáll, magával ránt még hármat, mert nincs circuit breaker, és nincsenek tiszta contractok.
+- A csapatok akadályozzák egymást. Ütköző módosítások, közös adatbázis és tisztázatlan felelősségi körök miatt minden sprint egyeztetéssé válik.
+- Az integrációs hibák továbbgyűrűznek. Ha egy szolgáltatás leáll, magával ránt még hármat, mert nincs circuit breaker, és nincsenek tiszta contractok.
 - Az éles hibákról a felhasználóktól értesülünk. Az incidens első órája azzal telik, hogy kiderüljön, melyik szolgáltatás a hibás.
-- Az új kollégák betanulása lassú. A kódbázis csak a régi kollégák fejében lévő tudással érthető, a dokumentáció hiányos vagy elavult.
-- Skálázni csak az egészet lehet. A leginkább terhelt részeket nem lehet külön skálázni, az egész monolitnak együtt kell nőnie.
+- Az új kollégák lassan kapcsolódnak be. A kódbázis csak a régi kollégák fejében lévő tudással érthető, a dokumentáció hiányos vagy elavult.
+- A skálázás mindent érint. A leginkább terhelt részeket nem lehet külön skálázni, az egész monolitnak együtt kell nőnie.
 
 Ha ezek közül kettő-három egyszerre igaz, akkor a rendszer szabja meg a csapat delivery-jét, és a csapat reagál ahelyett, hogy döntene. Ilyenkor van szükség független nézőpontra.
 
-Vannak helyzetek, ahová a review nem való. Az egyszerű rendszernek, ahol nincs architekturális nyomás, backlog kell, nem review. A csapatnak, amelyiknek plusz kéz kell, fejlesztők kellenek. És ahol a legalacsonyabb ár dönt, a review veszít az újraírást ígérő árajánlattal szemben.
+Vannak helyzetek, ahová a review nem való. Az egyszerű rendszernek, ahol nincs architekturális nyomás, backlog kell, nem review. Annak a csapatnak, amelyik csak plusz fejlesztői kapacitást keres, fejlesztők kellenek. És ahol a legalacsonyabb ár dönt, a review veszít az újraírást ígérő árajánlattal szemben.
 
 ## Négy kérdés, amelyre a review válaszol
 
@@ -44,7 +44,7 @@ A használható review kérdések köré épül, nem dokumentumok köré. A legt
 
 ### Hol vannak a határok valójában?
 
-Az első napok a rendszerről szólnak úgy, ahogy van: a kódról, az infrastruktúráról, az adatfolyamokról és azokról, akik ismerik. Az eredmény rendszertérkép a szolgáltatásokkal és modulokkal, a köztük lévő függőségekkel, a közös adattárakkal és azokkal az utakkal, amelyeken egy hiba továbbterjed.
+Az első napok a rendszerről szólnak úgy, ahogy van: a kódról, az infrastruktúráról, az adatfolyamokról és azokról, akik ismerik. Az eredmény rendszertérkép a szolgáltatásokkal és modulokkal, a köztük lévő függőségekkel, a közös adattárakkal és a hibák terjedési útjaival.
 
 A térkép bizonyítékból készül, nem a wikin lévő ábrából. A hívási gráfok, a deployment-manifestek, az adatbázissémák és az üzenetsorok topicjai megmondják, hol vannak a határok. Az interjúk megmondják, miért. A kettő közti különbség rendszerint az első megállapítás.
 
@@ -58,11 +58,11 @@ A review-ból gyakran ez a rész hasznosítható a leggyorsabban. Egy szűk kere
 
 Minden legacy rendszerben van technikai adósság, és a nagy része ártalmatlan. A review-nak szét kell választania azt az adósságot, amelyik pénzbe kerül, attól, amelyik csak a mérnököket zavarja. Az első csoportba tartoznak az egyetlen hibaponttól függő részek, a dokumentálatlan integrációk, a rendszerek közti adatkonzisztencia-hiányok és azok a komponensek, amelyeket már senki nem tud frissíteni. A másodikba az a modul, amelyik régebbi mintát követ, de működik, és ritkán változik.
 
-Az eredmény rangsorolt kockázati lista, minden tételnél az üzleti hatással: kieső bevétel leállás alatt, szabályozói kitettség, release, amelyet nem lehet kiadni. Attól lesz a lista használható azoknak is, akik nem olvasnak kódot, hogy a hatás rangsorolja, nem a mérnöki ízlés.
+Az eredmény rangsorolt kockázati lista, minden tételnél az üzleti hatással: leállás alatt kieső bevétel, szabályozói kitettség, release, amelyet nem lehet kiadni. Attól lesz a lista használható azoknak is, akik nem olvasnak kódot, hogy a hatás rangsorolja, nem a mérnöki ízlés.
 
 ### Mi legyen az első?
 
-Az utolsó kérdés sorrendet csinál a megállapításokból. Az eredmény a következő 90 nap roadmapje, prioritás, függőség és végrehajtási kockázat szerint sorba állítva. Minden tétel megnevezi a tünetet, amelyet megszüntet, és azt, mire van szüksége az előtte lévő tételektől.
+Az utolsó kérdés sorrendbe állítja a megállapításokat. Az eredmény a következő 90 nap roadmapje, prioritás, függőség és végrehajtási kockázat szerint sorba állítva. Minden tétel megnevezi a tünetet, amelyet megszüntet, és azt, mire van szüksége az előtte lévő tételektől.
 
 A 90 nap szándékos. A hosszabb terv úti célt ír le. A 90 napos terv olyan munkát ír le, amelyet hétfőn el lehet kezdeni, és a negyedév végén ellenőrizni lehet.
 
@@ -70,9 +70,9 @@ A 90 nap szándékos. A hosszabb terv úti célt ír le. A 90 napos terv olyan m
 
 ```mermaid
 flowchart LR
-    S[Tünetek, amelyekkel a csapat együtt él] --> A[Architektúra bejárása<br/>rendszertérkép]
-    A --> B[Szűk keresztmetszetek<br/>a delivery folyamattérképe]
-    B --> R[Kockázatok<br/>üzleti hatás szerint rangsorolva]
+    S[Tünetek, amelyekkel a csapat együtt él] --> A[Az architektúra átvilágítása<br/>rendszertérkép]
+    A --> B[A szűk keresztmetszetek feltérképezése<br/>a delivery folyamattérképe]
+    B --> R[Kockázatértékelés<br/>üzleti hatás szerint rangsorolva]
     R --> P[Rangsorolt 90 napos roadmap]
     P --> D{Mi a következő?}
     D -->|házon belül| T[A csapat végrehajtja]
@@ -81,9 +81,9 @@ flowchart LR
 
 ## Hogyan telik a két hét
 
-A módszer hétköznapi. Attól működik, hogy mindet elvégezzük, sorrendben, és leírjuk.
+A módszer hétköznapi. Attól működik, hogy minden lépését elvégezzük, sorrendben, és leírjuk.
 
-Először a kulcsfejlesztőkkel készülnek interjúk. Mindegyikben ugyanazok a kérdések hangzanak el: mit változtatnál meg először, mi romlik el a leggyakrabban, mihez nem akar nyúlni senki. A válaszok hamarabb mutatnak egy irányba, mint várnánk, és ahol eltérnek, ott érdemes közelebbről megnézni a rendszert.
+Először interjút készítünk a kulcsfejlesztőkkel. Mindegyikben ugyanazok a kérdések hangzanak el: mit kellene először megváltoztatni, mi romlik el a leggyakrabban, mihez nem nyúl senki szívesen. A válaszok hamarabb mutatnak egy irányba, mint várnánk, és ahol eltérnek, ott érdemes közelebbről megnézni a rendszert.
 
 Ezt követi a rendszerbejárás: a kritikus szolgáltatások kódja, az infrastruktúra definíciói, a CI/CD-konfiguráció és az adatfolyamok. A célzott code review azokban a szolgáltatásokban, amelyekre az interjúk mutattak, ellenőrzi, hogy a probléma tényleg ott van-e, ahol gondolják.
 
@@ -106,8 +106,8 @@ A legacy rendszer roadmapje ritkán kezdődik azzal, hogy leválasztunk egy szol
 
 ## Ha magunk csináljuk
 
-Egy csapat a saját rendszerén is elvégezheti ezt a review-t, és a fenti kérdések a napirend. Belülről két dolog nehezíti. Akik a rendszert építették, ismerik a történetét, és a történet minden döntést olyan jól megmagyaráz, hogy a probléma eltűnik. És aki a review-t vezeti, annak a kollégáinak kell megmondania, hogy a munkájuk melyik része lett kockázat.
+A csapat a saját rendszerén is elvégezheti ezt a review-t, és a fenti kérdések adják a napirendet. Belülről két dolog nehezíti. Akik a rendszert építették, ismerik a történetét, és a történet minden döntést olyan jól megmagyaráz, hogy a probléma eltűnik. És aki a review-t vezeti, annak a kollégáinak kell megmondania, hogy a munkájuk melyik része lett kockázat.
 
-A külső szakértőnek nincs története, és nincs tétje a korábbi döntésekben, és az érték nagy része ebből jön. A módszer mindkét esetben ugyanaz: bizonyítékból térképezzük fel a rendszert, kövessünk végig egy módosítást a pipeline-on, rangsoroljuk az adósságot üzleti hatás szerint, és írjunk 90 napos tervet, amelynek az első tétele kicsi.
+A külső szakértőnek nincs története, és nem érintett a korábbi döntésekben. Az érték nagy része ebből jön. A módszer mindkét esetben ugyanaz: bizonyítékból térképezzük fel a rendszert, kövessünk végig egy módosítást a pipeline-on, rangsoroljuk az adósságot üzleti hatás szerint, és írjunk 90 napos tervet, amelynek az első tétele kicsi.
 
-Mi ezt fix, kéthetes megbízásként végezzük, ez az [architektúra review](/hu/platform-modernization-review). A módszer nem attól függ, ki végzi.
+Mi ezt kéthetes, előre rögzített feladatú megbízásként végezzük: ez az [architektúra review](/hu/platform-modernization-review). A módszer nem attól függ, ki végzi.
