@@ -439,7 +439,7 @@ export default function Home() {
           {
             title: 'A teljes platform egy kézben',
             description:
-              'Backend, frontend, infrastruktúra, CI/CD, adatfolyamok és event-driven integráció.',
+              'Backend, frontend, infrastruktúra, CI/CD, data flow-k és event-driven integráció.',
           },
         ],
         caseStudies: [

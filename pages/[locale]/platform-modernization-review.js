@@ -397,7 +397,7 @@ export default function PlatformModernizationReview() {
             step: '01',
             title: 'Az architektúra alapos átvilágítása',
             detail:
-              'Átnézzük a kódbázist, az infrastruktúrát, a CI/CD-t és az adatfolyamokat, és interjút készítünk a kulcsfejlesztőkkel, hogy megértsük a problémákat és a korlátokat.',
+              'Átnézzük a kódbázist, az infrastruktúrát, a CI/CD-t és a data flow-kat, és interjút készítünk a kulcsfejlesztőkkel, hogy megértsük a problémákat és a korlátokat.',
           },
           {
             step: '02',

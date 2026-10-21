@@ -44,7 +44,7 @@ A használható review kérdések köré épül, nem dokumentumok köré. A legt
 
 ### Hol vannak a határok valójában?
 
-Az első napok a rendszerről szólnak úgy, ahogy van: a kódról, az infrastruktúráról, az adatfolyamokról és azokról, akik ismerik. Az eredmény rendszertérkép a szolgáltatásokkal és modulokkal, a köztük lévő függőségekkel, a közös adattárakkal és a hibák terjedési útjaival.
+Az első napok a rendszerről szólnak úgy, ahogy van: a kódról, az infrastruktúráról, a data flow-król és azokról, akik ismerik. Az eredmény rendszertérkép a szolgáltatásokkal és modulokkal, a köztük lévő függőségekkel, a közös adattárakkal és a hibák terjedési útjaival.
 
 A térkép bizonyítékból készül, nem a wikin lévő ábrából. A hívási gráfok, a deployment-manifestek, az adatbázissémák és az üzenetsorok topicjai megmondják, hol vannak a határok. Az interjúk megmondják, miért. A kettő közti különbség rendszerint az első megállapítás.
 
@@ -85,7 +85,7 @@ A módszer hétköznapi. Attól működik, hogy minden lépését elvégezzük, 
 
 Először interjút készítünk a kulcsfejlesztőkkel. Mindegyikben ugyanazok a kérdések hangzanak el: mit kellene először megváltoztatni, mi romlik el a leggyakrabban, mihez nem nyúl senki szívesen. A válaszok hamarabb mutatnak egy irányba, mint várnánk, és ahol eltérnek, ott érdemes közelebbről megnézni a rendszert.
 
-Ezt követi a rendszerbejárás: a kritikus szolgáltatások kódja, az infrastruktúra definíciói, a CI/CD-konfiguráció és az adatfolyamok. A célzott code review azokban a szolgáltatásokban, amelyekre az interjúk mutattak, ellenőrzi, hogy a probléma tényleg ott van-e, ahol gondolják.
+Ezt követi a rendszerbejárás: a kritikus szolgáltatások kódja, az infrastruktúra definíciói, a CI/CD-konfiguráció és a data flow-k. A célzott code review azokban a szolgáltatásokban, amelyekre az interjúk mutattak, ellenőrzi, hogy a probléma tényleg ott van-e, ahol gondolják.
 
 A delivery pipeline áttekintése a CI/CD-t, a környezeteket és a csapatok közti átadásokat nézi, és egy módosítást követ végig mindegyiken.
 
