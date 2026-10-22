@@ -214,7 +214,7 @@ Egy kiforrott beállításban a tipikus ellenőrzések:
 - annak ellenőrzése, hogy a generált kód commitolva vagy publikálva van
 - tesztek futtatása generált kliensekkel és mockokkal
 
-Ezek az ellenőrzések teszik a contractot mérvadóvá, így a contract-first nem azon múlik, hogy mindenki emlékszik-e rá és betartja-e.
+Ezek az ellenőrzések teszik a contractot mérvadóvá, így a contract-first nem azon múlik, hogy mindenki emlékszik-e rá, és betartja-e.
 
 ## Vizuál: spec-first platform workflow
 
@@ -242,7 +242,7 @@ Tipikusan akkor bukik meg, ha:
 - túlságosan aprólékosak a modell megkötései
 - senki nem felel a contract lifecycle-ért
 
-Ott használjuk a spec-first megközelítést, ahol a contract számít. Tartsuk olvashatónak a sémákat, csak olyan artifactokat generáljunk, amelyek munkát váltanak ki vagy eltérést előznek meg, kényszerítsük ki a folyamatot CI-ban, és kezeljük a contract review-t design review-ként.
+Ott használjuk a spec-first megközelítést, ahol a contract számít. Tartsuk olvashatónak a sémákat, csak olyan artifactokat generáljunk, amelyek munkát váltanak ki, vagy eltérést előznek meg, kényszerítsük ki a folyamatot CI-ban, és kezeljük a contract review-t design review-ként.
 
 ## A consumerek számával együtt nő a megtérülés
 

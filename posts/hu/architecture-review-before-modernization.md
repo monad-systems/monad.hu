@@ -21,7 +21,7 @@ Nem a cél volt rossz, hanem a sorrend. A csapat eldöntötte, hová megy, miel�
 
 Az évek óta növekvő rendszer tele van olyan döntésekkel, amelyekre már senki nem emlékszik. A határok a szervezeti ábrán léteznek, a kódban nem. Két szolgáltatás közös adatbázist használ, mert egyszer az volt a gyorsabb. Az integráció, amelytől mindenki függ, csak egyetlen kolléga fejében van meg. Az ilyen tudás nélkül rajzolt célarchitektúra találgatás, és a találgatásra épülő migráció incidensről incidensre fedezi fel a valódi korlátokat.
 
-Az architektúra review a feltárást teszi az első helyre. A feladata, hogy leírja a rendszert úgy, ahogy van, megtalálja, hol lassítja a csapatot vagy hol jelent üzleti kockázatot, és ezekből sorrendet állítson fel. Rövid, a legtöbb rendszerhez két hét elég, és az eredménye írásos, hogy a későbbi döntéseket hozzá lehessen mérni.
+Az architektúra review a feltárást teszi az első helyre. A feladata, hogy leírja a rendszert úgy, ahogy van, megtalálja, hol lassítja a csapatot, vagy hol jelent üzleti kockázatot, és ezekből sorrendet állítson fel. Rövid, a legtöbb rendszerhez két hét elég, és az eredménye írásos, hogy a későbbi döntéseket hozzá lehessen mérni.
 
 ## Mikor térül meg a review
 

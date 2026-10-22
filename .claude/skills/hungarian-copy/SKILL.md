@@ -160,13 +160,52 @@ jargon, but no slang either.
 - Diagram headings in posts start with „Vizuál:” — the renderer turns them into
   figure captions.
 
+### Commas and spelling (AkH. 12)
+
+The owner asked on 2026-10-22 for every Hungarian text to follow the official spelling
+rules, naming the comma before „és” as the example. These rules are the ones English
+habits break. Source: *A magyar helyesírás szabályai*, 12th edition,
+<https://helyesiras.mta.hu/helyesiras/default/akh12>, read 2026-10-22.
+
+- **Clause boundary: always a comma, conjunction or not (244. a–b).** That includes
+  „és, s, meg, vagy”. A clause is anything with its own predicate, even when it shares
+  the subject: „A release napokig tart, és mindenkit blokkol.”
+- **Sentence parts joined by „és, s, meg, vagy”: no comma (248. d).** „sok mákot és
+  cukrot”. No serial (Oxford) comma before the last item of a list: „a CI, a build és
+  az éles üzem”, never „a CI, a build, és az éles üzem”.
+- **Other conjunctions take a comma even between sentence parts (248. c):**
+  „…, valamint”, „…, illetve”, „…, sőt”, „…, de”.
+- **A part added as an afterthought takes a comma (248. e):** „Ernyőt hozzál, vagy
+  kabátot!”
+- **Paired conjunctions: comma before the second (248. f):** „se…, se…”, „vagy…, vagy…”.
+- **Comparative „mint”: always a comma (244. c):** „gyorsabban nő, mint a diff mérete”.
+  „mint” meaning *as, in the role of* takes none (250. b).
+- **„anélkül hogy”, „ahelyett hogy”: comma before the pair (244. d).** A comma before
+  „hogy” as well is optional.
+
+The common miss is two predicates joined by „és” or „vagy”, each with its own object
+or adverbial. Fixed on 2026-10-22:
+
+| Wrong | Right |
+|---|---|
+| hol lassítja a csapatot vagy hol jelent üzleti kockázatot | hol lassítja a csapatot, vagy hol jelent üzleti kockázatot |
+| amelyek munkát váltanak ki vagy eltérést előznek meg | amelyek munkát váltanak ki, vagy eltérést előznek meg |
+| hogy mindenki emlékszik-e rá és betartja-e | hogy mindenki emlékszik-e rá, és betartja-e |
+| javítottuk a megbízhatóságot és tisztább architektúrát építettünk | javítottuk a megbízhatóságot, és tisztább architektúrát építettünk |
+| tároljuk és bármikor visszakereshetővé tesszük őket | tároljuk, és bármikor visszakereshetővé tesszük őket |
+
+Two predicates that share everything else need no comma: „ugyanaz a rendszer írja és
+hagyja jóvá a változást”, „hol lassulnak le vagy akadnak el a release-ek”. When unsure
+whether a part is its own clause, list the sentence instead of guessing.
+
 ## 5. How to work
 
 1. Read the whole text before changing anything.
 2. Pass one: address (section 1). Pass two: terms (section 2). Pass three: calques
    (section 3), sentence by sentence. Pass four, on SME pages and letters: read each sentence as the
    owner of a family firm would, and check that it says what they get (the last part
-   of section 3).
+   of section 3). Last pass, on every text: commas and spelling (section 4), checking
+   each „és”, „vagy” and „meg” for a clause boundary.
 3. Never change facts, numbers, names, code, inline code, links or front matter keys.
    Never add claims the text did not make.
 4. Blog posts also get the structural checklist of the `avoid-ai-writing` skill. Its
