@@ -182,10 +182,26 @@ export default function PostPage({ postData }) {
       await Promise.all(tasks);
     };
 
-    renderMermaid().catch(() => {});
+    // Mermaid blocks the main thread for hundreds of milliseconds, so load it
+    // only once the first diagram comes within a few screens of the viewport.
+    const firstDiagram = contentRef.current?.querySelector(
+      'pre > code.language-mermaid',
+    );
+    if (!firstDiagram) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        renderMermaid().catch(() => {});
+      },
+      { rootMargin: '1000px 0px' },
+    );
+    observer.observe(firstDiagram.parentElement);
 
     return () => {
       isCanceled = true;
+      observer.disconnect();
     };
   }, [postData.id]);
 
@@ -252,15 +268,19 @@ export default function PostPage({ postData }) {
 
         {postData.image ? (
           // The cover repeats the title, so screen readers skip it.
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            className="blog-post__cover"
-            src={postData.image}
-            alt=""
-            width={1200}
-            height={630}
-            decoding="async"
-          />
+          <picture>
+            {postData.imageWebp ? (
+              <source srcSet={postData.imageWebp} type="image/webp" />
+            ) : null}
+            <img
+              className="blog-post__cover"
+              src={postData.image}
+              alt=""
+              width={1200}
+              height={630}
+              fetchPriority="high"
+            />
+          </picture>
         ) : null}
 
         <div
