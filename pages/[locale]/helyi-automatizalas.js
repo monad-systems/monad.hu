@@ -151,7 +151,7 @@ const firstBuilds = [
   {
     title: 'Gyártási és minőségi bizonylatok',
     detail:
-      'Tételszám szerint rendszerezve tároljuk és bármikor visszakereshetővé tesszük őket, így egy reklamáció kivizsgálásához nem kell papíralapú iratokat átnézni.',
+      'Tételszám szerint rendszerezve tároljuk, és bármikor visszakereshetővé tesszük őket, így egy reklamáció kivizsgálásához nem kell papíralapú iratokat átnézni.',
   },
   {
     title: 'Heti kimutatás',

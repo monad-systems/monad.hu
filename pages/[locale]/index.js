@@ -543,14 +543,14 @@ export default function Home() {
         caseStudiesTitlePrefix: 'Valós problémák,',
         caseStudiesTitleAccent: 'működő megoldások.',
         caseStudiesLead:
-          'Kiválasztott projektek, ahol mérhetően csökkentettük a költségeket, javítottuk a megbízhatóságot és tisztább architektúrát építettünk, nem csak tanácsot adtunk.',
+          'Kiválasztott projektek, ahol mérhetően csökkentettük a költségeket, javítottuk a megbízhatóságot, és tisztább architektúrát építettünk, nem csak tanácsot adtunk.',
         aboutEyebrow: 'Rólunk',
         aboutTitlePrefix: 'Senior tanácsadás,',
         aboutTitleAccent: 'gyakorlati megvalósítás.',
         aboutLead1:
           'A MONAD alapítói vezetésű szoftvertanácsadó cég, több mint 20 év gyakorlati mérnöki tapasztalattal összetett, kritikus rendszerekben: banki infrastruktúrában, biztosítási platformokon, állami cloud rendszerekben és gyorsan növekvő termékcégeknél.',
         aboutLead2:
-          'Beépülő senior mérnökként és architektként dolgozunk, nem külső tanácsadóként, aki egy prezentációval távozik. Aki felméri a rendszert, ugyanő írja a kódot, építi az infrastruktúrát és állítja be az observability-t. Minden együttműködés működő szoftverrel és átadott tudással zárul.',
+          'Beépülő senior mérnökként és architektként dolgozunk, nem külső tanácsadóként, aki egy prezentációval távozik. Aki felméri a rendszert, ugyanő írja a kódot, építi az infrastruktúrát, és állítja be az observability-t. Minden együttműködés működő szoftverrel és átadott tudással zárul.',
         aboutValues: [
           {
             title: 'Spec-first fejlesztés',
