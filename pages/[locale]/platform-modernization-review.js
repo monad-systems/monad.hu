@@ -455,7 +455,7 @@ export default function PlatformModernizationReview() {
         buyerCommitment: [
           'Egy 30 perces egyeztető hívás a fejlesztési vezetéssel',
           'Három–öt stakeholder interjú az első héten',
-          'Hozzáférés az architektúra-dokumentációhoz, a CI/CD-hez és a kritikus szolgáltatásokhoz',
+          'Hozzáférés az architektúradokumentációhoz, a CI/CD-hez és a kritikus szolgáltatásokhoz',
           'Egy záró vezetői összefoglaló a második hét végén',
         ],
         nextSteps: [

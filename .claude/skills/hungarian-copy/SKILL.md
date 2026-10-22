@@ -198,6 +198,32 @@ Two predicates that share everything else need no comma: „ugyanaz a rendszer �
 hagyja jóvá a változást”, „hol lassulnak le vagy akadnak el a release-ek”. When unsure
 whether a part is its own clause, list the sentence instead of guessing.
 
+**Compounds.** A noun used as the attribute of another noun forms a compound; it is
+not two words.
+
+- **Two parts: one word, however long (139):** *adatbázisséma, adatbázisréteg,
+  importsor, célrepó, adaptermintával, platformcsapat, platformképességek,
+  folyamatautomatizálás, architektúradokumentáció*. No hyphen for readability.
+- **Three or more parts: one word up to six syllables, else a hyphen at the main
+  boundary (139):** *tervjóváhagyás* (5), *környezetváltozó-betöltő,
+  adatkonzisztencia-hiány, építőelem-kérdés*. Suffixes do not count.
+- **Abbreviation or name + common noun: hyphen (113, 217. d):** *CI-hiba,
+  CI-eredmény, CI-kapu, API-kliens, ERP-platform, TAJ-azonosító, SAST-eszköz,
+  OTP-ökoszisztéma, CNCF-ökoszisztéma, OpenAPI-dokumentum, TypeScript-típus,
+  Excel-tábla*. In a pair, the first keeps the hyphen: „SAST- vagy DAST-eszköz”,
+  „e-mail- és postai cím”.
+- **English word whose last letter is silent or pronounced differently, + Hungarian
+  noun: hyphen (217. d),** as with suffixes: *release-ciklus, release-ablak,
+  release-ütemezés*.
+- **English word + Hungarian noun otherwise** (*lint szabály, backend platform,
+  architektúra review*): see the open question below before changing it.
+
+**Open, 2026-10-22:** compounds that mix an English-spelled word with a Hungarian one
+are written apart all over the site, and several are in the term table in section 2
+(*architektúra review, API contract, cloud költség, stakeholder interjúk*). AkH. 12
+writes two-part compounds as one word. The owner has not yet decided how far to
+follow it for English terms. Until then, leave these forms as they are.
+
 ## 5. How to work
 
 1. Read the whole text before changing anything.

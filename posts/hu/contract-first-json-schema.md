@@ -34,7 +34,7 @@ Az előre definiált határ közös tervet ad a csapatoknak, így nem implement�
 
 ## Hogyan működik a code-first a gyakorlatban
 
-A code-first megközelítés gyorsnak tűnik: megírjuk az endpointot, annotáljuk, majd a framework metaadataiból dokumentációt generálunk. Egyes eszközök a DTO-kból vagy a TypeScript típusokból a sémát is kikövetkeztetik. Ez a kényelem hasznos, különösen kis szolgáltatásnál, de a design csak akkor válik review-zhatóvá, amikor már kód lett belőle.
+A code-first megközelítés gyorsnak tűnik: megírjuk az endpointot, annotáljuk, majd a framework metaadataiból dokumentációt generálunk. Egyes eszközök a DTO-kból vagy a TypeScript-típusokból a sémát is kikövetkeztetik. Ez a kényelem hasznos, különösen kis szolgáltatásnál, de a design csak akkor válik review-zhatóvá, amikor már kód lett belőle.
 
 Egyszerű szolgáltatásoknál ez elég jól működhet. Nagyobb rendszerekben viszont a dokumentáció minősége a framework konvencióin múlik. A generált contract inkább a transport szerkezetét tükrözi, mint a tervezői szándékot. Idővel eltér egymástól a backend- és a frontendmodell, következetlen lesz a sémák újrahasznosítása, duplikálódik a validáció, a klienskönyvtárakból pedig hiányoznak a típusok vagy a runtime ellenőrzések.
 
@@ -54,7 +54,7 @@ A csapatok sokat emlegetik a „single source of truth”-t. Ez azon ritka esete
 
 A legnagyobb hasznát a Fizz backend platform építésekor láttuk: ott a spec-first nem szolgáltatásonként eltérő ízlés kérdése volt, hanem a platform része lett.
 
-Az OpenAPI dokumentum statikus YAML-fájlként a service forráskódjában van. Handlereket, típusokat és validátorokat generálunk belőle, az AJV pedig a backenden és a frontenden is fut. A CI naprakészen tartja a backend consumerek, a frontendalkalmazások és a tesztek HTTP-klienseit. A tesztek így mockok ellen futhatnak, anélkül hogy URL-eket, metódusokat vagy payloadokat kellene hardcode-olni.
+Az OpenAPI-dokumentum statikus YAML-fájlként a service forráskódjában van. Handlereket, típusokat és validátorokat generálunk belőle, az AJV pedig a backenden és a frontenden is fut. A CI naprakészen tartja a backend consumerek, a frontendalkalmazások és a tesztek HTTP-klienseit. A tesztek így mockok ellen futhatnak, anélkül hogy URL-eket, metódusokat vagy payloadokat kellene hardcode-olni.
 
 A kliensek a contractból generálódnak, ezért a consumereknek nem kell kézzel összerakniuk a service-hívásokat. A backend validáció és a frontend ugyanazokra a sémákra épül, a generált kliensek miatt pedig a teszteknek sem kell megismételniük a requestek részleteit.
 

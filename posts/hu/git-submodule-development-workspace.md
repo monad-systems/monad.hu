@@ -158,7 +158,7 @@ Ha a package-ek már külön repókban vannak:
 2. Futtassuk le mindkettőn az üres könyvtáras tesztet: önálló klón, telepítés, build, teszt. Javítsunk ki mindent, ami testvérrepó útvonalára támaszkodik.
 3. Hozzunk létre egy workspace repót, vegyük fel mindkettőt submodule-ként, és kapcsoljuk be a package managerben a tartományalapú linkelést.
 4. Tegyük kötelező checkké minden repó önálló CI-át, és ott frozen lockfile-lal telepítsünk.
-5. A többi repót akkor vegyük fel, amikor az első pár már végigment egy teljes release cikluson.
+5. A többi repót akkor vegyük fel, amikor az első pár már végigment egy teljes release-cikluson.
 
 Ha monorepóból indulunk, ugyanez a teszt megmutatja, mely package-ek állnak készen a kiköltözésre: azok, amelyek már most is önállóan telepíthetők, buildelhetők és tesztelhetők.
 
