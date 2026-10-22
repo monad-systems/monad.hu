@@ -272,11 +272,11 @@ export default function PlatformModernizationReview() {
   const isHu = locale === 'hu';
   const copy = isHu
     ? {
-        pageTitle: 'Architektúra review — MONAD SYSTEMS',
+        pageTitle: 'Architektúrareview — MONAD SYSTEMS',
         pageDescription:
-          'Célzott architektúra review, amely feltárja a legnagyobb hatású szűk keresztmetszeteket, és konkrét modernizációs roadmapet ad.',
+          'Célzott architektúrareview, amely feltárja a legnagyobb hatású szűk keresztmetszeteket, és konkrét modernizációs roadmapet ad.',
         heroEyebrow: 'Első lépés',
-        heroTitle: 'Architektúra review',
+        heroTitle: 'Architektúrareview',
         heroLead:
           'Célzott, senior szakemberek által vezetett review, amely azonosítja a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet ad, hogy a modernizációt ne találgatásra, hanem tényekre építhessék.',
         heroPrimaryCta: 'Egyeztető hívás foglalása',
@@ -331,7 +331,7 @@ export default function PlatformModernizationReview() {
           'Cégeknek, ahol az előző nagy újraírás elakadt vagy kudarcot vallott',
         ],
         weekOne: [
-          'Stakeholder interjúk (CTO, engineering, platform)',
+          'Stakeholderinterjúk (CTO, engineering, platform)',
           'A rendszer bejárása (architektúra, API-k, infrastruktúra)',
           'A delivery pipeline áttekintése (CI/CD, környezetek)',
           'Célzott code review a kritikus szolgáltatásokban',
@@ -352,7 +352,7 @@ export default function PlatformModernizationReview() {
         scopeIncluded: [
           'Kéthetes, célzott felmérés az architektúráról és a fejlesztési folyamatról',
           'Interjúk, rendszerbejárás, CI/CD-áttekintés és célzott code review',
-          'Írásos review anyag és vezetői összefoglaló',
+          'Írásos review-anyag és vezetői összefoglaló',
           'Rangsorolt 90 napos roadmap, egyértelmű következő lépésekkel',
         ],
         scopeExcluded: [
@@ -454,8 +454,8 @@ export default function PlatformModernizationReview() {
         ],
         buyerCommitment: [
           'Egy 30 perces egyeztető hívás a fejlesztési vezetéssel',
-          'Három–öt stakeholder interjú az első héten',
-          'Hozzáférés az architektúra-dokumentációhoz, a CI/CD-hez és a kritikus szolgáltatásokhoz',
+          'Három–öt stakeholderinterjú az első héten',
+          'Hozzáférés az architektúradokumentációhoz, a CI/CD-hez és a kritikus szolgáltatásokhoz',
           'Egy záró vezetői összefoglaló a második hét végén',
         ],
         nextSteps: [
@@ -475,7 +475,7 @@ export default function PlatformModernizationReview() {
             step: '3',
             title: 'Átadjuk az eredményeket',
             detail:
-              'Megkapják az írásos review anyagot és a vezetői összefoglalót, a rangsorolt következő lépésekkel.',
+              'Megkapják az írásos review-anyagot és a vezetői összefoglalót, a rangsorolt következő lépésekkel.',
           },
           {
             step: '4',
@@ -494,13 +494,13 @@ export default function PlatformModernizationReview() {
         caseSnapshots: [
           {
             context:
-              'B2B SaaS platform, ahol a release-eket a közös szolgáltatásokon keresztüli csatolás és a tisztázatlan felelősségi határok blokkolták',
+              'B2B SaaS-platform, ahol a release-eket a közös szolgáltatásokon keresztüli csatolás és a tisztázatlan felelősségi határok blokkolták',
             outcome:
               'A review kijelölte a kívánt service boundary-ket, azonosította a legfontosabb akadályokat, és 90 napos ütemtervet készített, amelyet a csapat saját maga hajtott végre.',
           },
           {
             context:
-              'Integrációkra épülő termék, visszatérő, több csapatot érintő incidensekkel és gazdátlan API contractokkal',
+              'Integrációkra épülő termék, visszatérő, több csapatot érintő incidensekkel és gazdátlan API-contractokkal',
             outcome:
               'A review első helyre tette az integrációs contractok javítását, kritikus folyamatonként feltárta az observability hiányait, és tisztázta a felelősségi köröket, ami csökkentette az üzemeltetési nehézségeket.',
           },

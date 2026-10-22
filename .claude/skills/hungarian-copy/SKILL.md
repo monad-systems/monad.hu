@@ -35,21 +35,21 @@ grammar around them. Do not translate them on engineering pages or in blog posts
 
 | Term | Inflected forms already on the site |
 |---|---|
-| contract, API contract, data contract, contract-first | contractot, contracttal, contractok, contractból, contract-alapú |
+| contract, API-contract, data contract, contract-first | contractot, contracttal, contractok, contractból, contractalapú, contractvalidáció, API-contractot |
 | spec-first | spec-first fejlesztés |
 | observability | observability-t, observability-vel |
 | logging, tracing, alerting, metrikák | a strukturált logging, a tracing |
 | release, deploy | release-ek, deployolható |
 | pipeline, delivery, delivery pipeline | pipeline-ban, delivery-t |
-| review, code review, architektúra review | review-t, review-zható, review-val |
+| review, code review, architektúrareview | review-t, review-zható, review-val, architektúrareview-val, review-anyag |
 | roadmap | roadmapet, roadmapig |
 | quality gate | quality gate-ek |
 | check, CI-check | checkek, checket, checkként, CI-checkek (not *check-ek*) |
 | microservice, event-driven, service-orientált | microservice-ekre, event-driven architektúra |
-| cloud | cloud architektúra, cloud költség, Cloud-Native |
+| cloud | cloudarchitektúra, cloudköltség, cloudinfrastruktúra, Cloud-Native |
 | repo, branch | GitHub-repójában, repóban, repói; branchen, release branchre, branchei. Not *tároló*, *ág* (owner, 2026-10-19, letters to developer readers) |
 | consumer, provider | consumerek, a provider |
-| stakeholder, right-sizing, developer experience, production-ready, production-grade, legacy, guardrail, compliance, correlation ID, bounded context, governance | stakeholder interjúk, guardrailek |
+| stakeholder, right-sizing, developer experience, production-ready, production-grade, legacy, guardrail, compliance, correlation ID, bounded context, governance | stakeholderinterjúk, guardrailek |
 | service boundary | service boundary-k, service boundary-kkel, service boundary-ket. Not *szolgáltatáshatár* (owner, 2026-10-21: „bután hangzik”) |
 | data flow | data flow-k, data flow-kat, data flow-król. Not *adatfolyam* (owner, 2026-10-21) |
 | event bus | event busszal, event bust (direct suffix, as with *busz*). Not *eseménybusz* (owner, 2026-10-21) |
@@ -197,6 +197,47 @@ or adverbial. Fixed on 2026-10-22:
 Two predicates that share everything else need no comma: „ugyanaz a rendszer írja és
 hagyja jóvá a változást”, „hol lassulnak le vagy akadnak el a release-ek”. When unsure
 whether a part is its own clause, list the sentence instead of guessing.
+
+**Compounds.** A noun used as the attribute of another noun forms a compound; it is
+not two words.
+
+- **Two parts: one word, however long (139):** *adatbázisséma, adatbázisréteg,
+  importsor, célrepó, adaptermintával, platformcsapat, platformképességek,
+  folyamatautomatizálás, architektúradokumentáció*. No hyphen for readability.
+- **Three or more parts: one word up to six syllables, else a hyphen at the main
+  boundary (139):** *tervjóváhagyás* (5), *környezetváltozó-betöltő,
+  adatkonzisztencia-hiány, építőelem-kérdés*. Suffixes do not count.
+- **Abbreviation or name + common noun: hyphen (113, 217. d):** *CI-hiba,
+  CI-eredmény, CI-kapu, API-kliens, ERP-platform, TAJ-azonosító, SAST-eszköz,
+  OTP-ökoszisztéma, CNCF-ökoszisztéma, OpenAPI-dokumentum, TypeScript-típus,
+  Excel-tábla*. In a pair, the first keeps the hyphen: „SAST- vagy DAST-eszköz”,
+  „e-mail- és postai cím”.
+- **English word whose last letter is silent or pronounced differently, + Hungarian
+  noun: hyphen (217. d),** as with suffixes: *release-ciklus, release-ablak,
+  release-ütemezés*.
+- **English word + Hungarian word otherwise: one word, like any other compound (139,
+  211).** The owner decided on 2026-10-22 to follow AkH. 12 here too: *lintszabály,
+  backendplatform, architektúrareview, architektúracheck, loggingkonvenció,
+  brokerhívás, budgetkontroll, egresspont, holdouthalmaz, semvertartomány,
+  buildeszköz, adminfelület, frontendűrlap, backendoldalon, cloudköltség,
+  stakeholderinterjú, contractvalidáció, contractalapú, eventalapú*. More than two
+  parts follows the six-syllable rule: *szoftverarchitektúra-review,
+  backendplatform-fejlesztés, cloudköltség-optimalizálás*.
+- **Exceptions get a hyphen, never a space:** the English word ends in a silent
+  letter, a letter pronounced differently or an unusual letter combination
+  (*review-anyag, review-lépés, route-séma, workspace-repó, domain-kód,
+  runtime-validáció, compliance-követelmény, repository-réteg, auth-séma,
+  audithash-függvény, watch-mód, delivery-lánc*); an abbreviation or name comes
+  first (*API-contract, CI-pipeline, PR-review, HTTP-routing, AI-agentek,
+  Node.js-microservice, Vue.js-frontend, Fizz-backendplatform, B2B SaaS-platform,
+  Kafka-alapokon*); or a multi-word English expression comes first (*breaking
+  change-ellenőrzés, incident response-gyakorlat, strangler fig-minta, platform
+  engineering-riport*).
+- **English + English stays an English phrase, written apart:** *code review,
+  delivery pipeline, service boundary, event contract, deployment manifest, status
+  check, admin UI*.
+- **A rewording beats an awkward compound** when the meaning allows it: *architektúra
+  invariánsok* → *architekturális invariánsok* (owner, 2026-10-22).
 
 ## 5. How to work
 

@@ -325,7 +325,7 @@ export default function LocalAutomation() {
     '@context': 'https://schema.org',
     '@type': 'Service',
     '@id': `${pageUrl}#service`,
-    name: 'Helyszíni folyamat-automatizálás',
+    name: 'Helyszíni folyamatautomatizálás',
     serviceType: 'Üzleti folyamatok automatizálása',
     url: pageUrl,
     inLanguage: 'hu',
@@ -337,7 +337,7 @@ export default function LocalAutomation() {
 
   return (
     <Layout
-      title="Helyszíni folyamat-automatizálás Gödöllőn és környékén — MONAD SYSTEMS"
+      title="Helyszíni folyamatautomatizálás Gödöllőn és környékén — MONAD SYSTEMS"
       description="Egy délelőtt alatt a helyszínen felmérjük, mennyi papírmunkát lehet automatizálni Önöknél, és néhány napon belül már használható eszköz van a kezükben a folyamataik gördülékenyebb működéséhez. Számlák, szállítólevelek, rendelések. Az ár az első évi megtakarítás kétharmada."
       jsonLd={[organizationJsonLd, serviceJsonLd]}
       hungarianOnly

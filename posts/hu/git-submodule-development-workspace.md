@@ -26,9 +26,9 @@ A legtöbb csapat választ egy felépítést, és együtt él a költségeivel. 
 
 ## A workspace csak a fejlesztők gépén létezik
 
-Minden package és minden alkalmazás teljes értékű repó. Önállóan telepíthető, buildelhető, tesztelhető, release-elhető és deployolható. A testvérrepóktól ugyanúgy függ, mint bármelyik külső library-től: név és semver tartomány alapján, egy package registryből.
+Minden package és minden alkalmazás teljes értékű repó. Önállóan telepíthető, buildelhető, tesztelhető, release-elhető és deployolható. A testvérrepóktól ugyanúgy függ, mint bármelyik külső library-től: név és semvertartomány alapján, egy package registryből.
 
-Egy külön, vékony workspace repó git submodule-ként tartalmazza ezeket a repókat. A submodule-ok mellett van benne egy fájl, amely megmondja a package managernek, mely könyvtárak helyi package-ek. A workspace-en belül az a függőség, amelynek a neve és a tartománya illeszkedik egy helyi package-re, symlinken keresztül arra a könyvtárra oldódik fel. Amit a library-ben elmentünk, azt az alkalmazás azonnal látja.
+Egy külön, vékony workspace-repó git submodule-ként tartalmazza ezeket a repókat. A submodule-ok mellett van benne egy fájl, amely megmondja a package managernek, mely könyvtárak helyi package-ek. A workspace-en belül az a függőség, amelynek a neve és a tartománya illeszkedik egy helyi package-re, symlinken keresztül arra a könyvtárra oldódik fel. Amit a library-ben elmentünk, azt az alkalmazás azonnal látja.
 
 A workspace-en kívül ez a fájl nem létezik. A repó saját CI-a, a release build, a container image és az éles környezet egyetlen repót lát, így ugyanaz a manifest a registryben publikált verzióra oldódik fel.
 
@@ -47,11 +47,11 @@ flowchart TD
 
 ## Amit minden repónak egyedül is tudnia kell
 
-A workspace csak akkor biztonságos, ha semmi nem függ tőle. Minden tagrepónak át kell mennie ezen a teszten: klónozzuk egy üres könyvtárba, testvérrepók nélkül, telepítsük, buildeljük, futtassuk a teszteket. Ha bármelyik lépés elbukik, a workspace elrejt egy függőséget, és először a CI pipeline vagy egy új kolléga fog belefutni.
+A workspace csak akkor biztonságos, ha semmi nem függ tőle. Minden tagrepónak át kell mennie ezen a teszten: klónozzuk egy üres könyvtárba, testvérrepók nélkül, telepítsük, buildeljük, futtassuk a teszteket. Ha bármelyik lépés elbukik, a workspace elrejt egy függőséget, és először a CI-pipeline vagy egy új kolléga fog belefutni.
 
 A gyakorlatban ez a következőket jelenti:
 
-- a testvér package-ekre semver tartománnyal hivatkozunk, soha nem relatív útvonallal vagy csak workspace-ben működő protokollal
+- a testvérpackage-ekre semvertartománnyal hivatkozunk, soha nem relatív útvonallal vagy csak workspace-ben működő protokollal
 - a repó lockfile-ja a repó önálló telepítéséből keletkezik
 - a CI csak az adott repót checkoutolja
 - a release verziózott artifactot publikál egy registrybe
@@ -59,9 +59,9 @@ A gyakorlatban ez a következőket jelenti:
 
 A második pont egyes package managereknél könnyen elsikkad. A pnpm `workspace:` protokollja például kizárólag helyi workspace package-re hajlandó feloldani, így az ezt használó manifest önálló klónból nem telepíthető. A tagrepók manifestjeiben ezért közönséges tartományok álljanak. A linkelést a workspace kapcsolja be: pnpm-ben ez a `linkWorkspacePackages` beállítás, amely csak akkor linkel egy helyi package-et, ha a verziója megfelel a megadott tartománynak.
 
-A Go eleve így működik. A szülőkönyvtárban talált `go.work` fájl az alatta lévő modulokat egy workspace-szé fogja össze, a Go dokumentációja pedig azt tanácsolja, hogy a `go.work` ne kerüljön be a modulok repójába, mert a CI-nak úgy kell tesztelnie a modult, ahogy a consumerei használják. Ha a `go.work` a workspace repóban, a submodule-ok fölött van, pontosan ezt a tanácsot követjük. Rustban ugyanezt a szerepet a workspace Cargo-konfigurációjában elhelyezett `[patch]` szekció tölti be.
+A Go eleve így működik. A szülőkönyvtárban talált `go.work` fájl az alatta lévő modulokat egy workspace-szé fogja össze, a Go dokumentációja pedig azt tanácsolja, hogy a `go.work` ne kerüljön be a modulok repójába, mert a CI-nak úgy kell tesztelnie a modult, ahogy a consumerei használják. Ha a `go.work` a workspace-repóban, a submodule-ok fölött van, pontosan ezt a tanácsot követjük. Rustban ugyanezt a szerepet a workspace Cargo-konfigurációjában elhelyezett `[patch]` szekció tölti be.
 
-## Mi van a workspace repóban
+## Mi van a workspace-repóban
 
 Nagyon kevés, és semmi nem kerül belőle élesbe.
 
@@ -78,7 +78,7 @@ workspace/
 └── scripts/bootstrap.sh   # klónozás, init, telepítés
 ```
 
-A workspace fájl rövid. pnpm esetén felsorolja a könyvtárakat, és bekapcsolja a tartományalapú linkelést:
+A workspace-fájl rövid. pnpm esetén felsorolja a könyvtárakat, és bekapcsolja a tartományalapú linkelést:
 
 ```yaml
 packages:
@@ -87,7 +87,7 @@ packages:
 linkWorkspacePackages: true
 ```
 
-Ide tartozik a helyi infrastruktúra is: compose fájlok a message brokerhez és a cache-hez, vagy fejlesztői cluster-definíciók, amelyek egy üzleti terület összes service-ét együtt indítják. Ugyanígy a közös editor-beállítások, a repókon átívelő dokumentáció és a több repón dolgozó coding agentek instrukciói. Forráskód, release pipeline és deploy-konfiguráció viszont nem. Ha a workspace repóban egyszer csak élesbe szánt build készül, az már monorepo, csak több lépéssel.
+Ide tartozik a helyi infrastruktúra is: compose-fájlok a message brokerhez és a cache-hez, vagy fejlesztői clusterdefiníciók, amelyek egy üzleti terület összes service-ét együtt indítják. Ugyanígy a közös editorbeállítások, a repókon átívelő dokumentáció és a több repón dolgozó coding agentek instrukciói. Forráskód, release pipeline és deploykonfiguráció viszont nem. Ha a workspace-repóban egyszer csak élesbe szánt build készül, az már monorepo, csak több lépéssel.
 
 Egy új fejlesztőnek egyetlen parancs kell:
 
@@ -109,7 +109,7 @@ Ugyanezért a tagrepók frissítésekor a branchüket pulloljuk, és ne álljunk
 git submodule foreach 'git switch main && git pull --ff-only'
 ```
 
-A workspace repó pointereit frissítsük ütemezetten, vagy bízzuk egy botra. Egy új klón ezekből indul. Hogy mi kerül élesbe, azt a registry és az egyes repók lockfile-ja rögzíti.
+A workspace-repó pointereit frissítsük ütemezetten, vagy bízzuk egy botra. Egy új klón ezekből indul. Hogy mi kerül élesbe, azt a registry és az egyes repók lockfile-ja rögzíti.
 
 ## A semver dönti el, mikor jön létre a link
 
@@ -119,7 +119,7 @@ Amíg egy library javításokat és visszafelé kompatibilis új funkciókat kap
 
 Amikor a library breaking change-et vezet be, és a verziója 3.0.0-ra lép, ugyanennek az alkalmazásnak a tartománya már nem illeszkedik rá. A workspace a 2.x verziót telepíti neki a registryből, az alkalmazás pedig tovább működik azzal a verzióval, amelyet deklarált. A 3.0.0 átvételéhez valakinek szándékosan módosítania kell az alkalmazás tartományát. A workspace soha nem engedi, hogy egy alkalmazás olyan breaking change-et kapjon, amelyet a manifestje nem fogadott el, és élesben is pontosan ez a garancia.
 
-A prerelease verziókkal óvatosan kell bánni: a `2.5.0-beta.1` a semver szabályai szerint nem felel meg a `^2.4.0` tartománynak, így az a library, amelynek a manifestjében prerelease tag áll, nem linkelődik többé. A prerelease számozás maradjon a release folyamatban, ne abban a verzióban, amelyen a fejlesztő dolgozik.
+A prerelease-verziókkal óvatosan kell bánni: a `2.5.0-beta.1` a semver szabályai szerint nem felel meg a `^2.4.0` tartománynak, így az a library, amelynek a manifestjében prerelease tag áll, nem linkelődik többé. A prerelease-számozás maradjon a release folyamatban, ne abban a verzióban, amelyen a fejlesztő dolgozik.
 
 ## Repókon átívelő változás
 
@@ -140,13 +140,13 @@ A leggyakoribb hiba az alkalmazás, amely a workspace-ben zöld, a CI-ban piros.
 
 A lockfile-ok eltérnek egymástól. A workspace-ben futó telepítés workspace-szintű lockfile-t ír, a tagrepók CI-a viszont a tagrepó saját lockfile-ját használja; az npm például workspace-telepítéskor egyáltalán nem frissíti a tagok lockfile-jait. A tagrepó lockfile-ját a tagrepóban generáljuk újra, kikapcsolt workspace-szel, a CI pedig frozen módban telepítsen, hogy az elavult lockfile hangosan bukjon el. A tagrepó lockfile-jában soha ne legyen link testvérkönyvtárra.
 
-A linkelt package-eknek build output kell. A consumer általában a library lefordított kimenetét importálja, ami egy friss checkoutban nincs meg. Vagy watch módban fusson a library buildje, vagy a package egy csak fejlesztéshez használt export conditionnel tegye elérhetővé a forrását, amelyet a workspace eszközei feloldanak, a publikált buildek pedig figyelmen kívül hagynak.
+A linkelt package-eknek build output kell. A consumer általában a library lefordított kimenetét importálja, ami egy friss checkoutban nincs meg. Vagy watch-módban fusson a library buildje, vagy a package egy csak fejlesztéshez használt export conditionnel tegye elérhetővé a forrását, amelyet a workspace eszközei feloldanak, a publikált buildek pedig figyelmen kívül hagynak.
 
 Bizonyos függőségekből folyamatonként csak egy példány lehet, ilyen egy UI framework vagy egy ORM. Egy symlinkelt package a saját könyvtárából is feloldhatja a saját példányát, és máris kettő töltődik be. Az ilyen library-ket peer dependency-ként deklaráljuk, és bízzuk a workspace-re a hoistolást vagy a deduplikálást.
 
 ## Mikor jobb a monorepo
 
-Ez az elrendezés olyan kódhoz illik, amelynek független gazdái, független release-ütemezése, eltérő hozzáférési szabályai vagy a saját alkalmazásainkon kívüli consumerei vannak. Ha minden package mindig együtt release-elődik, a legtöbb változás egyszerre sok package-et érint, és egyetlen csapat felel az egészért, akkor egy monorepo a függőségi gráfot értő build eszközökkel egyszerűbb. Ott a submodule workspace minden változáshoz hozzáad egy release-lépést, és semmit nem nyerünk vele.
+Ez az elrendezés olyan kódhoz illik, amelynek független gazdái, független release-ütemezése, eltérő hozzáférési szabályai vagy a saját alkalmazásainkon kívüli consumerei vannak. Ha minden package mindig együtt release-elődik, a legtöbb változás egyszerre sok package-et érint, és egyetlen csapat felel az egészért, akkor egy monorepo a függőségi gráfot értő buildeszközökkel egyszerűbb. Ott a submodule workspace minden változáshoz hozzáad egy release-lépést, és semmit nem nyerünk vele.
 
 Ez az elrendezés azt is megváltoztatja, mit lát egy automatizált közreműködő. Egy tagrepóban dolgozó coding agent teljes, önmagában zárt egységet kap, saját tesztekkel és saját CI-kapuval. A workspace-ből dolgozva több repón át is olvashat, miközben minden javasolt változásának át kell mennie annak a repónak az önálló ellenőrzésein, amelyet érint.
 
@@ -156,9 +156,9 @@ Ha a package-ek már külön repókban vannak:
 
 1. Válasszunk egy library-t és egy alkalmazást, amelyek gyakran változnak együtt.
 2. Futtassuk le mindkettőn az üres könyvtáras tesztet: önálló klón, telepítés, build, teszt. Javítsunk ki mindent, ami testvérrepó útvonalára támaszkodik.
-3. Hozzunk létre egy workspace repót, vegyük fel mindkettőt submodule-ként, és kapcsoljuk be a package managerben a tartományalapú linkelést.
+3. Hozzunk létre egy workspace-repót, vegyük fel mindkettőt submodule-ként, és kapcsoljuk be a package managerben a tartományalapú linkelést.
 4. Tegyük kötelező checkké minden repó önálló CI-át, és ott frozen lockfile-lal telepítsünk.
-5. A többi repót akkor vegyük fel, amikor az első pár már végigment egy teljes release cikluson.
+5. A többi repót akkor vegyük fel, amikor az első pár már végigment egy teljes release-cikluson.
 
 Ha monorepóból indulunk, ugyanez a teszt megmutatja, mely package-ek állnak készen a kiköltözésre: azok, amelyek már most is önállóan telepíthetők, buildelhetők és tesztelhetők.
 
