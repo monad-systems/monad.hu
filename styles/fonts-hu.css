@@ -1,0 +1,32 @@
+/* The four Hungarian letters outside Latin-1, from scripts/subset-hungarian-fonts.mjs.
+   Import after the fontsource faces: when unicode ranges overlap, the browser
+   checks the face declared last first, so these ~1–2 KB files serve ő ű Ő Ű
+   and the ~100 KB latin-ext files load only for other latin-ext characters.
+   Descriptors must match the fontsource faces exactly. */
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(./fonts/inter-hu-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0150-0151, U+0170-0171;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(./fonts/jetbrains-mono-hu-400-normal.woff2) format('woff2');
+  unicode-range: U+0150-0151, U+0170-0171;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(./fonts/jetbrains-mono-hu-500-normal.woff2) format('woff2');
+  unicode-range: U+0150-0151, U+0170-0171;
+}

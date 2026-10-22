@@ -70,7 +70,18 @@ metaDescription: 'SEO description'
 Notes:
 
 - Mermaid blocks are rendered as figures, and headings like `Visual: ...` become `figcaption` text with the `Visual:` prefix removed.
+  Mermaid loads only when the first diagram nears the viewport, so it costs nothing on first paint.
 - English is canonical. `posts/hu/<slug>.md` is optional; a missing translation falls back to the English text with a notice.
+- The `image` cover (a 1200×630 JPEG in `public/images/posts/`) is also the Open Graph image. After adding or
+  replacing one, run `node scripts/generate-cover-webp.mjs` and commit the `.webp` it writes next to it; the page
+  serves the WebP (about a fifth of the size) when it exists and the JPEG otherwise.
+
+## Fonts
+
+Inter and JetBrains Mono come from fontsource. Hungarian needs only four glyphs outside Latin-1 (ő ű Ő Ű), so
+`styles/fonts/` holds ~1–2 KB subsets with just those, declared in `styles/fonts-hu.css` after the fontsource faces.
+Without them, a single „ő” makes the browser fetch the ~100 KB latin-ext files. Re-run
+`node scripts/subset-hungarian-fonts.mjs` (needs `pip install fonttools brotli`) after upgrading either font package.
 
 ### Editing posts for AI writing tells
 
