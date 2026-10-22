@@ -1,11 +1,11 @@
 ---
-title: 'Architektúra review a modernizáció előtt: mit nézzünk meg egy legacy rendszeren'
+title: 'Architektúrareview a modernizáció előtt: mit nézzünk meg egy legacy rendszeren'
 date: '2026-10-21'
 image: '/images/posts/architecture-review-before-modernization.jpg'
-lead: 'A legtöbb modernizációs program célarchitektúrával indul, és félbehagyott migrációval végződik. A kéthetes architektúra review megfordítja a sorrendet: először kiderítjük, hol lassítja a legacy rendszer a delivery-t, melyik technikai adósság hordoz üzleti kockázatot, és mit kell először megváltoztatni. A roadmapet csak ezután írjuk meg.'
-metaDescription: 'Hogyan zajlik egy legacy rendszer szoftverarchitektúra review-ja: a négy kérdés, amelyre választ ad, a kéthetes módszer (interjúk, rendszerbejárás, CI/CD-áttekintés, célzott code review), és mit tartalmaz a rangsorolt, 90 napos modernizációs roadmap.'
+lead: 'A legtöbb modernizációs program célarchitektúrával indul, és félbehagyott migrációval végződik. A kéthetes architektúrareview megfordítja a sorrendet: először kiderítjük, hol lassítja a legacy rendszer a delivery-t, melyik technikai adósság hordoz üzleti kockázatot, és mit kell először megváltoztatni. A roadmapet csak ezután írjuk meg.'
+metaDescription: 'Hogyan zajlik egy legacy rendszer szoftverarchitektúra-review-ja: a négy kérdés, amelyre választ ad, a kéthetes módszer (interjúk, rendszerbejárás, CI/CD-áttekintés, célzott code review), és mit tartalmaz a rangsorolt, 90 napos modernizációs roadmap.'
 tags:
-    - Szoftverarchitektúra review
+    - Szoftverarchitektúra-review
     - Legacy modernizáció
     - Monolit bontása
     - Technikai adósság
@@ -21,7 +21,7 @@ Nem a cél volt rossz, hanem a sorrend. A csapat eldöntötte, hová megy, miel�
 
 Az évek óta növekvő rendszer tele van olyan döntésekkel, amelyekre már senki nem emlékszik. A határok a szervezeti ábrán léteznek, a kódban nem. Két szolgáltatás közös adatbázist használ, mert egyszer az volt a gyorsabb. Az integráció, amelytől mindenki függ, csak egyetlen kolléga fejében van meg. Az ilyen tudás nélkül rajzolt célarchitektúra találgatás, és a találgatásra épülő migráció incidensről incidensre fedezi fel a valódi korlátokat.
 
-Az architektúra review a feltárást teszi az első helyre. A feladata, hogy leírja a rendszert úgy, ahogy van, megtalálja, hol lassítja a csapatot, vagy hol jelent üzleti kockázatot, és ezekből sorrendet állítson fel. Rövid, a legtöbb rendszerhez két hét elég, és az eredménye írásos, hogy a későbbi döntéseket hozzá lehessen mérni.
+Az architektúrareview a feltárást teszi az első helyre. A feladata, hogy leírja a rendszert úgy, ahogy van, megtalálja, hol lassítja a csapatot, vagy hol jelent üzleti kockázatot, és ezekből sorrendet állítson fel. Rövid, a legtöbb rendszerhez két hét elég, és az eredménye írásos, hogy a későbbi döntéseket hozzá lehessen mérni.
 
 ## Mikor térül meg a review
 
@@ -46,7 +46,7 @@ A használható review kérdések köré épül, nem dokumentumok köré. A legt
 
 Az első napok a rendszerről szólnak úgy, ahogy van: a kódról, az infrastruktúráról, a data flow-król és azokról, akik ismerik. Az eredmény rendszertérkép a szolgáltatásokkal és modulokkal, a köztük lévő függőségekkel, a közös adattárakkal és a hibák terjedési útjaival.
 
-A térkép bizonyítékból készül, nem a wikin lévő ábrából. A hívási gráfok, a deployment-manifestek, az adatbázissémák és az üzenetsorok topicjai megmondják, hol vannak a határok. Az interjúk megmondják, miért. A kettő közti különbség rendszerint az első megállapítás.
+A térkép bizonyítékból készül, nem a wikin lévő ábrából. A hívási gráfok, a deployment manifestek, az adatbázissémák és az üzenetsorok topicjai megmondják, hol vannak a határok. Az interjúk megmondják, miért. A kettő közti különbség rendszerint az első megállapítás.
 
 ### Hol lassul le a delivery?
 
@@ -89,7 +89,7 @@ Ezt követi a rendszerbejárás: a kritikus szolgáltatások kódja, az infrastr
 
 A delivery pipeline áttekintése a CI/CD-t, a környezeteket és a csapatok közti átadásokat nézi, és egy módosítást követ végig mindegyiken.
 
-A megállapításokat azonnal leírjuk, ahogy előkerülnek, hogy a második hetet arra fordíthassuk, hogy ellenőrizzük őket azokkal, akik ismerik a rendszert, és felépítsük a roadmapet. Az eredmény írásos review anyag és záró vezetői összefoglaló.
+A megállapításokat azonnal leírjuk, ahogy előkerülnek, hogy a második hetet arra fordíthassuk, hogy ellenőrizzük őket azokkal, akik ismerik a rendszert, és felépítsük a roadmapet. Az eredmény írásos review-anyag és záró vezetői összefoglaló.
 
 A csapattól három dolog kell: olvasási hozzáférés a repókhoz, az infrastruktúrához és a pipeline-okhoz; néhány óra a kulcsfejlesztők idejéből; és valaki, aki meg tudja mondani, melyik üzleti következmény számít a legjobban. Az a review, amelyik ezeket nem kapja meg, a wikiről ír jelentést.
 
@@ -102,7 +102,7 @@ Mielőtt elfogadnánk egy roadmapet, olvassuk végig négy szempont szerint.
 3. A függőségek explicitek: mely contractokat kell formalizálni, mielőtt egy szolgáltatást le lehet választani, és hol kell observability, mielőtt egy migrációt mérni lehet.
 4. A ráfordítást tételenként becsüljük, és minden becslés megmondja, mit feltételez.
 
-A legacy rendszer roadmapje ritkán kezdődik azzal, hogy leválasztunk egy szolgáltatást. Azzal kezdődik, ami a leválasztást biztonságossá teszi: explicit contract azon a határon, amelyik mozogni fog, tracing a határon át, hogy a migrációt mérni lehessen, és pipeline, amely az új részt önállóan tudja release-elni. A strangler fig minta azért működik, mert minden lépés visszafordítható, és a régi rendszer addig szolgál ki, amíg az új be nem bizonyította, hogy működik.
+A legacy rendszer roadmapje ritkán kezdődik azzal, hogy leválasztunk egy szolgáltatást. Azzal kezdődik, ami a leválasztást biztonságossá teszi: explicit contract azon a határon, amelyik mozogni fog, tracing a határon át, hogy a migrációt mérni lehessen, és pipeline, amely az új részt önállóan tudja release-elni. A strangler fig-minta azért működik, mert minden lépés visszafordítható, és a régi rendszer addig szolgál ki, amíg az új be nem bizonyította, hogy működik.
 
 ## Ha magunk csináljuk
 
@@ -110,4 +110,4 @@ A csapat a saját rendszerén is elvégezheti ezt a review-t, és a fenti kérd�
 
 A külső szakértőnek nincs története, és nem érintett a korábbi döntésekben. Az érték nagy része ebből jön. A módszer mindkét esetben ugyanaz: bizonyítékból térképezzük fel a rendszert, kövessünk végig egy módosítást a pipeline-on, rangsoroljuk az adósságot üzleti hatás szerint, és írjunk 90 napos tervet, amelynek az első tétele kicsi.
 
-Mi ezt kéthetes, előre rögzített feladatú megbízásként végezzük: ez az [architektúra review](/hu/platform-modernization-review). A módszer nem attól függ, ki végzi.
+Mi ezt kéthetes, előre rögzített feladatú megbízásként végezzük: ez az [architektúrareview](/hu/platform-modernization-review). A módszer nem attól függ, ki végzi.

@@ -279,7 +279,7 @@ export default function Home() {
         heroLine2: 'Nagyvállalatok bizalmával.',
         heroIntro:
           'Elosztott rendszereket tervezünk, monolitokat bontunk microservice-ekre, és olyan belső platformokat építünk, amelyek felgyorsítják a fejlesztést. API-first tervezés, teljes observability, production-grade megoldások az első naptól.',
-        heroPrimaryCta: 'Architektúra review kérése',
+        heroPrimaryCta: 'Architektúrareview kérése',
         heroSecondaryCta: 'Referenciáink',
         statYears: 'Év tapasztalat',
         statProjects: 'Átadott projekt',
@@ -360,7 +360,7 @@ export default function Home() {
           {
             title: 'A fejlesztői környezet lassítja a munkát',
             description:
-              'A fejlesztők infrastruktúrára várnak, megbízhatatlan CI pipeline-okkal küzdenek, és kerülőutakkal pótolják a hiányzó eszközöket. A platform gyorsítás helyett szűk keresztmetszet.',
+              'A fejlesztők infrastruktúrára várnak, megbízhatatlan CI-pipeline-okkal küzdenek, és kerülőutakkal pótolják a hiányzó eszközöket. A platform gyorsítás helyett szűk keresztmetszet.',
             tags: [
               'Egyedi szoftverfejlesztés',
               'CI/CD',
@@ -370,24 +370,24 @@ export default function Home() {
           {
             title: 'Gyenge observability, vakfoltok',
             description:
-              'Az éles hibákról a felhasználói panaszokból értesülnek. A distributed tracing hiányos vagy nincs, és nincs kialakult SLO-, alerting- és incident response gyakorlat.',
+              'Az éles hibákról a felhasználói panaszokból értesülnek. A distributed tracing hiányos vagy nincs, és nincs kialakult SLO-, alerting- és incident response-gyakorlat.',
             tags: ['OpenTelemetry', 'Grafana', 'Prometheus', 'SLO-k'],
           },
           {
-            title: 'Növekvő cloud költség, architekturális pazarlás',
+            title: 'Növekvő cloudköltség, architekturális pazarlás',
             description:
               'Az infrastruktúra költsége nő, de nem látszik, mit kapnak érte. Túlméretezett klaszterek, párhuzamos szolgáltatások és optimalizálatlan adatutak viszik el a keretet.',
             tags: [
               'Költségoptimalizálás',
               'Right-Sizing',
-              'Architektúra review',
+              'Architektúrareview',
             ],
           },
         ],
         engagements: [
           {
             step: '01',
-            title: 'Architektúra review',
+            title: 'Architektúrareview',
             what: 'Célzott felmérés a jelenlegi architektúráról, az integrációkról, a delivery pipeline-ról és az üzemeltetés állapotáról.',
             when: 'Úgy érzik, hogy az architekturális adósság lassítja Önöket, de független, senior nézőpont kell a prioritások és a kockázatok tisztázásához.',
             outcome:
@@ -397,7 +397,7 @@ export default function Home() {
             step: '02',
             title: 'Részmunkaidős architektúravezetés',
             what: 'Folyamatos senior architekturális támogatás, a csapatukba beépülve, részmunkaidős, havidíjas formában.',
-            when: 'Vezető architekt szintű iránymutatásra van szükség, de főállású felvétel nem reális, vagy nem oldható meg időben.',
+            when: 'Vezetőarchitekt-szintű iránymutatásra van szükség, de főállású felvétel nem reális, vagy nem oldható meg időben.',
             outcome:
               'Következetesebb architekturális döntések, kevesebb újramunka és gyorsabban fejlődő belső csapat.',
           },
@@ -458,31 +458,31 @@ export default function Home() {
           },
           {
             title: 'IdomSoft',
-            category: 'Cloud architektúra',
+            category: 'Cloudarchitektúra',
             description:
-              'Senior architekturális tanácsadást nyújtottunk egy állami technológiai szervezetnek cloud infrastruktúra, üzemeltetés és platformstratégia területén.',
-            tags: ['Cloud architektúra', 'Tanácsadás'],
+              'Senior architekturális tanácsadást nyújtottunk egy állami technológiai szervezetnek cloudinfrastruktúra, üzemeltetés és platformstratégia területén.',
+            tags: ['Cloudarchitektúra', 'Tanácsadás'],
             highlight: true,
           },
           {
             title: 'Netrisk',
-            category: 'Cloud architektúra',
+            category: 'Cloudarchitektúra',
             description:
-              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js microservice-ekkel és Kafka-alapú event-driven kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
+              'Nagy terhelésű biztosításkötési platformot terveztünk Node.js-microservice-ekkel és Kafka-alapú event-driven kommunikációval, jobb megbízhatósággal és nyomon követhetőséggel.',
             tags: ['Node.js', 'Kafka', 'Event-Driven', 'Microservices'],
           },
           {
             title: 'IDBC',
             category: 'Banki infrastruktúra',
             description:
-              'Egy skálázható banki platform alaparchitektúráját építettük meg Node.js és Kafka alapokon, összetett legacy integrációval és adatmigrációval.',
+              'Egy skálázható banki platform alaparchitektúráját építettük meg Node.js- és Kafka-alapokon, összetett legacy integrációval és adatmigrációval.',
             tags: ['Node.js', 'Kafka', 'Event-Driven', 'Adatmigráció'],
           },
           {
             title: 'Webshippy',
-            category: 'Backend szétbontás',
+            category: 'Backendszétbontás',
             description:
-              'Egy monolitikus PHP-alkalmazást tiszta backend API-ra és moduláris Vue.js frontendre bontottunk. A Docker-alapú, teljes körű konténerizálással egymástól függetlenebb release-ciklusokat tettünk lehetővé.',
+              'Egy monolitikus PHP-alkalmazást tiszta backend API-ra és moduláris Vue.js-frontendre bontottunk. A Docker-alapú, teljes körű konténerizálással egymástól függetlenebb release-ciklusokat tettünk lehetővé.',
             tags: ['Vue.js', 'PHP', 'Docker', 'API-tervezés', 'Microservices'],
           },
         ],
@@ -503,7 +503,7 @@ export default function Home() {
             code: 'SF',
             title: 'API-first, spec-first fejlesztés',
             description:
-              'Contract-driven fejlesztés OpenAPI, AsyncAPI és JSON Schema alapon',
+              'Contract-driven fejlesztés OpenAPI-, AsyncAPI- és JSON Schema-alapon',
           },
           {
             code: 'OB',
@@ -513,7 +513,7 @@ export default function Home() {
           },
           {
             code: 'CO',
-            title: 'Cloud költségoptimalizálás',
+            title: 'Cloudköltség-optimalizálás',
             description:
               'Az infrastruktúra right-sizingja és az architekturális pazarlás megszüntetése',
           },
@@ -538,8 +538,8 @@ export default function Home() {
         midCtaTitlePrefix: 'Készen állnak',
         midCtaTitleAccent: 'a modernizációra?',
         midCtaLead:
-          'Kezdjük célzott architektúra review-val. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet adunk.',
-        midCtaPrimary: 'Architektúra review kérése',
+          'Kezdjük célzott architektúrareview-val. Megkeressük a legnagyobb hatású szűk keresztmetszeteket, és konkrét roadmapet adunk.',
+        midCtaPrimary: 'Architektúrareview kérése',
         caseStudiesTitlePrefix: 'Valós problémák,',
         caseStudiesTitleAccent: 'működő megoldások.',
         caseStudiesLead:
@@ -548,7 +548,7 @@ export default function Home() {
         aboutTitlePrefix: 'Senior tanácsadás,',
         aboutTitleAccent: 'gyakorlati megvalósítás.',
         aboutLead1:
-          'A MONAD alapítói vezetésű szoftvertanácsadó cég, több mint 20 év gyakorlati mérnöki tapasztalattal összetett, kritikus rendszerekben: banki infrastruktúrában, biztosítási platformokon, állami cloud rendszerekben és gyorsan növekvő termékcégeknél.',
+          'A MONAD alapítói vezetésű szoftvertanácsadó cég, több mint 20 év gyakorlati mérnöki tapasztalattal összetett, kritikus rendszerekben: banki infrastruktúrában, biztosítási platformokon, állami cloudrendszerekben és gyorsan növekvő termékcégeknél.',
         aboutLead2:
           'Beépülő senior mérnökként és architektként dolgozunk, nem külső tanácsadóként, aki egy prezentációval távozik. Aki felméri a rendszert, ugyanő írja a kódot, építi az infrastruktúrát, és állítja be az observability-t. Minden együttműködés működő szoftverrel és átadott tudással zárul.',
         aboutValues: [
@@ -602,7 +602,7 @@ export default function Home() {
         contactTitlePrefix: 'Beszéljünk',
         contactTitleAccent: 'a szoftveres kihívásaikról.',
         contactLead:
-          'Akár architektúra review-ra, modernizációs roadmapre, gyakorlati fejlesztési támogatásra vagy helyszíni automatizálásra van szükségük, együtt megtaláljuk a megfelelő formát.',
+          'Akár architektúrareview-ra, modernizációs roadmapre, gyakorlati fejlesztési támogatásra vagy helyszíni automatizálásra van szükségük, együtt megtaláljuk a megfelelő formát.',
         phoneLabel: 'Telefon',
         locationLabel: 'Iroda',
         locationValue: 'Gödöllő, Dózsa György út 28/A',
@@ -614,7 +614,7 @@ export default function Home() {
         companyPlaceholder: 'A cég neve',
         messageLabel: 'Üzenet',
         messagePlaceholder:
-          'Írja le röviden, miben segíthetünk: architektúra review, modernizációs roadmap, fejlesztési támogatás vagy helyszíni automatizálás...',
+          'Írja le röviden, miben segíthetünk: architektúrareview, modernizációs roadmap, fejlesztési támogatás vagy helyszíni automatizálás...',
         sendingText: 'Küldés...',
         sendButton: 'Üzenet küldése',
         contactUnavailableButton: 'Az űrlap nem elérhető',
