@@ -58,7 +58,10 @@ Hungarian is better where the Hungarian word is what engineers actually say:
 *szűk keresztmetszet, élesben / éles üzem, üzemeltetés, kódgenerálás, adatmigráció,
 csatolás, megbízhatóság, felmérés.* The owner added three on 2026-10-13: *rangsorolt*
 (not *priorizált*; a verb use becomes „első helyre tette”), *megállapítás* (not
-*finding*), *biztonsági követelmény* (not *security követelmény*).
+*finding*), *biztonsági követelmény* (not *security követelmény*). On 2026-10-26:
+*kiértékelés* for checking AI answers (not *eval*), and *beágyazott* for an engineer
+working inside the client's team: „Beágyazott AI-fejlesztés” (not „AI-bevezetés
+beépülő mérnökkel”).
 
 The opposite failure is also real: English jargon that a Hungarian reader cannot
 parse. Translate the meaning of *platform friction, readout, deliverable, fit call,

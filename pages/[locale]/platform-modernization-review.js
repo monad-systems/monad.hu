@@ -155,6 +155,11 @@ const deliverables = [
       'Contract and integration findings with ownership and dependency notes.',
   },
   {
+    title: 'Where AI would pay off, and what it needs',
+    format:
+      'A ranked list of the processes where AI would earn its cost, with the data and integrations each one needs and the outcome to measure it by.',
+  },
+  {
     title: 'Prioritized 90-day modernization roadmap',
     format: 'Sequenced plan by priority, dependency, and execution risk.',
   },
@@ -177,6 +182,7 @@ const weekTwo = [
   'Architecture risk analysis',
   'API and integration assessment',
   'Cost and complexity hotspots',
+  'AI opportunity and readiness check',
   'Creation of a prioritized modernization roadmap',
 ];
 
@@ -341,6 +347,7 @@ export default function PlatformModernizationReview() {
           'Architekturális kockázatelemzés',
           'API- és integrációs felmérés',
           'Költség- és komplexitási gócpontok',
+          'Az AI-lehetőségek és a felkészültség felmérése',
           'Rangsorolt modernizációs roadmap elkészítése',
         ],
         notGoodFit: [
@@ -440,6 +447,11 @@ export default function PlatformModernizationReview() {
             title: 'Az API- és integrációs problémák áttekintése',
             format:
               'Contract- és integrációs megállapítások, felelősökkel és függőségekkel.',
+          },
+          {
+            title: 'Hol térülne meg az AI, és mi kell hozzá',
+            format:
+              'Rangsorolt lista azokról a folyamatokról, ahol az AI megtérülne. Mindegyiknél leírjuk, milyen adat és integráció kell hozzá, és melyik eredménnyel mérhető a hatása.',
           },
           {
             title: 'Rangsorolt 90 napos modernizációs roadmap',

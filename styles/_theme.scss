@@ -846,8 +846,15 @@ a.site-nav-link:hover {
   .ruled-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* Six tracks, two per cell: when two cells are left for the last row they
+   share it, instead of leaving an empty cell in the rule colour. */
 @media (min-width: 1024px) {
-  .ruled-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ruled-grid--3 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .ruled-grid--3 > * { grid-column: span 2; }
+  .ruled-grid--3 > :nth-child(3n + 1):nth-last-child(2),
+  .ruled-grid--3 > :nth-child(3n + 1):nth-last-child(2) + * {
+    grid-column: span 3;
+  }
 }
 
 /* ── Best fit ──────────────────────────────────────── */
@@ -902,7 +909,7 @@ a.site-nav-link:hover {
 
 @media (min-width: 900px) {
   .engage-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

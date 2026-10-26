@@ -53,6 +53,18 @@ const problems = [
       'Infrastructure spend keeps climbing without a clear link to workload or value. Over-provisioned clusters, redundant services, and unoptimized data paths drive waste.',
     tags: ['Cost Optimization', 'Right-Sizing', 'Architecture Review'],
   },
+  {
+    title: 'AI Pilots That Never Reach Production',
+    description:
+      'The demo impressed everyone, then the pilot stalled. It is not connected to your real data or systems, nobody owns it, and no one can say when an answer is good enough to act on.',
+    tags: ['LLM Integration', 'Evaluation', 'Data Contracts'],
+  },
+  {
+    title: 'AI Spend Without a Measurable Return',
+    description:
+      'You pay per seat or per token, and the bill is easy to read. What it bought is not: no process has a recorded baseline, and nobody tracks the cost of a completed task or the hours it saves.',
+    tags: ['Cost per Outcome', 'Usage Telemetry', 'ROI Baseline'],
+  },
 ];
 
 const engagements = [
@@ -79,6 +91,14 @@ const engagements = [
     when: 'You have a clear modernization scope and need experienced builders who can own delivery end-to-end or work as a tight extension of your team.',
     outcome:
       'Working, deployed software with clean contracts, tested boundaries, observability in place, and knowledge transferred to your team.',
+  },
+  {
+    step: '04',
+    title: 'Embedded AI Delivery',
+    what: 'A senior engineer works inside your team for a fixed period, picks one or two processes where AI pays for itself, and builds them on your systems and data — with contracts, evaluation, and observability, like any other production service.',
+    when: 'You already pay for AI tools, or a pilot looked convincing in a demo, but it is not part of daily work and nobody can show what it returns.',
+    outcome:
+      'Processes running in production with a recorded baseline and a measured cost per outcome, and people on your team who can run and extend them after we leave.',
   },
 ];
 
@@ -383,6 +403,18 @@ export default function Home() {
               'Architektúrareview',
             ],
           },
+          {
+            title: 'Az AI-pilot nem jut el az éles üzemig',
+            description:
+              'A demó mindenkit meggyőzött, aztán a pilot elakadt. Nincs összekötve a valós adatokkal és rendszerekkel, nincs gazdája, és senki sem tudja megmondani, mikor elég jó a válasz ahhoz, hogy döntést alapozzanak rá.',
+            tags: ['LLM-integráció', 'Kiértékelés', 'Data Contract'],
+          },
+          {
+            title: 'Fizetnek az AI-ért, de nem látszik, mit hoz',
+            description:
+              'Felhasználónként vagy tokenenként fizetnek, a számla könnyen olvasható. Az viszont nem, hogy mit kaptak érte: egyik folyamatnál sincs rögzítve a kiindulási állapot, és senki sem követi, mennyibe kerül egy elvégzett feladat, vagy hány munkaórát takarít meg.',
+            tags: ['Feladatonkénti költség', 'Telemetria', 'Megtérülésmérés'],
+          },
         ],
         engagements: [
           {
@@ -408,6 +440,14 @@ export default function Home() {
             when: 'A modernizációs feladat egyértelműen körülhatárolt, és olyan tapasztalt csapat kell, amely elejétől végéig felelősséget vállal a delivery-ért.',
             outcome:
               'Élesben futó rendszer tiszta contractokkal, tesztelt határokkal, beépített observability-vel és átadott tudással.',
+          },
+          {
+            step: '04',
+            title: 'Beágyazott AI-fejlesztés',
+            what: 'Egy senior mérnök meghatározott ideig a csapatukban dolgozik. Kiválaszt egy-két folyamatot, ahol az AI megtérül, és az Önök rendszereire és adataira építve valósítja meg őket contractokkal, kiértékeléssel és observability-vel, ugyanúgy, mint bármely más éles szolgáltatást.',
+            when: 'Már fizetnek AI-eszközökért, vagy van pilotjuk, amely a demón meggyőzően működött, de a napi munkának nem része, és senki sem tudja megmutatni, mit hoz.',
+            outcome:
+              'Élesben futó folyamatok rögzített kiindulási állapottal és mért feladatonkénti költséggel, valamint saját munkatársak, akik a távozásunk után is működtetik és bővítik őket.',
           },
         ],
         differentiators: [
@@ -524,7 +564,7 @@ export default function Home() {
               'Belső platformok, CI/CD és fejlesztői eszközök, amelyek gyorsítják a delivery-t',
           },
         ],
-        engageTitlePrefix: 'Három módon',
+        engageTitlePrefix: 'Négy módon',
         engageTitleAccent: 'dolgozhatunk együtt.',
         engageLead:
           'Minden együttműködés az architektúra és a korlátok megértésével kezdődik. A részvételünk mértékét a valós igényhez igazítjuk.',
@@ -637,7 +677,7 @@ export default function Home() {
         differentiators,
         caseStudies,
         expertise,
-        engageTitlePrefix: 'Three Ways to',
+        engageTitlePrefix: 'Four Ways to',
         engageTitleAccent: 'Work With Us.',
         engageLead:
           'Every engagement starts with understanding your architecture and constraints. We scale involvement to match what you actually need.',
