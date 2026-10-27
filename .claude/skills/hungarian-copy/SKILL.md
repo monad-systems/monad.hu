@@ -28,6 +28,11 @@ company writes it on its own site: „Tisztelt Példa Kft.!”. Do not open with
 „Jó napot kívánok!”. This was the owner's decision on 2026-10-19. Letters
 already sent keep their greeting.
 
+**Subject lines carry no company-name prefix.** Write „A honlapjukról”, „A
+napi manuális adatrögzítés kiváltása”, never „Példa: a honlapjukról” or
+„[Cég]: …”. This was the owner's decision on 2026-10-27, for every new letter.
+A reply in an existing thread („Re: …”) keeps the subject already sent.
+
 ## 2. Engineering terms stay in English
 
 Hungarian developers say these in English, so write them in English with Hungarian
