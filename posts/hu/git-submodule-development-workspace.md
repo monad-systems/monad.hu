@@ -163,3 +163,5 @@ Ha a package-ek már külön repókban vannak:
 Ha monorepóból indulunk, ugyanez a teszt megmutatja, mely package-ek állnak készen a kiköltözésre: azok, amelyek már most is önállóan telepíthetők, buildelhetők és tesztelhetők.
 
 A workspace fejlesztői eszköz. A release-ek és a deployok továbbra is az egyes repókból és a registryből jönnek, így egy elromlott workspace lassítja a helyi munkát, de nem érinti azt, ami élesbe megy.
+
+Ha nem világos, hogy a repók elrendezése lassítja-e a csapatot, vagy a szűk keresztmetszet máshol van, a [kéthetes architektúrareview](/hu/platform-modernization-review) során végigkövetünk egy módosítást a branchtől az éles üzemig, és a megállapításokból 90 napos roadmapet írunk.

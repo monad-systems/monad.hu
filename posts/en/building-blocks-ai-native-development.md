@@ -246,3 +246,5 @@ If you are starting, the order matters more than the tooling:
 4. Require acceptance criteria on every task, and add plan approval, review against those criteria, and spend ceilings before giving agents more autonomy.
 
 The tools changed. Contract-first design, tests that fail loudly, review against intent, small diffs, enforced CI, observability, and written decisions did not. They now decide whether AI speeds up useful work or merely speeds up drift.
+
+If it is not clear which of these an existing system lacks, and what to fix first, the [two-week architecture review](/platform-modernization-review) gives a written answer: a ranked 90-day roadmap.

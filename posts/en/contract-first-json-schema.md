@@ -253,3 +253,5 @@ JSON Schema can connect API design, runtime safety, client generation, admin UI 
 On the Fizz backend platform, that means static OpenAPI in the service source, generated handlers, types and validators, and AJV on both backend and frontend. CI keeps generated clients current for services, frontend code, and tests; JSON Forms reuses the same schemas for admin UI work.
 
 If your team already uses OpenAPI, AsyncAPI, or JSON Schema, the next step is to write those contracts first and let them shape how the system is built.
+
+If it is not clear which boundary to start with on an existing system, the [two-week architecture review](/platform-modernization-review) answers that too: its 90-day roadmap names the contracts to formalize first.
