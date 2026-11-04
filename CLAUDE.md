@@ -20,8 +20,6 @@ Everything here is public: files, commit messages and author addresses, branch n
 and pull request titles, descriptions and comments. Deleting a file does not remove it
 from git history.
 
-- Agent settings and skills stay out of this repository: `.claude/` is ignored, and
-  skills are installed at user level.
 - Never commit credentials, keys, tokens or `.env` files. Values the build needs go in
   GitHub Actions secrets.
 - Never name a client or prospect the site does not already publish. Examples in

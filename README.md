@@ -83,27 +83,6 @@ Inter and JetBrains Mono come from fontsource. Hungarian needs only four glyphs 
 Without them, a single „ő” makes the browser fetch the ~100 KB latin-ext files. Re-run
 `node scripts/subset-hungarian-fonts.mjs` (needs `pip install fonttools brotli`) after upgrading either font package.
 
-### Editing posts for AI writing tells
-
-Every post gets a pass with the `avoid-ai-writing` skill (MIT, by Conor Bronsdon) before publishing. The skill is installed at user level, outside this repository.
-
-```bash
-node ~/.claude/skills/avoid-ai-writing/scan.js posts/en/your-post.md
-```
-
-The scanner is the mechanical half and only catches vocabulary and formatting.
-The tells that actually make long-form posts read as machine-written are structural,
-and the skill's `SKILL.md` is the checklist for those:
-
-- negation pivots ("It is not X. It is Y.") — one per post, not eighteen
-- bold-label paragraph leads (`**Term.** Sentence.`) — use a colon in lists, or lead the sentence with the term
-- em dashes in prose — the `- **Term** — description` list form is fine and does not count
-- inflated adjectives (`real`, `genuine`, `actual`) on abstract nouns
-- inventing specifics during a rewrite — never add a number, name, or claim the draft did not have
-
-The Hungarian translation needs the structural pass too. The word tables and the
-function-word entropy signal are English-tuned and will misfire on Hungarian.
-
 ### Hungarian copy
 
 Hungarian text follows MONAD's copy rules, which are kept outside this repository:
