@@ -5,6 +5,11 @@ description: Write, translate or proofread Hungarian copy for MONAD — site pag
 
 # Hungarian copy
 
+This file is the public extract of MONAD's Hungarian copy rules: the language
+rules, with invented examples. The full version, with the owner's decisions and
+the examples they came from, is private; change that one first, and carry over
+only what is generic.
+
 The owner's decisions from the October 2026 rework of the Hungarian site. Apply them
 to any Hungarian text MONAD publishes. When a rule here conflicts with a general
 Hungarian style rule, this file wins; when it conflicts with something the owner
@@ -158,10 +163,50 @@ jargon, but no slang either.
 - **When the owner supplies a phrase, use it verbatim** in every text that says the
   same thing, and add it to the table above.
 
+### Client documents: write as a person, not as a form
+
+The rules above came from site copy and letters; a long client document has
+tells of its own.
+
+- **A paragraph lead-in is not a count.** Never open a bold lead-in with a
+  number word: not „**Három elv, amelyben már egyetértés van.**” but „**Elvek,
+  amelyekben már egyetértés van.**”; not „**Tizenegy döntés az ügyféltől.**” but
+  „**Döntések az ügyféltől.**”, with the count in the sentence („11 döntés,
+  sürgősségi sorrendben”). With the article it is Hungarian („**A három út,
+  keretként.**”); without it, it is a translated heading. „Egy határidő”, „Egy
+  stratégiai kérdés” are English („One deadline”): write „A határidő”, „A
+  stratégiai kérdés”.
+- **Prose is sentences; data sheets are tables.** The telegraph pattern „A lépés:
+  …; Ráfordítás: …; Gazda: …” belongs in a table or in short labelled lines. In
+  running text every item gets a verb: „A ráfordítás közepes, és a szállítói API
+  dönti el.”
+- **Semicolons sparingly:** at most one per paragraph in a client document; the
+  rest become sentences.
+- **The bold label plus full stop** („**Mit csináltunk.**”) is a device for a run
+  of parallel points that the reader scans, not the default opener; the other
+  paragraphs start with a sentence.
+- **Keep the client's own terms,** English ones included, when the proposal the
+  client signed uses them: „quick win” stays if it is in the proposal.
+
 ## 4. Typography
 
 - Quotes: „…” (not "…"); nested: »…«.
 - Numbers: 1 000 000 Ft, 1,5 M Ft, 8 hónap; prices „+ áfa”.
+- **Counts in words only up to three.** The English habit of writing a number
+  out at the start of a sentence comes through otherwise („Tizennégy javaslat”,
+  „Huszonhét folyamatot vettünk fel”). From four up, every exact count and every
+  measured or summed value is a numeral, at the start of a sentence too: „14
+  javaslat”, „27 folyamatot vettünk fel”, „egy 17 tagú csoport”, „a 12 lépés”,
+  „5 terület”. Words stay for one to three („három
+  döntéshozó”, „két rendszer”), for „egy” as an article or meaning a single one
+  („egy gazda, egy adatszótár”), for approximate ranges („egy-két emberre”,
+  „három-öt éve”), for round numbers („több mint száz este”, „pár száz forint”),
+  for ordinals („hatodik”) and for set phrases („egy helyen”, „négyszemközt”).
+  In a series every member is a numeral, the small ones too: „30 kapcsolat: 6
+  gépi, 20 kézi, 4 tisztázatlan”. Headings and bold lead-ins keep words („3.2 Az
+  öt terület és a tizenkét lépés”, „**A tizenkét lépés.**”), and never start with
+  a number word (section 3, last part). Compounds follow the prose rule: „5
+  perces frissítés”, but „negyedórás”, „háromirányú”.
 - Dates: 2026. október 6.
 - Tags and headings in sentence case: „Generált kliensek”, not „Generált Kliensek”.
 - *e-mail* with a hyphen; *vs* → *és*.
@@ -254,7 +299,9 @@ not two words.
    (section 3), sentence by sentence. Pass four, on SME pages and letters: read each sentence as the
    owner of a family firm would, and check that it says what they get (the last part
    of section 3). Last pass, on every text: commas and spelling (section 4), checking
-   each „és”, „vagy” and „meg” for a clause boundary.
+   each „és”, „vagy” and „meg” for a clause boundary. On a client document, one
+   more pass: counts from four up as numerals, no number word opening a lead-in,
+   no telegraph lists in prose (section 3, last part; section 4).
 3. Never change facts, numbers, names, code, inline code, links or front matter keys.
    Never add claims the text did not make.
 4. Blog posts also get the structural checklist of the `avoid-ai-writing` skill. Its
