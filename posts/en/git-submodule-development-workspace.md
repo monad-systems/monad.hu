@@ -163,3 +163,5 @@ If your packages already live in separate repositories:
 If you are starting from a monorepo, the same test tells you which packages are ready to leave: the ones that already install, build, and test on their own.
 
 The workspace is a development tool. Releases and deployments still come from each repository and from the registry, so a broken workspace slows down local work without affecting what ships.
+
+If it is not clear whether the repository layout is what slows the team down, or the bottleneck sits elsewhere, the [two-week architecture review](/platform-modernization-review) follows one change from branch to production and turns the findings into a 90-day roadmap.

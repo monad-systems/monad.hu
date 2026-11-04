@@ -253,3 +253,5 @@ A JSON Schema összekötheti az API designt, a runtime-biztonságot, a kliensgen
 A Fizz-backendplatformon ugyanazokra a sémákra épül a backend, a frontend, a tesztek és az admin UI.
 
 Ha már használunk OpenAPI-t, AsyncAPI-t vagy JSON Schemát, a következő lépés: írjuk meg először a contractot, és építsük rá a rendszert.
+
+Ha egy meglévő rendszeren nem világos, melyik határon érdemes kezdeni, erre is választ ad a [kéthetes architektúrareview](/hu/platform-modernization-review): a 90 napos roadmap megnevezi, mely contractokat kell elsőként formalizálni.

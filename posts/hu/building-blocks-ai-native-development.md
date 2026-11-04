@@ -246,3 +246,5 @@ Ha most kezdjük, a sorrend fontosabb az eszközöknél:
 4. Minden feladathoz követeljünk meg elfogadási kritériumokat, és mielőtt több autonómiát adunk az agenteknek, vezessük be a tervjóváhagyást, a kritériumokhoz mért review-t és a költségplafont.
 
 Az eszközök sokat változtak. A contract-first tervezés, a hangosan bukó tesztek, a szándékhoz mért review, a kicsi diffek, a kikényszerített CI, az observability és a leírt döntések nem. Ma ezek döntik el, hogy az AI a hasznos munkát vagy csak a rendszer szétcsúszását gyorsítja fel.
+
+Ha nem világos, ezek közül mi hiányzik egy meglévő rendszerből, és mivel érdemes kezdeni, erre ad írásos választ a [kéthetes architektúrareview](/hu/platform-modernization-review): rangsorolt, 90 napos roadmapet.
