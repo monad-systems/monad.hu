@@ -1,6 +1,6 @@
 ---
 name: hungarian-copy
-description: Write, translate or proofread Hungarian copy for MONAD — site pages, blog posts, offers, outreach letters, vault one-pagers. Use whenever Hungarian text is created or changed, including translating English copy into Hungarian, and when asked whether Hungarian text "sounds Hungarian", is "too Hungarian", or should use te/Ön. Covers who to address and how, which engineering terms stay in English, and a checklist of calques (tükörfordítás) to rewrite.
+description: Write, translate or proofread Hungarian copy for MONAD — site pages, blog posts, LinkedIn posts, offers, outreach letters, client documents, vault one-pagers. Use whenever Hungarian text is created or changed, including translating English copy into Hungarian, and when asked whether Hungarian text "sounds Hungarian", is "too Hungarian", sounds AI-written, or should use te/Ön. Covers who to address and how, which engineering terms stay in English, a checklist of calques (tükörfordítás) to rewrite, and how to make a text read as written by a person.
 ---
 
 # Hungarian copy
@@ -22,6 +22,7 @@ says in the conversation, the owner wins — then update this file.
 | Site pages and UI strings (homepage, landing pages, review page, forms, errors) | **Formal (magázás)**. A company is plural: *Önök, Önöknél, a csapatuk*. One person is singular: *Kérjük, írjon…* | „Úgy érzik, hogy az architekturális adósság lassítja Önöket” |
 | Blog posts | **Inclusive first person plural**, or impersonal. Never *te*, never *Ön*. | „Mielőtt implementálnánk, tervezzük meg a rendszert”, „Ne tegyük.” |
 | Local SME offer (helyi automatizálás), outreach letters, one-pagers | **Formal, plain Hungarian, no engineering jargon.** Readers are owners of family firms, not engineers. | „A felmérés ingyenes. Ha megéri, fix áras ajánlatot adunk.” |
+| LinkedIn posts from the owner's profile | **One person talking.** *Én* for an opinion, *mi* for the company's work. Never *te*, never *Ön*. Engineering terms stay in English. | „Szerintem ilyenkor ritkán a célarchitektúrával van a baj.” |
 
 Formal text: lean on 3rd-person verb forms and drop the pronoun where Hungarian
 would. „Ön” in every sentence reads like a bank letter. Letters open with
@@ -114,6 +115,10 @@ site:
 | előre egyeztetett terjedelem (*scope*) | előre rögzített feladat |
 | lezárom a szálat (*close the thread*) | többet nem keresem |
 | mennyi kézi adatbevitel tűnhet el | hogy kevesebbet kelljen kézzel gépelniük |
+| több tünet egyszerre igaz (*holds*) | több gond is van egyszerre |
+| melyik integrációt érti egyetlen ember | melyik integrációhoz ért csak egy ember |
+| a monolitnak mennie kell (*has to go*) | le kell cserélni a monolitot |
+| a szabályokat CI-checkként futtatjuk (*run rules*) | CI-checkekkel ellenőrizzük a szabályok betartását |
 
 Patterns behind them:
 
@@ -125,6 +130,54 @@ Patterns behind them:
   drift*) → say what is meant.
 - **„mint amit”** comparisons copied from *than what* → rebuild the comparison.
 - **„X-ként kezel”** repeated to mimic *treat as* → vary or use a verb.
+- **English verbs of place and motion** (*sit at, run, live in, rest on, fall into,
+  go*) → the verb Hungarian uses for that relation: *bevon, vezet, szerepel, alapul,
+  oszlik, kezel*.
+
+### The whole text: it has to sound as if a person wrote it
+
+The rest of this file works on the sentence. A text can break none of those rules,
+pass a scanner and still read as generated. This part works on the paragraph and the
+whole text, and it applies to everything we publish or send. **A clean scan proves
+nothing.**
+
+The tells below are all grammatical, and each is an ordinary device. One colon or one
+short sentence proves nothing. Judge whether the device serves this paragraph, and
+whether the text keeps reaching for it: repetition and the tidy shape are the tell.
+
+- **Aphorism paragraphs:** one short line standing alone as a conclusion.
+- **A paradox as the opener:** „betart minden szabályt…, és megszegi azt az egyet…”.
+- **Paired setups:** „Egy wikioldal leírhatja X-et. Egy CI-check meg is akadályozza.”
+- **The colon reveal:** „Az első lépés kicsi: …”.
+- **The verdict sentence:** „…többet ér, mint egy jobb prompt.”
+- **The punchline absolute:** „Az agent erre nem képes.” It also invites an objection.
+- **Dismiss the fashion, reveal the sensible:** „Nem a modellek összehasonlításával
+  kezdeném, hanem…”. It is the commonest LinkedIn advice formula.
+- **The stock closer:** „A cikkben végigmegyünk azon, hogyan…”.
+- **The labelled paragraph opener:** see the client documents part below.
+
+| Reads as generated | Reads as a person |
+|---|---|
+| Az AI-agent betart minden szabályt, amelyet megmutattak neki, és megszegi azt az egyet, amelyik csak a fejekben létezik. | Az AI-agentek azokat a szabályokat sértik meg a legkönnyebben, amelyeket a csapat már magától értetődőnek vesz. |
+| Nem a cél volt rossz, hanem a sorrend. | Szerintem ilyenkor ritkán a célarchitektúrával van a baj. |
+| Az első lépés kicsi: írjuk le az invariánsokat… | Ha most kezdeném, először azt a pár szabályt írnám le, amelynek a megsértése a legtöbbe kerül. |
+| A cikkben leírjuk, mit érdemes kiemelni, és hol romlik el a megközelítés. | A részletek a cikkben vannak, a link az első kommentben. |
+
+- **Write the way one colleague tells another,** within the register section 1 sets
+  for the text: formal pages stay formal. Sentences carry on from each other, an
+  opinion is marked as one, and a claim gets a concrete example instead of an
+  abstract noun.
+- **„Szerintem” is not a repair.** It works when the sentence is an opinion. Added to
+  every post, it becomes a tic of its own.
+- **A claim needs support in proportion.** A superlative, a frequency, a saving or a
+  cause needs evidence; a single example does not establish it. Soften the claim
+  instead.
+- **In a selling passage, a list says what the reader gets or decides.** A list of
+  what we do („interjúk, rendszerbejárás, 90 napos roadmap”) is correct and reads as a
+  brochure, so it belongs in an appendix or on the method page. Steps, prerequisites
+  and exclusions stay lists.
+- **Do not fake it.** No invented anecdote, hesitation or slang to sound human. What
+  makes a text truly personal is a real case, and only the owner has those: ask.
 
 ### SME page and letters: say what the client gets
 
@@ -297,16 +350,27 @@ not two words.
 1. Read the whole text before changing anything.
 2. Pass one: address (section 1). Pass two: terms (section 2). Pass three: calques
    (section 3), sentence by sentence. Pass four, on SME pages and letters: read each sentence as the
-   owner of a family firm would, and check that it says what they get (the last part
-   of section 3). Last pass, on every text: commas and spelling (section 4), checking
-   each „és”, „vagy” and „meg” for a clause boundary. On a client document, one
-   more pass: counts from four up as numerals, no number word opening a lead-in,
-   no telegraph lists in prose (section 3, last part; section 4).
+   owner of a family firm would, and check that it says what they get („SME page and
+   letters” in section 3). Pass five, on every text: read it aloud, one paragraph at a
+   time, and check it against „The whole text” in section 3. Last pass, on every text:
+   commas and spelling (section 4), checking each „és”, „vagy” and „meg” for a clause
+   boundary. On a client document, one more pass: counts from four up as numerals, no
+   number word opening a lead-in, no telegraph lists in prose („Client documents” in
+   section 3; section 4).
 3. Never change facts, numbers, names, code, inline code, links or front matter keys.
-   Never add claims the text did not make.
-4. Blog posts also get the structural checklist of the `avoid-ai-writing` skill. Its
-   word lists are English-tuned; use its structural tells only.
-5. Report what changed as „régi → új” pairs, and list the sentences you were unsure
+   Never add claims the text did not make. After a rewrite, compare it with the
+   original: the actor, scope, certainty, cause, conditions and commitments must
+   survive. A fluent sentence can say something else.
+4. Blog and LinkedIn posts also get the structural checklist of the `avoid-ai-writing`
+   skill. Its word lists are English-tuned; use its structural tells only.
+5. **Before anything is published or sent, get a fresh reader,** who has seen the text
+   and none of your reasoning: a new subagent, or ChatGPT through the Codex CLI. Ask
+   for the sentences that sound machine-written, translated or like marketing. A
+   client document goes only to a subagent unless the owner agrees otherwise. Take the
+   diagnosis, then judge the wording yourself: its rewrites are often flatter than the
+   original, and can add facts. After fixing, read once more, because the fixes bring
+   errors of their own.
+6. Report what changed as „régi → új” pairs, and list the sentences you were unsure
    about instead of guessing.
 
 ## 6. Reference sources (checked 2026-10-13)
