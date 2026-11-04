@@ -10,9 +10,9 @@
   footer to pull requests, reviews and comments on its own, even when the text you sent
   had none. After creating or editing any of them, read it back from GitHub and remove
   anything appended before reporting the work done.
-- Enforced in two places: `.claude/settings.json` turns off Claude Code's own
-  attribution (`attribution`), and the **Attribution policy** workflow fails any pull
-  request whose title, description or commits still carry it.
+- Enforced by the **Attribution policy** workflow, which fails any pull request whose
+  title, description or commits still carry it. Claude Code's own attribution is
+  turned off in user-level settings.
 
 ## This repository is public
 
@@ -20,6 +20,8 @@ Everything here is public: files, commit messages and author addresses, branch n
 and pull request titles, descriptions and comments. Deleting a file does not remove it
 from git history.
 
+- Agent settings and skills stay out of this repository: `.claude/` is ignored, and
+  skills are installed at user level.
 - Never commit credentials, keys, tokens or `.env` files. Values the build needs go in
   GitHub Actions secrets.
 - Never name a client or prospect the site does not already publish. Examples in

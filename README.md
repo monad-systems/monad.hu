@@ -85,15 +85,15 @@ Without them, a single „ő” makes the browser fetch the ~100 KB latin-ext fi
 
 ### Editing posts for AI writing tells
 
-Every post gets a pass with the `avoid-ai-writing` skill in `.claude/skills/` (MIT, by Conor Bronsdon) before publishing.
+Every post gets a pass with the `avoid-ai-writing` skill (MIT, by Conor Bronsdon) before publishing. The skill is installed at user level, outside this repository.
 
 ```bash
-node .claude/skills/avoid-ai-writing/scan.js posts/en/your-post.md
+node ~/.claude/skills/avoid-ai-writing/scan.js posts/en/your-post.md
 ```
 
 The scanner is the mechanical half and only catches vocabulary and formatting.
 The tells that actually make long-form posts read as machine-written are structural,
-and `SKILL.md` is the checklist for those:
+and the skill's `SKILL.md` is the checklist for those:
 
 - negation pivots ("It is not X. It is Y.") — one per post, not eighteen
 - bold-label paragraph leads (`**Term.** Sentence.`) — use a colon in lists, or lead the sentence with the term
@@ -106,10 +106,10 @@ function-word entropy signal are English-tuned and will misfire on Hungarian.
 
 ### Hungarian copy
 
-Hungarian text follows `.claude/skills/hungarian-copy/SKILL.md`: site pages address
-readers formally, blog posts use the inclusive first person plural, engineering terms
-such as contract, observability and review stay in English, and the file lists the
-calques to rewrite.
+Hungarian text follows MONAD's copy rules, which are kept outside this repository:
+site pages address readers formally, blog posts use the inclusive first person plural,
+engineering terms such as contract, observability and review stay in English, and
+calques from English get rewritten.
 
 ## Analytics
 

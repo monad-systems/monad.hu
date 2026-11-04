@@ -15,6 +15,9 @@ result*.html
 # misc
 .DS_Store
 
+# agent settings and skills stay out of the public repository (CLAUDE.md)
+.claude/
+
 # secrets: the repository is public (CLAUDE.md)
 .env*
 !.env*.example
