@@ -15,7 +15,7 @@ result*.html
 # misc
 .DS_Store
 
-# secrets: the repository is public (CLAUDE.md)
+# secrets: the repository is public
 .env*
 !.env*.example
 *.pem
