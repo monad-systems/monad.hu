@@ -20,7 +20,7 @@ A monorepo egyfajta munkát nagyon megkönnyít. A fejlesztő egy checkoutban, e
 
 A költség máshol jelentkezik. A CI-nak ki kell találnia, hogy ötven package közül melyiket érinti egy változás. A package-ek hajlamosak együtt release-elődni, vagy külön eszköz kell a független verziózásukhoz. A hozzáférés a mindent vagy semmit elvén működik: az a külsős, akinek egy service kell, mindegyiket olvashatja. Ha egy package-et meg akarunk osztani egy ügyféllel, vagy open source-ként ki akarjuk adni, előbb le kell választani egy olyan historyról, amelyből soha nem tervezték kiemelni.
 
-A külön repók fordítva osztják el a terhet. Minden repónak saját pipeline-ja, release-ütemezése, jogosultságai és gazdája van. Aztán módosítani kell egy library-t, és megnézni a hatását egy alkalmazásban, és a kör így néz ki: prerelease publikálása, a consumer verziójának emelése, telepítés, teszt, és elölről. A szokásos kerülőmegoldás kézzel készített symlink a két checkout között, ami addig működik, amíg csendben rossz könyvtárra nem kezd mutatni.
+A külön repók fordítva osztják el a terhet. Minden repónak saját pipeline-ja, release-ütemezése, jogosultságai és gazdája van. Aztán módosítani kell egy library-t és megnézni a hatását egy alkalmazásban, és a kör így néz ki: prerelease publikálása, a consumer verziójának emelése, telepítés, teszt, és elölről. A szokásos kerülőmegoldás kézzel készített symlink a két checkout között, ami addig működik, amíg csendben rossz könyvtárra nem kezd mutatni.
 
 A legtöbb csapat választ egy felépítést, és együtt él a költségeivel. Van egy harmadik elrendezés is: minden repó független marad, és a monorepóból csak azt a részt vesszük át, amelyik a fejlesztőknek hiányzik: a helyi fejlesztést.
 
@@ -32,7 +32,7 @@ Egy külön, vékony workspace-repó git submodule-ként tartalmazza ezeket a re
 
 A workspace-en kívül ez a fájl nem létezik. A repó saját CI-a, a release build, a container image és az éles környezet egyetlen repót lát, így ugyanaz a manifest a registryben publikált verzióra oldódik fel.
 
-A manifest a két környezetben ugyanaz. Csak a feloldás más.
+A manifest a két környezetben ugyanaz, csak a feloldás más.
 
 ## Vizuál: egy manifest, kétféle feloldás
 
@@ -57,7 +57,7 @@ A gyakorlatban ez a következőket jelenti:
 - a release verziózott artifactot publikál egy registrybe
 - a deploy a registryből húzza a függőségeket, a lockfile-ban rögzített verziókban
 
-A második pont egyes package managereknél könnyen elsikkad. A pnpm `workspace:` protokollja például kizárólag helyi workspace package-re hajlandó feloldani, így az ezt használó manifest önálló klónból nem telepíthető. A tagrepók manifestjeiben ezért közönséges tartományok álljanak. A linkelést a workspace kapcsolja be: pnpm-ben ez a `linkWorkspacePackages` beállítás, amely csak akkor linkel egy helyi package-et, ha a verziója megfelel a megadott tartománynak.
+A második pont egyes package managereknél könnyen elsikkad. A pnpm `workspace:` protokollja például kizárólag helyi workspace package-re hajlandó feloldani, így az ezt használó repó önálló klónból nem telepíthető. A tagrepók manifestjeiben ezért szokásos tartományok álljanak. A linkelést a workspace kapcsolja be: pnpm-ben ez a `linkWorkspacePackages` beállítás, amely csak akkor linkel egy helyi package-et, ha a verziója megfelel a megadott tartománynak.
 
 A Go eleve így működik. A szülőkönyvtárban talált `go.work` fájl az alatta lévő modulokat egy workspace-szé fogja össze, a Go dokumentációja pedig azt tanácsolja, hogy a `go.work` ne kerüljön be a modulok repójába, mert a CI-nak úgy kell tesztelnie a modult, ahogy a consumerei használják. Ha a `go.work` a workspace-repóban, a submodule-ok fölött van, pontosan ezt a tanácsot követjük. Rustban ugyanezt a szerepet a workspace Cargo-konfigurációjában elhelyezett `[patch]` szekció tölti be.
 
@@ -117,9 +117,9 @@ Ha a package manager tartomány alapján linkel, egy helyi package-et csak akkor
 
 Amíg egy library javításokat és visszafelé kompatibilis új funkciókat kap, a manifestjében még az utolsó release-elt verzió áll, mondjuk 2.4.1. Az az alkalmazás, amely `^2.4.0`-tól függ, a helyi checkoutra linkel, és a fejlesztő azonnal látja a library változásait.
 
-Amikor a library breaking change-et vezet be, és a verziója 3.0.0-ra lép, ugyanennek az alkalmazásnak a tartománya már nem illeszkedik rá. A workspace a 2.x verziót telepíti neki a registryből, az alkalmazás pedig tovább működik azzal a verzióval, amelyet deklarált. A 3.0.0 átvételéhez valakinek szándékosan módosítania kell az alkalmazás tartományát. A workspace soha nem engedi, hogy egy alkalmazás olyan breaking change-et kapjon, amelyet a manifestje nem fogadott el, és élesben is pontosan ez a garancia.
+Amikor a library breaking change-et vezet be, és a verziója 3.0.0-ra lép, ugyanennek az alkalmazásnak a tartománya már nem illeszkedik rá. A workspace a 2.x verziót telepíti neki a registryből, az alkalmazás pedig tovább működik azzal a verzióval, amelyet deklarált. A 3.0.0 átvételéhez valakinek szándékosan módosítania kell az alkalmazás tartományát. A workspace soha nem engedi, hogy egy alkalmazás olyan breaking change-et kapjon, amelyet a manifestje nem fogadott el, és élesben is pontosan ugyanez a garancia érvényes.
 
-A prerelease-verziókkal óvatosan kell bánni: a `2.5.0-beta.1` a semver szabályai szerint nem felel meg a `^2.4.0` tartománynak, így az a library, amelynek a manifestjében prerelease tag áll, nem linkelődik többé. A prerelease-számozás maradjon a release folyamatban, ne abban a verzióban, amelyen a fejlesztő dolgozik.
+A prerelease-verziókkal óvatosan kell bánni: a `2.5.0-beta.1` a semver szabályai szerint nem felel meg a `^2.4.0` tartománynak, így az a library, amelynek a manifestjében prerelease tag áll, nem linkelődik többé. A prerelease-számozást tartsuk a release folyamatban, ne abban a verzióban, amelyen a fejlesztő dolgozik.
 
 ## Repókon átívelő változás
 
@@ -134,11 +134,11 @@ Az ár: lemondunk az atomi commitról. A library változása és a consumer vál
 
 ## Ahol elromolhat
 
-A minta kiszámítható helyeken hibázik, és mindegyikre van ellenőrzés.
+A minta kiszámítható helyeken romlik el, és mindegyikre van ellenőrzés.
 
 A leggyakoribb hiba az alkalmazás, amely a workspace-ben zöld, a CI-ban piros. Olyan library-funkciót használ, amely a linkelt checkoutban megvan, de még nem jelent meg release-ben. A helyi zöld eredmény semmit nem bizonyít, amíg a library-t nem publikálták. Ha minden repó önálló CI-a kötelező check merge előtt, ebből éles incidens helyett piros pull request lesz. Egy kis workspace-script, amely kilistázza azokat a linkelt package-eket, amelyeknek a helyi forrása előrébb jár a legutóbb publikált verziónál, segít ezt hamarabb észrevenni.
 
-A lockfile-ok eltérnek egymástól. A workspace-ben futó telepítés workspace-szintű lockfile-t ír, a tagrepók CI-a viszont a tagrepó saját lockfile-ját használja; az npm például workspace-telepítéskor egyáltalán nem frissíti a tagok lockfile-jait. A tagrepó lockfile-ját a tagrepóban generáljuk újra, kikapcsolt workspace-szel, a CI pedig frozen módban telepítsen, hogy az elavult lockfile hangosan bukjon el. A tagrepó lockfile-jában soha ne legyen link testvérkönyvtárra.
+A lockfile-ok eltérnek egymástól. A workspace-ben futó telepítés workspace-szintű lockfile-t ír, a tagrepók CI-a viszont a tagrepó saját lockfile-ját használja; az npm például workspace-telepítéskor egyáltalán nem frissíti a tagok lockfile-jait. A tagrepó lockfile-ját a tagrepóban generáljuk újra, kikapcsolt workspace-szel, a CI pedig frozen módban telepítsen, hogy az elavult lockfile egyértelmű hibát okozzon. A tagrepó lockfile-jában soha ne legyen link testvérkönyvtárra.
 
 A linkelt package-eknek build output kell. A consumer általában a library lefordított kimenetét importálja, ami egy friss checkoutban nincs meg. Vagy watch-módban fusson a library buildje, vagy a package egy csak fejlesztéshez használt export conditionnel tegye elérhetővé a forrását, amelyet a workspace eszközei feloldanak, a publikált buildek pedig figyelmen kívül hagynak.
 
