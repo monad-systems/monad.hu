@@ -20,7 +20,7 @@ Sok csapatnál az API-contract még mindig csak mellékterméke a fejlesztésnek
 
 Amíg kicsi a rendszer, ezzel még együtt lehet élni. Platformméretben viszont fékezi a delivery-t.
 
-A spec-first fejlesztés ezeket a döntéseket az implementáció elé hozza. Ha a contract teljes jogú forrásfájl, a design nem bújik el a controllerkódban: a csapatok review-zhatják, kódot generálhatnak belőle, és több rendszerben is újrahasznosíthatják.
+A spec-first fejlesztés ezeket a döntéseket az implementáció elé hozza. Ha a contract teljes jogú forrásfájl, a design nem marad rejtve a controllerkódban: a csapatok review-zhatják, kódot generálhatnak belőle, és több rendszerben is újrahasznosíthatják.
 
 ## A contract a delivery egyik alapja
 
@@ -28,7 +28,7 @@ Az OpenAPI, az AsyncAPI és a JSON Schema együtt emberek és eszközök számá
 
 A határ leírása nem merül ki a mezőnevekben és a primitív típusokban. Rögzíti a megengedett payloadokat és a kötelező mezőket, valamint a formátumra és a szerkezetre vonatkozó megkötéseket. Ide tartoznak a hibák, az autentikáció, a szerepkörök és scope-ok, a kompatibilitási szabályok, az eseménypayloadok, valamint a backend és a frontend közös modelljeinek jelentése is.
 
-Az előre definiált határ közös tervet ad a csapatoknak, így nem az implementáció részleteiből kell utólag kikövetkeztetniük, mi volt a terv.
+Ha a határt előre definiáljuk, a csapatoknak nem az implementáció részleteiből kell utólag kikövetkeztetniük, mi volt a terv.
 
 ## Hogyan működik a code-first a gyakorlatban
 
@@ -42,9 +42,7 @@ A code-first nem eleve rossz választás, csak ilyenkor könnyen az implementác
 
 Sok csapat közvetve már használ JSON Schemát: ott van az OpenAPI-ban, a validációs eszközökben, az űrlapgenerálásban és a konfigurációk ellenőrzésében. Mégis többnyire csak technikai részletnek tartják, nem a rendszerhatárok közös leírásának.
 
-A modern backendplatformokon a JSON Schema az egyik leghatékonyabb eszköz a rendszerhatárok leírására. Az adatszerkezetek és megkötések géppel olvasható modelljéből API-specifikáció, runtime-validáció, generált típusok, frontendűrlapok, mockok, tesztfixture-ök, contractdiffek és közös platformkönyvtárak is készülhetnek.
-
-Az a lényeg, hogy a delivery-lánc minden eleme ugyanabból a leírásból dolgozik.
+A modern backendplatformokon a JSON Schema az egyik leghatékonyabb eszköz a rendszerhatárok leírására. Az adatszerkezetek és megkötések géppel olvasható modelljéből API-specifikáció, runtime-validáció, generált típusok, frontendűrlapok, mockok, tesztfixture-ök, contractdiffek és közös platformkönyvtárak is készülhetnek, így a delivery-lánc minden eleme ugyanabból a leírásból dolgozik.
 
 ## Spec-first platformszinten
 
@@ -101,7 +99,7 @@ Backendoldalon a bejövő requesteket kell validálni, és néha azt is ellenőr
 
 Ha az AJV mindkét oldalon fut, runtime-ban is ellenőrizzük azt, amit a típusok csak fejlesztés közben írnak le.
 
-A típusrendszer leírja, mit vár a saját kódunk. A validátor ellenőrzi, mi lépte át ténylegesen a rendszerhatárt. Mindkettő kell.
+A típusrendszer leírja, mit vár a saját kódunk, a validátor pedig ellenőrzi, mi lépte át ténylegesen a rendszerhatárt, ezért mindkettőre szükség van.
 
 ## Ugyanazok a sémák a frontendet is segíthetik
 
@@ -135,7 +133,7 @@ A belső platformokon gyorsan rengeteg üzemeltetési űrlap gyűlik össze: ter
 
 Ezek a felületek fontosak, de ritkán ezeken múlik, hogy a termék kitűnik-e. Pontosnak, karbantarthatónak és könnyen módosíthatónak kell lenniük; a mezők többségéhez nem kell egyedi UX.
 
-JSON Forms-szal vagy hasonló eszközökkel a szerkezetet és a validációt JSON Schemában definiáljuk, a megjelenítést UI schemával irányítjuk, az űrlap pedig szigorúan kompatibilis marad a backend contracttal.
+JSON Forms-szal vagy hasonló eszközökkel a szerkezetet és a validációt JSON Schemában definiáljuk, a megjelenítést UI schemával irányítjuk, az űrlap pedig teljesen kompatibilis marad a backend contracttal.
 
 A közös modell miatt nincs szükség duplikált meződefiníciókra, és a validációs szabályok egy helyen maradnak. Gyorsabban készülnek el az új adminfelületek, olcsóbb követni a sémaváltozásokat, a beküldött adat ritkábban tér el az API-contracttól, és a fejlesztők hamarabb kiismerik a belső eszközöket.
 
@@ -171,7 +169,7 @@ Ahogy a HTTP API-knál, itt is a forráskódban tárolt contractra épülhet a v
 
 ## A biztonsági követelmények is a contractba valók
 
-Sok rendszerben csak az interfész megtervezése után implementálják az authorizationt. Az endpointok csak a kódban kapnak védelmet, a szerepkörök kimondatlanok maradnak, a policy-k pedig szétszóródnak annotációk, middleware-ek és service-enként eltérő konvenciók között.
+Sok rendszerben csak az interfész megtervezése után implementálják az authorizationt. Az endpointok csak a kódban kapnak védelmet, a szerepköröket nem írják le egyértelműen, a policy-k pedig szétszóródnak annotációk, middleware-ek és service-enként eltérő konvenciók között.
 
 Ha a scope-ok, az auth-sémák és a védett műveletek a contractban szerepelnek, több minden egyszerűbb lesz:
 
@@ -191,7 +189,7 @@ Amint a contract elég stabil:
 - a QA előkészítheti a teszteseteket és a fixture-öket
 - a specifikációból mockok készülhetnek
 - az integrációs tesztelés korábban elindulhat
-- a consumerszolgáltatások a contract alapján fejleszthetnek, mielőtt a provider elkészülne
+- a consumerszolgáltatásokat a contract alapján lehet fejleszteni, mielőtt a provider elkészülne
 
 A közös contract annyira csökkenti a bizonytalanságot, hogy lehet párhuzamosan dolgozni. A backendnek, a frontendnek, a QA-nak és a consumerszolgáltatásoknak nem kell megvárniuk a provider deployolását.
 
@@ -224,7 +222,7 @@ flowchart TD
 
 ## Mikor nem működik a spec-first
 
-Ha a sémák gyengék, a generált artifactok rossz minőségűek, vagy a specifikációt bürokratikus tehernek tekintik, a folyamat nehézkes lesz, és keveset ad.
+Ha a sémák gyengék, a generált artifactok rossz minőségűek, vagy a specifikációt bürokratikus tehernek tekintik, a folyamat nehézkes lesz, és kevés hasznot hoz.
 
 Tipikusan akkor bukik meg, ha:
 
@@ -254,4 +252,4 @@ A Fizz-backendplatformon ugyanazokra a sémákra épül a backend, a frontend, a
 
 Ha már használunk OpenAPI-t, AsyncAPI-t vagy JSON Schemát, a következő lépés: írjuk meg először a contractot, és építsük rá a rendszert.
 
-Ha egy meglévő rendszeren nem világos, melyik határon érdemes kezdeni, erre is választ ad a [kéthetes architektúrareview](/hu/platform-modernization-review): a 90 napos roadmap megnevezi, mely contractokat kell elsőként formalizálni.
+Ha egy meglévő rendszernél nem világos, melyik határon érdemes kezdeni, erre is választ ad a [kéthetes architektúrareview](/hu/platform-modernization-review): a 90 napos roadmap megnevezi, mely contractokat kell elsőként formalizálni.
