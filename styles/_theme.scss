@@ -25,6 +25,9 @@
 
   --border: 222 20% 18%;
   --input: 222 20% 18%;
+  /* Control edge: 3.1:1 on --background and --card (WCAG 1.4.11). */
+  --input-border: hsl(var(--foreground) / 0.35);
+  --input-border-hover: hsl(var(--foreground) / 0.5);
   --ring: 195 86% 57%;
 
   --radius: 0.625rem;
@@ -692,6 +695,8 @@ a.site-nav-link:hover {
 .hero-stat {
   display: flex;
   flex-direction: column;
+  /* <dt> label comes first in the markup, the figure is shown on top. */
+  .hero-stat-label { order: 1; }
   gap: 0.35rem;
   padding: 1.25rem 1.25rem 0 0;
 }
@@ -1444,7 +1449,7 @@ a.site-nav-link:hover {
 .form-textarea {
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid hsl(var(--foreground) / 0.12);
+  border: 1px solid var(--input-border);
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   padding: 0.75rem 0.9rem;
@@ -1456,12 +1461,12 @@ a.site-nav-link:hover {
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: hsl(var(--muted-foreground) / 0.7);
+  color: hsl(var(--muted-foreground));
 }
 
 .form-input:hover,
 .form-textarea:hover {
-  border-color: hsl(var(--foreground) / 0.22);
+  border-color: var(--input-border-hover);
 }
 
 .form-input:focus,
@@ -1498,7 +1503,7 @@ a.site-nav-link:hover {
   --altcha-max-width: 100%;
   --altcha-padding: 0.75rem 0.9rem;
   --altcha-border-width: 1px;
-  --altcha-border-color: hsl(var(--foreground) / 0.12);
+  --altcha-border-color: var(--input-border);
   --altcha-border-radius: 0.5rem;
   --altcha-color-base: hsl(var(--background));
   --altcha-color-base-content: hsl(var(--foreground));
@@ -1530,7 +1535,7 @@ a.site-nav-link:hover {
 }
 
 .altcha-row .altcha-main:hover {
-  border-color: hsl(var(--foreground) / 0.22);
+  border-color: var(--input-border-hover);
 }
 
 .altcha-row .altcha-main:focus-within {
@@ -1808,4 +1813,52 @@ a.site-nav-link:hover {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
+}
+
+/* ── Accessibility helpers ─────────────────────────── */
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+/* WCAG 2.2.2: the Global Fabric loops forever, so it gets a visible pause. */
+.hero-motion-toggle {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 20;
+  min-height: 2rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.45rem;
+  background: hsl(var(--background) / 0.7);
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono, inherit);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-motion-toggle:hover {
+  color: hsl(var(--foreground));
+  border-color: var(--input-border-hover);
 }

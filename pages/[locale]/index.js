@@ -1,20 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import AltchaWidget from '../../components/AltchaWidget';
+import HeroFabric from '../../components/HeroFabric';
 import Layout from '../../components/Layout';
 import { LOCALES, useTranslation } from '../../lib/i18n';
 import { organizationJsonLd, webSiteJsonLd } from '../../lib/site';
-
-const HeroBackground = dynamic(
-  () => import('../../components/HeroBackground'),
-  {
-    ssr: false,
-  },
-);
 
 const problems = [
   {
@@ -861,9 +854,7 @@ export default function Home() {
     >
       {/* ── Hero ── */}
       <section className="hero-section relative flex items-center overflow-hidden">
-        <div className="hero-bg">
-          <HeroBackground />
-        </div>
+        <HeroFabric />
         <div className="hero-scrim" />
 
         <div className="site-container hero-inner relative z-10 w-full">
@@ -897,16 +888,16 @@ export default function Home() {
 
             <dl className="hero-stats">
               <div className="hero-stat">
-                <dd className="hero-stat-value m-0">20+</dd>
                 <dt className="hero-stat-label">{copy.statYears}</dt>
+                <dd className="hero-stat-value m-0">20+</dd>
               </div>
               <div className="hero-stat">
-                <dd className="hero-stat-value m-0">40+</dd>
                 <dt className="hero-stat-label">{copy.statProjects}</dt>
+                <dd className="hero-stat-value m-0">40+</dd>
               </div>
               <div className="hero-stat">
-                <dd className="hero-stat-value m-0">$300k+</dd>
                 <dt className="hero-stat-label">{copy.statSavings}</dt>
+                <dd className="hero-stat-value m-0">$300k+</dd>
               </div>
             </dl>
           </div>
@@ -1228,7 +1219,7 @@ export default function Home() {
               </div>
             </div>
 
-            <aside className="fact-sheet">
+            <div className="fact-sheet">
               <div className="fact-sheet__stats">
                 <div className="fact-sheet__stat">
                   <div className="hero-stat-value">20+</div>
@@ -1271,7 +1262,7 @@ export default function Home() {
                   ))}
                 </dl>
               </div>
-            </aside>
+            </div>
           </div>
 
           <div className="expertise-block">

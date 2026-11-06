@@ -151,7 +151,7 @@ export default function Layout({
           hrefLang={link.locale}
           lang={link.locale}
           className={`lang-switch__link ${link.isActive ? 'is-active' : ''}`}
-          aria-current={link.isActive ? 'true' : undefined}
+          aria-current={link.isActive ? 'page' : undefined}
           onClick={() => {
             rememberLocale(link.locale);
             setIsMobileMenuOpen(false);
@@ -263,6 +263,10 @@ export default function Layout({
         <meta name="theme-color" content="#0b0f14" />
       </Head>
 
+      <a className="skip-link" href="#main-content">
+        {t('layout.a11y.skipToContent', 'Skip to content')}
+      </a>
+
       <header
         className={`site-header ${isScrolled ? 'is-scrolled' : ''} ${
           isMobileMenuOpen ? 'is-menu-open' : ''
@@ -283,7 +287,10 @@ export default function Layout({
             />
           </Link>
 
-          <nav className="desktop-nav" aria-label="Primary">
+          <nav
+            className="desktop-nav"
+            aria-label={t('layout.a11y.primaryNav', 'Primary')}
+          >
             {navLinks.map((link) =>
               link.href.startsWith('/') ? (
                 <Link
@@ -321,15 +328,19 @@ export default function Layout({
             className={`mobile-toggle ${isMobileMenuOpen ? 'is-open' : ''}`}
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             aria-expanded={isMobileMenuOpen}
-            aria-label="Toggle navigation"
+            aria-controls="mobile-menu"
+            aria-label={t('layout.a11y.menuToggle', 'Menu')}
           >
             <span className="mobile-toggle-bars" />
           </button>
         </div>
 
         {isMobileMenuOpen && (
-          <div className="mobile-menu animate-fade-in">
-            <nav className="site-container" aria-label="Mobile">
+          <div id="mobile-menu" className="mobile-menu animate-fade-in">
+            <nav
+              className="site-container"
+              aria-label={t('layout.a11y.mobileNav', 'Mobile')}
+            >
               {navLinks.map((link) =>
                 link.href.startsWith('/') ? (
                   <Link
@@ -363,7 +374,11 @@ export default function Layout({
         )}
       </header>
 
-      <main className={`${isHome ? '' : 'site-main'} site-main-content`}>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`${isHome ? '' : 'site-main'} site-main-content`}
+      >
         {children}
       </main>
 
@@ -403,7 +418,7 @@ export default function Layout({
               </div>
             </div>
 
-            <nav aria-label="Footer">
+            <nav aria-label={t('layout.a11y.footerNav', 'Footer')}>
               <p className="mono-label footer-heading">
                 {t('layout.footer.company', 'Company')}
               </p>
