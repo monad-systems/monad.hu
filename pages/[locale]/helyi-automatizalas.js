@@ -1,16 +1,9 @@
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
+import HeroFabric from '../../components/HeroFabric';
 import Layout from '../../components/Layout';
 import { SITE_URL, getCanonicalUrl, organizationJsonLd } from '../../lib/site';
-
-const HeroBackground = dynamic(
-  () => import('../../components/HeroBackground'),
-  {
-    ssr: false,
-  },
-);
 
 // Pricing rule agreed by the owner on 2026-10-06: the first process costs two
 // thirds of the client's measured first-year saving, so it pays back in about
@@ -347,9 +340,7 @@ export default function LocalAutomation() {
         className="relative overflow-hidden"
         style={{ paddingTop: '8rem', paddingBottom: '6.5rem' }}
       >
-        <div className="hero-bg">
-          <HeroBackground />
-        </div>
+        <HeroFabric />
         <div className="hero-scrim" />
         <div className="site-container relative z-10">
           <div style={{ maxWidth: '760px' }}>

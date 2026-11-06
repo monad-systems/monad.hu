@@ -1,16 +1,9 @@
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import HeroFabric from '../../components/HeroFabric';
 import Layout from '../../components/Layout';
 import { LOCALES, useTranslation } from '../../lib/i18n';
-
-const HeroBackground = dynamic(
-  () => import('../../components/HeroBackground'),
-  {
-    ssr: false,
-  },
-);
 
 /* ── Inline Icons ── */
 function CheckIcon(props) {
@@ -619,9 +612,7 @@ export default function PlatformModernizationReview() {
         className="relative overflow-hidden"
         style={{ paddingTop: '8rem', paddingBottom: '6.5rem' }}
       >
-        <div className="hero-bg">
-          <HeroBackground />
-        </div>
+        <HeroFabric />
         <div className="hero-scrim" />
         <div className="site-container relative z-10">
           <div style={{ maxWidth: '720px' }}>

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 /**
  * Hero background — "Global Fabric"
  * Articulates: distributed scale, multi-region redundancy, observable pipelines.
@@ -53,9 +55,24 @@ const LINKS = [
   { d: 'M 280 300 C 380 260, 420 220, 460 200', dur: 3.0, delay: 0.2 },
 ];
 
-const HeroBackground = () => {
+const HeroBackground = ({ paused = false }) => {
+  const svgRef = useRef(null);
+
+  // SMIL (animateMotion) ignores CSS and prefers-reduced-motion, so the
+  // packets are paused through the SVG DOM; CSS keyframes via .is-paused.
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg?.pauseAnimations) return;
+    if (paused) svg.pauseAnimations();
+    else svg.unpauseAnimations();
+  }, [paused]);
+
   return (
-    <div className="hero-fabric absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      className={`hero-fabric absolute inset-0 overflow-hidden pointer-events-none${
+        paused ? ' is-paused' : ''
+      }`}
+    >
       {/* Ambient wash */}
       <div
         className="absolute inset-0"
@@ -80,6 +97,7 @@ const HeroBackground = () => {
       />
 
       <svg
+        ref={svgRef}
         viewBox={`0 0 ${VB_W} ${VB_H}`}
         preserveAspectRatio="xMidYMid slice"
         className="absolute inset-0 w-full h-full"
@@ -461,6 +479,7 @@ const HeroBackground = () => {
         @media (prefers-reduced-motion: reduce) {
           .hero-fabric [style*="animation"] { animation: none !important; opacity: 1 !important; }
         }
+        .hero-fabric.is-paused [style*="animation"] { animation-play-state: paused !important; }
         /* On narrow viewports the slab stack lands behind the hero copy and
            hurts legibility — hide just the watermark; arcs/regions stay. */
         @media (max-width: 1023px) {
