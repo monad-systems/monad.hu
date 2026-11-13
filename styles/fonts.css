@@ -1,0 +1,47 @@
+/* Open Sans, the site's one webfont, self-hosted. Files come from
+   scripts/subset-open-sans.mjs (Latin-1 plus ő ű Ő Ű, about 20 KB a weight).
+   Mono is web-safe and for code only, so nothing is downloaded for it. */
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(./fonts/OpenSans-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(./fonts/OpenSans-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(./fonts/OpenSans-SemiBold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(./fonts/OpenSans-Bold.woff2) format('woff2');
+}
+
+/* Metric-matched Arial stand-in while Open Sans loads (or if it fails), so the
+   swap does not reflow the page. Measured from Open Sans 3.003 against
+   Arial-metric Arimo: letter-frequency-weighted advance width, hhea metrics. */
+@font-face {
+  font-family: 'Open Sans Fallback';
+  src: local('Arial'), local('ArialMT'), local('Arimo'), local('Liberation Sans');
+  size-adjust: 105.8%;
+  ascent-override: 101.03%;
+  descent-override: 27.69%;
+  line-gap-override: 0%;
+}

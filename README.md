@@ -78,10 +78,12 @@ Notes:
 
 ## Fonts
 
-Inter and JetBrains Mono come from fontsource. Hungarian needs only four glyphs outside Latin-1 (ő ű Ő Ű), so
-`styles/fonts/` holds ~1–2 KB subsets with just those, declared in `styles/fonts-hu.css` after the fontsource faces.
-Without them, a single „ő” makes the browser fetch the ~100 KB latin-ext files. Re-run
-`node scripts/subset-hungarian-fonts.mjs` (needs `pip install fonttools brotli`) after upgrading either font package.
+Open Sans is the one webfont, self-hosted from `styles/fonts/` and declared in `styles/fonts.css` with a
+metric-matched Arial fallback. Each weight (400/500/600/700) is subset to Latin-1 plus ő ű Ő Ű and common
+punctuation, about 20 KB, so Hungarian copy never pulls a latin-ext file. Labels and eyebrows are Open Sans 600
+caps (`--font-label`); `--font-mono` is web-safe and for code only, nothing is downloaded for it. This follows
+the MONAD Design System (Nov 2026). Re-run `node scripts/subset-open-sans.mjs` (needs
+`pip install fonttools brotli`) after upgrading `@expo-google-fonts/open-sans`.
 
 ### Hungarian copy
 
