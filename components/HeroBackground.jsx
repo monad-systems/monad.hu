@@ -259,7 +259,7 @@ const HeroBackground = ({ paused = false }) => {
               y={r.y + 3}
               fill="hsl(var(--muted-foreground))"
               fontSize="9"
-              fontFamily="JetBrains Mono, monospace"
+              fontFamily="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
               opacity={0.55}
             >
               {r.label}
@@ -394,7 +394,7 @@ const HeroBackground = ({ paused = false }) => {
                             y={-6}
                             textAnchor="middle"
                             fontSize="10"
-                            fontFamily="JetBrains Mono, monospace"
+                            fontFamily="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
                             letterSpacing="2"
                             fontWeight={600}
                             fill="hsl(var(--primary))"

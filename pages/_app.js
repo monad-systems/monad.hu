@@ -1,11 +1,6 @@
 import '../styles/tailwind.css';
 import '../styles/app.scss';
-import '@fontsource-variable/inter/index.css';
-// The per-subset files (latin-400.css, …) carry no unicode-range, so the
-// browser fetched latin-ext first for every mono glyph and latin only after.
-import '@fontsource/jetbrains-mono/400.css';
-import '@fontsource/jetbrains-mono/500.css';
-import '../styles/fonts-hu.css';
+import '../styles/fonts.css';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useEffect } from 'react';

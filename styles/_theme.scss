@@ -46,8 +46,11 @@
   --glass-bg: hsl(222 23% 12% / 0.6);
   --glass-border: hsl(210 40% 98% / 0.08);
 
-  --font-sans: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* One webfont: Open Sans (styles/fonts.css). Labels are Open Sans 600 caps;
+     mono is web-safe and for code only (MONAD Design System, Nov 2026). */
+  --font-sans: "Open Sans", "Open Sans Fallback", Arial, Helvetica, sans-serif;
+  --font-label: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
   --header-height: 72px;
   --text-strong: hsl(var(--foreground));
@@ -74,7 +77,6 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.6;
-  font-feature-settings: "cv11", "ss01", "ss03";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -109,7 +111,7 @@ h4 {
   font-family: var(--font-sans);
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
   margin: 0 0 0.75rem;
   color: var(--text-strong);
 }
@@ -206,9 +208,9 @@ img {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: hsl(var(--primary));
@@ -233,7 +235,7 @@ img {
   font-size: clamp(1.875rem, 1.2rem + 2.2vw, 2.75rem);
   font-weight: 600;
   line-height: 1.12;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
   text-wrap: balance;
 }
@@ -257,10 +259,10 @@ img {
 }
 
 .mono-label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--muted-foreground));
 }
@@ -305,7 +307,7 @@ img {
   font-size: 0.9375rem;
   font-weight: 500;
   line-height: 1.2;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   padding: 0.7rem 1.2rem;
   cursor: pointer;
   white-space: nowrap;
@@ -371,9 +373,10 @@ img {
   gap: 0.6rem;
   padding: 0.4rem 0.8rem;
   border-radius: 999px;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 500;
   font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   line-height: 1;
   color: hsl(var(--muted-foreground));
 }
@@ -409,11 +412,11 @@ img {
   justify-content: flex-start;
   padding: 0.3rem 0.55rem;
   border-radius: 4px;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 400;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   color: hsl(var(--muted-foreground));
   background: hsl(var(--secondary) / 0.55);
   border: 1px solid var(--rule);
@@ -645,9 +648,9 @@ a.site-nav-link:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--muted-foreground));
@@ -655,10 +658,10 @@ a.site-nav-link:hover {
 }
 
 .hero-heading {
-  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.75rem);
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.5rem);
   font-weight: 600;
   line-height: 1.04;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   margin-bottom: 1.75rem;
 }
 
@@ -666,7 +669,7 @@ a.site-nav-link:hover {
   font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4rem);
   font-weight: 600;
   line-height: 1.08;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   margin-bottom: 1.5rem;
 }
 
@@ -709,15 +712,16 @@ a.site-nav-link:hover {
 .hero-stat-value {
   font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1;
   color: hsl(var(--foreground));
   font-variant-numeric: tabular-nums;
 }
 
 .hero-stat-label {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--muted-foreground));
@@ -756,10 +760,10 @@ a.site-nav-link:hover {
 .logo-band__label strong {
   display: block;
   margin-bottom: 0.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--primary));
 }
@@ -827,9 +831,10 @@ a.site-nav-link:hover {
 }
 
 .ruled-cell__index {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--primary));
   margin-bottom: 2.5rem;
 }
@@ -837,7 +842,7 @@ a.site-nav-link:hover {
 .ruled-cell__title {
   font-size: 1.125rem;
   line-height: 1.35;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.01em;
   margin-bottom: 0.75rem;
 }
 
@@ -896,7 +901,9 @@ a.site-nav-link:hover {
 }
 
 .fit-list__index {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   font-size: 0.75rem;
   color: hsl(var(--primary));
 }
@@ -936,9 +943,10 @@ a.site-nav-link:hover {
 }
 
 .engage-card__step {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: hsl(var(--primary));
 }
 
@@ -1066,17 +1074,17 @@ a.site-nav-link:hover {
 }
 
 .case-row__category {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--primary));
 }
 
 .case-row__title {
   font-size: 1.625rem;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.018em;
   margin: 0;
 }
 
@@ -1102,9 +1110,10 @@ a.site-nav-link:hover {
 }
 
 .work-category {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--primary));
   margin-bottom: 0.75rem;
@@ -1132,7 +1141,7 @@ a.site-nav-link:hover {
 .work-title {
   font-size: clamp(2.25rem, 4vw, 4rem);
   font-weight: 600;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   line-height: 1.1;
   margin-bottom: 1rem;
 }
@@ -1239,8 +1248,9 @@ a.site-nav-link:hover {
 }
 
 .fact-row dt {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: hsl(var(--muted-foreground));
@@ -1313,9 +1323,10 @@ a.site-nav-link:hover {
   align-items: center;
   justify-content: center;
   color: hsl(var(--primary));
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Cards (shared by posts, review page, error pages) ── */
@@ -1559,7 +1570,7 @@ a.site-nav-link:hover {
   flex-grow: 0;
   width: auto;
   gap: 0.4rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   color: hsl(var(--muted-foreground));
   opacity: 1;
   white-space: nowrap;
@@ -1851,7 +1862,8 @@ a.site-nav-link:hover {
   border-radius: 0.45rem;
   background: hsl(var(--background) / 0.7);
   color: hsl(var(--muted-foreground));
-  font-family: var(--font-mono, inherit);
+  font-family: var(--font-label);
+  font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   cursor: pointer;
