@@ -20,8 +20,11 @@
   --accent: 195 86% 57%;
   --accent-foreground: 222 23% 8%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  /* Status fills share the turquoise's tone; the label on a fill is the dark ink. */
+  --destructive: 354 72% 60%;
+  --destructive-foreground: 222 23% 8%;
+  --success: 144 72% 60%;
+  --warning: 38 72% 56%;
 
   --border: 222 20% 18%;
   --input: 222 20% 18%;
@@ -29,6 +32,10 @@
   --input-border: hsl(var(--foreground) / 0.35);
   --input-border-hover: hsl(var(--foreground) / 0.5);
   --ring: 195 86% 57%;
+  --focus-ring: var(--primary);
+  /* Interactive text. A link in running text is this colour and underlined. */
+  --link: var(--primary);
+  --link-hover: var(--decorative);
 
   --radius: 0.625rem;
 
@@ -88,7 +95,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid hsl(var(--primary));
+  outline: 2px solid hsl(var(--focus-ring));
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -135,7 +142,28 @@ a {
 }
 
 a:hover:not(.btn) {
-  color: hsl(var(--primary));
+  color: hsl(var(--link-hover));
+}
+
+/* A link inside running text is underlined: against body text the colour
+   alone is only 1.2–1.4:1, so it cannot mark a link by itself. */
+p a:not(.btn),
+li p a:not(.btn),
+dd a:not(.btn),
+.inline-link {
+  color: hsl(var(--link));
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+p a:not(.btn):hover,
+p a:not(.btn):focus-visible,
+dd a:not(.btn):hover,
+.inline-link:hover,
+.inline-link:focus-visible {
+  color: hsl(var(--link-hover));
+  text-decoration-thickness: 2px;
 }
 
 img {
@@ -213,7 +241,7 @@ img {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: hsl(var(--primary));
+  color: var(--text-body);
   margin: 0 0 1.25rem;
 }
 
@@ -228,7 +256,8 @@ img {
   height: 1px;
   margin-left: 0.75rem;
   vertical-align: middle;
-  background: var(--rule-strong);
+  /* the eyebrow's one cyan mark: the label itself is not cyan */
+  background: hsl(var(--primary));
 }
 
 .section-title {
@@ -362,7 +391,7 @@ img {
   align-items: center;
   gap: 0.4rem;
   font-weight: 500;
-  color: hsl(var(--primary));
+  color: hsl(var(--link));
 }
 
 /* ── Badges & tags ─────────────────────────────────── */
@@ -423,7 +452,7 @@ img {
 }
 
 .tag-primary {
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   background: hsl(var(--primary) / 0.07);
   border-color: hsl(var(--primary) / 0.22);
 }
@@ -519,8 +548,9 @@ img {
   transition: color 0.2s ease;
 }
 
-a.site-nav-link:hover {
-  color: hsl(var(--foreground));
+a.site-nav-link:hover,
+a.site-nav-link:focus-visible {
+  color: hsl(var(--link-hover));
 }
 
 .mobile-toggle {
@@ -765,7 +795,7 @@ a.site-nav-link:hover {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: hsl(var(--primary));
+  color: var(--text-body);
 }
 
 .logo-band__logos {
@@ -835,7 +865,7 @@ a.site-nav-link:hover {
   font-size: 0.75rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
   margin-bottom: 2.5rem;
 }
 
@@ -905,7 +935,7 @@ a.site-nav-link:hover {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   font-size: 0.75rem;
-  color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
 }
 
 /* ── Engagements ──────────────────────────────────── */
@@ -947,7 +977,7 @@ a.site-nav-link:hover {
   font-size: 0.75rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
 }
 
 .engage-card__title {
@@ -994,14 +1024,14 @@ a.site-nav-link:hover {
   display: inline-flex;
   width: 20px;
   height: 20px;
-  color: hsl(var(--primary));
+  color: var(--text-body);
   margin-bottom: 1rem;
 }
 
 .value-icon {
   width: 20px;
   height: 20px;
-  color: hsl(var(--primary));
+  color: var(--text-body);
 }
 
 /* ── CTA band ─────────────────────────────────────── */
@@ -1079,7 +1109,7 @@ a.site-nav-link:hover {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
 }
 
 .case-row__title {
@@ -1115,7 +1145,7 @@ a.site-nav-link:hover {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: hsl(var(--primary));
+  color: hsl(var(--muted-foreground));
   margin-bottom: 0.75rem;
 }
 
@@ -1322,7 +1352,7 @@ a.site-nav-link:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: hsl(var(--primary));
+  color: var(--text-body);
   font-family: var(--font-label);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -1356,7 +1386,7 @@ a.site-nav-link:hover {
   align-items: center;
   justify-content: center;
   background: hsl(var(--secondary));
-  color: hsl(var(--primary));
+  color: var(--text-body);
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
@@ -1403,6 +1433,20 @@ a.site-nav-link:hover {
   color: hsl(var(--foreground));
 }
 
+/* The e-mail, phone and map entries are links, so they look like links. */
+.contact-details a {
+  color: hsl(var(--link));
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+.contact-details a:hover,
+.contact-details a:focus-visible {
+  color: hsl(var(--link-hover));
+  text-decoration-thickness: 2px;
+}
+
 .trust-list {
   list-style: none;
   margin: 2.5rem 0 0;
@@ -1423,12 +1467,12 @@ a.site-nav-link:hover {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  color: hsl(var(--primary));
+  color: var(--text-body);
 }
 
 .contact-icon {
   background: hsl(var(--secondary));
-  color: hsl(var(--primary));
+  color: var(--text-body);
   font-weight: 600;
 }
 
@@ -1483,8 +1527,8 @@ a.site-nav-link:hover {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: hsl(var(--primary));
-  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.18);
+  border-color: hsl(var(--focus-ring));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.18);
 }
 
 .form-textarea {
@@ -1550,8 +1594,8 @@ a.site-nav-link:hover {
 }
 
 .altcha-row .altcha-main:focus-within {
-  border-color: hsl(var(--primary));
-  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.18);
+  border-color: hsl(var(--focus-ring));
+  box-shadow: 0 0 0 3px hsl(var(--ring) / 0.18);
 }
 
 .altcha-row .altcha-checkbox-wrap {
@@ -1674,8 +1718,9 @@ a.site-nav-link:hover {
   color: hsl(var(--muted-foreground));
 }
 
-.footer-links a:hover {
-  color: hsl(var(--foreground));
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: hsl(var(--link-hover));
 }
 
 .footer-social {
