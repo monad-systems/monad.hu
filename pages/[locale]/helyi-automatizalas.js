@@ -299,7 +299,7 @@ function SavingsCalculator() {
       <p
         style={{
           margin: '1rem 0 0',
-          color: 'hsl(var(--muted-foreground))',
+          color: 'var(--text-body)',
           fontSize: '0.9rem',
           lineHeight: 1.55,
         }}
@@ -354,7 +354,7 @@ export default function LocalAutomation() {
             <p
               className="text-base md:text-xl leading-relaxed mb-8"
               style={{
-                color: 'hsl(var(--muted-foreground))',
+                color: 'var(--text-body)',
                 maxWidth: '60ch',
               }}
             >
@@ -468,7 +468,7 @@ export default function LocalAutomation() {
                 </h3>
                 <p
                   style={{
-                    color: 'hsl(var(--muted-foreground))',
+                    color: 'var(--text-body)',
                     fontSize: '0.95rem',
                     lineHeight: 1.65,
                     margin: '0 0 1rem',
@@ -525,7 +525,7 @@ export default function LocalAutomation() {
                 </h3>
                 <p
                   style={{
-                    color: 'hsl(var(--muted-foreground))',
+                    color: 'var(--text-body)',
                     fontSize: '0.95rem',
                     lineHeight: 1.65,
                     margin: 0,

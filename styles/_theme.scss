@@ -274,14 +274,14 @@ img {
 }
 
 .section-lead {
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   font-size: 1.0625rem;
   line-height: 1.7;
   text-wrap: pretty;
 }
 
 .body-text {
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   font-size: 0.9375rem;
   line-height: 1.65;
   margin: 0;
@@ -705,7 +705,7 @@ a.site-nav-link:focus-visible {
 
 .hero-subtitle {
   font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   line-height: 1.65;
   max-width: 40rem;
   margin-bottom: 2.25rem;
@@ -784,7 +784,7 @@ a.site-nav-link:focus-visible {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
 }
 
 .logo-band__label strong {
@@ -1155,7 +1155,7 @@ a.site-nav-link:focus-visible {
 }
 
 .work-card-description {
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   line-height: 1.7;
   margin-bottom: 1.5rem;
   max-width: 75ch;
@@ -1177,7 +1177,7 @@ a.site-nav-link:focus-visible {
 }
 
 .work-subtitle {
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.7;
   max-width: 60ch;
@@ -1460,7 +1460,7 @@ a.site-nav-link:focus-visible {
   align-items: center;
   gap: 0.75rem;
   font-size: 0.9375rem;
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
 }
 
 .trust-list svg {
@@ -1654,7 +1654,7 @@ a.site-nav-link:focus-visible {
 
 .altcha-note {
   margin: 1rem 0 0;
-  color: hsl(var(--muted-foreground) / 0.85);
+  color: hsl(var(--muted-foreground));
   font-size: 0.75rem;
   line-height: 1.5;
 }
