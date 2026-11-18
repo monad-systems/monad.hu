@@ -778,6 +778,8 @@ export default function Home() {
       };
   const contactText = homeContent;
   const [contactStatus, setContactStatus] = useState('');
+  // 'error' | 'success' | '': the status line shows a mark and a colour for the first two
+  const [contactStatusKind, setContactStatusKind] = useState('');
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const contactApiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL;
   const isContactFormConfigured = Boolean(contactApiUrl);
@@ -791,17 +793,20 @@ export default function Home() {
 
     if (!isContactFormConfigured) {
       setContactStatus(contactText.contactUnavailableInline);
+      setContactStatusKind('error');
       return;
     }
 
     setIsSubmittingContact(true);
     setContactStatus(contactText.sendingText);
+    setContactStatusKind('');
 
     try {
       const formData = new FormData(form);
       const altcha = await altchaRef.current?.ensurePayload(form);
       if (!altcha) {
         setContactStatus(contactText.contactBotCheckFailed);
+        setContactStatusKind('error');
         return;
       }
 
@@ -820,6 +825,7 @@ export default function Home() {
 
       if (res.ok) {
         setContactStatus(contactText.contactSent);
+        setContactStatusKind('success');
         form.reset();
         window.umami?.track('contact-form-sent');
         return;
@@ -830,9 +836,11 @@ export default function Home() {
           ? contactText.contactBotCheckFailed
           : contactText.contactFailed,
       );
+      setContactStatusKind('error');
     } catch (err) {
       console.error('Contact form submit failed:', err);
       setContactStatus(contactText.contactFailed);
+      setContactStatusKind('error');
     } finally {
       // A payload is single-use, so every attempt, successful or not, needs a
       // fresh challenge.
@@ -1399,7 +1407,11 @@ export default function Home() {
                 id="status"
                 role="status"
                 aria-live="polite"
-                className="form-status"
+                className={
+                  contactStatus && contactStatusKind
+                    ? `form-status form-status--${contactStatusKind}`
+                    : 'form-status'
+                }
               >
                 {contactStatus ||
                   (!isContactFormConfigured
