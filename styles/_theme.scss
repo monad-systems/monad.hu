@@ -1546,6 +1546,36 @@ a.site-nav-link:focus-visible {
   color: hsl(var(--muted-foreground));
 }
 
+/* An outcome is never colour alone: an error carries a cross and a success a
+   tick, each with its own outline, beside the message. */
+.form-status--error,
+.form-status--success {
+  font-weight: 600;
+}
+
+.form-status--error {
+  color: hsl(var(--destructive));
+  --status-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 4l8 8M12 4l-8 8' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.form-status--success {
+  color: hsl(var(--success));
+  --status-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.6l3.2 3.2L13 4.6' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.form-status--error::before,
+.form-status--success::before {
+  content: '';
+  display: inline-block;
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.4em;
+  vertical-align: -0.1em;
+  background: currentColor;
+  -webkit-mask: var(--status-mark) center / contain no-repeat;
+  mask: var(--status-mark) center / contain no-repeat;
+}
+
 .altcha-row {
   margin-top: 1.25rem;
 }
