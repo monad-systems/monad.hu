@@ -54,7 +54,7 @@
 .posts-list__lead {
   max-width: 68ch;
   margin: 0 0 1rem;
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   line-height: 1.5;
 }
 
@@ -167,7 +167,7 @@
   blockquote {
     padding-left: 1rem;
     border-left: 3px solid hsl(var(--primary) / 0.5);
-    color: hsl(var(--muted-foreground));
+    color: var(--text-body);
   }
 
   pre {
@@ -233,7 +233,7 @@
 
 .blog-post__lead {
   margin: 0 0 2rem;
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   line-height: 1.5;
   font-size: 1.08rem;
 }
@@ -291,7 +291,7 @@
 .blog-post__content .diagram-figure__caption {
   margin-top: 0.75rem;
   text-align: right;
-  color: hsl(var(--muted-foreground));
+  color: var(--text-body);
   font-size: 0.95rem;
   line-height: 1.45;
 }
