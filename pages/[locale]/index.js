@@ -950,7 +950,7 @@ export default function Home() {
                 <p
                   style={{
                     margin: 0,
-                    color: 'hsl(var(--muted-foreground))',
+                    color: 'var(--text-body)',
                     lineHeight: 1.6,
                   }}
                 >

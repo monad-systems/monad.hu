@@ -268,7 +268,7 @@ export default function PlatformModernizationReview() {
             <p
               className="text-base md:text-xl leading-relaxed mb-8"
               style={{
-                color: 'hsl(var(--muted-foreground))',
+                color: 'var(--text-body)',
                 maxWidth: '60ch',
               }}
             >
@@ -291,7 +291,7 @@ export default function PlatformModernizationReview() {
             <p
               style={{
                 marginTop: '1rem',
-                color: 'hsl(var(--muted-foreground))',
+                color: 'var(--text-body)',
                 fontSize: '0.95rem',
               }}
             >
@@ -445,7 +445,7 @@ export default function PlatformModernizationReview() {
             </p>
             <p
               style={{
-                color: 'hsl(var(--muted-foreground))',
+                color: 'var(--text-body)',
                 fontSize: '0.95rem',
                 marginTop: '-0.25rem',
               }}
@@ -627,7 +627,7 @@ export default function PlatformModernizationReview() {
                 </h3>
                 <p
                   style={{
-                    color: 'hsl(var(--muted-foreground))',
+                    color: 'var(--text-body)',
                     fontSize: '0.95rem',
                     lineHeight: 1.65,
                     margin: 0,
@@ -685,7 +685,7 @@ export default function PlatformModernizationReview() {
                 </h3>
                 <p
                   style={{
-                    color: 'hsl(var(--muted-foreground))',
+                    color: 'var(--text-body)',
                     fontSize: '0.95rem',
                     lineHeight: 1.65,
                     margin: 0,
@@ -741,7 +741,7 @@ export default function PlatformModernizationReview() {
                     <div
                       style={{
                         marginTop: '0.3rem',
-                        color: 'hsl(var(--muted-foreground))',
+                        color: 'var(--text-body)',
                         fontSize: '0.92rem',
                         lineHeight: 1.5,
                       }}
@@ -843,7 +843,7 @@ export default function PlatformModernizationReview() {
                 </h3>
                 <p
                   style={{
-                    color: 'hsl(var(--muted-foreground))',
+                    color: 'var(--text-body)',
                     fontSize: '0.95rem',
                     lineHeight: 1.65,
                     margin: 0,
@@ -914,7 +914,7 @@ export default function PlatformModernizationReview() {
                   <p
                     style={{
                       margin: '0.25rem 0 0.45rem',
-                      color: 'hsl(var(--muted-foreground))',
+                      color: 'var(--text-body)',
                     }}
                   >
                     {item.context}
@@ -923,7 +923,7 @@ export default function PlatformModernizationReview() {
                   <p
                     style={{
                       margin: '0.25rem 0 0',
-                      color: 'hsl(var(--muted-foreground))',
+                      color: 'var(--text-body)',
                     }}
                   >
                     {item.outcome}
@@ -962,7 +962,7 @@ export default function PlatformModernizationReview() {
             </p>
             <p
               style={{
-                color: 'hsl(var(--muted-foreground))',
+                color: 'var(--text-body)',
                 maxWidth: '52ch',
                 margin: '0 auto 1.25rem',
                 fontSize: '0.95rem',
